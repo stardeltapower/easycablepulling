@@ -20,20 +20,20 @@ DEFAULT_MAX_CABLE_LENGTH = 500.0  # meters
 FRICTION_COEFFICIENTS = {
     "PVC": {
         "dry": {"single": 0.35, "trefoil": 0.42},
-        "lubricated": {"single": 0.15, "trefoil": 0.18}
+        "lubricated": {"single": 0.15, "trefoil": 0.18},
     },
     "HDPE": {  # Similar to PVC
         "dry": {"single": 0.35, "trefoil": 0.42},
-        "lubricated": {"single": 0.15, "trefoil": 0.18}
+        "lubricated": {"single": 0.15, "trefoil": 0.18},
     },
     "Steel": {
         "dry": {"single": 0.40, "trefoil": 0.48},
-        "lubricated": {"single": 0.20, "trefoil": 0.24}
+        "lubricated": {"single": 0.20, "trefoil": 0.24},
     },
     "Concrete": {
         "dry": {"single": 0.50, "trefoil": 0.60},
-        "lubricated": {"single": 0.25, "trefoil": 0.30}
-    }
+        "lubricated": {"single": 0.25, "trefoil": 0.30},
+    },
 }
 
 # Default friction values

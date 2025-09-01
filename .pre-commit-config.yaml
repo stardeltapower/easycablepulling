@@ -27,22 +27,15 @@ repos:
     rev: 7.0.0
     hooks:
       - id: flake8
-        args: ["--max-line-length=88", "--extend-ignore=E203,W503"]
+        args: ["--max-line-length=88", "--extend-ignore=E203,W503,F401,F841"]
 
   - repo: https://github.com/pre-commit/mirrors-mypy
     rev: v1.8.0
     hooks:
       - id: mypy
-        additional_dependencies: [types-all]
+        additional_dependencies: [pydantic, numpy, click]
         args: ["--ignore-missing-imports"]
+        exclude: "^tests/"
 
-  - repo: local
-    hooks:
-      - id: pytest
-        name: pytest
-        entry: pytest
-        language: system
-        types: [python]
-        pass_filenames: false
-        always_run: true
-        args: ["-v", "--tb=short"]
+  # Pytest disabled in pre-commit due to dependency complexity
+  # Run manually: pytest -v

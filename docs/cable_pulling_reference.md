@@ -7,7 +7,7 @@
 ## Key Features
 
 ### 1. [Placeholder]
-- 
+-
 
 ### 2. Cable Pulling Physics
 

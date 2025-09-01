@@ -16,22 +16,22 @@ This document breaks down the SCOPE.md into manageable components to be implemen
   - Pulling method (eye/basket)
   - Cable arrangement (single/trefoil/flat)
   - Number of cables
-  
+
 - [ ] Implement `DuctSpec` dataclass
   - Inner diameter (mm)
   - Type (PVC/HDPE/steel)
   - Friction coefficients (dry/lubricated)
   - Bend catalogue (list of standard bends)
-  
+
 - [ ] Implement `Primitive` abstract base class
   - `Straight` subclass (length, start_point, end_point)
   - `Bend` subclass (radius, angle, direction, center_point)
-  
+
 - [ ] Implement `Section` class
   - Original polyline data
   - Fitted primitives list
   - Length and validation metrics
-  
+
 - [ ] Implement `Route` class
   - Metadata (project name, date, etc.)
   - Sections list
@@ -66,12 +66,12 @@ This document breaks down the SCOPE.md into manageable components to be implemen
   - Extract polylines from specified layers
   - Handle different DXF versions
   - Extract metadata (units, scale, etc.)
-  
+
 - [ ] Implement polyline parser
   - Convert DXF entities to internal polyline format
   - Handle 2D and 3D polylines
   - Preserve section boundaries
-  
+
 - [ ] Implement section identification
   - Detect separate polylines as sections
   - Maintain section ordering
@@ -87,7 +87,7 @@ This document breaks down the SCOPE.md into manageable components to be implemen
   - Create layers (ORIGINAL_ROUTE, ADJUSTED_ROUTE)
   - Export fitted geometry
   - Add annotations (section labels, bend info)
-  
+
 - [ ] Implement annotation system
   - Section numbers and lengths
   - Bend radii and angles
@@ -105,11 +105,11 @@ This document breaks down the SCOPE.md into manageable components to be implemen
   - Remove duplicate points
   - Remove collinear points
   - Douglas-Peucker simplification option
-  
+
 - [ ] Implement section length calculation
   - Accurate length along polyline
   - Chainage calculation for each point
-  
+
 - [ ] Implement minor splitting logic
   - Find optimal split points
   - Avoid splitting near bends
@@ -125,12 +125,12 @@ This document breaks down the SCOPE.md into manageable components to be implemen
   - Least-squares circle fit (Pratt method)
   - Taubin circle fit
   - Three-point circle calculation
-  
+
 - [ ] Implement arc detection
   - Identify curved segments in polyline
   - Group points belonging to same arc
   - Calculate arc parameters (center, radius, angle)
-  
+
 - [ ] Implement bend standardization
   - Match fitted arcs to standard duct bends
   - Adjust geometry to use standard bends
@@ -146,12 +146,12 @@ This document breaks down the SCOPE.md into manageable components to be implemen
   - Build polyline from primitives
   - Ensure tangent continuity
   - Calculate total length
-  
+
 - [ ] Implement deviation checking
   - Lateral deviation calculation
   - Length error percentage
   - Point-to-curve distance
-  
+
 - [ ] Implement constraint enforcement
   - Minimum bend radius check
   - Minimum straight length between bends
@@ -169,12 +169,12 @@ This document breaks down the SCOPE.md into manageable components to be implemen
   - T_out = T_in + W * f * L
   - Weight correction for cable angle
   - Multiple cable weight factors
-  
+
 - [ ] Implement bend calculation
   - T_out = T_in * e^(f * θ)
   - Capstan equation implementation
   - Direction-dependent calculation
-  
+
 - [ ] Implement section analysis
   - Forward pulling calculation
   - Backward pulling calculation
@@ -190,12 +190,12 @@ This document breaks down the SCOPE.md into manageable components to be implemen
   - P = T_out / r
   - Pressure at each bend
   - Maximum pressure identification
-  
+
 - [ ] Implement limit checking
   - Tension vs allowable tension
   - Pressure vs allowable pressure
   - Bend radius vs minimum radius
-  
+
 - [ ] Implement result aggregation
   - Pass/fail determination
   - Limiting factors identification
@@ -211,12 +211,12 @@ This document breaks down the SCOPE.md into manageable components to be implemen
   - Elevation profile handling
   - Gravity component calculation
   - Uphill/downhill adjustments
-  
+
 - [ ] Implement friction variations
   - Dry vs lubricated conditions
   - Temperature effects (optional)
   - Surface condition factors
-  
+
 - [ ] Implement multi-cable calculations
   - Jam ratio checking (IEC standards)
   - Clearance calculations
@@ -235,7 +235,7 @@ This document breaks down the SCOPE.md into manageable components to be implemen
   - DXF import → preprocessing → fitting → calculation → export
   - Error handling and recovery
   - Progress reporting
-  
+
 - [ ] Implement result aggregation
   - Combine results from all sections
   - Generate summary statistics
@@ -253,7 +253,7 @@ This document breaks down the SCOPE.md into manageable components to be implemen
   - `interpret`: Fit geometry
   - `analyze`: Run calculations
   - `export`: Generate outputs
-  
+
 - [ ] Add CLI options
   - Verbose/quiet modes
   - Progress bars
@@ -272,12 +272,12 @@ This document breaks down the SCOPE.md into manageable components to be implemen
   - Section-by-section results
   - Detailed calculation breakdown
   - Summary statistics
-  
+
 - [ ] Implement JSON report generator
   - Structured data output
   - Machine-readable format
   - Complete calculation details
-  
+
 - [ ] Implement PDF report generator (optional)
   - Professional report layout
   - Include plots and diagrams
@@ -293,12 +293,12 @@ This document breaks down the SCOPE.md into manageable components to be implemen
   - Original vs fitted geometry overlay
   - Section highlighting
   - Bend annotations
-  
+
 - [ ] Implement tension plots
   - Tension vs chainage
   - Forward vs backward comparison
   - Critical points marking
-  
+
 - [ ] Implement pressure visualization
   - Pressure at each bend
   - Color-coded severity
@@ -314,7 +314,7 @@ This document breaks down the SCOPE.md into manageable components to be implemen
   - Simple straight routes
   - S-curves and complex bends
   - Edge cases (very long, many bends, etc.)
-  
+
 - [ ] Integration test suite
   - Complete workflow tests
   - Performance benchmarks
@@ -354,7 +354,7 @@ This document breaks down the SCOPE.md into manageable components to be implemen
 
 Based on user feedback, the following decisions have been made:
 
-1. **Elevation Data**: 
+1. **Elevation Data**:
    - The input.dxf file does NOT contain elevation data (confirmed)
    - Elevation support is NOT required for the first version
    - May be added in future versions

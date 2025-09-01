@@ -1,13 +1,13 @@
 # Cable Pulling Software – Scope v0.2
 
 ## 1. Problem Statement
-Cable pulling calculations are required to ensure safe and efficient installation of power cables in ducts and trenches.  
+Cable pulling calculations are required to ensure safe and efficient installation of power cables in ducts and trenches.
 In practice, CAD drawings of routes do not directly match the way ducts are installed. Real routes are composed of:
 - **Straights** (standard duct lengths, usually rigid pieces).
 - **Predefined bends** (standard duct bend options with fixed radii and angles).
 - **Large-radius sweeps** (achieved by arranging multiple duct pieces flexibly, e.g. in trenches or HDD).
 
-Drawings often represent these as polylines made up of many small straight segments, which is not usable directly for pulling calculations.  
+Drawings often represent these as polylines made up of many small straight segments, which is not usable directly for pulling calculations.
 The challenge: convert the CAD geometry into a realistic sequence of **straights + bends** that match field conditions and can be used in pulling tension and sidewall pressure calculations.
 
 ## 2. Input Data

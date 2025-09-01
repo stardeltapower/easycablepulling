@@ -11,6 +11,8 @@ Easy Cable Pulling converts CAD geometry into realistic cable pulling routes and
 - Import DXF files containing cable routes
 - Convert polylines to realistic straight and bend segments
 - Calculate pulling tensions and sidewall pressures
+- Support for multiple cable arrangements (single, trefoil, flat)
+- Comprehensive validation of cable and duct specifications
 - Generate detailed reports and visualizations
 - Export adjusted routes back to DXF
 
@@ -42,18 +44,56 @@ pre-commit install
 
 ## Quick Start
 
-```python
-from easycablepulling import analyze_route
+### Import and Analyze DXF Route
 
-# Analyze a cable route
-results = analyze_route(
-    dxf_file="route.dxf",
-    cable_spec="cable_specs.json",
-    duct_spec="duct_specs.json"
+```python
+from easycablepulling.io import load_route_from_dxf
+from easycablepulling.core import CableSpec, CableArrangement
+from pathlib import Path
+
+# Load route from DXF file
+route = load_route_from_dxf(Path("examples/input.dxf"), "33kV Route")
+
+print(f"Loaded route: {route.name}")
+print(f"Sections: {route.section_count}")
+print(f"Total length: {sum(s.original_length for s in route.sections):.1f}m")
+
+# Define cable specifications
+cable = CableSpec(
+    diameter=50.0,                        # mm
+    weight_per_meter=2.5,                # kg/m
+    max_tension=5000.0,                  # N
+    max_sidewall_pressure=3000.0,        # N/m
+    min_bend_radius=600.0,               # mm
+    arrangement=CableArrangement.TREFOIL,
+    number_of_cables=3
 )
 
-# View results
-print(results.summary())
+# Validate route against cable specs
+warnings = route.validate_cable(cable)
+if warnings:
+    print("Validation warnings:")
+    for warning in warnings:
+        print(f"  - {warning}")
+```
+
+### Export Results to DXF
+
+```python
+from easycablepulling.io import export_route_to_dxf
+
+# Export with analysis results
+analysis_results = {
+    "max_tension": 15000.0,
+    "max_sidewall_pressure": 3500.0
+}
+
+export_route_to_dxf(
+    route=route,
+    file_path=Path("output/analyzed_route.dxf"),
+    analysis_results=analysis_results,
+    warnings=warnings
+)
 ```
 
 ### Using the CLI

@@ -1,0 +1,39 @@
+"""Pytest configuration and fixtures."""
+
+import pytest
+from pathlib import Path
+
+
+@pytest.fixture
+def test_data_dir():
+    """Return the path to test data directory."""
+    return Path(__file__).parent / "data"
+
+
+@pytest.fixture
+def sample_cable_spec():
+    """Return a sample cable specification."""
+    return {
+        "diameter": 50.0,  # mm
+        "weight_per_meter": 2.5,  # kg/m
+        "max_tension": 5000.0,  # N
+        "max_sidewall_pressure": 3000.0,  # N/m
+        "min_bend_radius": 600.0,  # mm
+        "pulling_method": "eye",
+    }
+
+
+@pytest.fixture
+def sample_duct_spec():
+    """Return a sample duct specification."""
+    return {
+        "inner_diameter": 100.0,  # mm
+        "type": "PVC",
+        "friction_coefficient_dry": 0.35,
+        "friction_coefficient_lubricated": 0.15,
+        "bend_options": [
+            {"radius": 1000.0, "angle": 90.0},
+            {"radius": 1500.0, "angle": 45.0},
+            {"radius": 2000.0, "angle": 30.0},
+        ],
+    }

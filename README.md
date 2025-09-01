@@ -56,6 +56,20 @@ results = analyze_route(
 print(results.summary())
 ```
 
+### Using the CLI
+
+```bash
+# Analyze the default input.dxf file from examples/
+easycablepulling analyze
+
+# Or specify a different DXF file
+easycablepulling analyze path/to/your/route.dxf
+```
+
+### Example Files
+
+The project includes a sample DXF file at `examples/input.dxf` which is used as the default input for testing and development.
+
 ## Documentation
 
 Full documentation is available at [docs/](docs/).

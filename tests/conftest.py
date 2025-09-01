@@ -2,12 +2,19 @@
 
 import pytest
 from pathlib import Path
+from easycablepulling.config import DEFAULT_INPUT_DXF
 
 
 @pytest.fixture
 def test_data_dir():
     """Return the path to test data directory."""
     return Path(__file__).parent / "data"
+
+
+@pytest.fixture
+def input_dxf_path():
+    """Return the path to the default input.dxf file."""
+    return DEFAULT_INPUT_DXF
 
 
 @pytest.fixture

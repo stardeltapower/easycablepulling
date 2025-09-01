@@ -1,6 +1,8 @@
 """Command-line interface for easycablepulling."""
 
 import click
+from pathlib import Path
+from .config import DEFAULT_INPUT_DXF
 
 
 @click.group()
@@ -11,7 +13,7 @@ def main():
 
 
 @main.command()
-@click.argument("dxf_file", type=click.Path(exists=True))
+@click.argument("dxf_file", type=click.Path(exists=True), default=str(DEFAULT_INPUT_DXF), required=False)
 @click.option("--cable-spec", type=click.Path(exists=True), help="Cable specification file")
 @click.option("--duct-spec", type=click.Path(exists=True), help="Duct specification file")
 @click.option("--output", "-o", type=click.Path(), help="Output directory")

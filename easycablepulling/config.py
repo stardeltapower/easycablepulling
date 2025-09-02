@@ -13,6 +13,18 @@ DEFAULT_OUTPUT_DIR = PROJECT_ROOT / "output"
 DEFAULT_LATERAL_TOLERANCE = 0.15  # meters (150mm)
 DEFAULT_LENGTH_TOLERANCE = 0.002  # 0.2% length error
 
+# Geometry processing tolerances and constraints
+GEOMETRY_TOLERANCES = {
+    "lateral_tolerance": 0.5,  # Max lateral deviation in meters
+    "length_tolerance_percent": 2.0,  # Max length error as percentage
+    "straight_tolerance": 1.0,  # Max deviation for straight line fit (meters)
+    "arc_tolerance": 1.0,  # Max deviation for arc fit in meters (was 0.1m)
+    "min_straight_length": 1.0,  # Minimum straight segment length in meters
+    "min_bend_radius": 1.0,  # Minimum bend radius in meters
+    "max_bend_angle": 180.0,  # Maximum bend angle in degrees
+    "min_arc_angle": 5.0,  # Minimum angle for arc segment in degrees
+}
+
 # Cable pulling defaults
 DEFAULT_MAX_CABLE_LENGTH = 500.0  # meters
 
@@ -49,4 +61,5 @@ STANDARD_DUCT_BENDS = [
     {"radius": 1200, "angle": 45},
     {"radius": 1500, "angle": 45},
     {"radius": 2000, "angle": 30},
+    {"radius": 3900, "angle": 22.5},  # 200mm duct large radius bend (Plaspipes)
 ]

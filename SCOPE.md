@@ -32,14 +32,16 @@ The challenge: convert the CAD geometry into a realistic sequence of **straights
    - Splits should fall on straights or gentle curves, avoiding sharp bends.
 
 3. **Geometric Interpretation**
-   - Convert the raw polyline into **straights + arcs**:
+   - Convert the raw polyline into **straights + arcs** using diameter-based bend radius thresholds:
+     - **Natural sweeping curves**: Radius ≥ 20-25× duct diameter (HDPE) - represent as natural deflection
+     - **Manufactured bends**: Radius < 20× duct diameter - use standard bend fittings (600mm, 900mm, 1200mm, 1500mm, 2000mm)
      - Group consecutive points into straight spans or arc candidates.
      - Fit arcs (constant radius, defined angle) using least-squares circle fitting.
-     - Merge or adjust segments so that all bends conform to realistic duct bend radii and angles.
+     - Distinguish between natural duct flexibility and required manufactured bend fittings.
    - Enforce:
      - Tangent continuity between elements.
      - Minimum straight length between bends (if applicable).
-     - Minimum bend radius (per cable spec).
+     - Minimum bend radius (per cable spec and duct material specifications).
 
 4. **Validation of Fit**
    - Rebuild section from primitives (straights + arcs).
@@ -109,3 +111,7 @@ The challenge: convert the CAD geometry into a realistic sequence of **straights
 - Southwire installation guides – practical pulling practice.
 - Prysmian installation notes – product-specific bending/tension limits.
 - Curve fitting literature (circle fitting algorithms).
+- ENA TS 12-24 – UK duct specifications (20× diameter bend radius, Class 1/2 requirements).
+- BS EN 61386 – European conduit systems for cable management.
+- Industry bend radius research: HDPE 20-25× diameter, standard UK bend fittings.
+- See docs/references/bibliography.md for complete source list.

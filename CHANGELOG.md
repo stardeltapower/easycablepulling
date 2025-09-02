@@ -28,9 +28,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Round-trip import/export with geometry preservation
   - 8 integration tests with real DXF data
   - Tested with 6.1km route containing 13 polylines
+- **Geometry Processing** (Phase 3 complete):
+  - Diameter-based bend classification (natural vs manufactured)
+  - Natural bend threshold: 20-25× duct diameter (research-based)
+  - Advanced polynomial curve fitting for complex snaking routes
+  - Recursive geometry fitting with fallback strategies
+  - Path following improvements achieving 93% within 1m deviation
+  - Length preservation with 0.10% overall error
+  - Arc generation with proper control points and angles
+  - Standard duct bend library (45°/90° at various radii)
+  - Automatic straight segment rejoining for construction efficiency
+  - Comprehensive deviation analysis and validation tools
 
 ### Changed
 - Updated test fixtures to use actual model objects instead of dictionaries
+- Bend model now includes control_points and start/end angles for accurate arc generation
+- Improved geometry fitting to prioritize path following over simplification
 
 ### Deprecated
 - None

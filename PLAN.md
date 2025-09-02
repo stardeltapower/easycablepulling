@@ -7,12 +7,12 @@ This document breaks down the SCOPE.md into manageable components to be implemen
 **✅ COMPLETED:**
 - **Phase 1**: Core Data Models and Infrastructure (CableSpec, DuctSpec, Route, Section, Primitives)
 - **Phase 2**: DXF Import/Export System (Reader, Writer, Section Identification)
+- **Phase 3**: Geometry Processing (Arc Fitting with Diameter-based Classification, Validation, Path Following)
 
 **🚧 NEXT:**
-- **Phase 3**: Geometry Processing (Arc Fitting, Validation)
 - **Phase 4**: Cable Pulling Calculations (Tension, Pressure, Limits)
 
-**📊 Progress:** 2/7 phases complete (~29%)
+**📊 Progress:** 3/7 phases complete (~43%)
 
 ## Phase 1: Core Data Models and Infrastructure
 
@@ -113,64 +113,67 @@ This document breaks down the SCOPE.md into manageable components to be implemen
 ### 3.1 Polyline Cleaning and Preprocessing (Week 3)
 **Files:** `easycablepulling/geometry/preprocessing.py`
 
-- [ ] Implement polyline simplification
+- [x] Implement polyline simplification ✓
   - Remove duplicate points
   - Remove collinear points
   - Douglas-Peucker simplification option
 
-- [ ] Implement section length calculation
+- [x] Implement section length calculation ✓
   - Accurate length along polyline
   - Chainage calculation for each point
 
-- [ ] Implement minor splitting logic
+- [x] Implement minor splitting logic ✓
   - Find optimal split points
   - Avoid splitting near bends
   - Maintain section continuity
 
-**Tests:** Geometry preprocessing tests with edge cases
-**Docs:** Preprocessing algorithms documentation
+**Tests:** ✓ Geometry preprocessing tests with edge cases
+**Docs:** ✓ Preprocessing algorithms documentation
 
 ### 3.2 Arc Fitting (Week 3-4)
 **Files:** `easycablepulling/geometry/arc_fitting.py`
 
-- [ ] Implement circle fitting algorithms
+- [x] Implement circle fitting algorithms ✓
   - Least-squares circle fit (Pratt method)
   - Taubin circle fit
   - Three-point circle calculation
 
-- [ ] Implement arc detection
+- [x] Implement arc detection with diameter-based classification ✓
   - Identify curved segments in polyline
   - Group points belonging to same arc
   - Calculate arc parameters (center, radius, angle)
+  - **Natural vs Manufactured Bend Classification**:
+    - Natural sweeping curves: radius ≥ 20-25× duct diameter (represent as continuous curve)
+    - Manufactured bends: radius < 20× duct diameter (use standard fittings)
 
-- [ ] Implement bend standardization
-  - Match fitted arcs to standard duct bends
-  - Adjust geometry to use standard bends
-  - Maintain tangent continuity
+- [x] Implement bend standardization ✓
+  - For manufactured bends: match to standard duct bends (600mm, 900mm, 1200mm, 1500mm, 2000mm radius)
+  - For natural curves: preserve fitted radius and represent as sweeping deflection
+  - Maintain tangent continuity between all elements
 
-**Tests:** Arc fitting accuracy tests
-**Docs:** Arc fitting algorithm details
+**Tests:** ✓ Arc fitting accuracy tests
+**Docs:** ✓ Arc fitting algorithm details
 
 ### 3.3 Geometry Validation (Week 4)
 **Files:** `easycablepulling/geometry/validation.py`
 
-- [ ] Implement geometry reconstruction
+- [x] Implement geometry reconstruction ✓
   - Build polyline from primitives
   - Ensure tangent continuity
   - Calculate total length
 
-- [ ] Implement deviation checking
+- [x] Implement deviation checking ✓
   - Lateral deviation calculation
   - Length error percentage
   - Point-to-curve distance
 
-- [ ] Implement constraint enforcement
+- [x] Implement constraint enforcement ✓
   - Minimum bend radius check
   - Minimum straight length between bends
   - Maximum deviation limits
 
-**Tests:** Validation tests with known geometries
-**Docs:** Validation criteria and methods
+**Tests:** ✓ Validation tests with known geometries
+**Docs:** ✓ Validation criteria and methods
 
 ## Phase 4: Cable Pulling Calculations
 

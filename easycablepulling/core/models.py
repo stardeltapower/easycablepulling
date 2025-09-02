@@ -199,13 +199,21 @@ class Bend(Primitive):
     angle_deg: float  # Bend angle in degrees
     direction: Literal["CW", "CCW"]  # Clockwise or counter-clockwise
     center_point: Tuple[float, float]  # Center of bend arc
+    bend_type: Literal["natural", "manufactured"] = "manufactured"  # Type of bend
+    control_points: Optional[
+        List[Tuple[float, float]]
+    ] = None  # Original points used for fitting
+    start_angle_deg: float = 0.0  # Start angle from center (degrees)
+    end_angle_deg: float = 0.0  # End angle from center (degrees)
 
     def __post_init__(self) -> None:
         """Validate bend section."""
         if self.radius_m <= 0:
             raise ValueError("Bend radius must be positive")
-        if not 0 < self.angle_deg <= 180:
-            raise ValueError("Bend angle must be between 0 and 180 degrees")
+        if abs(self.angle_deg) > 180 or self.angle_deg == 0:
+            raise ValueError(
+                "Bend angle must be between -180 and 180 degrees (non-zero)"
+            )
 
     @property
     def angle_rad(self) -> float:
@@ -214,7 +222,7 @@ class Bend(Primitive):
 
     def length(self) -> float:
         """Get arc length in meters."""
-        return self.radius_m * self.angle_rad
+        return self.radius_m * abs(self.angle_rad)
 
     def validate(self, cable_spec: CableSpec) -> List[str]:
         """Validate bend against cable specifications."""
@@ -225,6 +233,90 @@ class Bend(Primitive):
         if self.radius_m < min_radius_m:
             warnings.append(
                 f"Bend radius {self.radius_m:.2f}m is less than minimum "
+                f"allowed {min_radius_m:.2f}m"
+            )
+
+        return warnings
+
+
+@dataclass
+class PolynomialCurve(Primitive):
+    """Polynomial curve section of cable route."""
+
+    coefficients_x: List[float]  # Polynomial coefficients for x(t)
+    coefficients_y: List[float]  # Polynomial coefficients for y(t)
+    t_start: float  # Parameter start value
+    t_end: float  # Parameter end value
+    control_points: List[Tuple[float, float]]  # Original points used for fitting
+    curve_length: float  # Precomputed curve length in meters
+    min_radius: float  # Minimum radius of curvature in meters
+
+    def __post_init__(self) -> None:
+        """Validate polynomial curve."""
+        if len(self.coefficients_x) != len(self.coefficients_y):
+            raise ValueError("X and Y coefficient arrays must have same length")
+        if self.t_start >= self.t_end:
+            raise ValueError("t_start must be less than t_end")
+        if self.curve_length <= 0:
+            raise ValueError("Curve length must be positive")
+        if self.min_radius <= 0:
+            raise ValueError("Minimum radius must be positive")
+
+    def length(self) -> float:
+        """Get length in meters."""
+        return self.curve_length
+
+    def evaluate_at_t(self, t: float) -> Tuple[float, float]:
+        """Evaluate polynomial at parameter t."""
+        x = sum(coef * (t**i) for i, coef in enumerate(self.coefficients_x))
+        y = sum(coef * (t**i) for i, coef in enumerate(self.coefficients_y))
+        return (x, y)
+
+    def evaluate_curvature_at_t(self, t: float) -> float:
+        """Calculate radius of curvature at parameter t."""
+        # First derivatives
+        dx_dt = sum(
+            i * coef * (t ** (i - 1))
+            for i, coef in enumerate(self.coefficients_x)
+            if i > 0
+        )
+        dy_dt = sum(
+            i * coef * (t ** (i - 1))
+            for i, coef in enumerate(self.coefficients_y)
+            if i > 0
+        )
+
+        # Second derivatives
+        d2x_dt2 = sum(
+            i * (i - 1) * coef * (t ** (i - 2))
+            for i, coef in enumerate(self.coefficients_x)
+            if i > 1
+        )
+        d2y_dt2 = sum(
+            i * (i - 1) * coef * (t ** (i - 2))
+            for i, coef in enumerate(self.coefficients_y)
+            if i > 1
+        )
+
+        # Curvature formula: |x'y'' - y'x''| / (x'^2 + y'^2)^(3/2)
+        numerator = abs(dx_dt * d2y_dt2 - dy_dt * d2x_dt2)
+        denominator = (dx_dt**2 + dy_dt**2) ** (3 / 2)
+
+        if denominator < 1e-10:
+            return float("inf")  # Infinite radius (straight)
+
+        curvature = numerator / denominator
+        return 1.0 / curvature if curvature > 1e-10 else float("inf")  # type: ignore
+
+    def validate(self, cable_spec: CableSpec) -> List[str]:
+        """Validate polynomial curve against cable specifications."""
+        warnings = []
+
+        # Check minimum bend radius
+        min_radius_m = cable_spec.min_bend_radius / 1000  # Convert mm to m
+        if self.min_radius < min_radius_m:
+            warnings.append(
+                f"Curve minimum radius {self.min_radius:.2f}m is less than minimum "
                 f"allowed {min_radius_m:.2f}m"
             )
 

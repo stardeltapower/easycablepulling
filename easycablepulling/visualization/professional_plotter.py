@@ -118,6 +118,7 @@ class ProfessionalPlotter:
         title: Optional[str] = None,
         show_fitted: bool = True,
         show_annotations: bool = True,
+        show_deviation_analysis: bool = False,
         units: str = "m",
     ) -> go.Figure:
         """Create professional route overview plot.
@@ -463,6 +464,7 @@ class ProfessionalPlotter:
         self,
         route: Route,
         title: Optional[str] = None,
+        show_fitted: bool = True,
         show_deviation_analysis: bool = True,
         units: str = "m",
     ) -> go.Figure:
@@ -471,6 +473,7 @@ class ProfessionalPlotter:
         Args:
             route: Route object
             title: Plot title
+            show_fitted: Whether to show fitted geometry
             show_deviation_analysis: Whether to show deviation metrics
             units: Display units
 

@@ -19,6 +19,8 @@ Easy Cable Pulling converts CAD geometry into realistic cable pulling routes and
 - Comprehensive validation of cable and duct specifications
 - Generate detailed reports and visualizations
 - Export adjusted routes back to DXF
+- Comprehensive test suite with synthetic routes and integration tests
+- Professional documentation and interactive tutorial notebooks
 
 ## Installation
 
@@ -116,7 +118,19 @@ The project includes a sample DXF file at `examples/input.dxf` which is used as 
 
 ## Documentation
 
-Full documentation is available at [docs/](docs/).
+Full documentation is available at [docs/](docs/):
+
+- **[API Reference](docs/api_reference.md)** - Complete API documentation for all modules and classes
+- **[User Guide](docs/user_guide.md)** - Practical examples and troubleshooting guide
+- **[Developer Guide](docs/developer_guide.md)** - Architecture overview and contribution guidelines
+
+### Tutorial Notebooks
+
+Interactive Jupyter notebooks are available in [notebooks/](notebooks/):
+
+- **[Basic Analysis](notebooks/01_basic_analysis.ipynb)** - Introduction to cable pulling analysis
+- **[Advanced Geometry](notebooks/02_advanced_geometry.ipynb)** - Complex route processing and optimization
+- **[Professional Visualization](notebooks/03_professional_visualization.ipynb)** - Publication-quality reports and dashboards
 
 ## Contributing
 

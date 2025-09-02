@@ -403,14 +403,19 @@ def calculate_pulling_feasibility(
     critical_sections = find_critical_sections(route_analysis)
 
     # Calculate statistics
-    max_tension = max(
-        tension_analysis.max_tension for tension_analysis, _, _ in route_analysis
-    )
-    max_pressure = max(
-        limit_result.max_pressure
-        for _, limit_result, _ in route_analysis
-        if limit_result.max_pressure > 0
-    )
+    if route_analysis:
+        max_tension = max(
+            tension_analysis.max_tension for tension_analysis, _, _ in route_analysis
+        )
+        pressure_values = [
+            limit_result.max_pressure
+            for _, limit_result, _ in route_analysis
+            if limit_result.max_pressure > 0
+        ]
+        max_pressure = max(pressure_values) if pressure_values else 0.0
+    else:
+        max_tension = 0.0
+        max_pressure = 0.0
 
     # Recommend optimal pulling strategy
     section_recommendations = {}

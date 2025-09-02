@@ -141,7 +141,7 @@ class JSONReporter:
 
         for section in route.sections:
             for primitive in section.primitives:
-                primitive_data = {
+                primitive_data: Dict[str, Any] = {
                     "section_id": section.id,
                     "type": type(primitive).__name__.lower(),
                 }
@@ -160,7 +160,7 @@ class JSONReporter:
                             },
                         }
                     )
-                    total_straight_length += primitive.length_m
+                    total_straight_length += float(primitive.length_m)
 
                 elif isinstance(primitive, Bend):
                     primitive_data.update(
@@ -179,7 +179,7 @@ class JSONReporter:
                             ),
                         }
                     )
-                    total_bend_angle += abs(primitive.angle_deg)
+                    total_bend_angle += float(abs(primitive.angle_deg))
 
                 geometry_data["primitives"].append(primitive_data)
                 total_primitives += 1

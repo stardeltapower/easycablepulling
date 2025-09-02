@@ -30,14 +30,13 @@ repos:
         args: ["--max-line-length=88", "--extend-ignore=E203,W503,F401,F841,E501"]
         exclude: "^examples/"
 
-  # Temporarily disable mypy for Phase 3 commit due to numpy type compatibility
-  # - repo: https://github.com/pre-commit/mirrors-mypy
-  #   rev: v1.8.0
-  #   hooks:
-  #     - id: mypy
-  #       additional_dependencies: [pydantic, numpy, click]
-  #       args: ["--ignore-missing-imports"]
-  #       exclude: "^(tests|examples)/"
+  - repo: https://github.com/pre-commit/mirrors-mypy
+    rev: v1.8.0
+    hooks:
+      - id: mypy
+        additional_dependencies: [pydantic, numpy, click]
+        args: ["--ignore-missing-imports"]
+        exclude: "^(tests|examples)/"
 
   # Pytest disabled in pre-commit due to dependency complexity
   # Run manually: pytest -v

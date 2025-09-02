@@ -306,7 +306,7 @@ class PolynomialCurve(Primitive):
             return float("inf")  # Infinite radius (straight)
 
         curvature = numerator / denominator
-        return 1.0 / curvature if curvature > 1e-10 else float("inf")  # type: ignore
+        return float(1.0 / curvature) if curvature > 1e-10 else float("inf")
 
     def validate(self, cable_spec: CableSpec) -> List[str]:
         """Validate polynomial curve against cable specifications."""

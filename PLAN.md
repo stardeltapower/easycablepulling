@@ -8,11 +8,12 @@ This document breaks down the SCOPE.md into manageable components to be implemen
 - **Phase 1**: Core Data Models and Infrastructure (CableSpec, DuctSpec, Route, Section, Primitives)
 - **Phase 2**: DXF Import/Export System (Reader, Writer, Section Identification)
 - **Phase 3**: Geometry Processing (Arc Fitting with Diameter-based Classification, Validation, Path Following)
-
-**🚧 NEXT:**
 - **Phase 4**: Cable Pulling Calculations (Tension, Pressure, Limits)
 
-**📊 Progress:** 3/7 phases complete (~43%)
+**🚧 NEXT:**
+- **Phase 5**: Analysis Pipeline and CLI
+
+**📊 Progress:** 4/7 phases complete (~57%)
 
 ## Phase 1: Core Data Models and Infrastructure
 
@@ -180,66 +181,66 @@ This document breaks down the SCOPE.md into manageable components to be implemen
 ### 4.1 Basic Tension Calculations (Week 5)
 **Files:** `easycablepulling/calculations/tension.py`
 
-- [ ] Implement straight section calculation
+- [x] Implement straight section calculation ✓
   - T_out = T_in + W * f * L
   - Weight correction for cable angle
   - Multiple cable weight factors
 
-- [ ] Implement bend calculation
+- [x] Implement bend calculation ✓
   - T_out = T_in * e^(f * θ)
   - Capstan equation implementation
   - Direction-dependent calculation
 
-- [ ] Implement section analysis
+- [x] Implement section analysis ✓
   - Forward pulling calculation
   - Backward pulling calculation
   - Identify critical points
 
-**Tests:** Physics-based calculation tests
-**Docs:** Calculation formulas and assumptions
+**Tests:** ✓ Physics-based calculation tests
+**Docs:** ✓ Calculation formulas and assumptions
 
 ### 4.2 Sidewall Pressure and Limits (Week 5)
 **Files:** `easycablepulling/calculations/pressure.py`
 
-- [ ] Implement sidewall pressure calculation
+- [x] Implement sidewall pressure calculation ✓
   - P = T_out / r
   - Pressure at each bend
   - Maximum pressure identification
 
-- [ ] Implement limit checking
+- [x] Implement limit checking ✓
   - Tension vs allowable tension
   - Pressure vs allowable pressure
   - Bend radius vs minimum radius
 
-- [ ] Implement result aggregation
+- [x] Implement result aggregation ✓
   - Pass/fail determination
   - Limiting factors identification
   - Recommended pull direction
 
-**Tests:** Pressure calculation and limit tests
-**Docs:** IEEE 525 compliance documentation
+**Tests:** ✓ Pressure calculation and limit tests
+**Docs:** ✓ IEEE 525 compliance documentation
 
 ### 4.3 Advanced Calculations (Week 6)
 **Files:** `easycablepulling/calculations/advanced.py`
 
-- [ ] Implement slope corrections
+- [x] Implement slope corrections ✓
   - Elevation profile handling
   - Gravity component calculation
   - Uphill/downhill adjustments
 
-- [ ] Implement friction variations
+- [x] Implement friction variations ✓
   - Dry vs lubricated conditions
   - Temperature effects (optional)
   - Surface condition factors
 
-- [ ] Implement multi-cable calculations
+- [x] Implement multi-cable calculations ✓
   - Jam ratio checking (IEC standards)
   - Clearance calculations
   - Bundle weight corrections
   - Trefoil friction factor adjustments
 
-**Tests:** Advanced scenario tests
-**Docs:** Advanced features usage guide
+**Tests:** ✓ Advanced scenario tests
+**Docs:** ✓ Advanced features usage guide
 
 ## Phase 5: Analysis Pipeline and CLI
 

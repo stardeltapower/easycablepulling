@@ -120,7 +120,7 @@ class RoutePlotter:
                 end_angle = primitive.angle_deg
 
                 if primitive.direction == "CCW":
-                    start_angle, end_angle = end_angle, start_angle
+                    start_angle, end_angle = float(end_angle), float(start_angle)
 
                 arc = patches.Arc(
                     center,
@@ -419,9 +419,9 @@ class RoutePlotter:
             self.plot_polyline(
                 ax,
                 points,
-                color=style["color"],
-                linestyle=style["linestyle"],
-                linewidth=style["width"],
+                color=str(style["color"]),
+                linestyle=str(style["linestyle"]),
+                linewidth=float(style["width"]),
                 label=label,
                 alpha=0.9,
             )

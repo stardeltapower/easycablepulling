@@ -2,7 +2,7 @@
 
 import math
 from dataclasses import dataclass
-from typing import List, Optional, Tuple, Union
+from typing import Any, Dict, List, Optional, Tuple, Union, cast
 
 import numpy as np
 from scipy.optimize import least_squares
@@ -391,7 +391,7 @@ class GeometryFitter:
 
             error = np.linalg.norm(p - closest)
             if error > max_error:
-                max_error = error
+                max_error = float(error)
                 max_error_idx = i
 
         return {

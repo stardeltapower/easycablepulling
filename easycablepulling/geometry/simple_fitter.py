@@ -2,7 +2,7 @@
 
 import math
 from dataclasses import dataclass
-from typing import List, Optional, Tuple
+from typing import List, Optional, Tuple, cast
 
 import numpy as np
 
@@ -74,7 +74,7 @@ class SimpleGeometryFitter:
 
         # For simplified fitting, error is minimal since we're using original points
         return SimpleFittingResult(
-            primitives=primitives,
+            primitives=cast(List[Primitive], primitives),
             total_error=0.0,
             max_error=0.0,
             success=True,
@@ -168,6 +168,6 @@ class SimpleGeometryFitter:
 
             # Calculate perpendicular distance
             distance = np.linalg.norm(p - closest)
-            max_distance = max(max_distance, distance)
+            max_distance = float(max(max_distance, distance))
 
         return max_distance

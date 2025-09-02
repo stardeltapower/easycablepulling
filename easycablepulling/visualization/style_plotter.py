@@ -226,7 +226,7 @@ class StylePlotter:
         # Add legend
         if show_legend and legend_entries:
             # Create custom legend
-            lines, labels = zip(*legend_entries)
+            lines, labels = list(zip(*legend_entries))
             ax.legend(
                 lines,
                 labels,

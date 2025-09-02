@@ -30,7 +30,7 @@ class ValidationResult:
     total_errors: int
     total_warnings: int
 
-    def add_issue(self, issue: ValidationIssue):
+    def add_issue(self, issue: ValidationIssue) -> None:
         """Add a validation issue."""
         self.issues.append(issue)
         if issue.severity == "error":
@@ -109,7 +109,7 @@ class GeometryValidator:
         section: Section,
         result: ValidationResult,
         cable_spec: Optional[CableSpec] = None,
-    ):
+    ) -> None:
         """Validate a single section."""
         # Check if section has been fitted
         if not section.primitives:
@@ -157,7 +157,7 @@ class GeometryValidator:
         index: int,
         result: ValidationResult,
         cable_spec: Optional[CableSpec] = None,
-    ):
+    ) -> None:
         """Validate a single primitive."""
         if isinstance(primitive, Straight):
             # Check minimum length
@@ -211,7 +211,7 @@ class GeometryValidator:
                 if primitive.bend_type == "manufactured":
                     from ..config import STANDARD_DUCT_BENDS
 
-                    standard_radii = [b["radius"] for b in STANDARD_DUCT_BENDS]
+                    standard_radii = [float(b["radius"]) for b in STANDARD_DUCT_BENDS]
                     bend_radius_mm = primitive.radius_m * 1000
 
                     # Allow 5% tolerance for standard bend matching
@@ -250,7 +250,7 @@ class GeometryValidator:
 
     def _validate_primitive_connections(
         self, section: Section, result: ValidationResult
-    ):
+    ) -> None:
         """Validate that primitives connect properly."""
         for i in range(len(section.primitives) - 1):
             p1 = section.primitives[i]
@@ -279,7 +279,7 @@ class GeometryValidator:
                         )
                     )
 
-    def _validate_route_continuity(self, route: Route, result: ValidationResult):
+    def _validate_route_continuity(self, route: Route, result: ValidationResult) -> None:
         """Validate continuity between sections."""
         for i in range(len(route.sections) - 1):
             s1 = route.sections[i]

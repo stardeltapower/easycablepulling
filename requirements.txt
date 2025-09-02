@@ -5,3 +5,5 @@ ezdxf>=1.0.0
 click>=8.0.0
 pydantic>=2.0.0
 scipy>=1.9.0
+plotly>=5.17.0
+kaleido>=0.2.1

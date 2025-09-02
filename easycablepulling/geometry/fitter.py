@@ -732,9 +732,11 @@ class GeometryFitter:
                     angle_deg=arc_fit["angle"],
                     direction="CW" if arc_fit["angle"] > 0 else "CCW",
                     center_point=arc_fit["center"],
-                    bend_type="natural"
-                    if arc_fit["radius"] >= self.natural_bend_threshold
-                    else "manufactured",
+                    bend_type=(
+                        "natural"
+                        if arc_fit["radius"] >= self.natural_bend_threshold
+                        else "manufactured"
+                    ),
                     control_points=region_points,
                     start_angle_deg=arc_fit.get("start_angle_deg", 0.0),
                     end_angle_deg=arc_fit.get("end_angle_deg", 0.0),

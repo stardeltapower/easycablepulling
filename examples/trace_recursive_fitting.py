@@ -102,9 +102,9 @@ class DebugGeometryFitter(GeometryFitter):
                                     Bend(
                                         radius_m=arc_fit["radius"],
                                         angle_deg=arc_fit["angle"],
-                                        direction="CW"
-                                        if arc_fit["angle"] > 0
-                                        else "CCW",
+                                        direction=(
+                                            "CW" if arc_fit["angle"] > 0 else "CCW"
+                                        ),
                                         center_point=arc_fit["center"],
                                         bend_type="natural",
                                     )

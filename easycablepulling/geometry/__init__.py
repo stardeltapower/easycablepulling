@@ -3,6 +3,7 @@
 from .cleaner import PolylineCleaner
 from .fitter import FittingResult, GeometryFitter
 from .processor import GeometryProcessor, ProcessingResult
+from .splitter import RouteSplitter, SplitPoint, SplittingResult
 from .validator import GeometryValidator, ValidationResult
 
 __all__ = [
@@ -13,4 +14,7 @@ __all__ = [
     "ValidationResult",
     "GeometryProcessor",
     "ProcessingResult",
+    "RouteSplitter",
+    "SplitPoint",
+    "SplittingResult",
 ]

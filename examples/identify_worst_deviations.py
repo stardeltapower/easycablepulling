@@ -101,7 +101,9 @@ def analyze_worst_deviations():
 
     for stat in section_stats:
         geometry_type = f"{stat['straights']}S+{stat['natural_bends']}B"
-        status = "🔴" if stat["bad_pct"] > 70 else "🟡" if stat["bad_pct"] > 30 else "🟢"
+        status = (
+            "🔴" if stat["bad_pct"] > 70 else "🟡" if stat["bad_pct"] > 30 else "🟢"
+        )
 
         print(
             f"{status} {stat['id']:<6} "

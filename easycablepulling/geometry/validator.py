@@ -279,7 +279,9 @@ class GeometryValidator:
                         )
                     )
 
-    def _validate_route_continuity(self, route: Route, result: ValidationResult) -> None:
+    def _validate_route_continuity(
+        self, route: Route, result: ValidationResult
+    ) -> None:
         """Validate continuity between sections."""
         for i in range(len(route.sections) - 1):
             s1 = route.sections[i]

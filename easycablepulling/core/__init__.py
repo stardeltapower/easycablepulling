@@ -12,6 +12,7 @@ from .models import (
     Section,
     Straight,
 )
+from .pipeline import AnalysisReporter, CablePullingPipeline, PipelineResult
 
 __all__ = [
     "CableSpec",
@@ -24,4 +25,7 @@ __all__ = [
     "CableArrangement",
     "PullingMethod",
     "Primitive",
+    "CablePullingPipeline",
+    "PipelineResult",
+    "AnalysisReporter",
 ]

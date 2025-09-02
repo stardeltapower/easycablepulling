@@ -200,9 +200,9 @@ class Bend(Primitive):
     direction: Literal["CW", "CCW"]  # Clockwise or counter-clockwise
     center_point: Tuple[float, float]  # Center of bend arc
     bend_type: Literal["natural", "manufactured"] = "manufactured"  # Type of bend
-    control_points: Optional[
-        List[Tuple[float, float]]
-    ] = None  # Original points used for fitting
+    control_points: Optional[List[Tuple[float, float]]] = (
+        None  # Original points used for fitting
+    )
     start_angle_deg: float = 0.0  # Start angle from center (degrees)
     end_angle_deg: float = 0.0  # End angle from center (degrees)
 

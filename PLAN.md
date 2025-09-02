@@ -127,6 +127,7 @@ This document breaks down the SCOPE.md into manageable components to be implemen
   - Find optimal split points
   - Avoid splitting near bends
   - Maintain section continuity
+  - CLI integration with `split` command
 
 **Tests:** ✓ Geometry preprocessing tests with edge cases
 **Docs:** ✓ Preprocessing algorithms documentation

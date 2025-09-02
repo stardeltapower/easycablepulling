@@ -102,9 +102,11 @@ class ExtendedDebugFitter(GeometryFitter):
                             angle_deg=arc_fit["angle"],
                             direction="CW" if arc_fit["angle"] > 0 else "CCW",
                             center_point=arc_fit["center"],
-                            bend_type="natural"
-                            if arc_fit["radius"] >= self.natural_bend_threshold
-                            else "manufactured",
+                            bend_type=(
+                                "natural"
+                                if arc_fit["radius"] >= self.natural_bend_threshold
+                                else "manufactured"
+                            ),
                         )
                     ]
                 else:

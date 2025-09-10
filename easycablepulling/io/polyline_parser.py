@@ -2,7 +2,7 @@
 
 import logging
 import math
-from typing import Any, Dict, List, Optional, Tuple
+from typing import List, Tuple
 
 from ..core.models import Section
 
@@ -12,7 +12,7 @@ logger = logging.getLogger(__name__)
 class PolylineParser:
     """Parser for converting polylines into route sections."""
 
-    def __init__(self, joint_detection_distance: float = 50.0):
+    def __init__(self, joint_detection_distance: float = 50.0) -> None:
         """Initialize parser.
 
         Args:

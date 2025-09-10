@@ -3,15 +3,15 @@
 import csv
 from datetime import datetime
 from pathlib import Path
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, List
 
-from ..core.models import Route
+from ..core.models import Bend, Route, Straight
 
 
 class CSVReporter:
     """Generate professional CSV reports for cable pulling analysis."""
 
-    def __init__(self):
+    def __init__(self) -> None:
         """Initialize CSV reporter."""
         self.headers = {
             "route_summary": [
@@ -171,7 +171,7 @@ class CSVReporter:
 
             for section in route.sections:
                 for primitive in section.primitives:
-                    if hasattr(primitive, "length_m"):  # Straight
+                    if isinstance(primitive, Straight):
                         writer.writerow(
                             [
                                 section.id,
@@ -186,7 +186,7 @@ class CSVReporter:
                                 "",
                             ]
                         )
-                    elif hasattr(primitive, "radius_m"):  # Bend
+                    elif isinstance(primitive, Bend):
                         writer.writerow(
                             [
                                 section.id,
@@ -253,7 +253,7 @@ class CSVReporter:
 
     def _get_section_at_chainage(self, route: Route, chainage: float) -> str:
         """Determine which section contains the given chainage."""
-        cumulative_length = 0
+        cumulative_length = 0.0
 
         for section in route.sections:
             if (

@@ -7,7 +7,7 @@ from typing import Any, Dict, List, Optional, Tuple
 import ezdxf
 from ezdxf.layouts import Modelspace
 
-from ..core.models import Bend, Route, Section, Straight
+from ..core.models import Bend, Route, Straight
 
 logger = logging.getLogger(__name__)
 
@@ -15,7 +15,7 @@ logger = logging.getLogger(__name__)
 class DXFWriter:
     """DXF file writer for cable route geometry and analysis results."""
 
-    def __init__(self, dxf_version: str = "R2010"):
+    def __init__(self, dxf_version: str = "R2010") -> None:
         """Initialize DXF writer.
 
         Args:
@@ -147,7 +147,7 @@ class DXFWriter:
 
         # Draw circle markers at each joint
         for x, y in joint_points:
-            circle = self.msp.add_circle(
+            self.msp.add_circle(
                 center=(x, y), radius=marker_size, dxfattribs={"layer": layer_name}
             )
 

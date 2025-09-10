@@ -6,11 +6,10 @@ from typing import Optional
 import click
 
 from .config import DEFAULT_INPUT_DXF
-from .core.models import CableArrangement, CableSpec, DuctSpec, PullingMethod
+from .core.models import CableArrangement, CableSpec, DuctSpec
 from .core.pipeline import AnalysisReporter, CablePullingPipeline
 from .geometry import GeometryProcessor
 from .io import load_route_from_dxf
-from .io.dxf_writer import DXFWriter
 
 
 @click.group()

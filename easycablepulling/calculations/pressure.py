@@ -1,9 +1,8 @@
 """Sidewall pressure calculations and limit checking."""
 
-import math
-from typing import List, NamedTuple, Optional, Tuple
+from typing import List, NamedTuple, Tuple
 
-from ..core.models import Bend, CableSpec, DuctSpec, Primitive, Route, Section
+from ..core.models import Bend, CableSpec, DuctSpec, Section, Straight
 from .tension import TensionResult
 
 

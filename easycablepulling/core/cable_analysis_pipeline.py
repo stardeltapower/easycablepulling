@@ -4,7 +4,7 @@ import csv
 import json
 from dataclasses import asdict, dataclass
 from pathlib import Path
-from typing import Dict, List, Optional, Tuple, Union
+from typing import Dict, List, Optional, Union
 
 import matplotlib.pyplot as plt
 
@@ -14,10 +14,8 @@ from ..calculations.tension import TensionCalculator
 from ..core.models import Bend, CableSpec, DuctSpec, Route, Section, Straight
 from ..geometry.simple_segment_fitter import SimpleSegmentFitter
 from ..geometry.splitter import RouteSplitter
+from ..inventory.duct_inventory import DuctInventory
 from ..io.dxf_reader import DXFReader
-from ..io.dxf_writer import DXFWriter
-from ..reporting.csv_reporter import CSVReporter
-from ..reporting.json_reporter import JSONReporter
 from ..visualization.professional_matplotlib import ProfessionalMatplotlibPlotter
 
 
@@ -36,6 +34,10 @@ class AnalysisConfig:
     cable_max_sidewall_pressure_n_m: float = 300.0
     cable_min_bend_radius_mm: float = 500.0
     number_of_cables: int = 1
+
+    # Friction and lubrication settings
+    lubricated: Union[bool, List[bool]] = False
+    friction_override: Optional[Union[float, List[float]]] = None
 
     # Output settings
     sample_interval_m: float = 25.0
@@ -98,13 +100,15 @@ class AnalysisResults:
 class CableAnalysisPipeline:
     """Complete cable pulling analysis pipeline."""
 
-    def __init__(self, config: Optional[AnalysisConfig] = None):
+    def __init__(self, config: Optional[AnalysisConfig] = None) -> None:
         """Initialize analysis pipeline with configuration."""
         self.config = config or AnalysisConfig()
 
         # Initialize components
+        duct_inventory = DuctInventory(self.config.duct_type)
         self.fitter = SimpleSegmentFitter(
-            standard_radius=self._get_duct_radius(self.config.duct_type)
+            duct_inventory=duct_inventory,
+            standard_radius=self._get_duct_radius(self.config.duct_type),
         )
         self.splitter = RouteSplitter(max_cable_length=self.config.max_section_length_m)
         self.visualizer = ProfessionalMatplotlibPlotter()

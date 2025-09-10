@@ -37,7 +37,7 @@ class RouteSplitter:
         max_cable_length: float = 500.0,
         min_section_length: float = 50.0,
         avoid_bend_distance: float = 10.0,
-    ):
+    ) -> None:
         """Initialize route splitter.
 
         Args:

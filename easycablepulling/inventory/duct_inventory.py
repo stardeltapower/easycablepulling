@@ -59,6 +59,8 @@ DUCT_SPECIFICATIONS: Dict[str, DuctSpecification] = {
         bends=[
             BendSpecification.from_radius_angle(3.9, 11.25),
             BendSpecification.from_radius_angle(3.9, 22.5),
+            BendSpecification.from_radius_angle(5.2, 11.25),  # Larger radius option
+            BendSpecification.from_radius_angle(5.2, 22.5),  # Larger radius option
         ],
         max_section_length_m=1000.0,
         max_lateral_deviation_m=1.0,
@@ -73,7 +75,7 @@ DUCT_SPECIFICATIONS: Dict[str, DuctSpecification] = {
 class DuctInventory:
     """Manages duct inventory and constraints for fitting."""
 
-    def __init__(self, duct_type: str = "200mm"):
+    def __init__(self, duct_type: str = "200mm") -> None:
         """Initialize inventory with specified duct type.
 
         Args:
@@ -213,6 +215,60 @@ class DuctInventory:
         if self.spec.bends:
             return self.spec.bends[0].radius_m
         return 0.0
+
+    def get_available_radii(self) -> List[float]:
+        """Get list of unique available bend radii."""
+        radii = list(set(bend.radius_m for bend in self.spec.bends))
+        return sorted(radii)
+
+    def select_best_radius(
+        self, target_radius_m: float, tolerance_m: float = 0.1
+    ) -> float:
+        """Select best available radius for target radius using 'one up' logic.
+
+        Args:
+            target_radius_m: Desired bend radius in meters
+            tolerance_m: Tolerance for exact match
+
+        Returns:
+            Best available radius in meters
+        """
+        available_radii = self.get_available_radii()
+        if not available_radii:
+            return target_radius_m
+
+        # 1. Exact match within tolerance
+        for radius in available_radii:
+            if abs(radius - target_radius_m) <= tolerance_m:
+                return radius
+
+        # 2. "One up" - next larger radius
+        larger_radii = [r for r in available_radii if r > target_radius_m]
+        if larger_radii:
+            return min(larger_radii)
+
+        # 3. Use largest available (for future decomposition)
+        return max(available_radii)
+
+    def get_bend_by_radius_angle(
+        self, radius_m: float, angle_deg: float, tolerance_m: float = 0.1
+    ) -> Optional[BendSpecification]:
+        """Get bend specification by radius and angle.
+
+        Args:
+            radius_m: Required radius in meters
+            angle_deg: Required angle in degrees
+            tolerance_m: Radius tolerance
+
+        Returns:
+            Matching bend specification or None
+        """
+        for bend in self.spec.bends:
+            radius_match = abs(bend.radius_m - radius_m) <= tolerance_m
+            angle_match = abs(bend.angle_deg - abs(angle_deg)) < 0.1
+            if radius_match and angle_match:
+                return bend
+        return None
 
     def decompose_angle(self, total_angle_deg: float) -> List[float]:
         """Decompose a total angle into available bend angles.

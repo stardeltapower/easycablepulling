@@ -10,7 +10,7 @@ Engineer's "clean-up then snap" approach:
 import math
 from dataclasses import dataclass
 from enum import Enum
-from typing import Dict, List, Optional, Tuple
+from typing import List, Optional, Tuple, cast
 
 import numpy as np
 
@@ -64,7 +64,7 @@ class CurvatureFirstFitter(BaseFitter):
         radius_tolerance_m: float = 0.25,
         angle_snap_tolerance_deg: float = 3.0,
         **kwargs,
-    ):
+    ) -> None:
         """Initialize curvature-first fitter.
 
         Args:
@@ -354,7 +354,7 @@ class CurvatureFirstFitter(BaseFitter):
         )
 
         # Step 3: Create segments from smoothed classifications
-        segments = []
+        segments: List[PolylineSegment] = []
         if not smoothed_classes:
             return segments
 
@@ -493,7 +493,7 @@ class CurvatureFirstFitter(BaseFitter):
             # Noise - treat as straight
             return self._fit_straight_segment(segment)
 
-    def _fit_straight_segment(self, segment: PolylineSegment) -> List[Straight]:
+    def _fit_straight_segment(self, segment: PolylineSegment) -> List[Primitive]:
         """Fit straight primitives to a straight segment.
 
         Args:
@@ -515,7 +515,6 @@ class CurvatureFirstFitter(BaseFitter):
         i = 0
         while i < len(segment.points) - 1:
             # Start a new straight run
-            start_idx = i
             start_point = segment.points[i]
 
             # Find how far we can extend this straight
@@ -574,8 +573,8 @@ class CurvatureFirstFitter(BaseFitter):
             if length > 0.01:  # Skip tiny segments
                 straight = Straight(
                     length_m=length,
-                    start_point=tuple(start_point),
-                    end_point=tuple(end_point),
+                    start_point=cast(Tuple[float, float], tuple(start_point)),
+                    end_point=cast(Tuple[float, float], tuple(end_point)),
                 )
                 straights.append(straight)
 
@@ -583,7 +582,7 @@ class CurvatureFirstFitter(BaseFitter):
 
         return straights if straights else []
 
-    def _fit_arc_segment(self, segment: PolylineSegment) -> List[Bend]:
+    def _fit_arc_segment(self, segment: PolylineSegment) -> List[Primitive]:
         """Fit arc primitive to an arc-like segment.
 
         Args:
@@ -686,7 +685,7 @@ class CurvatureFirstFitter(BaseFitter):
         Returns:
             Primitives snapped to inventory
         """
-        snapped = []
+        snapped: List[Primitive] = []
 
         for primitive in primitives:
             if isinstance(primitive, Straight):
@@ -704,7 +703,7 @@ class CurvatureFirstFitter(BaseFitter):
 
         return snapped
 
-    def _split_straight_to_inventory(self, straight: Straight) -> List[Straight]:
+    def _split_straight_to_inventory(self, straight: Straight) -> List[Primitive]:
         """Split a straight into inventory-constrained segments.
 
         Args:
@@ -714,7 +713,6 @@ class CurvatureFirstFitter(BaseFitter):
             List of 6m straights plus remainder
         """
         max_length = self.inventory.spec.straight_length_m
-        min_cut = self.inventory.spec.min_cut_length_m
         total_length = straight.length_m
 
         if total_length <= max_length:
@@ -745,8 +743,8 @@ class CurvatureFirstFitter(BaseFitter):
 
             segment = Straight(
                 length_m=length,
-                start_point=tuple(current_pos),
-                end_point=tuple(next_pos),
+                start_point=cast(Tuple[float, float], tuple(current_pos)),
+                end_point=cast(Tuple[float, float], tuple(next_pos)),
             )
 
             straights.append(segment)
@@ -846,7 +844,7 @@ class CurvatureFirstFitter(BaseFitter):
         dx = end[0] - start[0]
         dy = end[1] - start[1]
         length = math.sqrt(dx**2 + dy**2)
-        bearing = math.degrees(math.atan2(dy, dx))
+        math.degrees(math.atan2(dy, dx))
 
         straight = Straight(length_m=length, start_point=start, end_point=end)
 

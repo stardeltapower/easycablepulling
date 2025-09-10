@@ -1,22 +1,19 @@
 """Professional visualization using Plotly for publication-quality outputs."""
 
-import math
 import string
 from pathlib import Path
-from typing import Any, Dict, List, Optional, Tuple, Union
+from typing import Any, Dict, List, Optional
 
-import numpy as np
 import plotly.graph_objects as go
-import plotly.io as pio
 from plotly.subplots import make_subplots
 
-from ..core.models import Bend, Route, Section, Straight
+from ..core.models import Bend, Route, Straight
 
 
 class ProfessionalPlotter:
     """Create professional, publication-quality visualizations using Plotly."""
 
-    def __init__(self):
+    def __init__(self) -> None:
         """Initialize professional plotter with engineering-grade styling."""
         # Professional color scheme based on engineering standards
         self.colors = {

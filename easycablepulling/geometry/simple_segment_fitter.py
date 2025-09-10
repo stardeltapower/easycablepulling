@@ -2,11 +2,12 @@
 
 import math
 from dataclasses import dataclass
-from typing import List, Optional, Tuple
+from typing import List, Literal, Optional, Tuple, cast
 
 import numpy as np
 
-from ..core.models import Bend, Primitive, Route, Section, Straight
+from ..core.models import Bend, Primitive, Section, Straight
+from ..inventory.duct_inventory import DuctInventory
 
 
 @dataclass
@@ -22,14 +23,20 @@ class SegmentFitResult:
 
 
 class SimpleSegmentFitter:
-    """Simple approach: convert polyline segments to straights with 3.9m fillets at junctions."""
+    """Simple approach: convert polyline segments to straights with radius-selected fillets at junctions."""
 
-    def __init__(self, standard_radius: float = 3.9):
+    def __init__(
+        self,
+        duct_inventory: Optional[DuctInventory] = None,
+        standard_radius: float = 3.9,
+    ) -> None:
         """Initialize simple segment fitter.
 
         Args:
-            standard_radius: Standard bend radius (3.9m for 200mm duct)
+            duct_inventory: Duct inventory for radius selection (preferred)
+            standard_radius: Fallback radius if no inventory provided
         """
+        self.duct_inventory = duct_inventory
         self.standard_radius = standard_radius
 
     def _remove_duplicate_vertices(
@@ -120,7 +127,7 @@ class SimpleSegmentFitter:
         if len(polyline) < 2:
             return []
 
-        primitives = []
+        primitives: List[Primitive] = []
 
         # Handle simple case: only 2 points = single straight
         if len(polyline) == 2:
@@ -147,6 +154,9 @@ class SimpleSegmentFitter:
             if (
                 abs(angle_change) >= 0.1
             ):  # 0.1° minimum for fillet (catch all junctions)
+                # Determine best radius for this bend
+                bend_radius = self._select_bend_radius(abs(angle_change))
+
                 # Calculate fillet geometry
                 fillet_data = self._calculate_simple_fillet(
                     current_start,
@@ -155,6 +165,7 @@ class SimpleSegmentFitter:
                     incoming_bearing,
                     outgoing_bearing,
                     angle_change,
+                    bend_radius,
                 )
 
                 if fillet_data:
@@ -173,9 +184,9 @@ class SimpleSegmentFitter:
                     # Create fillet bend
                     bend_direction = "CCW" if angle_change > 0 else "CW"
                     bend = Bend(
-                        radius_m=self.standard_radius,
+                        radius_m=bend_radius,
                         angle_deg=abs(angle_change),
-                        direction=bend_direction,
+                        direction=cast(Literal["CW", "CCW"], bend_direction),
                         center_point=fillet_data["center"],
                         start_angle_deg=fillet_data["start_angle"],
                         end_angle_deg=fillet_data["end_angle"],
@@ -218,6 +229,24 @@ class SimpleSegmentFitter:
 
         return primitives
 
+    def _select_bend_radius(self, angle_deg: float) -> float:
+        """Select best bend radius using inventory or fallback.
+
+        Args:
+            angle_deg: Bend angle in degrees
+
+        Returns:
+            Selected bend radius in meters
+        """
+        if self.duct_inventory is not None:
+            # Use inventory to get nearest available bend and its radius
+            bend_spec = self.duct_inventory.get_nearest_bend(angle_deg)
+            if bend_spec is not None:
+                return bend_spec.radius_m
+
+        # Fallback to standard radius
+        return self.standard_radius
+
     def _calculate_simple_fillet(
         self,
         start_point: Tuple[float, float],
@@ -226,6 +255,7 @@ class SimpleSegmentFitter:
         incoming_bearing: float,
         outgoing_bearing: float,
         angle_change: float,
+        radius: float,
     ) -> Optional[dict]:
         """Calculate fillet geometry using parallel guide method."""
 
@@ -255,15 +285,15 @@ class SimpleSegmentFitter:
             perp_incoming = np.array([incoming_unit[1], -incoming_unit[0]])
             perp_outgoing = np.array([outgoing_unit[1], -outgoing_unit[0]])
 
-        # Create parallel guides at distance = standard_radius from each line
+        # Create parallel guides at distance = radius from each line
         # Incoming line parallel guide: any point on incoming line + radius * perpendicular
         # Outgoing line parallel guide: any point on outgoing line + radius * perpendicular
 
         vertex = np.array(vertex_point)
 
         # Points on the parallel guides
-        parallel_incoming_point = vertex + self.standard_radius * perp_incoming
-        parallel_outgoing_point = vertex + self.standard_radius * perp_outgoing
+        parallel_incoming_point = vertex + radius * perp_incoming
+        parallel_outgoing_point = vertex + radius * perp_outgoing
 
         # Find intersection of parallel guides
         # Incoming parallel guide: parallel_incoming_point + t * incoming_unit
@@ -289,7 +319,7 @@ class SimpleSegmentFitter:
 
         # Calculate tangent points: drop perpendiculars from center to original lines
         # Tangent on incoming line
-        to_vertex_incoming = vertex - np.array(start_point)
+        vertex - np.array(start_point)
         incoming_line_dir = incoming_unit
 
         # Project center onto incoming line
@@ -307,10 +337,7 @@ class SimpleSegmentFitter:
         dist_end = np.linalg.norm(center - tangent_end)
 
         # Check if geometry is reasonable
-        if (
-            abs(dist_start - self.standard_radius) > 0.1
-            or abs(dist_end - self.standard_radius) > 0.1
-        ):
+        if abs(dist_start - radius) > 0.1 or abs(dist_end - radius) > 0.1:
             return None
 
         # Calculate arc angles

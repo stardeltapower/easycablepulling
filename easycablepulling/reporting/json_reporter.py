@@ -4,15 +4,15 @@ import json
 import math
 from datetime import datetime
 from pathlib import Path
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, List
 
-from ..core.models import Bend, Route, Section, Straight
+from ..core.models import Bend, Route, Straight
 
 
 class JSONReporter:
     """Generate structured JSON reports for cable pulling analysis."""
 
-    def __init__(self, indent: int = 2):
+    def __init__(self, indent: int = 2) -> None:
         """Initialize JSON reporter.
 
         Args:
@@ -136,8 +136,8 @@ class JSONReporter:
         }
 
         total_primitives = 0
-        total_straight_length = 0
-        total_bend_angle = 0
+        total_straight_length = 0.0
+        total_bend_angle = 0.0
 
         for section in route.sections:
             for primitive in section.primitives:

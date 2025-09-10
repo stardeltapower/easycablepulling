@@ -4,7 +4,7 @@ import math
 from typing import List, Optional, Tuple
 
 import numpy as np
-from shapely.geometry import LineString, Point
+from shapely.geometry import LineString
 
 
 class PolylineCleaner:
@@ -15,7 +15,7 @@ class PolylineCleaner:
         duplicate_tolerance: float = 0.001,
         simplify_tolerance: float = 0.1,
         min_segment_length: float = 0.01,
-    ):
+    ) -> None:
         """Initialize polyline cleaner.
 
         Args:

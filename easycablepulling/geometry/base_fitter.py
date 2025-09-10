@@ -9,7 +9,7 @@ from ..core.models import Primitive, Section
 class BaseFitter(ABC):
     """Abstract base class for route fitting methodologies."""
 
-    def __init__(self, **kwargs):
+    def __init__(self, **kwargs) -> None:
         """Initialize fitter with methodology-specific parameters."""
         self.name = self.__class__.__name__
         self.methodology = "unknown"

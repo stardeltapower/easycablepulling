@@ -5,7 +5,6 @@ from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple
 
 import ezdxf
-from ezdxf.entities import LWPolyline, Polyline
 
 from ..core.models import Route, Section
 
@@ -15,7 +14,7 @@ logger = logging.getLogger(__name__)
 class DXFReader:
     """DXF file reader for cable route geometry."""
 
-    def __init__(self, file_path: Path):
+    def __init__(self, file_path: Path) -> None:
         """Initialize DXF reader.
 
         Args:

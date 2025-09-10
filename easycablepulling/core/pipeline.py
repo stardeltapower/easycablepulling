@@ -2,7 +2,7 @@
 
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, List, Optional, Union
 
 from ..calculations import (
     LimitCheckResult,
@@ -11,7 +11,7 @@ from ..calculations import (
     calculate_pulling_feasibility,
     find_critical_sections,
 )
-from ..core.models import CableSpec, DuctSpec, Route
+from ..core.models import Bend, CableSpec, DuctSpec, Route, Straight
 from ..geometry import GeometryProcessor, ProcessingResult
 from ..io import load_route_from_dxf
 
@@ -52,7 +52,7 @@ class CablePullingPipeline:
         enable_splitting: bool = True,
         max_cable_length: float = 500.0,
         safety_factor: float = 1.5,
-    ):
+    ) -> None:
         """Initialize pipeline.
 
         Args:
@@ -66,12 +66,43 @@ class CablePullingPipeline:
         self.max_cable_length = max_cable_length
         self.safety_factor = safety_factor
 
+    def _expand_per_section_parameter(
+        self,
+        parameter: Union[bool, float, List[bool], List[float]],
+        num_sections: int,
+        parameter_name: str,
+    ) -> List[Union[bool, float]]:
+        """Expand a parameter to per-section values.
+
+        Args:
+            parameter: Single value or list of values
+            num_sections: Number of sections in route
+            parameter_name: Name of parameter for error messages
+
+        Returns:
+            List with one value per section
+
+        Raises:
+            ValueError: If list length doesn't match number of sections
+        """
+        if isinstance(parameter, list):
+            if len(parameter) != num_sections:
+                raise ValueError(
+                    f"{parameter_name} list length ({len(parameter)}) must match "
+                    f"number of sections ({num_sections})"
+                )
+            return parameter
+        else:
+            # Single value - expand to all sections
+            return [parameter] * num_sections
+
     def run_analysis(
         self,
         dxf_file: str,
         cable_spec: CableSpec,
         duct_spec: DuctSpec,
-        lubricated: bool = False,
+        lubricated: Union[bool, List[bool]] = False,
+        friction_override: Optional[Union[float, List[float]]] = None,
         **kwargs: Any,
     ) -> PipelineResult:
         """Run complete cable pulling analysis pipeline.
@@ -80,7 +111,12 @@ class CablePullingPipeline:
             dxf_file: Path to DXF input file
             cable_spec: Cable specifications
             duct_spec: Duct specifications (same for all sections)
-            lubricated: Whether duct is lubricated
+            lubricated: Whether duct is lubricated - can be bool for all sections
+                        or list of bools for per-section control (ignored if friction_override used)
+            friction_override: Optional base friction override - can be float for all sections
+                              or list of floats for per-section control. When specified,
+                              uses as base friction (ignores lubrication) but still applies
+                              cable arrangement multipliers (trefoil 1.3x, flat 1.1x)
             **kwargs: Additional parameters for advanced analysis
 
         Returns:
@@ -116,9 +152,34 @@ class CablePullingPipeline:
             processed_route = geometry_result.route
 
             # Step 3: Run cable pulling calculations
-            # Create duct specs list (same spec for all sections for now)
-            duct_specs = [duct_spec] * len(processed_route.sections)
-            lubricated_sections = [lubricated] * len(processed_route.sections)
+            # Expand per-section parameters
+            num_sections = len(processed_route.sections)
+            lubricated_sections = self._expand_per_section_parameter(
+                lubricated, num_sections, "lubricated"
+            )
+
+            # Create duct specs list with optional friction overrides
+            if friction_override is not None:
+                friction_overrides = self._expand_per_section_parameter(
+                    friction_override, num_sections, "friction_override"
+                )
+                # Create modified duct specs with overridden friction values
+                duct_specs = []
+                for i, override_friction in enumerate(friction_overrides):
+                    # When friction is overridden, use the base value specified by engineer
+                    # but still apply cable arrangement multipliers (trefoil 1.3x, flat 1.1x)
+                    from dataclasses import replace
+
+                    modified_spec = replace(
+                        duct_spec,
+                        friction_dry=override_friction,
+                        friction_lubricated=override_friction,  # Same base value - override disregards lubrication
+                    )
+                    # Note: Cable arrangement multipliers are still applied via DuctSpec.get_friction()
+                    duct_specs.append(modified_spec)
+            else:
+                # Use same spec for all sections (normal lubrication logic applies)
+                duct_specs = [duct_spec] * num_sections
 
             # Perform advanced analysis
             route_analysis = analyze_route_with_varying_conditions(

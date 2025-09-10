@@ -1,9 +1,8 @@
 """Accuracy analysis module for route fitting methodologies."""
 
-import math
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Dict, List, Optional, Tuple
+from typing import List, Optional, Tuple
 
 import matplotlib.pyplot as plt
 import numpy as np
@@ -48,7 +47,7 @@ class RouteAccuracyResult:
 class AccuracyAnalyzer:
     """Analyzer for route fitting accuracy using 25m sampling."""
 
-    def __init__(self, sample_interval: float = 25.0):
+    def __init__(self, sample_interval: float = 25.0) -> None:
         """Initialize accuracy analyzer.
 
         Args:
@@ -102,8 +101,8 @@ class AccuracyAnalyzer:
         # Calculate global statistics
         if all_deviations:
             global_max = max(all_deviations)
-            global_avg = np.mean(all_deviations)
-            global_median = np.median(all_deviations)
+            global_avg = float(np.mean(all_deviations))
+            global_median = float(np.median(all_deviations))
 
             # Accuracy categories
             excellent = sum(1 for d in all_deviations if d <= 0.1)
@@ -174,9 +173,9 @@ class AccuracyAnalyzer:
             # Statistics
             max_dev = max(deviations)
             min_dev = min(deviations)
-            avg_dev = np.mean(deviations)
-            median_dev = np.median(deviations)
-            std_dev = np.std(deviations)
+            avg_dev = float(np.mean(deviations))
+            median_dev = float(np.median(deviations))
+            std_dev = float(np.std(deviations))
 
             # Accuracy categories
             excellent = sum(1 for d in deviations if d <= 0.1)

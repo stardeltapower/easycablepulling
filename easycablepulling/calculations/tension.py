@@ -1,9 +1,9 @@
 """Cable tension calculations for pulling analysis."""
 
 import math
-from typing import List, NamedTuple, Optional, Tuple
+from typing import List, NamedTuple, Tuple
 
-from ..core.models import Bend, CableSpec, DuctSpec, Primitive, Route, Section, Straight
+from ..core.models import Bend, CableSpec, DuctSpec, Route, Section, Straight
 
 
 class TensionResult(NamedTuple):

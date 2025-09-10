@@ -57,7 +57,7 @@ class GeometryValidator:
         min_straight_length: Optional[float] = None,
         min_bend_radius: Optional[float] = None,
         max_bend_angle: Optional[float] = None,
-    ):
+    ) -> None:
         """Initialize geometry validator.
 
         Args:

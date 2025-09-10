@@ -1,8 +1,7 @@
 """Factory for creating route fitters based on methodology selection."""
 
-from typing import Dict, List, Optional, Type
+from typing import Dict, List, Type
 
-from ..core.models import DuctSpec
 from .base_fitter import BaseFitter
 from .best_fit_fitter import BestFitFitter
 from .corridor_constrained_fitter import CorridorConstrainedFitter

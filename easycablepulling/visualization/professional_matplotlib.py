@@ -18,7 +18,7 @@ from ..core.models import Bend, Route, Section, Straight
 class ProfessionalMatplotlibPlotter:
     """Professional visualization using matplotlib with custom engineering styling."""
 
-    def __init__(self):
+    def __init__(self) -> None:
         """Initialize with professional engineering styling."""
         # Set professional matplotlib style
         plt.style.use("default")  # Reset to default first

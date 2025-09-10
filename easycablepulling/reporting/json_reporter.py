@@ -126,7 +126,7 @@ class JSONReporter:
 
     def _build_geometry_data(self, route: Route) -> Dict[str, Any]:
         """Build fitted geometry data."""
-        geometry_data = {
+        geometry_data: Dict[str, Any] = {
             "primitives": [],
             "fitting_statistics": {
                 "total_primitives": 0,

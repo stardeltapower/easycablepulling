@@ -3,21 +3,21 @@
 from typing import Dict, List, Type
 
 from .base_fitter import BaseFitter
-from .best_fit_fitter import BestFitFitter
-from .corridor_constrained_fitter import CorridorConstrainedFitter
+# from .best_fit_fitter import BestFitFitter  # Not implemented yet
+# from .corridor_constrained_fitter import CorridorConstrainedFitter  # Not implemented yet
 from .curvature_first_fitter import CurvatureFirstFitter
-from .curvature_first_inventory_fitter import CurvatureFirstInventoryFitter
-from .hough_clustering_fitter import HoughClusteringFitter
-from .polynomial_fitter import PolynomialFitter
+# from .curvature_first_inventory_fitter import CurvatureFirstInventoryFitter  # Not implemented yet
+# from .hough_clustering_fitter import HoughClusteringFitter  # Not implemented yet
+# from .polynomial_fitter import PolynomialFitter  # Not implemented yet
 
 # Registry of available fitting methodologies
 FITTER_REGISTRY: Dict[str, Type[BaseFitter]] = {
-    "0_best_fit": BestFitFitter,
+    # "0_best_fit": BestFitFitter,  # Not implemented yet
     "1_curvature_first": CurvatureFirstFitter,
-    "1_1_curvature_first": CurvatureFirstInventoryFitter,
-    "2_polynomial_detection": PolynomialFitter,
-    "3_corridor_constrained": CorridorConstrainedFitter,
-    "4_hough_clustering": HoughClusteringFitter,
+    # "1_1_curvature_first": CurvatureFirstInventoryFitter,  # Not implemented yet
+    # "2_polynomial_detection": PolynomialFitter,  # Not implemented yet
+    # "3_corridor_constrained": CorridorConstrainedFitter,  # Not implemented yet
+    # "4_hough_clustering": HoughClusteringFitter,  # Not implemented yet
     # Future methodologies can be added here:
     # "2_angle_quantised_dp": AngleQuantisedDPFitter,
     # "3_ransac_robust": RANSACRobustFitter,

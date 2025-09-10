@@ -1,0 +1,13 @@
+{
+  "section_id": "SECT_11_01",
+  "length_m": 743.119422591407,
+  "straight_count": 0,
+  "bend_count": 0,
+  "straights": [],
+  "bends": [],
+  "forward_tension_n": 0.0,
+  "reverse_tension_n": 0.0,
+  "max_sidewall_pressure_n_m": 0.0,
+  "cumulative_forward_n": 0.0,
+  "cumulative_reverse_n": 0.0
+}

@@ -4,32 +4,34 @@ __version__ = "0.1.0"
 __author__ = "Your Organization"
 __email__ = "contact@example.com"
 
-from .core import (
+# Core functionality
+from .core.cable_analysis_pipeline import (
+    CableAnalysisPipeline,
+    AnalysisConfig,
+    AnalysisResults,
+    SectionResult,
+    analyze_cable_route,
+)
+
+# Core models
+from .core.models import (
     Bend,
-    BendOption,
-    CableArrangement,
     CableSpec,
     DuctSpec,
-    PullingMethod,
     Route,
     Section,
     Straight,
 )
-from .io import (
-    DXFReader,
-    DXFWriter,
-    PolylineParser,
-    export_route_to_dxf,
-    load_route_from_dxf,
-)
-from .reporting import (
-    CSVReporter,
-    JSONReporter,
-    generate_csv_report,
-    generate_json_report,
-)
-from .visualization import (
-    ProfessionalPlotter,
-    create_analysis_dashboard,
-    create_professional_route_plot,
-)
+
+# Main convenience function
+__all__ = [
+    "analyze_cable_route",
+    "CableAnalysisPipeline",
+    "AnalysisConfig",
+    "AnalysisResults",
+    "SectionResult",
+    "Route",
+    "Section",
+    "CableSpec",
+    "DuctSpec",
+]

@@ -32,6 +32,48 @@ class LimitCheckResult(NamedTuple):
     recommended_direction: str  # "forward" or "backward"
 
 
+class PressureCalculator:
+    """Simplified pressure calculator for pipeline interface."""
+
+    def calculate_max_sidewall_pressure(
+        self,
+        section: Section,
+        cable_spec: CableSpec,
+        duct_spec: DuctSpec,
+        lubricated: bool = False,
+    ) -> float:
+        """Calculate maximum sidewall pressure for a section."""
+        from .tension import analyze_section_tension
+
+        # Get tension analysis
+        analysis = analyze_section_tension(section, cable_spec, duct_spec, lubricated)
+
+        # Find maximum pressure across all bends
+        max_pressure = 0.0
+
+        # Check forward direction
+        for i, result in enumerate(analysis.forward_tensions):
+            if i < len(section.primitives):
+                primitive = section.primitives[i]
+                if isinstance(primitive, Bend):
+                    pressure = calculate_sidewall_pressure(
+                        result.tension, primitive.radius_m
+                    )
+                    max_pressure = max(max_pressure, pressure)
+
+        # Check backward direction
+        for i, result in enumerate(analysis.backward_tensions):
+            if i < len(section.primitives):
+                primitive = section.primitives[i]
+                if isinstance(primitive, Bend):
+                    pressure = calculate_sidewall_pressure(
+                        result.tension, primitive.radius_m
+                    )
+                    max_pressure = max(max_pressure, pressure)
+
+        return max_pressure
+
+
 def calculate_sidewall_pressure(tension: float, bend_radius: float) -> float:
     """Calculate sidewall pressure in a bend.
 

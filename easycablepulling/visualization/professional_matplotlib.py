@@ -117,6 +117,8 @@ class ProfessionalMatplotlibPlotter:
         units: str = "m",
         show_annotations: bool = True,
         show_section_colors: bool = True,
+        label_start_index: int = 0,
+        show_fitted_geometry: bool = True,
     ) -> Tuple[Figure, Axes]:
         """Create professional route visualization."""
         fig, ax = self.create_figure(width=14, height=10)
@@ -150,34 +152,44 @@ class ProfessionalMatplotlibPlotter:
             y_coords = [p[1] * unit_scale for p in section.original_polyline]
             all_points.extend(list(zip(x_coords, y_coords)))
 
-            # Section styling
+            # Section styling with consistent naming
             if show_section_colors:
                 color = self.colors["sections"][i % len(self.colors["sections"])]
-                label = f"Section {labels[i]}-{labels[i+1]}"
+                # Use actual section ID, removing "SECT_" prefix for cleaner display
+                section_name = section.id.replace("SECT_", "").replace("_", "-")
+                label = f"Section {section_name}"
             else:
                 color = self.colors["primary"]
-                label = f"Section {i+1}" if i == 0 else None
+                label = (
+                    f"Section {section.id.replace('SECT_', '').replace('_', '-')}"
+                    if i == 0
+                    else None
+                )
 
-            # Plot with professional line styling
+            # Plot original route as thin black line
             ax.plot(
                 x_coords,
                 y_coords,
-                color=color,
-                linewidth=3.0,
+                color="black",
+                linewidth=1.0,
                 linestyle="-",
-                alpha=0.9,
-                label=label,
+                alpha=0.8,
+                label="Original route" if i == 0 else None,
                 solid_capstyle="round",
                 solid_joinstyle="round",
-                zorder=5,
+                zorder=3,
             )
+
+            # Plot fitted geometry (straights and bends)
+            if section.primitives and show_fitted_geometry:
+                self._plot_fitted_geometry(ax, section, i, color, unit_scale, labels)
 
             # Collect joint points
             if i == 0:  # First section
                 joint_points.append((x_coords[0], y_coords[0]))
-                joint_labels.append(labels[0])
+                joint_labels.append(labels[label_start_index])
             joint_points.append((x_coords[-1], y_coords[-1]))
-            joint_labels.append(labels[i + 1])
+            joint_labels.append(labels[label_start_index + i + 1])
 
         # Add professional joint markers
         if joint_points:
@@ -273,6 +285,84 @@ class ProfessionalMatplotlibPlotter:
 
         return fig, ax
 
+    def _plot_fitted_geometry(
+        self, ax, section, section_index, color, unit_scale, labels
+    ):
+        """Plot fitted geometry showing straights and bends separately."""
+        import numpy as np
+        from ..core.models import Straight, Bend
+
+        current_x, current_y = None, None
+        straight_plotted = False
+        bend_plotted = False
+
+        for i, primitive in enumerate(section.primitives):
+            if isinstance(primitive, Straight):
+                # Plot straight as blue line with 50% opacity
+                start_point = primitive.start_point
+                end_point = primitive.end_point
+
+                x_coords = [start_point[0] * unit_scale, end_point[0] * unit_scale]
+                y_coords = [start_point[1] * unit_scale, end_point[1] * unit_scale]
+
+                ax.plot(
+                    x_coords,
+                    y_coords,
+                    color="blue",
+                    linewidth=2.0,
+                    alpha=0.5,
+                    label="Fitted straights" if not straight_plotted else None,
+                    solid_capstyle="round",
+                    zorder=4,
+                )
+
+                straight_plotted = True
+                current_x, current_y = (
+                    end_point[0] * unit_scale,
+                    end_point[1] * unit_scale,
+                )
+
+            elif isinstance(primitive, Bend):
+                # Plot bend as red arc with 50% opacity
+                center = primitive.center_point
+                radius = primitive.radius_m
+
+                # Calculate arc points
+                start_angle = primitive.start_angle_deg
+                end_angle = primitive.end_angle_deg
+
+                # Generate arc points
+                start_rad = np.radians(start_angle)
+                end_rad = np.radians(end_angle)
+
+                if primitive.direction == "CW":
+                    # For clockwise, ensure we go the short way
+                    if end_rad > start_rad:
+                        end_rad -= 2 * np.pi
+                    angles = np.linspace(start_rad, end_rad, 50)
+                else:
+                    # For counter-clockwise, ensure we go the short way
+                    if end_rad < start_rad:
+                        end_rad += 2 * np.pi
+                    angles = np.linspace(start_rad, end_rad, 50)
+
+                arc_x = center[0] * unit_scale + radius * unit_scale * np.cos(angles)
+                arc_y = center[1] * unit_scale + radius * unit_scale * np.sin(angles)
+
+                ax.plot(
+                    arc_x,
+                    arc_y,
+                    color="red",
+                    linewidth=2.0,
+                    alpha=0.5,
+                    label="Fitted bends" if not bend_plotted else None,
+                    solid_capstyle="round",
+                    zorder=4,
+                )
+
+                bend_plotted = True
+                current_x, current_y = arc_x[-1], arc_y[-1]
+
     def _add_fitted_overlay(self, ax: Axes, route: Route, unit_scale: float) -> None:
         """Add fitted geometry overlay with professional styling."""
         straight_segments = []
@@ -310,21 +400,7 @@ class ProfessionalMatplotlibPlotter:
                 zorder=3,
             )
 
-        # Plot bend centers as diamond markers
-        if bend_markers:
-            centers = [b[0] for b in bend_markers]
-            ax.scatter(
-                [c[0] for c in centers],
-                [c[1] for c in centers],
-                s=60,
-                c=self.colors["accent"],
-                marker="D",
-                edgecolors="white",
-                linewidth=1,
-                alpha=0.8,
-                zorder=8,
-                label="Fitted Bends",
-            )
+        # Bend centers removed per user request
 
     def plot_tension_analysis(
         self,

@@ -68,8 +68,17 @@ def calculate_straight_tension(
     weight_per_meter = cable_spec.total_weight_per_meter * 9.81  # Convert kg/m to N/m
     effective_weight = weight_per_meter * (friction + slope_factor)
 
-    # Apply tension formula
-    tension_out = tension_in + effective_weight * length
+    # Apply exponential formula for straight section drag
+    # T_out = T_in * exp(f * W * L / T_avg) where T_avg approximates average tension
+    if tension_in > 0:
+        # Use exponential formula for realistic cable drag
+        drag_coefficient = (
+            friction * effective_weight / (tension_in + effective_weight * length / 2)
+        )
+        tension_out = tension_in * math.exp(drag_coefficient * length)
+    else:
+        # Fallback to linear for very low tensions
+        tension_out = tension_in + effective_weight * length
 
     return max(0.0, tension_out)  # Tension cannot be negative
 
@@ -195,6 +204,7 @@ def analyze_section_tension(
     cable_spec: CableSpec,
     duct_spec: DuctSpec,
     lubricated: bool = False,
+    initial_tension_n: float = 0.0,
 ) -> SectionTensionAnalysis:
     """Perform complete tension analysis for a section.
 
@@ -211,13 +221,16 @@ def analyze_section_tension(
         Complete tension analysis results
     """
     # Calculate forward tensions (pulling from start to end)
+    # Use reasonable initial tension for forward pulling
+    forward_initial = max(100.0, initial_tension_n)
     forward_tensions = calculate_section_tensions(
-        section, cable_spec, duct_spec, 0.0, lubricated, False
+        section, cable_spec, duct_spec, forward_initial, lubricated, False
     )
 
     # Calculate backward tensions (pulling from end to start)
+    # Use the same initial tension and methodology as forward, just reversed
     backward_tensions = calculate_section_tensions(
-        section, cable_spec, duct_spec, 0.0, lubricated, True
+        section, cable_spec, duct_spec, forward_initial, lubricated, True
     )
 
     # Find maximum tension and its location
@@ -287,3 +300,37 @@ def find_optimal_pull_direction(
         return ("forward", max_forward)
     else:
         return ("backward", max_backward)
+
+
+class TensionCalculator:
+    """Simplified tension calculator for pipeline interface."""
+
+    def calculate_forward_tension(
+        self,
+        section: Section,
+        cable_spec: CableSpec,
+        duct_spec: DuctSpec,
+        lubricated: bool = False,
+    ) -> float:
+        """Calculate forward pulling tension for a section."""
+        analysis = analyze_section_tension(section, cable_spec, duct_spec, lubricated)
+        return (
+            max(result.tension for result in analysis.forward_tensions)
+            if analysis.forward_tensions
+            else 0.0
+        )
+
+    def calculate_reverse_tension(
+        self,
+        section: Section,
+        cable_spec: CableSpec,
+        duct_spec: DuctSpec,
+        lubricated: bool = False,
+    ) -> float:
+        """Calculate reverse pulling tension for a section."""
+        analysis = analyze_section_tension(section, cable_spec, duct_spec, lubricated)
+        return (
+            max(result.tension for result in analysis.backward_tensions)
+            if analysis.backward_tensions
+            else 0.0
+        )

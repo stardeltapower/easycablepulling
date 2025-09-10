@@ -1,5 +1,5 @@
-"""Analysis and statistics functionality for cable pulling."""
+"""Analysis modules for route fitting accuracy and performance."""
 
-from .statistics import RouteStatistics, SectionStatistics, calculate_route_statistics
+from .accuracy_analyzer import AccuracyAnalyzer
 
-__all__ = ["RouteStatistics", "SectionStatistics", "calculate_route_statistics"]
+__all__ = ["AccuracyAnalyzer"]

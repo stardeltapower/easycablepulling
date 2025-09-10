@@ -1,11 +1,12 @@
 """Simple segment-based fitter: polyline segments → straights + 3.9m fillets."""
 
 import math
-import numpy as np
-from typing import List, Tuple, Optional
 from dataclasses import dataclass
+from typing import List, Optional, Tuple
 
-from ..core.models import Route, Section, Primitive, Straight, Bend
+import numpy as np
+
+from ..core.models import Bend, Primitive, Route, Section, Straight
 
 
 @dataclass

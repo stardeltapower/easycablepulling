@@ -1,14 +1,6 @@
 """Core module for cable pulling software."""
 
-from .models import (
-    Bend,
-    CableSpec,
-    DuctSpec,
-    Primitive,
-    Route,
-    Section,
-    Straight,
-)
+from .models import Bend, CableSpec, DuctSpec, Primitive, Route, Section, Straight
 
 __all__ = [
     "CableSpec",

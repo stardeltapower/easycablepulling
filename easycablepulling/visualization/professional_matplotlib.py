@@ -289,8 +289,7 @@ class ProfessionalMatplotlibPlotter:
         self, ax, section, section_index, color, unit_scale, labels
     ):
         """Plot fitted geometry showing straights and bends separately."""
-        import numpy as np
-        from ..core.models import Straight, Bend
+        from ..core.models import Bend, Straight
 
         current_x, current_y = None, None
         straight_plotted = False

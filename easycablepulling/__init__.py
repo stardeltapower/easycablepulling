@@ -6,22 +6,15 @@ __email__ = "contact@example.com"
 
 # Core functionality
 from .core.cable_analysis_pipeline import (
-    CableAnalysisPipeline,
     AnalysisConfig,
     AnalysisResults,
+    CableAnalysisPipeline,
     SectionResult,
     analyze_cable_route,
 )
 
 # Core models
-from .core.models import (
-    Bend,
-    CableSpec,
-    DuctSpec,
-    Route,
-    Section,
-    Straight,
-)
+from .core.models import Bend, CableSpec, DuctSpec, Route, Section, Straight
 
 # Main convenience function
 __all__ = [

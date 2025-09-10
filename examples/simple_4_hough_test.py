@@ -3,15 +3,17 @@
 
 import sys
 from pathlib import Path
-import numpy as np
 from typing import List, Tuple
+
+import numpy as np
 
 # Add parent to path and import directly to avoid module issues
 sys.path.append(str(Path(__file__).parent.parent / "easycablepulling"))
 
+from core.models import Section
+
 # Direct imports
 from geometry.hough_clustering_fitter import HoughClusteringFitter
-from core.models import Section
 
 
 def create_simple_test_route() -> List[Tuple[float, float]]:

@@ -1,13 +1,14 @@
 """Accuracy analysis module for route fitting methodologies."""
 
 import math
-import numpy as np
-from typing import List, Tuple, Dict, Optional
 from dataclasses import dataclass
 from pathlib import Path
-import matplotlib.pyplot as plt
+from typing import Dict, List, Optional, Tuple
 
-from ..core.models import Route, Section, Primitive
+import matplotlib.pyplot as plt
+import numpy as np
+
+from ..core.models import Primitive, Route, Section
 
 # Removed FitterFactory import - not needed
 
@@ -434,18 +435,18 @@ class AccuracyAnalyzer:
 
         print(f"📏 Sample interval: {self.sample_interval}m")
         print(f"📏 Total sample points: {result.total_sample_points}")
-        print(f"🎯 Global statistics:")
+        print("🎯 Global statistics:")
         print(f"   Max deviation: {result.global_max_deviation:.3f}m")
         print(f"   Average deviation: {result.global_avg_deviation:.3f}m")
         print(f"   Median deviation: {result.global_median_deviation:.3f}m")
 
-        print(f"\n🎯 Accuracy Categories:")
+        print("\n🎯 Accuracy Categories:")
         print(f"   Excellent (≤10cm): {result.excellent_percentage:.1f}%")
         print(f"   Good (10-50cm): {result.good_percentage:.1f}%")
         print(f"   Acceptable (50cm-1m): {result.acceptable_percentage:.1f}%")
         print(f"   Poor (>1m): {result.poor_percentage:.1f}%")
 
-        print(f"\n📋 Section Breakdown:")
+        print("\n📋 Section Breakdown:")
         print(f"{'Section':<10} {'Samples':<7} {'Max':<6} {'Med':<6} {'Quality'}")
         print(f"{'-'*10} {'-'*7} {'-'*6} {'-'*6} {'-'*10}")
 

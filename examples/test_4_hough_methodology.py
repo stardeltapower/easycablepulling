@@ -3,15 +3,16 @@
 
 import sys
 from pathlib import Path
+from typing import List, Tuple
+
 import matplotlib.pyplot as plt
 import numpy as np
-from typing import List, Tuple
 
 # Add parent to path
 sys.path.append(str(Path(__file__).parent.parent))
 
-from easycablepulling.geometry import FitterFactory
 from easycablepulling.core.models import Section
+from easycablepulling.geometry import FitterFactory
 
 
 def create_test_route() -> List[Tuple[float, float]]:
@@ -94,7 +95,7 @@ def plot_comparison(
     ax2.plot(xs, ys, "b-", alpha=0.3, linewidth=1, label="Original")
 
     # Plot fitted primitives
-    from easycablepulling.core.models import Straight, Bend
+    from easycablepulling.core.models import Bend, Straight
 
     current_pos = original_points[0] if original_points else (0, 0)
     current_heading = 0.0
@@ -209,7 +210,7 @@ def main():
         return
 
     # Analyze results
-    from easycablepulling.core.models import Straight, Bend
+    from easycablepulling.core.models import Bend, Straight
 
     num_straights = sum(1 for p in primitives if isinstance(p, Straight))
     num_bends = sum(1 for p in primitives if isinstance(p, Bend))

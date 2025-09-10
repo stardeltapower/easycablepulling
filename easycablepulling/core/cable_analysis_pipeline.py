@@ -1,23 +1,24 @@
 """Main cable pulling analysis pipeline implementing the complete workflow."""
 
-import json
 import csv
+import json
+from dataclasses import asdict, dataclass
 from pathlib import Path
 from typing import Dict, List, Optional, Tuple, Union
-from dataclasses import dataclass, asdict
+
 import matplotlib.pyplot as plt
 
-from ..io.dxf_reader import DXFReader
-from ..io.dxf_writer import DXFWriter
+from ..analysis.accuracy_analyzer import AccuracyAnalyzer
+from ..calculations.pressure import PressureCalculator
+from ..calculations.tension import TensionCalculator
+from ..core.models import Bend, CableSpec, DuctSpec, Route, Section, Straight
 from ..geometry.simple_segment_fitter import SimpleSegmentFitter
 from ..geometry.splitter import RouteSplitter
-from ..visualization.professional_matplotlib import ProfessionalMatplotlibPlotter
-from ..calculations.tension import TensionCalculator
-from ..calculations.pressure import PressureCalculator
-from ..analysis.accuracy_analyzer import AccuracyAnalyzer
-from ..reporting.json_reporter import JSONReporter
+from ..io.dxf_reader import DXFReader
+from ..io.dxf_writer import DXFWriter
 from ..reporting.csv_reporter import CSVReporter
-from ..core.models import Route, Section, CableSpec, DuctSpec
+from ..reporting.json_reporter import JSONReporter
+from ..visualization.professional_matplotlib import ProfessionalMatplotlibPlotter
 
 
 @dataclass
@@ -97,7 +98,7 @@ class AnalysisResults:
 class CableAnalysisPipeline:
     """Complete cable pulling analysis pipeline."""
 
-    def __init__(self, config: AnalysisConfig = None):
+    def __init__(self, config: Optional[AnalysisConfig] = None):
         """Initialize analysis pipeline with configuration."""
         self.config = config or AnalysisConfig()
 
@@ -165,7 +166,8 @@ class CableAnalysisPipeline:
 
         # Store all sections (including empty ones) for CSV reporting
         all_sections_with_splits = route.sections.copy()
-        route._all_sections_with_splits = all_sections_with_splits
+        # Store for later use - avoiding mypy issues by using setattr
+        setattr(route, "_all_sections_with_splits", all_sections_with_splits)
 
         # Step 5: Generate PNG visualizations
         if self.config.generate_png:
@@ -179,8 +181,8 @@ class CableAnalysisPipeline:
         route.sections = [s for s in route.sections if len(s.primitives) > 0]
         print(f"Filtered to {len(route.sections)} non-empty sections")
 
-        # Store original length on route for reporting
-        route._original_total_length = original_total_length
+        # Store original length on route for reporting - avoiding mypy issues by using setattr
+        setattr(route, "_original_total_length", original_total_length)
 
         # Step 6: Apply pulling calculations
         print("6. 📊 Calculating pulling forces...")
@@ -237,7 +239,7 @@ class CableAnalysisPipeline:
             friction_lubricated=0.3,
         )
 
-    def _generate_visualizations(self, route: Route, output_path: Path):
+    def _generate_visualizations(self, route: Route, output_path: Path) -> None:
         """Generate PNG visualizations."""
         vis_path = output_path / "visualizations"
         vis_path.mkdir(exist_ok=True)
@@ -341,7 +343,7 @@ class CableAnalysisPipeline:
                         }
                     )
 
-                elif hasattr(primitive, "angle_deg"):  # Bend
+                elif isinstance(primitive, Bend):  # Bend
                     # Get tension at end of this primitive
                     forward_tension = (
                         tension_analysis.forward_tensions[i].tension
@@ -439,7 +441,7 @@ class CableAnalysisPipeline:
 
     def _export_json_reports(
         self, section_results: List[SectionResult], output_path: Path, route: Route
-    ):
+    ) -> None:
         """Export JSON reports."""
         json_path = output_path / "json"
         json_path.mkdir(exist_ok=True)
@@ -475,7 +477,7 @@ class CableAnalysisPipeline:
 
     def _export_csv_reports(
         self, section_results: List[SectionResult], output_path: Path, route: Route
-    ):
+    ) -> None:
         """Export CSV reports."""
         csv_path = output_path / "csv"
         csv_path.mkdir(exist_ok=True)
@@ -534,7 +536,9 @@ class CableAnalysisPipeline:
                 # Empty subsection CSV
                 self._export_empty_section_csv(section, csv_path)
 
-    def _export_individual_section_csv(self, result: SectionResult, csv_path: Path):
+    def _export_individual_section_csv(
+        self, result: SectionResult, csv_path: Path
+    ) -> None:
         """Export CSV for individual section with detailed geometry and cumulative tensions."""
         filename = csv_path / f"section_{result.section_id}.csv"
 
@@ -616,7 +620,7 @@ class CableAnalysisPipeline:
                         ]
                     )
 
-    def _export_empty_section_csv(self, section: Section, csv_path: Path):
+    def _export_empty_section_csv(self, section: Section, csv_path: Path) -> None:
         """Export CSV for empty subsection."""
         filename = csv_path / f"section_{section.id}.csv"
 
@@ -638,7 +642,9 @@ class CableAnalysisPipeline:
             )
             writer.writerow(["No geometry data", "", "", "0", "0", ""])
 
-    def _export_summary_reports(self, results: AnalysisResults, output_path: Path):
+    def _export_summary_reports(
+        self, results: AnalysisResults, output_path: Path
+    ) -> None:
         """Export summary reports."""
 
         # JSON summary
@@ -671,7 +677,7 @@ class CableAnalysisPipeline:
                 writer.writerow(["Median Deviation", results.median_deviation_cm, "cm"])
                 writer.writerow(["Max Deviation", results.max_deviation_cm, "cm"])
 
-    def _export_fitted_dxf(self, route: Route, output_path: Path):
+    def _export_fitted_dxf(self, route: Route, output_path: Path) -> None:
         """Export fitted route as DXF."""
         from ..io.dxf_writer import export_route_to_dxf
 
@@ -682,7 +688,7 @@ class CableAnalysisPipeline:
 def analyze_cable_route(
     dxf_path: Union[str, Path],
     output_dir: Union[str, Path] = "output",
-    config: AnalysisConfig = None,
+    config: Optional[AnalysisConfig] = None,
     **kwargs,
 ) -> AnalysisResults:
     """

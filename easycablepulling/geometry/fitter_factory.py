@@ -2,15 +2,14 @@
 
 from typing import Dict, List, Optional, Type
 
+from ..core.models import DuctSpec
 from .base_fitter import BaseFitter
 from .best_fit_fitter import BestFitFitter
+from .corridor_constrained_fitter import CorridorConstrainedFitter
 from .curvature_first_fitter import CurvatureFirstFitter
 from .curvature_first_inventory_fitter import CurvatureFirstInventoryFitter
-from .polynomial_fitter import PolynomialFitter
-from .corridor_constrained_fitter import CorridorConstrainedFitter
 from .hough_clustering_fitter import HoughClusteringFitter
-from ..core.models import DuctSpec
-
+from .polynomial_fitter import PolynomialFitter
 
 # Registry of available fitting methodologies
 FITTER_REGISTRY: Dict[str, Type[BaseFitter]] = {

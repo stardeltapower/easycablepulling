@@ -8,14 +8,15 @@ Engineer's "clean-up then snap" approach:
 """
 
 import math
-import numpy as np
 from dataclasses import dataclass
-from typing import List, Tuple, Optional, Dict
 from enum import Enum
+from typing import Dict, List, Optional, Tuple
 
-from .base_fitter import BaseFitter
-from ..core.models import Primitive, Section, Straight, Bend
+import numpy as np
+
+from ..core.models import Bend, Primitive, Section, Straight
 from ..inventory import DuctInventory
+from .base_fitter import BaseFitter
 
 
 class SegmentType(Enum):

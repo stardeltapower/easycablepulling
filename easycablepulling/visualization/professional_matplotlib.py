@@ -105,7 +105,7 @@ class ProfessionalMatplotlibPlotter:
         self, width: float = 12, height: float = 8
     ) -> Tuple[Figure, Axes]:
         """Create professional figure with engineering styling."""
-        fig, ax = plt.subplots(figsize=(width, height), dpi=100)
+        fig, ax = plt.subplots(figsize=(width, height), dpi=300)
         ax.set_aspect("equal")
         self.setup_professional_style(fig, ax)
         return fig, ax
@@ -121,7 +121,34 @@ class ProfessionalMatplotlibPlotter:
         show_fitted_geometry: bool = True,
     ) -> Tuple[Figure, Axes]:
         """Create professional route visualization."""
-        fig, ax = self.create_figure(width=14, height=10)
+        # Determine orientation based on route bounds
+        all_points = []
+        for section in route.sections:
+            if section.original_polyline:
+                all_points.extend(section.original_polyline)
+        
+        if all_points:
+            x_coords = [p[0] for p in all_points]
+            y_coords = [p[1] for p in all_points]
+            x_range = max(x_coords) - min(x_coords)
+            y_range = max(y_coords) - min(y_coords)
+            
+            # A4 dimensions in inches at 300 DPI
+            # A4 = 210mm x 297mm = 8.27" x 11.69"
+            if x_range > y_range:
+                # Landscape orientation for wider routes
+                fig_width = 11.69
+                fig_height = 8.27
+            else:
+                # Portrait orientation for taller routes
+                fig_width = 8.27
+                fig_height = 11.69
+        else:
+            # Default to landscape
+            fig_width = 11.69
+            fig_height = 8.27
+            
+        fig, ax = self.create_figure(width=fig_width, height=fig_height)
 
         # Default title
         if title is None:
@@ -408,7 +435,8 @@ class ProfessionalMatplotlibPlotter:
         title: Optional[str] = None,
     ) -> Tuple[Figure, Axes]:
         """Create professional tension analysis plot."""
-        fig, ax = plt.subplots(figsize=(14, 6), dpi=100)
+        # A4 landscape for tension plots (wide format)
+        fig, ax = plt.subplots(figsize=(11.69, 8.27), dpi=300)
         self.setup_professional_style(fig, ax)
 
         if title is None:
@@ -476,7 +504,8 @@ class ProfessionalMatplotlibPlotter:
         title: Optional[str] = None,
     ) -> Tuple[Figure, Axes]:
         """Create professional pressure analysis plot."""
-        fig, ax = plt.subplots(figsize=(14, 6), dpi=100)
+        # A4 landscape for pressure plots (wide format)
+        fig, ax = plt.subplots(figsize=(11.69, 8.27), dpi=300)
         self.setup_professional_style(fig, ax)
 
         if title is None:
@@ -598,8 +627,8 @@ class ProfessionalMatplotlibPlotter:
         if title is None:
             title = f"Cable Pulling Analysis Dashboard: {route.name}"
 
-        # Create 2x2 subplot layout
-        fig = plt.figure(figsize=(16, 12), dpi=100)
+        # Create 2x2 subplot layout - A4 landscape for dashboard
+        fig = plt.figure(figsize=(11.69, 8.27), dpi=300)
         fig.suptitle(title, fontsize=18, fontweight="bold", color="#1a1a1a", y=0.95)
 
         # Configure subplot layout with proper spacing
@@ -728,7 +757,7 @@ class ProfessionalMatplotlibPlotter:
             bbox_inches="tight",
             facecolor="white" if not transparent else "none",
             edgecolor="none",
-            pad_inches=0.2,
+            pad_inches=0.1,  # Reduced padding to maximize use of A4 space
             transparent=transparent,
         )
 

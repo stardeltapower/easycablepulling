@@ -27,13 +27,14 @@ class AnalysisConfig:
     duct_type: str = "200mm"
     max_section_length_m: float = 1000.0
 
-    # Cable specifications
-    cable_diameter_mm: float = 50.0
-    cable_weight_kg_m: float = 1.5
+    # Cable specifications (per individual cable)
+    cable_diameter_mm: float = 50.0  # Individual cable diameter
+    cable_weight_kg_m: float = 1.5  # Weight per individual cable
     cable_max_tension_n: float = 15000.0
     cable_max_sidewall_pressure_n_m: float = 300.0
     cable_min_bend_radius_mm: float = 500.0
     number_of_cables: int = 1
+    cable_arrangement: str = "single"  # "single", "trefoil", or "flat"
 
     # Friction and lubrication settings
     lubricated: Union[bool, List[bool]] = False
@@ -224,13 +225,40 @@ class CableAnalysisPipeline:
 
     def _create_cable_spec(self) -> CableSpec:
         """Create cable specification from config."""
+        from ..core.models import CableArrangement, PullingMethod
+        
+        # Map string arrangement to enum
+        arrangement_map = {
+            "single": CableArrangement.SINGLE,
+            "trefoil": CableArrangement.TREFOIL,
+            "flat": CableArrangement.FLAT,
+        }
+        
+        arrangement = arrangement_map.get(
+            self.config.cable_arrangement.lower(), 
+            CableArrangement.SINGLE
+        )
+        
+        # Validate number of cables for arrangement
+        if arrangement == CableArrangement.SINGLE and self.config.number_of_cables != 1:
+            print(f"Warning: Single arrangement requires 1 cable, got {self.config.number_of_cables}. Setting to 1.")
+            self.config.number_of_cables = 1
+        elif arrangement == CableArrangement.TREFOIL and self.config.number_of_cables != 3:
+            print(f"Note: Trefoil arrangement typically uses 3 cables. Setting to 3.")
+            self.config.number_of_cables = 3
+        elif arrangement == CableArrangement.FLAT and self.config.number_of_cables < 2:
+            print(f"Warning: Flat arrangement requires at least 2 cables. Setting to 2.")
+            self.config.number_of_cables = 2
+        
         return CableSpec(
-            diameter=self.config.cable_diameter_mm,
-            weight_per_meter=self.config.cable_weight_kg_m,
+            diameter=self.config.cable_diameter_mm,  # Individual cable diameter
+            weight_per_meter=self.config.cable_weight_kg_m,  # Per cable weight
             max_tension=self.config.cable_max_tension_n,
             max_sidewall_pressure=self.config.cable_max_sidewall_pressure_n_m,
             min_bend_radius=self.config.cable_min_bend_radius_mm,
+            arrangement=arrangement,
             number_of_cables=self.config.number_of_cables,
+            pulling_method=PullingMethod.EYE,  # Default
         )
 
     def _create_duct_spec(self) -> DuctSpec:

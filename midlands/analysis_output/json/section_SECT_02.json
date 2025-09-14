@@ -1,0 +1,44 @@
+{
+  "section_id": "SECT_02",
+  "length_m": 23.161955101837286,
+  "straight_count": 3,
+  "bend_count": 2,
+  "straights": [
+    {
+      "length_m": 7.4301760922587965,
+      "cumulative_forward_tension_n": 253.13167838057447,
+      "cumulative_reverse_tension_n": 744.3653347133537
+    },
+    {
+      "length_m": 12.60749088395814,
+      "cumulative_forward_tension_n": 571.9915537292436,
+      "cumulative_reverse_tension_n": 474.92276890100595
+    },
+    {
+      "length_m": 3.096058619365495,
+      "cumulative_forward_tension_n": 700.9236121127881,
+      "cumulative_reverse_tension_n": 194.15511985182138
+    }
+  ],
+  "bends": [
+    {
+      "angle_deg": 0.10856413233091189,
+      "radius_m": 3.9,
+      "cumulative_forward_tension_n": 253.4436327401094,
+      "cumulative_reverse_tension_n": 475.50805411362296,
+      "sidewall_pressure_n_m": 64.9855468564383
+    },
+    {
+      "angle_deg": 0.3061619102693953,
+      "radius_m": 3.9,
+      "cumulative_forward_tension_n": 573.9817042938879,
+      "cumulative_reverse_tension_n": 194.830650668461,
+      "sidewall_pressure_n_m": 147.17479597279177
+    }
+  ],
+  "forward_tension_n": 700.9236121127881,
+  "reverse_tension_n": 194.15511985182138,
+  "max_sidewall_pressure_n_m": 147.17479597279177,
+  "cumulative_forward_n": 19925.175583697976,
+  "cumulative_reverse_n": 111228.226117041
+}

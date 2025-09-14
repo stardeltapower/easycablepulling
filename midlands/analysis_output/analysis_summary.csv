@@ -1,0 +1,12 @@
+Metric,Value,Unit
+Route Name,midlands_split,
+Total Length,6133.989850403456,m
+Section Count,21,
+Total Straights,283,
+Total Bends,250,
+Final Forward Tension,348441.3341893473,N
+Final Reverse Tension,516856.63392691704,N
+Max Sidewall Pressure,19542.12238210658,N/m
+Excellent Accuracy,97.22222222222221,%
+Median Deviation,0.04211684001695651,cm
+Max Deviation,106.95008055620552,cm

@@ -1,0 +1,21 @@
+Section,SECT_11_05
+Total Length (m),424.7495591232477
+
+Type,Length/Angle,Radius (m),Cumulative Forward (N),Cumulative Reverse (N),Forward Sidewall (N/m),Reverse Sidewall (N/m)
+Straight,7.5m,,254,13994,,
+Bend,5.8deg,3.9,271,13667,70,3504
+Straight,8.8m,,534,12796,,
+Bend,5.3deg,3.9,568,12415,146,3183
+Straight,10.8m,,942,11685,,
+Bend,6.1deg,3.9,1011,11218,259,2876
+Straight,19.9m,,1697,10462,,
+Bend,1.1deg,3.9,3867,6482,991,1662
+Straight,83.7m,,3821,9612,,
+Bend,3.0deg,3.9,6949,3604,1782,924
+Straight,84.9m,,6719,6405,,
+Bend,1.1deg,3.9,7937,2648,2035,679
+Straight,21.1m,,7838,3485,,
+Bend,1.1deg,3.9,10933,1052,2803,270
+Straight,73.1m,,10796,2615,,
+Bend,0.5deg,3.9,13322,346,3416,89
+Straight,56.4m,,13253,1039,,

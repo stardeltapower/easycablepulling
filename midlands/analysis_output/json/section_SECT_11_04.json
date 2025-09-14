@@ -1,0 +1,313 @@
+{
+  "section_id": "SECT_11_04",
+  "length_m": 447.46039808310144,
+  "straight_count": 26,
+  "bend_count": 24,
+  "straights": [
+    {
+      "length_m": 12.383402373906655,
+      "cumulative_forward_tension_n": 285.34022726296683,
+      "cumulative_reverse_tension_n": 76755.23969304062
+    },
+    {
+      "length_m": 7.071407283030299,
+      "cumulative_forward_tension_n": 564.5045956164645,
+      "cumulative_reverse_tension_n": 66673.08033524104
+    },
+    {
+      "length_m": 13.317847622058947,
+      "cumulative_forward_tension_n": 1059.7456014541492,
+      "cumulative_reverse_tension_n": 61272.33772592941
+    },
+    {
+      "length_m": 9.759143736889854,
+      "cumulative_forward_tension_n": 1539.2148247346722,
+      "cumulative_reverse_tension_n": 55738.985793887055
+    },
+    {
+      "length_m": 6.512278031237871,
+      "cumulative_forward_tension_n": 1927.6036530694314,
+      "cumulative_reverse_tension_n": 51419.27768569097
+    },
+    {
+      "length_m": 8.167089206845585,
+      "cumulative_forward_tension_n": 2425.5864223296285,
+      "cumulative_reverse_tension_n": 47283.44710680619
+    },
+    {
+      "length_m": 7.592721338287319,
+      "cumulative_forward_tension_n": 2883.9676016336357,
+      "cumulative_reverse_tension_n": 44406.43943343679
+    },
+    {
+      "length_m": 10.810379622308908,
+      "cumulative_forward_tension_n": 3368.9297978409713,
+      "cumulative_reverse_tension_n": 43584.27721047067
+    },
+    {
+      "length_m": 5.100958620737888,
+      "cumulative_forward_tension_n": 5732.752185447575,
+      "cumulative_reverse_tension_n": 26350.676578423143
+    },
+    {
+      "length_m": 1.6330418546360066,
+      "cumulative_forward_tension_n": 8795.599138252232,
+      "cumulative_reverse_tension_n": 17168.74339432637
+    },
+    {
+      "length_m": 15.884181907170117,
+      "cumulative_forward_tension_n": 9739.21670473066,
+      "cumulative_reverse_tension_n": 16601.364917848885
+    },
+    {
+      "length_m": 14.595975133558568,
+      "cumulative_forward_tension_n": 10547.055798755991,
+      "cumulative_reverse_tension_n": 15625.395439591839
+    },
+    {
+      "length_m": 16.8980913657418,
+      "cumulative_forward_tension_n": 11579.86425474663,
+      "cumulative_reverse_tension_n": 14570.074850843846
+    },
+    {
+      "length_m": 32.50106271726683,
+      "cumulative_forward_tension_n": 13531.932185138056,
+      "cumulative_reverse_tension_n": 13187.002686875747
+    },
+    {
+      "length_m": 20.8838369795123,
+      "cumulative_forward_tension_n": 14849.33342474486,
+      "cumulative_reverse_tension_n": 11455.514984615946
+    },
+    {
+      "length_m": 22.16353093354834,
+      "cumulative_forward_tension_n": 16309.779405902858,
+      "cumulative_reverse_tension_n": 10214.111024501646
+    },
+    {
+      "length_m": 20.43149289308623,
+      "cumulative_forward_tension_n": 17813.59343069777,
+      "cumulative_reverse_tension_n": 8930.656425474399
+    },
+    {
+      "length_m": 20.527293543065987,
+      "cumulative_forward_tension_n": 19347.909826574356,
+      "cumulative_reverse_tension_n": 7780.257093447179
+    },
+    {
+      "length_m": 26.74617795123637,
+      "cumulative_forward_tension_n": 21197.269784569904,
+      "cumulative_reverse_tension_n": 6672.818320385076
+    },
+    {
+      "length_m": 12.771188450036828,
+      "cumulative_forward_tension_n": 22130.51846243868,
+      "cumulative_reverse_tension_n": 5470.606643480304
+    },
+    {
+      "length_m": 29.129928516150656,
+      "cumulative_forward_tension_n": 23933.496577990954,
+      "cumulative_reverse_tension_n": 4809.758391814523
+    },
+    {
+      "length_m": 28.661483924529797,
+      "cumulative_forward_tension_n": 25620.394228011588,
+      "cumulative_reverse_tension_n": 3585.378042072552
+    },
+    {
+      "length_m": 22.882791456180914,
+      "cumulative_forward_tension_n": 26611.382703031883,
+      "cumulative_reverse_tension_n": 2495.035045151447
+    },
+    {
+      "length_m": 23.79284626093877,
+      "cumulative_forward_tension_n": 28364.42529487517,
+      "cumulative_reverse_tension_n": 1605.8101871994356
+    },
+    {
+      "length_m": 25.652500729344585,
+      "cumulative_forward_tension_n": 30581.26609194946,
+      "cumulative_reverse_tension_n": 824.6988842788193
+    },
+    {
+      "length_m": 20.319865570844645,
+      "cumulative_forward_tension_n": 32283.49738425707,
+      "cumulative_reverse_tension_n": 310.87187329155654
+    }
+  ],
+  "bends": [
+    {
+      "angle_deg": 11.7894910061015,
+      "radius_m": 3.9,
+      "cumulative_forward_tension_n": 326.17360849875433,
+      "cumulative_reverse_tension_n": 76214.27729021566,
+      "sidewall_pressure_n_m": 83.63425858942419
+    },
+    {
+      "angle_deg": 7.036427828615899,
+      "radius_m": 3.9,
+      "cumulative_forward_tension_n": 611.4139747529056,
+      "cumulative_reverse_tension_n": 66363.96557675829,
+      "sidewall_pressure_n_m": 156.77281403920657
+    },
+    {
+      "angle_deg": 7.502635601798374,
+      "radius_m": 3.9,
+      "cumulative_forward_tension_n": 1153.8954680224822,
+      "cumulative_reverse_tension_n": 60690.94602655779,
+      "sidewall_pressure_n_m": 295.8706328262775
+    },
+    {
+      "angle_deg": 6.43387364267285,
+      "radius_m": 3.9,
+      "cumulative_forward_tension_n": 1655.7638009385155,
+      "cumulative_reverse_tension_n": 55312.73302090803,
+      "sidewall_pressure_n_m": 424.5548207534655
+    },
+    {
+      "angle_deg": 6.9021620341448795,
+      "radius_m": 3.9,
+      "cumulative_forward_tension_n": 2084.6065770259033,
+      "cumulative_reverse_tension_n": 51134.67421912706,
+      "sidewall_pressure_n_m": 534.5145069297188
+    },
+    {
+      "angle_deg": 4.86597740273308,
+      "radius_m": 3.9,
+      "cumulative_forward_tension_n": 2563.2502480747057,
+      "cumulative_reverse_tension_n": 46926.72083171929,
+      "sidewall_pressure_n_m": 657.2436533524886
+    },
+    {
+      "angle_deg": 0.9865079747944208,
+      "radius_m": 3.9,
+      "cumulative_forward_tension_n": 2916.425036078917,
+      "cumulative_reverse_tension_n": 44074.793754277365,
+      "sidewall_pressure_n_m": 747.8012913022864
+    },
+    {
+      "angle_deg": 43.39666803111915,
+      "radius_m": 3.9,
+      "cumulative_forward_tension_n": 5511.929308012447,
+      "cumulative_reverse_tension_n": 43112.52392722723,
+      "sidewall_pressure_n_m": 1413.3152071826787
+    },
+    {
+      "angle_deg": 37.014340657396104,
+      "radius_m": 3.9,
+      "cumulative_forward_tension_n": 8724.281382965073,
+      "cumulative_reverse_tension_n": 26127.93009686532,
+      "sidewall_pressure_n_m": 2236.995226401301
+    },
+    {
+      "angle_deg": 2.5949232911574924,
+      "radius_m": 3.9,
+      "cumulative_forward_tension_n": 9058.377040370326,
+      "cumulative_reverse_tension_n": 17097.348395135472,
+      "sidewall_pressure_n_m": 2322.6607795821346
+    },
+    {
+      "angle_deg": 1.61506288826331,
+      "radius_m": 3.9,
+      "cumulative_forward_tension_n": 9919.306417177626,
+      "cumulative_reverse_tension_n": 15914.327604970129,
+      "sidewall_pressure_n_m": 2543.411901840417
+    },
+    {
+      "angle_deg": 2.527457312421454,
+      "radius_m": 3.9,
+      "cumulative_forward_tension_n": 10853.849866326176,
+      "cumulative_reverse_tension_n": 14993.890995707672,
+      "sidewall_pressure_n_m": 2783.0384272631222
+    },
+    {
+      "angle_deg": 4.2674536477777565,
+      "radius_m": 3.9,
+      "cumulative_forward_tension_n": 12154.269115807294,
+      "cumulative_reverse_tension_n": 13841.127664468346,
+      "sidewall_pressure_n_m": 3116.479260463409
+    },
+    {
+      "angle_deg": 2.691102564397667,
+      "radius_m": 3.9,
+      "cumulative_forward_tension_n": 13951.427456026087,
+      "cumulative_reverse_tension_n": 11810.640497801063,
+      "sidewall_pressure_n_m": 3577.2890912887406
+    },
+    {
+      "angle_deg": 2.958830572354273,
+      "radius_m": 3.9,
+      "cumulative_forward_tension_n": 15356.23906334237,
+      "cumulative_reverse_tension_n": 10562.78596656692,
+      "sidewall_pressure_n_m": 3937.4971957288126
+    },
+    {
+      "angle_deg": 3.3006559098763546,
+      "radius_m": 3.9,
+      "cumulative_forward_tension_n": 16932.073185629153,
+      "cumulative_reverse_tension_n": 9271.40241621625,
+      "sidewall_pressure_n_m": 4341.557227084399
+    },
+    {
+      "angle_deg": 3.1479332447016617,
+      "radius_m": 3.9,
+      "cumulative_forward_tension_n": 18461.251307222185,
+      "cumulative_reverse_tension_n": 8063.127857707046,
+      "sidewall_pressure_n_m": 4733.654181339022
+    },
+    {
+      "angle_deg": 3.1202914443493626,
+      "radius_m": 3.9,
+      "cumulative_forward_tension_n": 20045.064781736968,
+      "cumulative_reverse_tension_n": 6913.257127401161,
+      "sidewall_pressure_n_m": 5139.7602004453765
+    },
+    {
+      "angle_deg": 1.5587614182922636,
+      "radius_m": 3.9,
+      "cumulative_forward_tension_n": 21575.447470569612,
+      "cumulative_reverse_tension_n": 5568.207012889764,
+      "sidewall_pressure_n_m": 5532.166018094773
+    },
+    {
+      "angle_deg": 2.153544769670063,
+      "radius_m": 3.9,
+      "cumulative_forward_tension_n": 22677.852155974946,
+      "cumulative_reverse_tension_n": 4928.713708206094,
+      "sidewall_pressure_n_m": 5814.833886147422
+    },
+    {
+      "angle_deg": 1.6413552808219407,
+      "radius_m": 3.9,
+      "cumulative_forward_tension_n": 24383.327344096753,
+      "cumulative_reverse_tension_n": 3652.76532692618,
+      "sidewall_pressure_n_m": 6252.135216435065
+    },
+    {
+      "angle_deg": 2.3608515697023336,
+      "radius_m": 3.9,
+      "cumulative_forward_tension_n": 27333.746023408097,
+      "cumulative_reverse_tension_n": 1649.3997440317146,
+      "sidewall_pressure_n_m": 7008.652826514897
+    },
+    {
+      "angle_deg": 3.3705822207887053,
+      "radius_m": 3.9,
+      "cumulative_forward_tension_n": 29470.028736457545,
+      "cumulative_reverse_tension_n": 856.844429808083,
+      "sidewall_pressure_n_m": 7556.417624732704
+    },
+    {
+      "angle_deg": 2.3314592017000706,
+      "radius_m": 3.9,
+      "cumulative_forward_tension_n": 31400.919247943923,
+      "cumulative_reverse_tension_n": 319.20400418787716,
+      "sidewall_pressure_n_m": 8051.517755883057
+    }
+  ],
+  "forward_tension_n": 32283.49738425707,
+  "reverse_tension_n": 310.87187329155654,
+  "max_sidewall_pressure_n_m": 19542.12238210658,
+  "cumulative_forward_n": 282032.19170782756,
+  "cumulative_reverse_n": 475478.6938952974
+}

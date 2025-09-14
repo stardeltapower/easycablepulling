@@ -1,0 +1,19 @@
+{
+  "section_id": "SECT_06",
+  "length_m": 20.969594060818974,
+  "straight_count": 1,
+  "bend_count": 0,
+  "straights": [
+    {
+      "length_m": 20.969594060818974,
+      "cumulative_forward_tension_n": 312.27380614412795,
+      "cumulative_reverse_tension_n": 312.27380614412795
+    }
+  ],
+  "bends": [],
+  "forward_tension_n": 312.27380614412795,
+  "reverse_tension_n": 312.27380614412795,
+  "max_sidewall_pressure_n_m": 0.0,
+  "cumulative_forward_n": 99888.32158647866,
+  "cumulative_reverse_n": 182010.19841117546
+}

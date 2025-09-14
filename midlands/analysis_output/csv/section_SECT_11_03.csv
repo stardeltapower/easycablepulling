@@ -1,0 +1,35 @@
+Section,SECT_11_03
+Total Length (m),412.9843518094608
+
+Type,Length/Angle,Radius (m),Cumulative Forward (N),Cumulative Reverse (N),Forward Sidewall (N/m),Reverse Sidewall (N/m)
+Straight,35.8m,,332,19728,,
+Bend,0.8deg,3.9,335,18199,86,4666
+Straight,16.7m,,757,18042,,
+Bend,3.6deg,3.9,788,17319,202,4441
+Straight,18.9m,,1409,16635,,
+Bend,3.4deg,3.9,1465,15818,376,4056
+Straight,19.7m,,2198,15221,,
+Bend,4.5deg,3.9,2313,14371,593,3685
+Straight,17.8m,,3024,13651,,
+Bend,2.3deg,3.9,3104,12884,796,3303
+Straight,27.0m,,4168,12552,,
+Bend,3.4deg,3.9,4333,11402,1111,2924
+Straight,29.2m,,5512,10967,,
+Bend,5.7deg,3.9,5878,9732,1507,2495
+Straight,41.9m,,7560,9126,,
+Bend,1.3deg,3.9,7671,7414,1967,1901
+Straight,30.6m,,8946,7307,,
+Bend,4.0deg,3.9,9358,6049,2399,1551
+Straight,9.4m,,9765,5782,,
+Bend,4.5deg,3.9,10281,5379,2636,1379
+Straight,20.9m,,11175,5109,,
+Bend,0.9deg,3.9,11286,4246,2894,1089
+Straight,40.7m,,12994,4204,,
+Bend,4.1deg,3.9,13612,2718,3490,697
+Straight,20.9m,,14508,2595,,
+Bend,4.5deg,3.9,15270,1802,3915,462
+Straight,44.3m,,17141,1712,,
+Bend,0.2deg,3.9,17188,710,4407,182
+Straight,30.3m,,18485,708,,
+Bend,6.4deg,3.9,19866,249,5094,64
+Straight,5.4m,,20103,232,,

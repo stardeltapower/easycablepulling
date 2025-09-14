@@ -1,9 +1,0 @@
-Section,SECT_02
-Total Length (m),23.161955101837286
-
-Type,Length/Angle,Radius (m),Cumulative Forward (N),Cumulative Reverse (N),Sidewall Pressure (N/m)
-Straight,7.4m,,34,5,
-Bend,0.1°,3.9,68,9,18
-Straight,12.6m,,102,14,
-Bend,0.3°,3.9,137,18,35
-Straight,3.1m,,171,23,

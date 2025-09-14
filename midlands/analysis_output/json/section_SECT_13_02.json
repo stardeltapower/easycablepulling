@@ -1,0 +1,181 @@
+{
+  "section_id": "SECT_13_02",
+  "length_m": 268.7586961348674,
+  "straight_count": 15,
+  "bend_count": 13,
+  "straights": [
+    {
+      "length_m": 24.570663000958938,
+      "cumulative_forward_tension_n": 318.9293581546089,
+      "cumulative_reverse_tension_n": 17086.391149237446
+    },
+    {
+      "length_m": 31.969570635411394,
+      "cumulative_forward_tension_n": 882.5429364023838,
+      "cumulative_reverse_tension_n": 15721.221362172408
+    },
+    {
+      "length_m": 15.361277648487448,
+      "cumulative_forward_tension_n": 1475.3391258688978,
+      "cumulative_reverse_tension_n": 13686.860223468519
+    },
+    {
+      "length_m": 31.15524471971491,
+      "cumulative_forward_tension_n": 2545.967014788995,
+      "cumulative_reverse_tension_n": 12921.112912507346
+    },
+    {
+      "length_m": 41.358762006663504,
+      "cumulative_forward_tension_n": 4082.1197457987478,
+      "cumulative_reverse_tension_n": 11396.739484509122
+    },
+    {
+      "length_m": 38.09359491367701,
+      "cumulative_forward_tension_n": 5583.533530786799,
+      "cumulative_reverse_tension_n": 9646.966706476558
+    },
+    {
+      "length_m": 3.069338550752729,
+      "cumulative_forward_tension_n": 6012.867993118248,
+      "cumulative_reverse_tension_n": 7665.933105224245
+    },
+    {
+      "length_m": 1.4612137221046562,
+      "cumulative_forward_tension_n": 7321.545913737151,
+      "cumulative_reverse_tension_n": 6240.281424397544
+    },
+    {
+      "length_m": 2.274797821106028,
+      "cumulative_forward_tension_n": 9484.09311466605,
+      "cumulative_reverse_tension_n": 4818.589539301105
+    },
+    {
+      "length_m": 3.778345987810385,
+      "cumulative_forward_tension_n": 11635.76030578014,
+      "cumulative_reverse_tension_n": 3902.0943599685074
+    },
+    {
+      "length_m": 3.973824869882125,
+      "cumulative_forward_tension_n": 14663.473126565525,
+      "cumulative_reverse_tension_n": 3002.2240305983646
+    },
+    {
+      "length_m": 2.452473554173896,
+      "cumulative_forward_tension_n": 20516.963664089024,
+      "cumulative_reverse_tension_n": 2034.0687895894478
+    },
+    {
+      "length_m": 36.7637933507152,
+      "cumulative_forward_tension_n": 25493.00474916421,
+      "cumulative_reverse_tension_n": 1654.4760655088273
+    },
+    {
+      "length_m": 8.448636069806142,
+      "cumulative_forward_tension_n": 25861.342312695226,
+      "cumulative_reverse_tension_n": 730.4919333371595
+    },
+    {
+      "length_m": 12.615195005450975,
+      "cumulative_forward_tension_n": 40079.37701946675,
+      "cumulative_reverse_tension_n": 286.40946625532024
+    }
+  ],
+  "bends": [
+    {
+      "angle_deg": 1.7168412086260787,
+      "radius_m": 3.9,
+      "cumulative_forward_tension_n": 325.20201575282147,
+      "cumulative_reverse_tension_n": 16030.424124819323,
+      "sidewall_pressure_n_m": 83.3851322443132
+    },
+    {
+      "angle_deg": 4.224110592980111,
+      "radius_m": 3.9,
+      "cumulative_forward_tension_n": 925.8650182120672,
+      "cumulative_reverse_tension_n": 14358.717935837609,
+      "sidewall_pressure_n_m": 237.40128672104288
+    },
+    {
+      "angle_deg": 0.6982958826383481,
+      "radius_m": 3.9,
+      "cumulative_forward_tension_n": 1487.0730539837434,
+      "cumulative_reverse_tension_n": 13023.879393393476,
+      "sidewall_pressure_n_m": 381.3007830727547
+    },
+    {
+      "angle_deg": 1.5634373471529273,
+      "radius_m": 3.9,
+      "cumulative_forward_tension_n": 2591.5267438629894,
+      "cumulative_reverse_tension_n": 11600.682567913194,
+      "sidewall_pressure_n_m": 664.494036887946
+    },
+    {
+      "angle_deg": 0.2785410885596491,
+      "radius_m": 3.9,
+      "cumulative_forward_tension_n": 4095.0394356387255,
+      "cumulative_reverse_tension_n": 9677.498838188898,
+      "sidewall_pressure_n_m": 1050.0101117022373
+    },
+    {
+      "angle_deg": 4.550632794525946,
+      "radius_m": 3.9,
+      "cumulative_forward_tension_n": 5879.355321355011,
+      "cumulative_reverse_tension_n": 8072.082731631882,
+      "sidewall_pressure_n_m": 1507.527005475644
+    },
+    {
+      "angle_deg": 16.586426623997006,
+      "radius_m": 3.9,
+      "cumulative_forward_tension_n": 7257.74285846848,
+      "cumulative_reverse_tension_n": 7532.2388574952565,
+      "sidewall_pressure_n_m": 1860.9597072996103
+    },
+    {
+      "angle_deg": 21.884458882354835,
+      "radius_m": 3.9,
+      "cumulative_forward_tension_n": 9384.813584525757,
+      "cumulative_reverse_tension_n": 6176.504948475313,
+      "sidewall_pressure_n_m": 2406.3624575707067
+    },
+    {
+      "angle_deg": 16.766402655435726,
+      "radius_m": 3.9,
+      "cumulative_forward_tension_n": 11471.030736235203,
+      "cumulative_reverse_tension_n": 4719.591404018484,
+      "sidewall_pressure_n_m": 2941.289932368001
+    },
+    {
+      "angle_deg": 19.338036195930542,
+      "radius_m": 3.9,
+      "cumulative_forward_tension_n": 14490.107897870968,
+      "cumulative_reverse_tension_n": 3738.694248913085,
+      "sidewall_pressure_n_m": 3715.4122815053765
+    },
+    {
+      "angle_deg": 29.146308148803797,
+      "radius_m": 3.9,
+      "cumulative_forward_tension_n": 20409.775096247144,
+      "cumulative_reverse_tension_n": 2831.176909282466,
+      "sidewall_pressure_n_m": 5233.275665704396
+    },
+    {
+      "angle_deg": 13.501934376245572,
+      "radius_m": 3.9,
+      "cumulative_forward_tension_n": 23913.10479461642,
+      "cumulative_reverse_tension_n": 1928.3389190743553,
+      "sidewall_pressure_n_m": 6131.565331952929
+    },
+    {
+      "angle_deg": 37.400314995614394,
+      "radius_m": 3.9,
+      "cumulative_forward_tension_n": 39529.30887418748,
+      "cumulative_reverse_tension_n": 437.77960630218405,
+      "sidewall_pressure_n_m": 10135.720224150637
+    }
+  ],
+  "forward_tension_n": 40079.37701946675,
+  "reverse_tension_n": 286.40946625532024,
+  "max_sidewall_pressure_n_m": 10135.720224150637,
+  "cumulative_forward_n": 348441.3341893473,
+  "cumulative_reverse_n": 516856.63392691704
+}

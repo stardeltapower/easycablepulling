@@ -1,5 +1,17 @@
-"""Analysis modules for route fitting accuracy and performance."""
+"""Analysis modules for cable pulling calculations."""
 
-from .accuracy_analyzer import AccuracyAnalyzer
+from .route_optimizer import (
+    RouteOptimizer,
+    OptimizationResult,
+    OptimizedSection,
+    PullingDirection,
+    optimize_cable_route,
+)
 
-__all__ = ["AccuracyAnalyzer"]
+__all__ = [
+    "RouteOptimizer",
+    "OptimizationResult", 
+    "OptimizedSection",
+    "PullingDirection",
+    "optimize_cable_route",
+]

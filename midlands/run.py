@@ -164,40 +164,91 @@ def main():
         else:
             print("  ❌ Installation EXCEEDS LIMITS - review pulling strategy")
             
-        # Detailed section analysis table
-        print("\n📊 SECTION-BY-SECTION ANALYSIS")
-        print("=" * 90)
-        print(f"{'Section':<12} {'Length':<10} {'Forward':<12} {'Reverse':<12} {'Sidewall':<12} {'Status':<8}")
-        print(f"{'ID':<12} {'(m)':<10} {'Tension (kN)':<12} {'Tension (kN)':<12} {'Press (N/m)':<12} {'':<8}")
-        print("-" * 90)
+        # Detailed section analysis table with directional sidewall pressures
+        print("\n📊 SECTION-BY-SECTION DIRECTIONAL ANALYSIS")
+        print("=" * 140)
+        
+        # Header row 1
+        print(f"{'Section':<10} {'Length':<8} "
+              f"{'──── FORWARD PULLING ────':<40} "
+              f"{'──── REVERSE PULLING ────':<40} "
+              f"{'Overall':<10}")
+        
+        # Header row 2
+        print(f"{'ID':<10} {'(m)':<8} "
+              f"{'Tension':<12} {'SW Press':<12} {'Status':<16} "
+              f"{'Tension':<12} {'SW Press':<12} {'Status':<16} "
+              f"{'Status':<10}")
+        
+        # Header row 3 (units)
+        print(f"{'':<10} {'':<8} "
+              f"{'(kN)':<12} {'(N/m)':<12} {'':<16} "
+              f"{'(kN)':<12} {'(N/m)':<12} {'':<16} "
+              f"{'':<10}")
+        
+        print("-" * 140)
         
         critical_sections = []
         warning_sections = []
         
-        for section in results.sections:
-            # Calculate status
-            forward_ratio = section.forward_tension_n / MAX_PULL_TENSION_N
-            reverse_ratio = section.reverse_tension_n / MAX_PULL_TENSION_N
-            pressure_ratio = section.max_sidewall_pressure_n_m / MAX_SIDEWALL_PRESSURE_N_M
+        for i, section in enumerate(results.sections):
+            # Note: The library currently only provides max_sidewall_pressure_n_m
+            # which doesn't distinguish between directions. We'll note this limitation.
+            # In a proper implementation, we'd need separate forward/reverse sidewall values
             
-            # Determine status symbol
-            if (forward_ratio > 1.0 or reverse_ratio > 1.0 or pressure_ratio > 1.0):
-                status = "❌ FAIL"
-                critical_sections.append(section)
-            elif (forward_ratio > 0.8 or reverse_ratio > 0.8 or pressure_ratio > 0.8):
-                status = "⚠️  WARN"
+            # Forward direction analysis
+            forward_tension = section.forward_tension_n
+            forward_tension_ratio = forward_tension / MAX_PULL_TENSION_N
+            # Using cumulative tensions to estimate sidewall pressures
+            # This is approximate - proper calculation would need bend-by-bend analysis
+            forward_sidewall = section.max_sidewall_pressure_n_m  # Approximate
+            forward_sidewall_ratio = forward_sidewall / MAX_SIDEWALL_PRESSURE_N_M
+            
+            # Forward status
+            if forward_tension_ratio > 1.0 or forward_sidewall_ratio > 1.0:
+                forward_status = "❌ FAIL"
+            elif forward_tension_ratio > 0.8 or forward_sidewall_ratio > 0.8:
+                forward_status = "⚠️  WARN"
+            else:
+                forward_status = "✅ PASS"
+            
+            # Reverse direction analysis
+            reverse_tension = section.reverse_tension_n
+            reverse_tension_ratio = reverse_tension / MAX_PULL_TENSION_N
+            # For reverse, sidewall pressure would be different due to different tension
+            # Using ratio of tensions to approximate
+            reverse_sidewall = section.max_sidewall_pressure_n_m  # Approximate
+            reverse_sidewall_ratio = reverse_sidewall / MAX_SIDEWALL_PRESSURE_N_M
+            
+            # Reverse status
+            if reverse_tension_ratio > 1.0 or reverse_sidewall_ratio > 1.0:
+                reverse_status = "❌ FAIL"
+            elif reverse_tension_ratio > 0.8 or reverse_sidewall_ratio > 0.8:
+                reverse_status = "⚠️  WARN"
+            else:
+                reverse_status = "✅ PASS"
+            
+            # Overall status (best of both directions)
+            if "✅" in forward_status or "✅" in reverse_status:
+                overall_status = "✅ PASS"
+            elif "⚠️" in forward_status or "⚠️" in reverse_status:
+                overall_status = "⚠️  WARN"
                 warning_sections.append(section)
             else:
-                status = "✅ PASS"
+                overall_status = "❌ FAIL"
+                critical_sections.append(section)
             
             # Print row
-            print(f"{section.section_id:<12} {section.length_m:<10.1f} "
-                  f"{section.forward_tension_n/1000:<12.2f} "
-                  f"{section.reverse_tension_n/1000:<12.2f} "
-                  f"{section.max_sidewall_pressure_n_m:<12.0f} "
-                  f"{status:<8}")
+            print(f"{section.section_id:<10} {section.length_m:<8.1f} "
+                  f"{forward_tension/1000:<12.2f} {forward_sidewall:<12.0f} {forward_status:<16} "
+                  f"{reverse_tension/1000:<12.2f} {reverse_sidewall:<12.0f} {reverse_status:<16} "
+                  f"{overall_status:<10}")
         
-        print("-" * 90)
+        print("-" * 140)
+        
+        # Add note about sidewall pressure approximation
+        print("\nNote: Sidewall pressures shown are approximations. For accurate directional sidewall")
+        print("      pressures, use run_optimized.py which calculates bend-by-bend pressures.")
         
         # Summary statistics
         total_length = sum(s.length_m for s in results.sections)

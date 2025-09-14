@@ -346,9 +346,10 @@ class ProfessionalPlotter:
         )
 
         # Add critical points if available
-        if "critical_points" in tension_data:
-            critical_chainage = tension_data["critical_points"]["chainage"]
-            critical_tension = tension_data["critical_points"]["tension"]
+        if "critical_points" in tension_data and isinstance(tension_data["critical_points"], dict):
+            critical_points = tension_data["critical_points"]
+            critical_chainage = critical_points["chainage"]
+            critical_tension = critical_points["tension"]
 
             fig.add_trace(
                 go.Scatter(
@@ -414,7 +415,7 @@ class ProfessionalPlotter:
         # Create color scale based on percentage of allowable
         color_scale = []
         for p in pressures:
-            ratio = p / max_allowable
+            ratio = p / (max_allowable[0] if isinstance(max_allowable, list) else max_allowable)
             if ratio <= 0.7:
                 color_scale.append(self.colors["pass"])  # Green
             elif ratio <= 0.9:

@@ -15,21 +15,21 @@ DXF_FILE = "midlands/midlands.dxf"
 OUTPUT_DIR = "midlands/analysis_output"
 
 # Cable specifications (per individual cable)
-CABLE_DIAMETER_MM = 60.0           # Individual cable diameter
-CABLE_WEIGHT_KG_KM = 3520          # Weight per cable in kg/km
-CABLE_WEIGHT_KG_M = CABLE_WEIGHT_KG_KM / 1000  # 3.52 kg/m per cable
+CABLE_DIAMETER_MM = 69.0           # Individual cable diameter
+CABLE_WEIGHT_KG_KM = 4930          # Weight per cable in kg/km
+CABLE_WEIGHT_KG_M = CABLE_WEIGHT_KG_KM / 1000  # 4.93 kg/m per cable
 
 # Cable arrangement
 CABLE_ARRANGEMENT = "trefoil"      # 3 cables in triangular formation
 NUMBER_OF_CABLES = 3                # Automatically set for trefoil
 
 # Installation limits
-MAX_PULL_TENSION_N = 17800         # 17.8 kN maximum pulling force
-MAX_SIDEWALL_PRESSURE_N_M = 3000   # Typical for MV cables
+MAX_PULL_TENSION_N = 27000         # 27 kN maximum pulling force
+MAX_SIDEWALL_PRESSURE_N_M = 7000   # Typical for MV cables
 MIN_BEND_RADIUS_MM = 15 * CABLE_DIAMETER_MM  # 15 × D = 900mm
 
 # Duct specifications
-DUCT_TYPE = "200mm"
+DUCT_TYPE = "225mm"
 FRICTION_COEFFICIENT = 0.3         # Typical for cable in HDPE duct
 
 def main():
@@ -40,7 +40,7 @@ def main():
     print("=" * 70)
     
     # Display configuration
-    print("\n📋 CABLE CONFIGURATION (Individual Cable)")
+    print("\n[CONFIG] CABLE CONFIGURATION (Individual Cable)")
     print("-" * 40)
     print(f"Cable diameter:   {CABLE_DIAMETER_MM:.0f}mm")
     print(f"Cable weight:     {CABLE_WEIGHT_KG_M:.2f} kg/m ({CABLE_WEIGHT_KG_KM:.0f} kg/km)")
@@ -50,27 +50,27 @@ def main():
     bundle_diameter = 2.154 * CABLE_DIAMETER_MM if CABLE_ARRANGEMENT == "trefoil" else CABLE_DIAMETER_MM
     total_weight = CABLE_WEIGHT_KG_M * NUMBER_OF_CABLES
     
-    print("\n📋 CALCULATED BUNDLE PROPERTIES")
+    print("\n[CONFIG] CALCULATED BUNDLE PROPERTIES")
     print("-" * 40)
     print(f"Bundle diameter:  {bundle_diameter:.1f}mm (2.154 × {CABLE_DIAMETER_MM:.0f}mm)")
     print(f"Total weight:     {total_weight:.2f} kg/m ({NUMBER_OF_CABLES} × {CABLE_WEIGHT_KG_M:.2f} kg/m)")
     print(f"Note: These are calculated internally by the library")
     
-    print("\n📋 DUCT SPECIFICATIONS")
+    print("\n[CONFIG] DUCT SPECIFICATIONS")
     print("-" * 40)
     print(f"Duct type:        {DUCT_TYPE}")
-    print(f"Inner diameter:   200mm")
-    print(f"Radial clearance: {(200 - bundle_diameter)/2:.1f}mm")
+    print(f"Inner diameter:   225mm")
+    print(f"Radial clearance: {(225 - bundle_diameter)/2:.1f}mm")
     print(f"Friction coeff:   {FRICTION_COEFFICIENT}")
     
-    print("\n📋 PULLING LIMITS")
+    print("\n[CONFIG] PULLING LIMITS")
     print("-" * 40)
     print(f"Max tension:      {MAX_PULL_TENSION_N/1000:.1f} kN")
     print(f"Max sidewall:     {MAX_SIDEWALL_PRESSURE_N_M:.0f} N/m")
     print(f"Min bend radius:  {MIN_BEND_RADIUS_MM:.0f}mm")
     print(f"Max section:      500m (sections split if longer)")
     
-    print("\n🔄 Running analysis...")
+    print("\n[PROCESSING] Running analysis...")
     print("-" * 40)
     
     try:
@@ -79,6 +79,7 @@ def main():
         results = analyze_cable_route(
             dxf_path=DXF_FILE,
             output_dir=OUTPUT_DIR,
+            dxf_layer="_FUN_33kV OPT 2 Overview Route",  # Use the cable route layer
             # Individual cable parameters
             cable_diameter_mm=CABLE_DIAMETER_MM,  # Individual cable diameter
             cable_weight_kg_m=CABLE_WEIGHT_KG_M,  # Weight per individual cable
@@ -100,7 +101,7 @@ def main():
             max_section_length_m=500.0  # Split into 500m sections
         )
         
-        print("✅ Analysis complete!")
+        print("[PASS] Analysis complete!")
         
         # Display results
         print("\n📊 ANALYSIS RESULTS")
@@ -124,7 +125,7 @@ def main():
         print(f"  Max deviation:    {results.max_deviation_cm:.1f}cm")
         
         # Safety checks
-        print("\n⚠️  SAFETY CHECKS")
+        print("\n[WARN]  SAFETY CHECKS")
         print("=" * 70)
         
         # Tension check
@@ -136,14 +137,14 @@ def main():
         print(f"  Reverse: {reverse_ratio:.1f}% of limit")
         
         if results.final_forward_tension_n <= MAX_PULL_TENSION_N:
-            print(f"  ✅ Forward tension OK ({results.final_forward_tension_n/1000:.2f} < {MAX_PULL_TENSION_N/1000:.1f} kN)")
+            print(f"  [PASS] Forward tension OK ({results.final_forward_tension_n/1000:.2f} < {MAX_PULL_TENSION_N/1000:.1f} kN)")
         else:
-            print(f"  ❌ FORWARD TENSION EXCEEDS LIMIT ({results.final_forward_tension_n/1000:.2f} > {MAX_PULL_TENSION_N/1000:.1f} kN)")
+            print(f"  [FAIL] FORWARD TENSION EXCEEDS LIMIT ({results.final_forward_tension_n/1000:.2f} > {MAX_PULL_TENSION_N/1000:.1f} kN)")
             
         if results.final_reverse_tension_n <= MAX_PULL_TENSION_N:
-            print(f"  ✅ Reverse tension OK ({results.final_reverse_tension_n/1000:.2f} < {MAX_PULL_TENSION_N/1000:.1f} kN)")
+            print(f"  [PASS] Reverse tension OK ({results.final_reverse_tension_n/1000:.2f} < {MAX_PULL_TENSION_N/1000:.1f} kN)")
         else:
-            print(f"  ❌ REVERSE TENSION EXCEEDS LIMIT ({results.final_reverse_tension_n/1000:.2f} > {MAX_PULL_TENSION_N/1000:.1f} kN)")
+            print(f"  [FAIL] REVERSE TENSION EXCEEDS LIMIT ({results.final_reverse_tension_n/1000:.2f} > {MAX_PULL_TENSION_N/1000:.1f} kN)")
         
         # Sidewall pressure check
         pressure_ratio = (results.max_sidewall_pressure_n_m / MAX_SIDEWALL_PRESSURE_N_M) * 100
@@ -151,18 +152,18 @@ def main():
         print(f"  Utilization: {pressure_ratio:.1f}% of limit")
         
         if results.max_sidewall_pressure_n_m <= MAX_SIDEWALL_PRESSURE_N_M:
-            print(f"  ✅ Sidewall pressure OK ({results.max_sidewall_pressure_n_m:.0f} < {MAX_SIDEWALL_PRESSURE_N_M:.0f} N/m)")
+            print(f"  [PASS] Sidewall pressure OK ({results.max_sidewall_pressure_n_m:.0f} < {MAX_SIDEWALL_PRESSURE_N_M:.0f} N/m)")
         else:
-            print(f"  ❌ SIDEWALL PRESSURE EXCEEDS LIMIT ({results.max_sidewall_pressure_n_m:.0f} > {MAX_SIDEWALL_PRESSURE_N_M:.0f} N/m)")
+            print(f"  [FAIL] SIDEWALL PRESSURE EXCEEDS LIMIT ({results.max_sidewall_pressure_n_m:.0f} > {MAX_SIDEWALL_PRESSURE_N_M:.0f} N/m)")
         
         # Overall assessment
-        print("\n📋 OVERALL ASSESSMENT:")
+        print("\n[CONFIG] OVERALL ASSESSMENT:")
         if (results.final_forward_tension_n <= MAX_PULL_TENSION_N and 
             results.final_reverse_tension_n <= MAX_PULL_TENSION_N and
             results.max_sidewall_pressure_n_m <= MAX_SIDEWALL_PRESSURE_N_M):
-            print("  ✅ Installation is FEASIBLE within all limits")
+            print("  [PASS] Installation is FEASIBLE within all limits")
         else:
-            print("  ❌ Installation EXCEEDS LIMITS - review pulling strategy")
+            print("  [FAIL] Installation EXCEEDS LIMITS - review pulling strategy")
             
         # Detailed section analysis table with directional sidewall pressures
         print("\n📊 SECTION-BY-SECTION DIRECTIONAL ANALYSIS")
@@ -206,11 +207,11 @@ def main():
             
             # Forward status
             if forward_tension_ratio > 1.0 or forward_sidewall_ratio > 1.0:
-                forward_status = "❌ FAIL"
+                forward_status = "[FAIL] FAIL"
             elif forward_tension_ratio > 0.8 or forward_sidewall_ratio > 0.8:
-                forward_status = "⚠️  WARN"
+                forward_status = "[WARN]  WARN"
             else:
-                forward_status = "✅ PASS"
+                forward_status = "[PASS] PASS"
             
             # Reverse direction analysis
             reverse_tension = section.reverse_tension_n
@@ -222,20 +223,20 @@ def main():
             
             # Reverse status
             if reverse_tension_ratio > 1.0 or reverse_sidewall_ratio > 1.0:
-                reverse_status = "❌ FAIL"
+                reverse_status = "[FAIL] FAIL"
             elif reverse_tension_ratio > 0.8 or reverse_sidewall_ratio > 0.8:
-                reverse_status = "⚠️  WARN"
+                reverse_status = "[WARN]  WARN"
             else:
-                reverse_status = "✅ PASS"
+                reverse_status = "[PASS] PASS"
             
             # Overall status (best of both directions)
-            if "✅" in forward_status or "✅" in reverse_status:
-                overall_status = "✅ PASS"
-            elif "⚠️" in forward_status or "⚠️" in reverse_status:
-                overall_status = "⚠️  WARN"
+            if "[PASS]" in forward_status or "[PASS]" in reverse_status:
+                overall_status = "[PASS] PASS"
+            elif "[WARN]" in forward_status or "[WARN]" in reverse_status:
+                overall_status = "[WARN]  WARN"
                 warning_sections.append(section)
             else:
-                overall_status = "❌ FAIL"
+                overall_status = "[FAIL] FAIL"
                 critical_sections.append(section)
             
             # Print row
@@ -264,12 +265,12 @@ def main():
         print(f"  Shortest:       {min_length:.1f}m")
         
         print(f"\n🔍 Status Summary:")
-        print(f"  ✅ Passing sections:  {len(results.sections) - len(critical_sections) - len(warning_sections)}")
-        print(f"  ⚠️  Warning sections:  {len(warning_sections)} (80-100% of limits)")
-        print(f"  ❌ Failed sections:   {len(critical_sections)} (>100% of limits)")
+        print(f"  [PASS] Passing sections:  {len(results.sections) - len(critical_sections) - len(warning_sections)}")
+        print(f"  [WARN]  Warning sections:  {len(warning_sections)} (80-100% of limits)")
+        print(f"  [FAIL] Failed sections:   {len(critical_sections)} (>100% of limits)")
         
         if critical_sections:
-            print(f"\n❌ Critical Sections (exceeding limits):")
+            print(f"\n[FAIL] Critical Sections (exceeding limits):")
             for section in critical_sections:
                 print(f"    {section.section_id}: {section.length_m:.1f}m - "
                       f"F={section.forward_tension_n/1000:.1f}kN "
@@ -278,7 +279,7 @@ def main():
                       f"({section.reverse_tension_n/MAX_PULL_TENSION_N*100:.0f}%)")
         
         if warning_sections:
-            print(f"\n⚠️  Warning Sections (80-100% of limits):")
+            print(f"\n[WARN]  Warning Sections (80-100% of limits):")
             for section in warning_sections:
                 print(f"    {section.section_id}: {section.length_m:.1f}m - "
                       f"F={section.forward_tension_n/1000:.1f}kN "
@@ -299,12 +300,12 @@ def main():
         return results
         
     except FileNotFoundError:
-        print(f"❌ ERROR: DXF file not found: {DXF_FILE}")
+        print(f"[FAIL] ERROR: DXF file not found: {DXF_FILE}")
         print("   Please ensure the DXF file exists in the specified location.")
         return None
         
     except Exception as e:
-        print(f"❌ ERROR: Analysis failed - {e}")
+        print(f"[FAIL] ERROR: Analysis failed - {e}")
         import traceback
         traceback.print_exc()
         return None

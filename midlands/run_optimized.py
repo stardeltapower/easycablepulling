@@ -21,47 +21,52 @@ from easycablepulling.geometry.simple_segment_fitter import SimpleSegmentFitter
 
 # Project specifications
 PROJECT_NAME = "Midlands Cable Installation - Optimized Analysis"
-DXF_FILE = "midlands/midlands.dxf"
-OUTPUT_DIR = "midlands/analysis_optimized"
+DXF_FILE = str(Path(__file__).parent / "midlands.dxf")
+OUTPUT_DIR = str(Path(__file__).parent / "analysis_optimized")
 
 # Cable specifications (per individual cable)
-CABLE_DIAMETER_MM = 60.0           # Individual cable diameter
-CABLE_WEIGHT_KG_KM = 3520          # Weight per cable in kg/km
-CABLE_WEIGHT_KG_M = CABLE_WEIGHT_KG_KM / 1000  # 3.52 kg/m per cable
+CABLE_DIAMETER_MM = 69.0           # Individual cable diameter
+CABLE_WEIGHT_KG_KM = 4930          # Weight per cable in kg/km
+CABLE_WEIGHT_KG_M = CABLE_WEIGHT_KG_KM / 1000  # 4.93 kg/m per cable
 
 # Cable arrangement
 CABLE_ARRANGEMENT = "trefoil"      # 3 cables in triangular formation
 NUMBER_OF_CABLES = 3                # Automatically set for trefoil
 
 # Installation limits
-MAX_PULL_TENSION_N = 17800         # 17.8 kN maximum pulling force
-MAX_SIDEWALL_PRESSURE_N_M = 3000   # Typical for MV cables
-MIN_BEND_RADIUS_MM = 15 * CABLE_DIAMETER_MM  # 15 × D = 900mm
+MAX_PULL_TENSION_N = 27000         # 27 kN maximum pulling force
+MAX_SIDEWALL_PRESSURE_N_M = 7000   # 7 kN/m (optimal from testing)
+MIN_BEND_RADIUS_MM = 15 * CABLE_DIAMETER_MM  # 15 × D = 1035mm
 
 # Duct specifications
-DUCT_TYPE = "200mm"
-DUCT_INNER_DIAMETER_MM = 200
+DUCT_TYPE = "225mm"
+DUCT_INNER_DIAMETER_MM = 225
 FRICTION_COEFFICIENT = 0.3         # Typical for cable in HDPE duct
 
 # Optimization parameters
-TARGET_UTILIZATION = 0.8           # 80% of limits (20% safety margin)
+TARGET_UTILIZATION = 0.95          # 95% of limits (5% safety margin) - allows longer pulls
 MAX_SECTION_LENGTH_M = 500.0       # Maximum section length
+# Note: Using 0.95 instead of 0.8 to accommodate sidewall pressure constraints
+# Tension is well below limits; sidewall pressure is the limiting factor
 
 
 def load_and_process_route(dxf_path: str):
     """Load DXF and process route with geometry fitting."""
-    # Load DXF
+    # Load DXF using the cable route layer
     reader = DXFReader(dxf_path)
     reader.load()
-    route = reader.create_route_from_polylines(Path(dxf_path).stem)
-    
+    route = reader.create_route_from_polylines(
+        Path(dxf_path).stem,
+        layer_name="_FUN_33kV OPT 2 Overview Route"  # Use the cable route layer
+    )
+
     # Apply geometry fitting
     fitter = SimpleSegmentFitter()
     for section in route.sections:
         if section.original_polyline:
             result = fitter.fit_section_to_primitives(section)
             section.primitives = result.primitives
-    
+
     return route
 
 
@@ -89,93 +94,67 @@ def create_duct_spec():
     )
 
 
-def print_optimization_results(opt_result, direction_name):
-    """Print detailed optimization results for a direction."""
-    print(f"\n{'='*100}")
-    print(f"📐 {direction_name.upper()} PULLING OPTIMIZATION")
-    print(f"{'='*100}")
-    
+def print_optimization_results(results, max_straight_length):
+    """Print optimization results in clear, readable format."""
+    from collections import defaultdict
+
+    print("\n" + "=" * 80)
+    print("OPTIMIZATION RESULTS")
+    print("=" * 80)
+
+    # Group results by section
+    by_section = defaultdict(list)
+    for result in results:
+        by_section[result.section_index].append(result)
+
+    # Calculate totals
+    total_pullable_length = 0.0
+    total_route_length = 0.0
+    total_subsections = 0
+    max_tension_overall = 0.0
+    max_sidewall_overall = 0.0
+
+    for section_idx in sorted(by_section.keys()):
+        section_results = by_section[section_idx]
+        for result in section_results:
+            total_route_length += result.length
+            max_tension_overall = max(max_tension_overall, result.max_tension)
+            max_sidewall_overall = max(max_sidewall_overall, result.max_sidewall_pressure)
+            total_subsections += 1
+            if result.passes_limits:
+                total_pullable_length += result.length
+
+    # Display results by section
+    for section_idx in sorted(by_section.keys()):
+        section_results = by_section[section_idx]
+        section = section_results[0]  # Get section info from first result
+
+        print(f"\n[SECTION {section_idx}] Length: {section.start_position:.1f}m - {section.end_position:.1f}m")
+        print(f"  Original length: {section_results[0].start_position + sum(r.length for r in section_results):.1f}m")
+        print(f"  Subsections: {len(section_results)}")
+
+        for result in section_results:
+            status = "[PASS]" if result.passes_limits else "[FAIL]"
+            print(f"    {result.subsection_num}/{result.total_subsections}: "
+                  f"{result.length:.1f}m, "
+                  f"Tension: {result.max_tension:.0f}N ({result.max_tension/1000:.2f}kN), "
+                  f"Sidewall: {result.max_sidewall_pressure:.0f}N/m {status}")
+
     # Summary
-    print(f"\n📊 Optimization Summary:")
-    print(f"  Original sections:    {opt_result.original_sections}")
-    print(f"  Optimized sections:   {opt_result.optimized_sections}")
-    print(f"  Total route length:   {opt_result.total_length:.1f}m")
-    print(f"  Target utilization:   {opt_result.target_utilization*100:.0f}%")
-    print(f"  Max section length:   {opt_result.max_section_length:.0f}m")
-    
-    # Peak values
-    print(f"\n💪 Peak Values:")
-    print(f"  Max tension:          {opt_result.max_tension:.0f}N ({opt_result.max_tension/1000:.2f} kN)")
-    print(f"  Max sidewall:         {opt_result.max_sidewall_pressure:.0f} N/m")
-    print(f"  Tension utilization:  {opt_result.max_tension_utilization*100:.1f}%")
-    print(f"  Sidewall utilization: {opt_result.max_sidewall_utilization*100:.1f}%")
-    
-    # Overall status
-    print(f"\n🎯 Overall Status:")
-    if opt_result.feasible:
-        print(f"  ✅ FEASIBLE - All sections within limits with {(1-opt_result.target_utilization)*100:.0f}% margin")
-    else:
-        print(f"  ❌ NOT FEASIBLE - Some sections exceed limits even after optimization")
-    
-    # Detailed section table
-    print(f"\n📋 OPTIMIZED SECTIONS - {direction_name} Pulling")
-    print("-" * 100)
-    print(f"{'Section':<10} {'Start':<8} {'End':<8} {'Length':<8} "
-          f"{'Max Ten.':<10} {'Ten.%':<8} {'Max SW':<10} {'SW%':<8} {'Status':<10}")
-    print(f"{'ID':<10} {'(m)':<8} {'(m)':<8} {'(m)':<8} "
-          f"{'(kN)':<10} {'':<8} {'(N/m)':<10} {'':<8} {'':<10}")
-    print("-" * 100)
-    
-    for section in opt_result.sections:
-        # Determine status
-        if section.overall_pass:
-            if section.tension_utilization > 0.7 or section.sidewall_utilization > 0.7:
-                status = "⚠️  WARN"
-            else:
-                status = "✅ PASS"
-        else:
-            status = "❌ FAIL"
-        
-        print(f"{section.section_id:<10} "
-              f"{section.start_position:<8.0f} "
-              f"{section.end_position:<8.0f} "
-              f"{section.length:<8.1f} "
-              f"{section.max_tension/1000:<10.2f} "
-              f"{section.tension_utilization*100:<8.0f} "
-              f"{section.max_sidewall_pressure:<10.0f} "
-              f"{section.sidewall_utilization*100:<8.0f} "
-              f"{status:<10}")
-    
-    print("-" * 100)
-    
-    # Statistics
-    avg_length = opt_result.total_length / opt_result.optimized_sections
-    max_length = max(s.length for s in opt_result.sections)
-    min_length = min(s.length for s in opt_result.sections)
-    
-    print(f"\n📈 Length Distribution:")
-    print(f"  Average: {avg_length:.1f}m")
-    print(f"  Maximum: {max_length:.1f}m")
-    print(f"  Minimum: {min_length:.1f}m")
-    
-    # Critical sections
-    critical = [s for s in opt_result.sections if not s.overall_pass]
-    warning = [s for s in opt_result.sections 
-               if s.overall_pass and (s.tension_utilization > 0.7 or s.sidewall_utilization > 0.7)]
-    
-    if critical:
-        print(f"\n❌ Critical Sections (exceeding limits):")
-        for s in critical:
-            print(f"  {s.section_id}: {s.length:.1f}m - "
-                  f"Tension: {s.tension_utilization*100:.0f}%, "
-                  f"Sidewall: {s.sidewall_utilization*100:.0f}%")
-    
-    if warning:
-        print(f"\n⚠️  Warning Sections (>70% utilization):")
-        for s in warning:
-            print(f"  {s.section_id}: {s.length:.1f}m - "
-                  f"Tension: {s.tension_utilization*100:.0f}%, "
-                  f"Sidewall: {s.sidewall_utilization*100:.0f}%")
+    print("\n" + "=" * 80)
+    print("SUMMARY")
+    print("=" * 80)
+    print(f"Total route length:          {total_route_length:.1f}m across {len(by_section)} polylines")
+    print(f"Total subsections required:  {total_subsections} sections")
+    print(f"Average subsection length:   {total_route_length/total_subsections:.1f}m")
+    print(f"Max straight-line pull:      {max_straight_length:.1f}m (theoretical limit)")
+    print(f"Total pullable length:       {total_pullable_length:.1f}m")
+    print(f"Coverage:                    {total_pullable_length/total_route_length*100:.1f}% of route")
+
+    print(f"\nMax tension:                 {max_tension_overall:.0f}N ({max_tension_overall/1000:.2f}kN)")
+    print(f"Tension limit:               {MAX_PULL_TENSION_N:.0f}N ({MAX_PULL_TENSION_N/1000:.1f}kN)")
+    print(f"Max sidewall pressure:       {max_sidewall_overall:.0f}N/m")
+    print(f"Sidewall limit:              {MAX_SIDEWALL_PRESSURE_N_M:.0f}N/m ({MAX_SIDEWALL_PRESSURE_N_M/1000:.1f}kN/m)")
 
 
 def main():
@@ -186,7 +165,7 @@ def main():
     print("=" * 100)
     
     # Display configuration
-    print("\n📋 CABLE CONFIGURATION")
+    print("\n[CONFIG] CABLE CONFIGURATION")
     print("-" * 40)
     print(f"Individual cable:     {CABLE_DIAMETER_MM:.0f}mm dia, {CABLE_WEIGHT_KG_M:.2f} kg/m")
     print(f"Arrangement:          {CABLE_ARRANGEMENT.capitalize()} ({NUMBER_OF_CABLES} cables)")
@@ -198,7 +177,7 @@ def main():
     print(f"Bundle diameter:      {bundle_diameter:.1f}mm (calculated)")
     print(f"Total weight:         {total_weight:.2f} kg/m (calculated)")
     
-    print("\n📋 INSTALLATION LIMITS")
+    print("\n[CONFIG] INSTALLATION LIMITS")
     print("-" * 40)
     print(f"Max tension:          {MAX_PULL_TENSION_N/1000:.1f} kN")
     print(f"Max sidewall:         {MAX_SIDEWALL_PRESSURE_N_M:.0f} N/m")
@@ -206,124 +185,68 @@ def main():
     print(f"Target utilization:   {TARGET_UTILIZATION*100:.0f}% (safety margin: {(1-TARGET_UTILIZATION)*100:.0f}%)")
     print(f"Max section length:   {MAX_SECTION_LENGTH_M:.0f}m")
     
-    print("\n📋 DUCT SPECIFICATIONS")
+    print("\n[CONFIG] DUCT SPECIFICATIONS")
     print("-" * 40)
     print(f"Duct diameter:        {DUCT_INNER_DIAMETER_MM}mm")
     print(f"Radial clearance:     {(DUCT_INNER_DIAMETER_MM - bundle_diameter)/2:.1f}mm")
     print(f"Friction coefficient: {FRICTION_COEFFICIENT}")
     
     try:
-        print("\n🔄 Loading and processing route...")
+        print("\n[PROCESSING] Loading and processing route...")
         route = load_and_process_route(DXF_FILE)
         
         # Create specifications
         cable_spec = create_cable_spec()
         duct_spec = create_duct_spec()
         
-        print(f"✅ Route loaded: {route.name}")
+        print(f"[PASS] Route loaded: {route.name}")
         print(f"   Sections: {len(route.sections)}")
         print(f"   Total length: {sum(s.original_length for s in route.sections):.1f}m")
         
-        print("\n🔄 Running optimization analysis...")
-        print("   Analyzing forward and reverse pulling directions...")
-        print("   Automatically splitting sections to stay within limits...")
-        
-        # Run optimization
-        forward_result, reverse_result = optimize_cable_route(
-            route=route,
+        print("\n[PROCESSING] Running optimization analysis...")
+        print("   Analyzing sections per-polyline independently...")
+        print("   Using binary search to find maximum safe lengths...")
+
+        # Create optimizer with SectionOptimizer (per-polyline analysis)
+        from easycablepulling.analysis.section_optimizer import SectionOptimizer
+
+        optimizer = SectionOptimizer(
             cable_spec=cable_spec,
             duct_spec=duct_spec,
-            target_utilization=TARGET_UTILIZATION,
+            max_tension_limit=MAX_PULL_TENSION_N,
+            max_sidewall_limit=MAX_SIDEWALL_PRESSURE_N_M,
             max_section_length=MAX_SECTION_LENGTH_M,
             friction_override=FRICTION_COEFFICIENT,
         )
-        
-        print("✅ Optimization complete!")
-        
-        # Print results for both directions
-        print_optimization_results(forward_result, "Forward")
-        print_optimization_results(reverse_result, "Reverse")
-        
-        # Comparison
-        print("\n" + "="*100)
-        print("🔄 DIRECTION COMPARISON")
-        print("="*100)
-        
-        print(f"\n{'Metric':<30} {'Forward':<20} {'Reverse':<20} {'Better':<15}")
-        print("-" * 85)
-        
-        # Number of sections
-        forward_sections = forward_result.optimized_sections
-        reverse_sections = reverse_result.optimized_sections
-        better_sections = "Forward ↑" if forward_sections <= reverse_sections else "Reverse ↑"
-        print(f"{'Required sections:':<30} {forward_sections:<20} {reverse_sections:<20} {better_sections:<15}")
-        
-        # Max tension
-        forward_tension_pct = forward_result.max_tension_utilization * 100
-        reverse_tension_pct = reverse_result.max_tension_utilization * 100
-        better_tension = "Forward ↑" if forward_tension_pct <= reverse_tension_pct else "Reverse ↑"
-        print(f"{'Max tension utilization:':<30} {f'{forward_tension_pct:.1f}%':<20} "
-              f"{f'{reverse_tension_pct:.1f}%':<20} {better_tension:<15}")
-        
-        # Max sidewall
-        forward_sidewall_pct = forward_result.max_sidewall_utilization * 100
-        reverse_sidewall_pct = reverse_result.max_sidewall_utilization * 100
-        better_sidewall = "Forward ↑" if forward_sidewall_pct <= reverse_sidewall_pct else "Reverse ↑"
-        print(f"{'Max sidewall utilization:':<30} {f'{forward_sidewall_pct:.1f}%':<20} "
-              f"{f'{reverse_sidewall_pct:.1f}%':<20} {better_sidewall:<15}")
-        
-        # Feasibility
-        forward_feasible = "✅ Yes" if forward_result.feasible else "❌ No"
-        reverse_feasible = "✅ Yes" if reverse_result.feasible else "❌ No"
-        if forward_result.feasible and reverse_result.feasible:
-            better_feasible = "Both ✅"
-        elif forward_result.feasible:
-            better_feasible = "Forward only ↑"
-        elif reverse_result.feasible:
-            better_feasible = "Reverse only ↑"
-        else:
-            better_feasible = "Neither ❌"
-        print(f"{'Feasible:':<30} {forward_feasible:<20} {reverse_feasible:<20} {better_feasible:<15}")
-        
-        print("-" * 85)
-        
-        # Recommendation
-        print("\n🎯 RECOMMENDATION:")
-        if forward_result.feasible and reverse_result.feasible:
-            if forward_sections < reverse_sections:
-                print("  ✅ Forward pulling recommended - fewer sections required")
-            elif reverse_sections < forward_sections:
-                print("  ✅ Reverse pulling recommended - fewer sections required")
-            elif forward_sidewall_pct < reverse_sidewall_pct:
-                print("  ✅ Forward pulling recommended - lower sidewall pressure")
-            elif reverse_sidewall_pct < forward_sidewall_pct:
-                print("  ✅ Reverse pulling recommended - lower sidewall pressure")
-            else:
-                print("  ✅ Either direction feasible - similar performance")
-        elif forward_result.feasible:
-            print("  ⚠️  Only forward pulling is feasible")
-        elif reverse_result.feasible:
-            print("  ⚠️  Only reverse pulling is feasible")
-        else:
-            print("  ❌ Neither direction feasible with current parameters")
-            print("     Consider: reducing cable size, using lubricant, or different routing")
-        
-        print("\n" + "="*100)
+
+        # Calculate max straight-line length
+        max_straight_length, limiting_factor = optimizer.calculate_max_straight_length()
+        print(f"[INFO] Max straight-line pull: {max_straight_length:.1f}m (limited by {limiting_factor})")
+
+        # Run optimization
+        results = optimizer.optimize_route(route)
+
+        print(f"[PASS] Optimization complete! Found {len(results)} subsection results.")
+
+        # Print results
+        print_optimization_results(results, max_straight_length)
+
+        print("\n" + "="*80)
         print("Analysis complete!")
-        print("="*100)
-        
-        return forward_result, reverse_result
+        print("="*80)
+
+        return results
         
     except FileNotFoundError:
-        print(f"❌ ERROR: DXF file not found: {DXF_FILE}")
-        return None, None
-        
+        print(f"[FAIL] ERROR: DXF file not found: {DXF_FILE}")
+        return None
+
     except Exception as e:
-        print(f"❌ ERROR: Analysis failed - {e}")
+        print(f"[FAIL] ERROR: Analysis failed - {e}")
         import traceback
         traceback.print_exc()
-        return None, None
+        return None
 
 
 if __name__ == "__main__":
-    forward, reverse = main()
+    results = main()

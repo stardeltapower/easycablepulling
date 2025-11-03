@@ -124,7 +124,7 @@ class CableAnalysisPipeline:
         self.pressure_calc = PressureCalculator()
 
     def analyze_dxf(
-        self, dxf_path: Union[str, Path], output_dir: Union[str, Path] = "output"
+        self, dxf_path: Union[str, Path], output_dir: Union[str, Path] = "output", dxf_layer: Optional[str] = None
     ) -> AnalysisResults:
         """
         Complete analysis workflow for DXF file.
@@ -132,6 +132,7 @@ class CableAnalysisPipeline:
         Args:
             dxf_path: Path to DXF file
             output_dir: Output directory for results
+            dxf_layer: Specific DXF layer to use (None for default)
 
         Returns:
             Complete analysis results
@@ -140,26 +141,26 @@ class CableAnalysisPipeline:
         output_path.mkdir(parents=True, exist_ok=True)
 
         # Step 1: Digest DXF
-        print("1. 📁 Loading DXF file...")
+        print("1. [FILE] Loading DXF file...")
         reader = DXFReader(Path(dxf_path))
         reader.load()
-        route = reader.create_route_from_polylines(Path(dxf_path).stem)
+        route = reader.create_route_from_polylines(Path(dxf_path).stem, layer_name=dxf_layer)
 
         # Step 2: Remove duplicate points (tidy)
-        print("2. 🧹 Cleaning duplicate vertices...")
+        print("2. [PROCESSING] Cleaning duplicate vertices...")
         for section in route.sections:
             section.original_polyline = self.fitter._remove_duplicate_vertices(
                 section.original_polyline
             )
 
         # Step 3: Fillet all changes of direction
-        print("3. 🔧 Applying filleting with duct radius...")
+        print("3. [PROCESSING] Applying filleting with duct radius...")
         for section in route.sections:
             result = self.fitter.fit_section_to_primitives(section)
             section.primitives = result.primitives
 
         # Step 4: Split long sections
-        print("4. ✂️  Splitting long sections...")
+        print("4. [SPLITTING] Splitting long sections...")
         split_result = self.splitter.split_route(route)
         route = split_result.split_route
 
@@ -176,7 +177,7 @@ class CableAnalysisPipeline:
 
         # Step 5: Generate PNG visualizations
         if self.config.generate_png:
-            print("5. 🖼️  Generating visualizations...")
+            print("5. [VIZ] Generating visualizations...")
             self._generate_visualizations(route, output_path)
 
         # Calculate total original length before filtering
@@ -190,11 +191,11 @@ class CableAnalysisPipeline:
         setattr(route, "_original_total_length", original_total_length)
 
         # Step 6: Apply pulling calculations
-        print("6. 📊 Calculating pulling forces...")
+        print("6. [CALC] Calculating pulling forces...")
         section_results = self._calculate_pulling_forces(route)
 
         # Step 7: Generate section reports
-        print("7. 📝 Generating section reports...")
+        print("7. [REPORT] Generating section reports...")
         if self.config.generate_json:
             self._export_json_reports(section_results, output_path, route)
 
@@ -202,16 +203,16 @@ class CableAnalysisPipeline:
             self._export_csv_reports(section_results, output_path, route)
 
         # Step 8: Generate summary report
-        print("8. 📋 Generating summary report...")
+        print("8. [SUMMARY] Generating summary report...")
         summary_results = self._create_summary_results(route, section_results)
         self._export_summary_reports(summary_results, output_path)
 
         # Step 9: Export DXF (optional)
         if self.config.generate_dxf:
-            print("9. 📐 Exporting fitted DXF...")
+            print("9. [DXF] Exporting fitted DXF...")
             self._export_fitted_dxf(route, output_path)
 
-        print("✅ Analysis complete!")
+        print("[PASS] Analysis complete!")
         return summary_results
 
     def _get_duct_radius(self, duct_type: str) -> float:
@@ -312,47 +313,77 @@ class CableAnalysisPipeline:
             plt.close(fig)
 
     def _calculate_pulling_forces(self, route: Route) -> List[SectionResult]:
-        """Calculate pulling forces for all sections."""
-        results = []
+        """Calculate pulling forces for all sections.
+
+        Forward tensions are calculated left-to-right (0 → route end).
+        Reverse tensions are calculated right-to-left (route end → 0).
+        """
+        from ..calculations.tension import analyze_section_tension
+
+        # PASS 1: Calculate forward tensions (left to right)
+        forward_results = []
         cumulative_forward = 0.0
-        cumulative_reverse = 0.0
 
         for section in route.sections:
-            # Calculate section forces
+            # Calculate cumulative forward tension starting from this section
             forward_tension = self.tension_calc.calculate_forward_tension(
                 section, self.cable_spec, self.duct_spec
             )
+            cumulative_forward += forward_tension
+
+            forward_results.append({
+                "section": section,
+                "forward_tension": forward_tension,
+                "cumulative_forward": cumulative_forward,
+                "tension_analysis": analyze_section_tension(
+                    section, self.cable_spec, self.duct_spec
+                ),
+            })
+
+        # PASS 2: Calculate reverse tensions (right to left)
+        # Process sections in reverse order to accumulate reverse tensions correctly
+        reverse_results = [{} for _ in forward_results]  # Placeholder
+        cumulative_reverse = 0.0
+
+        for idx in range(len(route.sections) - 1, -1, -1):
+            section = route.sections[idx]
+
+            # For reverse pulling, calculate tension as if pulling from end backwards
             reverse_tension = self.tension_calc.calculate_reverse_tension(
                 section, self.cable_spec, self.duct_spec
             )
+            cumulative_reverse += reverse_tension
+
+            reverse_results[idx] = {
+                "reverse_tension": reverse_tension,
+                "cumulative_reverse": cumulative_reverse,
+            }
+
+        # PASS 3: Combine results
+        results = []
+
+        for idx, section in enumerate(route.sections):
+            forward_data = forward_results[idx]
+            reverse_data = reverse_results[idx]
+
+            forward_tension = forward_data["forward_tension"]
+            reverse_tension = reverse_data["reverse_tension"]
+            cumulative_forward = forward_data["cumulative_forward"]
+            cumulative_reverse = reverse_data["cumulative_reverse"]
+            tension_analysis = forward_data["tension_analysis"]
+
             max_pressure = self.pressure_calc.calculate_max_sidewall_pressure(
                 section, self.cable_spec, self.duct_spec
             )
 
-            # Update cumulative values
-            cumulative_forward += forward_tension
-            cumulative_reverse += reverse_tension
-
-            # Extract geometry details with cumulative tensions
-            straights = []
-            bends = []
-
-            # Get detailed tension calculations for this section
-            from ..calculations.tension import analyze_section_tension
-
-            tension_analysis = analyze_section_tension(
-                section, self.cable_spec, self.duct_spec
-            )
-
             # Build ordered geometry arrays matching CSV format (interleaved straights/bends)
-            # First separate straights and bends
             section_straights = []
             section_bends = []
 
             for i, primitive in enumerate(section.primitives):
                 if hasattr(primitive, "length_m"):  # Straight
                     # Get tension at end of this primitive
-                    forward_tension = (
+                    forward_tension_at_prim = (
                         tension_analysis.forward_tensions[i].tension
                         if i < len(tension_analysis.forward_tensions)
                         else 0
@@ -360,7 +391,7 @@ class CableAnalysisPipeline:
 
                     # For reverse tension, reverse the mapping so first primitive gets highest tension
                     reverse_idx = len(section.primitives) - 1 - i
-                    reverse_tension = (
+                    reverse_tension_at_prim = (
                         tension_analysis.backward_tensions[reverse_idx].tension
                         if reverse_idx < len(tension_analysis.backward_tensions)
                         else 0
@@ -369,15 +400,15 @@ class CableAnalysisPipeline:
                     section_straights.append(
                         {
                             "length_m": primitive.length_m,
-                            "cumulative_forward_tension_n": forward_tension,
-                            "cumulative_reverse_tension_n": reverse_tension,
+                            "cumulative_forward_tension_n": forward_tension_at_prim,
+                            "cumulative_reverse_tension_n": reverse_tension_at_prim,
                             "primitive_order": i,  # Track original order
                         }
                     )
 
                 elif isinstance(primitive, Bend):  # Bend
                     # Get tension at end of this primitive
-                    forward_tension = (
+                    forward_tension_at_prim = (
                         tension_analysis.forward_tensions[i].tension
                         if i < len(tension_analysis.forward_tensions)
                         else 0
@@ -385,14 +416,14 @@ class CableAnalysisPipeline:
 
                     # For reverse tension, reverse the mapping so first primitive gets highest tension
                     reverse_idx = len(section.primitives) - 1 - i
-                    reverse_tension = (
+                    reverse_tension_at_prim = (
                         tension_analysis.backward_tensions[reverse_idx].tension
                         if reverse_idx < len(tension_analysis.backward_tensions)
                         else 0
                     )
 
                     sidewall_pressure = (
-                        forward_tension / primitive.radius_m
+                        forward_tension_at_prim / primitive.radius_m
                         if primitive.radius_m > 0
                         else 0
                     )
@@ -401,8 +432,8 @@ class CableAnalysisPipeline:
                         {
                             "angle_deg": primitive.angle_deg,
                             "radius_m": primitive.radius_m,
-                            "cumulative_forward_tension_n": forward_tension,
-                            "cumulative_reverse_tension_n": reverse_tension,
+                            "cumulative_forward_tension_n": forward_tension_at_prim,
+                            "cumulative_reverse_tension_n": reverse_tension_at_prim,
                             "sidewall_pressure_n_m": sidewall_pressure,
                             "primitive_order": i,  # Track original order
                         }
@@ -721,6 +752,7 @@ def analyze_cable_route(
     dxf_path: Union[str, Path],
     output_dir: Union[str, Path] = "output",
     config: Optional[AnalysisConfig] = None,
+    dxf_layer: Optional[str] = None,
     **kwargs,
 ) -> AnalysisResults:
     """
@@ -730,6 +762,7 @@ def analyze_cable_route(
         dxf_path: Path to DXF file
         output_dir: Output directory for results
         config: Analysis configuration
+        dxf_layer: Specific DXF layer to use (None for default)
         **kwargs: Configuration overrides
 
     Returns:
@@ -744,4 +777,4 @@ def analyze_cable_route(
             setattr(config, key, value)
 
     pipeline = CableAnalysisPipeline(config)
-    return pipeline.analyze_dxf(dxf_path, output_dir)
+    return pipeline.analyze_dxf(dxf_path, output_dir, dxf_layer=dxf_layer)

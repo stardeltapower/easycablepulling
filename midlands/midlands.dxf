@@ -1,0 +1,13214 @@
+  0
+SECTION
+  2
+HEADER
+  9
+$ACADVER
+  1
+AC1032
+  9
+$ACADMAINTVER
+ 90
+      197
+  9
+$DWGCODEPAGE
+  3
+ANSI_1252
+  9
+$REQUIREDVERSIONS
+160
+                 0
+  9
+$INSBASE
+ 10
+0.0
+ 20
+0.0
+ 30
+0.0
+  9
+$EXTMIN
+ 10
+380000.0
+ 20
+300000.0
+ 30
+0.0
+  9
+$EXTMAX
+ 10
+403259.4318264377
+ 20
+313228.9223949884
+ 30
+0.0
+  9
+$LIMMIN
+ 10
+0.0
+ 20
+0.0
+  9
+$LIMMAX
+ 10
+420.0
+ 20
+297.0
+  9
+$ORTHOMODE
+ 70
+     0
+  9
+$REGENMODE
+ 70
+     1
+  9
+$FILLMODE
+ 70
+     1
+  9
+$QTEXTMODE
+ 70
+     0
+  9
+$MIRRTEXT
+ 70
+     0
+  9
+$LTSCALE
+ 40
+1.0
+  9
+$ATTMODE
+ 70
+     1
+  9
+$TEXTSIZE
+ 40
+2.5
+  9
+$TRACEWID
+ 40
+1.0
+  9
+$TEXTSTYLE
+  7
+Standard
+  9
+$CLAYER
+  8
+_FUN_33kV OPT 2 Overview Route
+  9
+$CELTYPE
+  6
+ByLayer
+  9
+$CECOLOR
+ 62
+     6
+  9
+$CELTSCALE
+ 40
+1.0
+  9
+$DISPSILH
+ 70
+     0
+  9
+$DIMSCALE
+ 40
+1.0
+  9
+$DIMASZ
+ 40
+2.5
+  9
+$DIMEXO
+ 40
+0.625
+  9
+$DIMDLI
+ 40
+3.75
+  9
+$DIMRND
+ 40
+0.0
+  9
+$DIMDLE
+ 40
+0.0
+  9
+$DIMEXE
+ 40
+1.25
+  9
+$DIMTP
+ 40
+0.0
+  9
+$DIMTM
+ 40
+0.0
+  9
+$DIMTXT
+ 40
+2.5
+  9
+$DIMCEN
+ 40
+2.5
+  9
+$DIMTSZ
+ 40
+0.0
+  9
+$DIMTOL
+ 70
+     0
+  9
+$DIMLIM
+ 70
+     0
+  9
+$DIMTIH
+ 70
+     0
+  9
+$DIMTOH
+ 70
+     0
+  9
+$DIMSE1
+ 70
+     0
+  9
+$DIMSE2
+ 70
+     0
+  9
+$DIMTAD
+ 70
+     1
+  9
+$DIMZIN
+ 70
+     8
+  9
+$DIMBLK
+  1
+
+  9
+$DIMASO
+ 70
+     1
+  9
+$DIMSHO
+ 70
+     1
+  9
+$DIMPOST
+  1
+
+  9
+$DIMAPOST
+  1
+
+  9
+$DIMALT
+ 70
+     0
+  9
+$DIMALTD
+ 70
+     3
+  9
+$DIMALTF
+ 40
+0.03937007874016
+  9
+$DIMLFAC
+ 40
+1.0
+  9
+$DIMTOFL
+ 70
+     1
+  9
+$DIMTVP
+ 40
+0.0
+  9
+$DIMTIX
+ 70
+     0
+  9
+$DIMSOXD
+ 70
+     0
+  9
+$DIMSAH
+ 70
+     0
+  9
+$DIMBLK1
+  1
+
+  9
+$DIMBLK2
+  1
+
+  9
+$DIMSTYLE
+  2
+ISO-25
+  9
+$DIMCLRD
+ 70
+     0
+  9
+$DIMCLRE
+ 70
+     0
+  9
+$DIMCLRT
+ 70
+     0
+  9
+$DIMTFAC
+ 40
+1.0
+  9
+$DIMGAP
+ 40
+0.625
+  9
+$DIMJUST
+ 70
+     0
+  9
+$DIMSD1
+ 70
+     0
+  9
+$DIMSD2
+ 70
+     0
+  9
+$DIMTOLJ
+ 70
+     0
+  9
+$DIMTZIN
+ 70
+     8
+  9
+$DIMALTZ
+ 70
+     0
+  9
+$DIMALTTZ
+ 70
+     0
+  9
+$DIMUPT
+ 70
+     0
+  9
+$DIMDEC
+ 70
+     2
+  9
+$DIMTDEC
+ 70
+     2
+  9
+$DIMALTU
+ 70
+     2
+  9
+$DIMALTTD
+ 70
+     3
+  9
+$DIMTXSTY
+  7
+Standard
+  9
+$DIMAUNIT
+ 70
+     0
+  9
+$DIMADEC
+ 70
+     0
+  9
+$DIMALTRND
+ 40
+0.0
+  9
+$DIMAZIN
+ 70
+     0
+  9
+$DIMDSEP
+ 70
+    44
+  9
+$DIMATFIT
+ 70
+     3
+  9
+$DIMFRAC
+ 70
+     0
+  9
+$DIMLDRBLK
+  1
+
+  9
+$DIMLUNIT
+ 70
+     2
+  9
+$DIMLWD
+ 70
+    -2
+  9
+$DIMLWE
+ 70
+    -2
+  9
+$DIMTMOVE
+ 70
+     0
+  9
+$DIMFXL
+ 40
+1.0
+  9
+$DIMFXLON
+ 70
+     0
+  9
+$DIMJOGANG
+ 40
+1.570796326794896
+  9
+$DIMTFILL
+ 70
+     0
+  9
+$DIMTFILLCLR
+ 70
+     0
+  9
+$DIMARCSYM
+ 70
+     0
+  9
+$DIMLTYPE
+  6
+
+  9
+$DIMLTEX1
+  6
+
+  9
+$DIMLTEX2
+  6
+
+  9
+$DIMTXTDIRECTION
+ 70
+     0
+  9
+$LUNITS
+ 70
+     2
+  9
+$LUPREC
+ 70
+     4
+  9
+$SKETCHINC
+ 40
+1.0
+  9
+$FILLETRAD
+ 40
+1.8
+  9
+$AUNITS
+ 70
+     0
+  9
+$AUPREC
+ 70
+     0
+  9
+$MENU
+  1
+.
+  9
+$ELEVATION
+ 40
+0.0
+  9
+$PELEVATION
+ 40
+0.0
+  9
+$THICKNESS
+ 40
+0.0
+  9
+$LIMCHECK
+ 70
+     0
+  9
+$CHAMFERA
+ 40
+0.0
+  9
+$CHAMFERB
+ 40
+0.0
+  9
+$CHAMFERC
+ 40
+0.0
+  9
+$CHAMFERD
+ 40
+0.0
+  9
+$SKPOLY
+ 70
+     0
+  9
+$TDCREATE
+ 40
+2460551.726840278
+  9
+$TDUCREATE
+ 40
+2460551.643506945
+  9
+$TDUPDATE
+ 40
+2460981.997534722
+  9
+$TDUUPDATE
+ 40
+2460981.955868056
+  9
+$TDINDWG
+ 40
+0.2577546296
+  9
+$TDUSRTIMER
+ 40
+0.2577546296
+  9
+$USRTIMER
+ 70
+     1
+  9
+$ANGBASE
+ 50
+0.0
+  9
+$ANGDIR
+ 70
+     0
+  9
+$PDMODE
+ 70
+     0
+  9
+$PDSIZE
+ 40
+0.0
+  9
+$PLINEWID
+ 40
+0.0
+  9
+$SPLFRAME
+ 70
+     0
+  9
+$SPLINETYPE
+ 70
+     6
+  9
+$SPLINESEGS
+ 70
+     8
+  9
+$HANDSEED
+  5
+8A
+  9
+$SURFTAB1
+ 70
+     6
+  9
+$SURFTAB2
+ 70
+     6
+  9
+$SURFTYPE
+ 70
+     6
+  9
+$SURFU
+ 70
+     6
+  9
+$SURFV
+ 70
+     6
+  9
+$UCSBASE
+  2
+
+  9
+$UCSNAME
+  2
+
+  9
+$UCSORG
+ 10
+0.0
+ 20
+0.0
+ 30
+0.0
+  9
+$UCSXDIR
+ 10
+1.0
+ 20
+0.0
+ 30
+0.0
+  9
+$UCSYDIR
+ 10
+0.0
+ 20
+1.0
+ 30
+0.0
+  9
+$UCSORTHOREF
+  2
+
+  9
+$UCSORTHOVIEW
+ 70
+     0
+  9
+$UCSORGTOP
+ 10
+0.0
+ 20
+0.0
+ 30
+0.0
+  9
+$UCSORGBOTTOM
+ 10
+0.0
+ 20
+0.0
+ 30
+0.0
+  9
+$UCSORGLEFT
+ 10
+0.0
+ 20
+0.0
+ 30
+0.0
+  9
+$UCSORGRIGHT
+ 10
+0.0
+ 20
+0.0
+ 30
+0.0
+  9
+$UCSORGFRONT
+ 10
+0.0
+ 20
+0.0
+ 30
+0.0
+  9
+$UCSORGBACK
+ 10
+0.0
+ 20
+0.0
+ 30
+0.0
+  9
+$PUCSBASE
+  2
+
+  9
+$PUCSNAME
+  2
+
+  9
+$PUCSORG
+ 10
+0.0
+ 20
+0.0
+ 30
+0.0
+  9
+$PUCSXDIR
+ 10
+1.0
+ 20
+0.0
+ 30
+0.0
+  9
+$PUCSYDIR
+ 10
+0.0
+ 20
+1.0
+ 30
+0.0
+  9
+$PUCSORTHOREF
+  2
+
+  9
+$PUCSORTHOVIEW
+ 70
+     0
+  9
+$PUCSORGTOP
+ 10
+0.0
+ 20
+0.0
+ 30
+0.0
+  9
+$PUCSORGBOTTOM
+ 10
+0.0
+ 20
+0.0
+ 30
+0.0
+  9
+$PUCSORGLEFT
+ 10
+0.0
+ 20
+0.0
+ 30
+0.0
+  9
+$PUCSORGRIGHT
+ 10
+0.0
+ 20
+0.0
+ 30
+0.0
+  9
+$PUCSORGFRONT
+ 10
+0.0
+ 20
+0.0
+ 30
+0.0
+  9
+$PUCSORGBACK
+ 10
+0.0
+ 20
+0.0
+ 30
+0.0
+  9
+$USERI1
+ 70
+     0
+  9
+$USERI2
+ 70
+     0
+  9
+$USERI3
+ 70
+     0
+  9
+$USERI4
+ 70
+     0
+  9
+$USERI5
+ 70
+     0
+  9
+$USERR1
+ 40
+0.0
+  9
+$USERR2
+ 40
+0.0
+  9
+$USERR3
+ 40
+0.0
+  9
+$USERR4
+ 40
+0.0
+  9
+$USERR5
+ 40
+0.0
+  9
+$WORLDVIEW
+ 70
+     1
+  9
+$SHADEDGE
+ 70
+     3
+  9
+$SHADEDIF
+ 70
+    70
+  9
+$TILEMODE
+ 70
+     1
+  9
+$MAXACTVP
+ 70
+    64
+  9
+$PINSBASE
+ 10
+0.0
+ 20
+0.0
+ 30
+0.0
+  9
+$PLIMCHECK
+ 70
+     0
+  9
+$PEXTMIN
+ 10
+43.98708179141533
+ 20
+7.991618124212685
+ 30
+0.0
+  9
+$PEXTMAX
+ 10
+842.7320534931411
+ 20
+581.1074737544653
+ 30
+0.0
+  9
+$PLIMMIN
+ 10
+22.8653459465537
+ 20
+-2.453602680551853
+  9
+$PLIMMAX
+ 10
+863.8653459465537
+ 20
+591.5463973194481
+  9
+$UNITMODE
+ 70
+     0
+  9
+$VISRETAIN
+ 70
+     1
+  9
+$PLINEGEN
+ 70
+     0
+  9
+$PSLTSCALE
+ 70
+     0
+  9
+$TREEDEPTH
+ 70
+  3020
+  9
+$CMLSTYLE
+  2
+Standard
+  9
+$CMLJUST
+ 70
+     0
+  9
+$CMLSCALE
+ 40
+20.0
+  9
+$PROXYGRAPHICS
+ 70
+     1
+  9
+$MEASUREMENT
+ 70
+     1
+  9
+$CELWEIGHT
+370
+    -1
+  9
+$ENDCAPS
+280
+     0
+  9
+$JOINSTYLE
+280
+     0
+  9
+$LWDISPLAY
+290
+     0
+  9
+$INSUNITS
+ 70
+     4
+  9
+$HYPERLINKBASE
+  1
+
+  9
+$STYLESHEET
+  1
+
+  9
+$XEDIT
+290
+     1
+  9
+$CEPSNTYPE
+380
+     0
+  9
+$PSTYLEMODE
+290
+     1
+  9
+$FINGERPRINTGUID
+  2
+{5346B22E-ABA1-3E4E-A3F9-0BC1BFD3D6B6}
+  9
+$VERSIONGUID
+  2
+{F82E127D-336D-A74D-8B5C-E1873E6D9ABF}
+  9
+$EXTNAMES
+290
+     1
+  9
+$PSVPSCALE
+ 40
+0.0
+  9
+$OLESTARTUP
+290
+     0
+  9
+$SORTENTS
+280
+   127
+  9
+$INDEXCTL
+280
+     0
+  9
+$HIDETEXT
+280
+     1
+  9
+$XCLIPFRAME
+280
+     2
+  9
+$HALOGAP
+280
+     0
+  9
+$OBSCOLOR
+ 70
+   257
+  9
+$OBSLTYPE
+280
+     0
+  9
+$INTERSECTIONDISPLAY
+280
+     0
+  9
+$INTERSECTIONCOLOR
+ 70
+   257
+  9
+$DIMASSOC
+280
+     2
+  9
+$PROJECTNAME
+  1
+
+  9
+$CAMERADISPLAY
+290
+     0
+  9
+$LENSLENGTH
+ 40
+50.0
+  9
+$CAMERAHEIGHT
+ 40
+0.0
+  9
+$STEPSPERSEC
+ 40
+2.0
+  9
+$STEPSIZE
+ 40
+6.0
+  9
+$3DDWFPREC
+ 40
+2.0
+  9
+$PSOLWIDTH
+ 40
+0.25
+  9
+$PSOLHEIGHT
+ 40
+4.0
+  9
+$LOFTANG1
+ 40
+1.570796326794896
+  9
+$LOFTANG2
+ 40
+1.570796326794896
+  9
+$LOFTMAG1
+ 40
+0.0
+  9
+$LOFTMAG2
+ 40
+0.0
+  9
+$LOFTPARAM
+ 70
+     7
+  9
+$LOFTNORMALS
+280
+     1
+  9
+$LATITUDE
+ 40
+37.795
+  9
+$LONGITUDE
+ 40
+-122.394
+  9
+$NORTHDIRECTION
+ 40
+0.0
+  9
+$TIMEZONE
+ 70
+ -8000
+  9
+$LIGHTGLYPHDISPLAY
+280
+     1
+  9
+$TILEMODELIGHTSYNCH
+280
+     1
+  9
+$CMATERIAL
+347
+39
+  9
+$SOLIDHIST
+280
+     0
+  9
+$SHOWHIST
+280
+     1
+  9
+$DWFFRAME
+280
+     2
+  9
+$DGNFRAME
+280
+     0
+  9
+$REALWORLDSCALE
+290
+     1
+  9
+$INTERFERECOLOR
+ 62
+     1
+  9
+$INTERFEREOBJVS
+345
+66
+  9
+$INTERFEREVPVS
+346
+67
+  9
+$CSHADOW
+280
+     0
+  9
+$SHADOWPLANELOCATION
+ 40
+0.0
+  0
+ENDSEC
+  0
+SECTION
+  2
+CLASSES
+  0
+CLASS
+  1
+ACDBDICTIONARYWDFLT
+  2
+AcDbDictionaryWithDefault
+  3
+ObjectDBX Classes
+ 90
+        0
+ 91
+        1
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+MATERIAL
+  2
+AcDbMaterial
+  3
+ObjectDBX Classes
+ 90
+     1153
+ 91
+        3
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+VISUALSTYLE
+  2
+AcDbVisualStyle
+  3
+ObjectDBX Classes
+ 90
+     4095
+ 91
+        3
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+SCALE
+  2
+AcDbScale
+  3
+ObjectDBX Classes
+ 90
+     1153
+ 91
+       22
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+TABLESTYLE
+  2
+AcDbTableStyle
+  3
+ObjectDBX Classes
+ 90
+     4095
+ 91
+        1
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+MLEADERSTYLE
+  2
+AcDbMLeaderStyle
+  3
+ACDB_MLEADERSTYLE_CLASS
+ 90
+     4095
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+ACDBSECTIONVIEWSTYLE
+  2
+AcDbSectionViewStyle
+  3
+ObjectDBX Classes
+ 90
+     1025
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+ACDBDETAILVIEWSTYLE
+  2
+AcDbDetailViewStyle
+  3
+ObjectDBX Classes
+ 90
+     1025
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+DICTIONARYVAR
+  2
+AcDbDictionaryVar
+  3
+ObjectDBX Classes
+ 90
+        0
+ 91
+       19
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+EXACXREFPANELOBJECT
+  2
+ExAcXREFPanelObject
+  3
+EXAC_ESW
+ 90
+     1025
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+NPOCOLLECTION
+  2
+AcDbImpNonPersistentObjectsCollection
+  3
+ObjectDBX Classes
+ 90
+     1153
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+ACDB_MTEXTOBJECTCONTEXTDATA_CLASS
+  2
+AcDbMTextObjectContextData
+  3
+ObjectDBX Classes
+ 90
+     1153
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+SORTENTSTABLE
+  2
+AcDbSortentsTable
+  3
+ObjectDBX Classes
+ 90
+        0
+ 91
+        3
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+ACAD_EVALUATION_GRAPH
+  2
+AcDbEvalGraph
+  3
+ObjectDBX Classes
+ 90
+     1153
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+ACAECUSTOBJ
+  2
+AcAeEditorObj
+  3
+AcAeEditorObj
+ 90
+     1024
+ 91
+        0
+280
+     1
+281
+     0
+  0
+CLASS
+  1
+ACDB_DYNAMICBLOCKPURGEPREVENTER_VERSION
+  2
+AcDbDynamicBlockPurgePreventer
+  3
+ObjectDBX Classes
+ 90
+     1153
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+ACDB_BLOCKREPRESENTATION_DATA
+  2
+AcDbBlockRepresentationData
+  3
+ObjectDBX Classes
+ 90
+     1153
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+LAYER_INDEX
+  2
+AcDbLayerIndex
+  3
+ObjectDBX Classes
+ 90
+        0
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+SPATIAL_INDEX
+  2
+AcDbSpatialIndex
+  3
+ObjectDBX Classes
+ 90
+        0
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+BLOCKLINEARPARAMETER
+  2
+AcDbBlockLinearParameter
+  3
+ObjectDBX Classes
+ 90
+     1153
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+BLOCKARRAYACTION
+  2
+AcDbBlockArrayAction
+  3
+ObjectDBX Classes
+ 90
+     1153
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+BLOCKLINEARGRIP
+  2
+AcDbBlockLinearGrip
+  3
+ObjectDBX Classes
+ 90
+     1153
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+BLOCKGRIPLOCATIONCOMPONENT
+  2
+AcDbBlockGripExpr
+  3
+ObjectDBX Classes
+ 90
+     1153
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+ACDBASSOCNETWORK
+  2
+AcDbAssocNetwork
+  3
+ObjectDBX Classes
+ 90
+     1025
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+ACDBASSOCACTION
+  2
+AcDbAssocAction
+  3
+ObjectDBX Classes
+ 90
+     1025
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+ACDBASSOCARRAYACTIONBODY
+  2
+AcDbAssocArrayActionBody
+  3
+ObjectDBX Classes
+ 90
+     1025
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+ACDBASSOCDEPENDENCY
+  2
+AcDbAssocDependency
+  3
+ObjectDBX Classes
+ 90
+     1025
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+ACDBASSOCVERTEXACTIONPARAM
+  2
+AcDbAssocVertexActionParam
+  3
+ObjectDBX Classes
+ 90
+     1025
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+ACDB_DYNAMICBLOCKPROXYNODE
+  2
+AcDbDynamicBlockProxyNode
+  3
+ObjectDBX Classes
+ 90
+     1153
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+BLOCKBASEPOINTPARAMETER
+  2
+AcDbBlockBasepointParameter
+  3
+ObjectDBX Classes
+ 90
+     1153
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+BLOCKVISIBILITYPARAMETER
+  2
+AcDbBlockVisibilityParameter
+  3
+ObjectDBX Classes
+ 90
+     1153
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+BLOCKVISIBILITYGRIP
+  2
+AcDbBlockVisibilityGrip
+  3
+ObjectDBX Classes
+ 90
+     1153
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+DIMASSOC
+  2
+AcDbDimAssoc
+  3
+"AcDbDimAssoc|Product Desc:     AcDim ARX App For Dimension|Company:          Autodesk, Inc.|WEB Address:      www.autodesk.com"
+ 90
+        0
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+DBCOLOR
+  2
+AcDbColor
+  3
+ObjectDBX Classes
+ 90
+        0
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DIM_STYLE
+  2
+AecDbDimensionStyle
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_REP_CONFIG
+  2
+AecDbDispRepConfig
+  3
+AecBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_REP_SET
+  2
+AecDbDispRepSet
+  3
+AecBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_REP_2D_SECTION
+  2
+AecDbDispRep2dSection
+  3
+AecBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_REP_ANCHOR
+  2
+AecDbDispRepAnchor
+  3
+AecBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_REP_ANCHOR_BUB_TO_GRID
+  2
+AecDbDispRepAnchorBubToGrid
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_REP_ANCHOR_BUB_TO_GRID_MODEL
+  2
+AecDbDispRepAnchorBubToGridMdl
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_REP_ANCHOR_BUB_TO_GRID_RCP
+  2
+AecDbDispRepAnchorBubToGridRcp
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_REP_ANCHOR_ENT_TO_NODE
+  2
+AecDbDispRepAnchorEntToNode
+  3
+AecBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_REP_ANCHOR_EXT_TAG_TO_ENT
+  2
+AecDbDispRepAnchorExtendedTagToEnt
+  3
+AecBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_REP_ANCHOR_TAG_TO_ENT
+  2
+AecDbDispRepAnchorTagToEnt
+  3
+AecBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_REP_BDG_ELEVLINE_MODEL
+  2
+AecDbDispRepBdgElevLineModel
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_REP_BDG_SECTIONLINE_PLAN
+  2
+AecDbDispRepBdgElevLinePlan
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_AECDBDISPREPBDGELEVLINEPLAN100
+  2
+AecDbDispRepBdgElevLinePlan100
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_AECDBDISPREPBDGELEVLINEPLAN50
+  2
+AecDbDispRepBdgElevLinePlan50
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_REP_BDG_ELEVLINE_RCP
+  2
+AecDbDispRepBdgElevLineRcp
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_REP_BDG_SECTIONLINE_MODEL
+  2
+AecDbDispRepBdgSectionLineModel
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_REP_BDG_SECTIONLINE_PLAN
+  2
+AecDbDispRepBdgSectionLinePlan
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_AECDBDISPREPBDGSECTIONLINEPLAN100
+  2
+AecDbDispRepBdgSectionLinePlan100
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_AECDBDISPREPBDGSECTIONLINEPLAN50
+  2
+AecDbDispRepBdgSectionLinePlan50
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_REP_BDG_SECTIONLINE_RCP
+  2
+AecDbDispRepBdgSectionLineRcp
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_REP_BDG_SECTION_MODEL
+  2
+AecDbDispRepBdgSectionModel
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_REP_BDG_SECTION_SUBDIV
+  2
+AecDbDispRepBdgSectionSubDiv
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_REP_CEILING_GRID
+  2
+AecDbDispRepCeilingGrid
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      893
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_REP_CEILING_GRID_MODEL
+  2
+AecDbDispRepCeilingGridModel
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_AECDBDISPREPCEILINGGRIDPLAN100
+  2
+AecDbDispRepCeilingGridPlan100
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_AECDBDISPREPCEILINGGRIDPLAN50
+  2
+AecDbDispRepCeilingGridPlan50
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_REP_CEILING_GRID_RCP
+  2
+AecDbDispRepCeilingGridRcp
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_REP_CLIP_VOLUME_MODEL
+  2
+AecDbDispRepClipVolModel
+  3
+AecBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_REP_CLIP_VOLUME_PLAN
+  2
+AecDbDispRepClipVolPlan
+  3
+AecBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_REP_CLIP_VOLUME_RESULT_SUBDIV
+  2
+AecDbDispRepClipVolResSubDiv
+  3
+AecBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_REP_CLIP_VOLUME_RESULT
+  2
+AecDbDispRepClipVolResult
+  3
+AecBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_REP_COLUMN_GRID
+  2
+AecDbDispRepColumnGrid
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_REP_COLUMN_GRID_MODEL
+  2
+AecDbDispRepColumnGridModel
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_AECDBDISPREPCOLUMNGRIDPLAN100
+  2
+AecDbDispRepColumnGridPlan100
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_AECDBDISPREPCOLUMNGRIDPLAN50
+  2
+AecDbDispRepColumnGridPlan50
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_REP_COLUMN_GRID_RCP
+  2
+AecDbDispRepColumnGridRcp
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_REP_CURTAIN_WALL_LAYOUT_MODEL
+  2
+AecDbDispRepCurtainWallLayoutModel
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_REP_CURTAIN_WALL_LAYOUT_PLAN
+  2
+AecDbDispRepCurtainWallLayoutPlan
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_AECDBDISPREPCURTAINWALLLAYOUTPLAN100
+  2
+AecDbDispRepCurtainWallLayoutPlan100
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_AECDBDISPREPCURTAINWALLLAYOUTPLAN50
+  2
+AecDbDispRepCurtainWallLayoutPlan50
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_REP_CURTAIN_WALL_UNIT_MODEL
+  2
+AecDbDispRepCurtainWallUnitModel
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_REP_CURTAIN_WALL_UNIT_PLAN
+  2
+AecDbDispRepCurtainWallUnitPlan
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_AECDBDISPREPCURTAINWALLUNITPLAN100
+  2
+AecDbDispRepCurtainWallUnitPlan100
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_AECDBDISPREPCURTAINWALLUNITPLAN50
+  2
+AecDbDispRepCurtainWallUnitPlan50
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DB_DISP_REP_DIM_GROUP_PLAN
+  2
+AecDbDispRepDimGroupPlan
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DB_DISP_REP_DIM_GROUP_PLAN100
+  2
+AecDbDispRepDimGroupPlan100
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DB_DISP_REP_DIM_GROUP_PLAN50
+  2
+AecDbDispRepDimGroupPlan50
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_REP_DISPLAYTHEME
+  2
+AecDbDispRepDisplayTheme
+  3
+AecBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_REP_DOOR_ELEV
+  2
+AecDbDispRepDoorElev
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_REP_DOOR_MODEL
+  2
+AecDbDispRepDoorModel
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_REP_DOOR_NOMINAL
+  2
+AecDbDispRepDoorNominal
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_REP_DOOR_PLAN
+  2
+AecDbDispRepDoorPlan
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_REP_DOOR_PLAN_50
+  2
+AecDbDispRepDoorPlan50
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_REP_DOOR_PLAN_HEKTO
+  2
+AecDbDispRepDoorPlanHekto
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_REP_DOOR_RCP
+  2
+AecDbDispRepDoorRcp
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_REP_DOOR_THRESHOLD_PLAN
+  2
+AecDbDispRepDoorThresholdPlan
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_REP_DOOR_THRESHOLD_SYMBOL_PLAN
+  2
+AecDbDispRepDoorThresholdSymbolPlan
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_REP_EDITINPLACEPROFILE
+  2
+AecDbDispRepEditInPlaceProfile
+  3
+AecBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_REP_ENT_REF
+  2
+AecDbDispRepEntRef
+  3
+AecBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_REP_LAYOUT_CURVE
+  2
+AecDbDispRepLayoutCurve
+  3
+AecBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_REP_LAYOUT_GRID2D
+  2
+AecDbDispRepLayoutGrid2d
+  3
+AecBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_REP_LAYOUT_GRID3D
+  2
+AecDbDispRepLayoutGrid3d
+  3
+AecBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_REP_MASKBLOCK_REF
+  2
+AecDbDispRepMaskBlockRef
+  3
+AecBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_REP_MASKBLOCK_REF_RCP
+  2
+AecDbDispRepMaskBlockRefRcp
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_REP_MASS_ELEM_MODEL
+  2
+AecDbDispRepMassElemModel
+  3
+AecBaseEx80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISPREPAECDBDISPREPMASSELEMPLAN100
+  2
+AecDbDispRepMassElemPlan100
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISPREPAECDBDISPREPMASSELEMPLAN50
+  2
+AecDbDispRepMassElemPlan50
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_REP_MASS_ELEM_RCP
+  2
+AecDbDispRepMassElemRcp
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_REP_MASS_ELEM_SCHEM
+  2
+AecDbDispRepMassElemSchem
+  3
+AecBaseEx80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_REP_MASS_GROUP_MODEL
+  2
+AecDbDispRepMassGroupModel
+  3
+AecBaseEx80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_REP_MASS_GROUP_PLAN
+  2
+AecDbDispRepMassGroupPlan
+  3
+AecBaseEx80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISPREPAECDBDISPREPMASSGROUPPLAN100
+  2
+AecDbDispRepMassGroupPlan100
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISPREPAECDBDISPREPMASSGROUPPLAN50
+  2
+AecDbDispRepMassGroupPlan50
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_REP_MASS_GROUP_RCP
+  2
+AecDbDispRepMassGroupRcp
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_REP_MATERIAL
+  2
+AecDbDispRepMaterial
+  3
+AecBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_REP_MVBLOCK_REF
+  2
+AecDbDispRepMvBlockRef
+  3
+AecBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_REP_MVBLOCK_REF_MODEL
+  2
+AecDbDispRepMvBlockRefModel
+  3
+AecBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_AECDBDISPREPMVBLOCKREFPLAN100
+  2
+AecDbDispRepMvBlockRefPlan100
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_AECDBDISPREPMVBLOCKREFPLAN50
+  2
+AecDbDispRepMvBlockRefPlan50
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_REP_MVBLOCK_REF_RCP
+  2
+AecDbDispRepMvBlockRefRcp
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_REP_OPENING
+  2
+AecDbDispRepOpening
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_REP_OPENING_MODEL
+  2
+AecDbDispRepOpeningModel
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISPREPAECDBDISPREPOPENINGPLAN100
+  2
+AecDbDispRepOpeningPlan100
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISPREPAECDBDISPREPOPENINGPLAN50
+  2
+AecDbDispRepOpeningPlan50
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISPREPAECDBDISPREPOPENINGPLANREFLECTED
+  2
+AecDbDispRepOpeningPlanReflected
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISPREPAECDBDISPREPOPENINGSILLPLAN
+  2
+AecDbDispRepOpeningSillPlan
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_REP_POLYGON_MODEL
+  2
+AecDbDispRepPolygonModel
+  3
+AecBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_REP_POLYGON_TRUECOLOUR
+  2
+AecDbDispRepPolygonTrueColour
+  3
+AecBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_REP_RAILING_MODEL
+  2
+AecDbDispRepRailingModel
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_REP_RAILING_PLAN
+  2
+AecDbDispRepRailingPlan
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_REP_RAILING_PLAN_100
+  2
+AecDbDispRepRailingPlan100
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_REP_RAILING_PLAN_50
+  2
+AecDbDispRepRailingPlan50
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_REP_ROOF_MODEL
+  2
+AecDbDispRepRoofModel
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_REP_ROOF_PLAN
+  2
+AecDbDispRepRoofPlan
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_AECDBDISPREPROOFPLAN100
+  2
+AecDbDispRepRoofPlan100
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_AECDBDISPREPROOFPLAN50
+  2
+AecDbDispRepRoofPlan50
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_REP_ROOF_RCP
+  2
+AecDbDispRepRoofRcp
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_REP_ROOFSLAB_MODEL
+  2
+AecDbDispRepRoofSlabModel
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_REP_ROOFSLAB_PLAN
+  2
+AecDbDispRepRoofSlabPlan
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_AECDBDISPREPROOFSLABPLAN100
+  2
+AecDbDispRepRoofSlabPlan100
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_AECDBDISPREPROOFSLABPLAN50
+  2
+AecDbDispRepRoofSlabPlan50
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_REP_SCHEDULE_TABLE
+  2
+AecDbDispRepScheduleTable
+  3
+AecSchedule80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_REP_SLAB_MODEL
+  2
+AecDbDispRepSlabModel
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_REP_SLAB_PLAN
+  2
+AecDbDispRepSlabPlan
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_AECDBDISPREPSLABPLAN100
+  2
+AecDbDispRepSlabPlan100
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_AECDBDISPREPSLABPLAN50
+  2
+AecDbDispRepSlabPlan50
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_REP_SLICE
+  2
+AecDbDispRepSlice
+  3
+AecBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_REP_SPACE_DECOMPOSED
+  2
+AecDbDispRepSpaceDecomposed
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_REP_SPACE_MODEL
+  2
+AecDbDispRepSpaceModel
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_REP_SPACE_PLAN
+  2
+AecDbDispRepSpacePlan
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_AECDBDISPREPSPACEPLAN100
+  2
+AecDbDispRepSpacePlan100
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_AECDBDISPREPSPACEPLAN50
+  2
+AecDbDispRepSpacePlan50
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_REP_SPACE_RCP
+  2
+AecDbDispRepSpaceRcp
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_REP_SPACE_VOLUME
+  2
+AecDbDispRepSpaceVolume
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_REP_STAIR_MODEL
+  2
+AecDbDispRepStairModel
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_REP_STAIR_PLAN
+  2
+AecDbDispRepStairPlan
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_REP_STAIR_PLAN_100
+  2
+AecDbDispRepStairPlan100
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_REP_STAIR_PLAN_50
+  2
+AecDbDispRepStairPlan50
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_REP_STAIR_PLAN_OVERLAPPING
+  2
+AecDbDispRepStairPlanOverlapping
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_REP_STAIR_RCP
+  2
+AecDbDispRepStairRcp
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_REP_WALL_GRAPH
+  2
+AecDbDispRepWallGraph
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_REP_WALL_MODEL
+  2
+AecDbDispRepWallModel
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_REP_WALL_PLAN
+  2
+AecDbDispRepWallPlan
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_AECDBDISPREPWALLPLAN100
+  2
+AecDbDispRepWallPlan100
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_AECDBDISPREPWALLPLAN50
+  2
+AecDbDispRepWallPlan50
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_REP_WALL_RCP
+  2
+AecDbDispRepWallRcp
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_REP_WALL_SCHEM
+  2
+AecDbDispRepWallSchem
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_REP_WINDOW_ASSEMBLY_MODEL
+  2
+AecDbDispRepWindowAssemblyModel
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_REP_WINDOW_ASSEMBLY_PLAN
+  2
+AecDbDispRepWindowAssemblyPlan
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_AECDBDISPREPWINDOWASSEMBLYPLAN100
+  2
+AecDbDispRepWindowAssemblyPlan100
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_AECDBDISPREPWINDOWASSEMBLYPLAN50
+  2
+AecDbDispRepWindowAssemblyPlan50
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_REP_WINDOWASSEMBLY_SILL_PLAN
+  2
+AecDbDispRepWindowAssemblySillPlan
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_REP_WINDOW_ELEV
+  2
+AecDbDispRepWindowElev
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_REP_WINDOW_MODEL
+  2
+AecDbDispRepWindowModel
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_REP_WINDOW_NOMINAL
+  2
+AecDbDispRepWindowNominal
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_REP_WINDOW_PLAN
+  2
+AecDbDispRepWindowPlan
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_REP_WINDOW_PLAN_100
+  2
+AecDbDispRepWindowPlan100
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_REP_WINDOW_PLAN_50
+  2
+AecDbDispRepWindowPlan50
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_REP_WINDOW_RCP
+  2
+AecDbDispRepWindowRcp
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_REP_WINDOW_SILL_PLAN
+  2
+AecDbDispRepWindowSillPlan
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_REP_ZONE
+  2
+AecDbDispRepZone
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_AECDBDISPREPZONE100
+  2
+AecDbDispRepZonePlan100
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_AECDBDISPREPZONE50
+  2
+AecDbDispRepZonePlan50
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AECS_DISP_REP_MEMBER_ELEVATION_DESIGN
+  2
+AecsDbDispRepMemberElevationDesign
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AECS_DISP_REP_MEMBER_ELEVATION_DETAIL
+  2
+AecsDbDispRepMemberElevationDetail
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AECS_DISP_REP_MEMBER_LOGICAL
+  2
+AecsDbDispRepMemberLogical
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AECS_DISP_REP_MEMBER_MODEL_DESIGN
+  2
+AecsDbDispRepMemberModelDesign
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AECS_DISP_REP_MEMBER_MODEL_DETAIL
+  2
+AecsDbDispRepMemberModelDetail
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AECS_DISP_REP_MEMBER_PLAN_DESIGN
+  2
+AecsDbDispRepMemberPlanDesign
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AECS_DISP_REP_MEMBER_PLAN_DETAIL
+  2
+AecsDbDispRepMemberPlanDetail
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AECS_DISP_REP_MEMBER_PLAN_SKETCH
+  2
+AecsDbDispRepMemberPlanSketch
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_PROPS_ENT
+  2
+AecDbDispPropsEnt
+  3
+AecBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AECS_DISP_PROPS_MEMBER
+  2
+AecsDbDispPropsMember
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_PROPS_CLIP_VOLUME
+  2
+AecDbDispPropsClipVol
+  3
+AecBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_PROPS_WINDOW_ASSEMBLY_SILL_PLAN
+  2
+AecDbDispPropsWindowAssemblySillPlan
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_PROPS_ZONE
+  2
+AecDbDispPropsZone
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_PROPS_SLAB_PLAN
+  2
+AecDbDispPropsSlabPlan
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_PROPS_SPACE_PLAN
+  2
+AecDbDispPropsSpacePlan
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_PROPS_OPENING
+  2
+AecDbDispPropsOpening
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_PROPS_STAIR_MODEL
+  2
+AecDbDispPropsStairModel
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_PROPS_GRID_ASSEMBLY_PLAN
+  2
+AecDbDispPropsGridAssemblyPlan
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_PROPS_CLIP_VOLUME_RESULT
+  2
+AecDbDispPropsClipVolResSubDiv
+  3
+AecBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_PROPS_LAYOUT_GRID2D
+  2
+AecDbDispPropsLayoutGrid2d
+  3
+AecBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_PROPS_MASS_ELEM_MODEL
+  2
+AecDbDispPropsMassElem
+  3
+AecBaseEx80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_PROPS_WINDOW
+  2
+AecDbDispPropsWindow
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_PROPS_POLYGON_MODEL
+  2
+AecDbDispPropsPolygonModel
+  3
+AecBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_PROPS_WINDOW_PLAN_50
+  2
+AecDbDispPropsWindowPlan50
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_PROPS_DOOR_NOMINAL
+  2
+AecDbDispPropsDoorNominal
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_PROPS_EDITINPLACEPROFILE_MODEL
+  2
+AecDbDispPropsEditInPlaceProfile
+  3
+AecBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_PROPS_ROOF
+  2
+AecDbDispPropsRoof
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_PROPS_ROOFSLAB_PLAN
+  2
+AecDbDispPropsRoofSlabPlan
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_PROPS_LAYOUT_CURVE
+  2
+AecDbDispPropsLayoutCurve
+  3
+AecBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_PROPS_DISPLAYTHEME
+  2
+AecDbDispPropsDisplayTheme
+  3
+AecBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_PROPS_DIM
+  2
+AecDbDispPropsDimGroup
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_PROPS_WINDOW_SILL_PLAN
+  2
+AecDbDispPropsWindowSillPlan
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_PROPS_DOOR
+  2
+AecDbDispPropsDoor
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_PROPS_WALL_PLAN
+  2
+AecDbDispPropsWallPlan
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_PROPS_SLAB
+  2
+AecDbDispPropsSlab
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_PROPS_SPACE_DECOMPOSED
+  2
+AecDbDispPropsSpaceDecomposed
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_PROPS_STAIR_PLAN_OVERLAPPING
+  2
+AecDbDispPropsStairPlanOverlapping
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_PROPS_STAIR_PLAN
+  2
+AecDbDispPropsStairPlan
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_PROPS_WINDOW_PLAN_100
+  2
+AecDbDispPropsWindowPlan100
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_PROPS_MASS_GROUP
+  2
+AecDbDispPropsMassGroup
+  3
+AecBaseEx80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_PROPS_DOOR_PLAN_100
+  2
+AecDbDispPropsDoorPlan100
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_ROPS_RAILING_PLAN_100
+  2
+AecDbDispPropsRailingPlan100
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISPROPSMASSGROUPPLANCOMMON
+  2
+AecDbDispPropsMassGroupPlanCommon
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISPROPSMASSELEMPLANCOMMON
+  2
+AecDbDispPropsMassElemPlanCommon
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AECS_DISP_PROPS_MEMBER_LOGICAL
+  2
+AecsDbDispPropsMemberLogical
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_ROPS_STAIR_PLAN_100
+  2
+AecDbDispPropsStairPlan100
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AECS_DISP_PROPS_MEMBER_PLAN_SKETCH
+  2
+AecsDbDispPropsMemberPlanSketch
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_PROPS_GRID_ASSEMBLY_MODEL
+  2
+AecDbDispPropsGridAssemblyModel
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISPROPSOPENINGPLANCOMMONHATCHED
+  2
+AecDbDispPropsOpeningPlanCommonHatched
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_PROPS_2D_SECTION
+  2
+AecDbDispProps2dSection
+  3
+AecBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AECS_DISP_PROPS_MEMBER_PLAN
+  2
+AecsDbDispPropsMemberPlan
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_PROPS_MATERIAL
+  2
+AecDbDispPropsMaterial
+  3
+AecBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_PROPS_DOOR_PLAN_50
+  2
+AecDbDispPropsDoorPlan50
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_PROPS_WALL_SCHEM
+  2
+AecDbDispPropsWallSchem
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_PROPS_POLYGON_TRUECOLOUR
+  2
+AecDbDispPropsPolygonTrueColour
+  3
+AecBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_PROPS_DOOR_THRESHOLD_PLAN
+  2
+AecDbDispPropsDoorThresholdPlan
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_PROPS_MASKBLOCK
+  2
+AecDbDispPropsMaskBlock
+  3
+AecBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_PROPS_ENT_REF
+  2
+AecDbDispPropsEntRef
+  3
+AecBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AECS_DISP_PROPS_MEMBER_PROJECTED
+  2
+AecsDbDispPropsMemberProjected
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_PROPS_LAYOUT_GRID3D
+  2
+AecDbDispPropsLayoutGrid3d
+  3
+AecBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_PROPS_SCHEDULE_TABLE
+  2
+AecDbDispPropsScheduleTable
+  3
+AecSchedule80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_PROPS_RAILING_MODEL
+  2
+AecDbDispPropsRailingModel
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_PROPS_SPACE_MODEL
+  2
+AecDbDispPropsSpaceModel
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_PROPS_RAILING_PLAN
+  2
+AecDbDispPropsRailingPlan
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_PROPS_ROOFSLAB
+  2
+AecDbDispPropsRoofSlab
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_PROPS_WALL_GRAPH
+  2
+AecDbDispPropsWallGraph
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISPROPSOPENINGPLANCOMMON
+  2
+AecDbDispPropsOpeningPlanCommon
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_PROPS_WALL_MODEL
+  2
+AecDbDispPropsWallModel
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_ROPS_STAIR_PLAN_50
+  2
+AecDbDispPropsStairPlan50
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_PROPS_DOOR_THRESHOLD_SYMBOL_PLAN
+  2
+AecDbDispPropsDoorThresholdSymbolPlan
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_PROPS_SLICE
+  2
+AecDbDispPropsSlice
+  3
+AecBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_ROPS_RAILING_PLAN_50
+  2
+AecDbDispPropsRailingPlan50
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISPROPSOPENINGSILLPLAN
+  2
+AecDbDispPropsOpeningSillPlan
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_DISP_PROPS_WINDOW_NOMINAL
+  2
+AecDbDispPropsWindowNominal
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_LAYERKEY_STYLE
+  2
+AecDbLayerKeyStyle
+  3
+AecBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_VARS_ARCHBASE
+  2
+AecDbVarsArchBase
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_VARS_DWG_SETUP
+  2
+AecDbVarsDwgSetup
+  3
+AecBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_VARS_MUNICH
+  2
+AecDbVarsMunich
+  3
+AecArchBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+ACDBASSOCARRAYPOLARPARAMETERS
+  2
+AcDbAssocArrayPolarParameters
+  3
+ObjectDBX Classes
+ 90
+     1025
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+IMAGE
+  2
+AcDbRasterImage
+  3
+ISM
+ 90
+     2175
+ 91
+        0
+280
+     0
+281
+     1
+  0
+CLASS
+  1
+IMAGEDEF_REACTOR
+  2
+AcDbRasterImageDefReactor
+  3
+ISM
+ 90
+        1
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+IMAGEDEF
+  2
+AcDbRasterImageDef
+  3
+ISM
+ 90
+        0
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+AEC_NOTIFICATION_TRACKER
+  2
+AecDbNotificationTracker
+  3
+AecBase80|Product Desc: Autodesk Architectural Desktop 2007 |Company: Autodesk,Inc. |WEB Address: www.autodesk.com
+ 90
+      129
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+RASTERVARIABLES
+  2
+AcDbRasterVariables
+  3
+ISM
+ 90
+        0
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+WIPEOUT
+  2
+AcDbWipeout
+  3
+WipeOut|Product Desc: Object Enabler for WipeOut entity | Company: Autodesk, Inc. | WEB Address: www.autodesk.com
+ 90
+     2175
+ 91
+        0
+280
+     0
+281
+     1
+  0
+CLASS
+  1
+WIPEOUTVARIABLES
+  2
+AcDbWipeoutVariables
+  3
+"WipeOut|Product Desc:     WipeOut Dbx Application|Company:          Autodesk, Inc.|WEB Address:      www.autodesk.com"
+ 90
+        0
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+ACDB_ALDIMOBJECTCONTEXTDATA_CLASS
+  2
+AcDbAlignedDimensionObjectContextData
+  3
+ObjectDBX Classes
+ 90
+     1153
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+ACDB_LEADEROBJECTCONTEXTDATA_CLASS
+  2
+AcDbLeaderObjectContextData
+  3
+ObjectDBX Classes
+ 90
+     1153
+ 91
+        0
+280
+     0
+281
+     0
+  0
+CLASS
+  1
+CELLSTYLEMAP
+  2
+AcDbCellStyleMap
+  3
+ObjectDBX Classes
+ 90
+     1152
+ 91
+        1
+280
+     0
+281
+     0
+  0
+ENDSEC
+  0
+SECTION
+  2
+TABLES
+  0
+TABLE
+  2
+VPORT
+  5
+2D
+330
+0
+100
+AcDbSymbolTable
+ 70
+     1
+  0
+VPORT
+  5
+2E
+330
+2D
+100
+AcDbSymbolTableRecord
+100
+AcDbViewportTableRecord
+  2
+*Active
+ 70
+     0
+ 10
+0.0
+ 20
+0.0
+ 11
+1.0
+ 21
+1.0
+ 12
+391561.5509891103
+ 22
+305559.6338626795
+ 13
+0.0
+ 23
+0.0
+ 14
+10.0
+ 24
+10.0
+ 15
+10.0
+ 25
+10.0
+ 16
+0.0
+ 26
+0.0
+ 36
+1.0
+ 17
+0.0
+ 27
+0.0
+ 37
+0.0
+ 40
+9460.014997547324
+ 41
+1.550741163055872
+ 42
+50.0
+ 43
+0.0
+ 44
+0.0
+ 50
+0.0
+ 51
+0.0
+ 71
+     0
+ 72
+  1000
+ 73
+     1
+ 74
+     3
+ 75
+     0
+ 76
+     0
+ 77
+     0
+ 78
+     0
+281
+     0
+ 65
+     1
+110
+0.0
+120
+0.0
+130
+0.0
+111
+1.0
+121
+0.0
+131
+0.0
+112
+0.0
+122
+1.0
+132
+0.0
+ 79
+     0
+146
+0.0
+348
+2F
+ 60
+     2
+ 61
+     5
+292
+     1
+282
+     1
+141
+0.0
+142
+0.0
+ 63
+   250
+421
+  3355443
+1001
+ACAD_NAV_VCDISPLAY
+1070
+     1
+  0
+ENDTAB
+  0
+TABLE
+  2
+LTYPE
+  5
+28
+330
+0
+100
+AcDbSymbolTable
+ 70
+     2
+  0
+LTYPE
+  5
+29
+330
+28
+100
+AcDbSymbolTableRecord
+100
+AcDbLinetypeTableRecord
+  2
+ByBlock
+ 70
+     0
+  3
+
+ 72
+    65
+ 73
+     0
+ 40
+0.0
+  0
+LTYPE
+  5
+2A
+330
+28
+100
+AcDbSymbolTableRecord
+100
+AcDbLinetypeTableRecord
+  2
+ByLayer
+ 70
+     0
+  3
+
+ 72
+    65
+ 73
+     0
+ 40
+0.0
+  0
+LTYPE
+  5
+13
+330
+28
+100
+AcDbSymbolTableRecord
+100
+AcDbLinetypeTableRecord
+  2
+Continuous
+ 70
+     0
+  3
+Solid line
+ 72
+    65
+ 73
+     0
+ 40
+0.0
+  0
+LTYPE
+  5
+7F
+330
+28
+100
+AcDbSymbolTableRecord
+100
+AcDbLinetypeTableRecord
+  2
+DASHED
+ 70
+     0
+  3
+Dashed __ __ __ __ __ __ __ __ __ __ __ __ __ _
+ 72
+    65
+ 73
+     2
+ 40
+19.05
+ 49
+12.7
+ 74
+     0
+ 49
+-6.349999999999999
+ 74
+     0
+  0
+ENDTAB
+  0
+TABLE
+  2
+LAYER
+  5
+20
+102
+{ACAD_XDICTIONARY
+360
+21
+102
+}
+330
+0
+100
+AcDbSymbolTable
+ 70
+     2
+  0
+LAYER
+  5
+6
+330
+20
+100
+AcDbSymbolTableRecord
+100
+AcDbLayerTableRecord
+  2
+0
+ 70
+     0
+ 62
+    -7
+  6
+Continuous
+370
+    -3
+390
+7
+347
+A
+348
+0
+  0
+LAYER
+  5
+61
+330
+20
+100
+AcDbSymbolTableRecord
+100
+AcDbLayerTableRecord
+  2
+_FUN_33kV OPT 2 Overview Route
+ 70
+     0
+ 62
+   102
+  6
+Continuous
+370
+     9
+390
+7
+347
+A
+348
+0
+1001
+AcAecLayerStandard
+1000
+
+1000
+
+1001
+AcCmTransparency
+1071
+        0
+  0
+ENDTAB
+  0
+TABLE
+  2
+STYLE
+  5
+24
+330
+0
+100
+AcDbSymbolTable
+ 70
+     1
+  0
+STYLE
+  5
+25
+330
+24
+100
+AcDbSymbolTableRecord
+100
+AcDbTextStyleTableRecord
+  2
+Standard
+ 70
+     0
+ 40
+0.0
+ 41
+1.0
+ 50
+0.0
+ 71
+     0
+ 42
+2.5
+  3
+arial.ttf
+  4
+
+1001
+ACAD
+1000
+Arial
+1071
+       34
+  0
+ENDTAB
+  0
+TABLE
+  2
+VIEW
+  5
+2B
+330
+0
+100
+AcDbSymbolTable
+ 70
+     0
+  0
+ENDTAB
+  0
+TABLE
+  2
+UCS
+  5
+2C
+330
+0
+100
+AcDbSymbolTable
+ 70
+     0
+  0
+ENDTAB
+  0
+TABLE
+  2
+APPID
+  5
+32
+330
+0
+100
+AcDbSymbolTable
+ 70
+     8
+  0
+APPID
+  5
+26
+330
+32
+100
+AcDbSymbolTableRecord
+100
+AcDbRegAppTableRecord
+  2
+ACAD
+ 70
+     0
+  0
+APPID
+  5
+31
+330
+32
+100
+AcDbSymbolTableRecord
+100
+AcDbRegAppTableRecord
+  2
+ACAD_NAV_VCDISPLAY
+ 70
+     0
+  0
+APPID
+  5
+62
+330
+32
+100
+AcDbSymbolTableRecord
+100
+AcDbRegAppTableRecord
+  2
+AcAecLayerStandard
+ 70
+     0
+  0
+APPID
+  5
+63
+330
+32
+100
+AcDbSymbolTableRecord
+100
+AcDbRegAppTableRecord
+  2
+AcCmTransparency
+ 70
+     0
+  0
+APPID
+  5
+17
+330
+32
+100
+AcDbSymbolTableRecord
+100
+AcDbRegAppTableRecord
+  2
+ACAD_PSEXT
+ 70
+     0
+  0
+APPID
+  5
+1F
+330
+32
+100
+AcDbSymbolTableRecord
+100
+AcDbRegAppTableRecord
+  2
+AcadAnnoAV
+ 70
+     0
+  0
+APPID
+  5
+1E
+330
+32
+100
+AcDbSymbolTableRecord
+100
+AcDbRegAppTableRecord
+  2
+PLOTTRANSPARENCY
+ 70
+     0
+  0
+APPID
+  5
+23
+330
+32
+100
+AcDbSymbolTableRecord
+100
+AcDbRegAppTableRecord
+  2
+AcLayerTools
+ 70
+     0
+  0
+ENDTAB
+  0
+TABLE
+  2
+DIMSTYLE
+  5
+33
+330
+0
+100
+AcDbSymbolTable
+ 70
+     1
+100
+AcDbDimStyleTable
+ 71
+     1
+340
+34
+  0
+DIMSTYLE
+105
+34
+330
+33
+100
+AcDbSymbolTableRecord
+100
+AcDbDimStyleTableRecord
+  2
+ISO-25
+ 70
+     0
+ 41
+2.5
+ 42
+0.625
+ 43
+3.75
+ 44
+1.25
+ 50
+90.0
+ 73
+     0
+ 74
+     0
+ 77
+     1
+ 78
+     8
+140
+2.5
+141
+2.5
+143
+0.03937007874016
+147
+0.625
+171
+     3
+172
+     1
+271
+     2
+272
+     2
+274
+     3
+278
+    44
+283
+     0
+284
+     8
+340
+25
+  0
+ENDTAB
+  0
+TABLE
+  2
+BLOCK_RECORD
+  5
+1
+330
+0
+100
+AcDbSymbolTable
+ 70
+     0
+  0
+BLOCK_RECORD
+  5
+2
+102
+{ACAD_XDICTIONARY
+360
+3
+102
+}
+330
+1
+100
+AcDbSymbolTableRecord
+100
+AcDbBlockTableRecord
+  2
+*Model_Space
+340
+15
+ 70
+     0
+280
+     1
+281
+     0
+  0
+BLOCK_RECORD
+  5
+18
+102
+{ACAD_XDICTIONARY
+360
+19
+102
+}
+330
+1
+100
+AcDbSymbolTableRecord
+100
+AcDbBlockTableRecord
+  2
+*Paper_Space
+340
+1D
+ 70
+     0
+280
+     1
+281
+     0
+  0
+ENDTAB
+  0
+ENDSEC
+  0
+SECTION
+  2
+BLOCKS
+  0
+BLOCK
+  5
+5
+330
+2
+100
+AcDbEntity
+  8
+0
+100
+AcDbBlockBegin
+  2
+*Model_Space
+ 70
+     0
+ 10
+0.0
+ 20
+0.0
+ 30
+0.0
+  3
+*Model_Space
+  1
+
+  0
+ENDBLK
+  5
+14
+330
+2
+100
+AcDbEntity
+  8
+0
+100
+AcDbBlockEnd
+  0
+BLOCK
+  5
+1B
+330
+18
+100
+AcDbEntity
+ 67
+     1
+  8
+0
+ 62
+     6
+100
+AcDbBlockBegin
+  2
+*Paper_Space
+ 70
+     0
+ 10
+0.0
+ 20
+0.0
+ 30
+0.0
+  3
+*Paper_Space
+  1
+
+  0
+ENDBLK
+  5
+1C
+330
+18
+100
+AcDbEntity
+ 67
+     1
+  8
+0
+ 62
+     6
+100
+AcDbBlockEnd
+  0
+ENDSEC
+  0
+SECTION
+  2
+ENTITIES
+  0
+LWPOLYLINE
+  5
+7E
+330
+2
+100
+AcDbEntity
+  8
+_FUN_33kV OPT 2 Overview Route
+  6
+DASHED
+ 48
+1.5
+100
+AcDbPolyline
+ 90
+       26
+ 70
+   128
+ 43
+5.0
+ 10
+392397.2595002491
+ 20
+304489.4447181022
+ 10
+392397.4173787779
+ 20
+304488.8850315628
+ 10
+392401.0791159054
+ 20
+304478.5134085638
+ 10
+392404.7299610796
+ 20
+304469.6277199165
+ 10
+392423.9337404045
+ 20
+304422.8881854268
+ 10
+392438.3432008102
+ 20
+304395.5461345183
+ 10
+392442.66566975
+ 20
+304386.7171431225
+ 10
+392469.6449182392
+ 20
+304330.5499274488
+ 10
+392488.6945320955
+ 20
+304285.0807904783
+ 10
+392496.9586990139
+ 20
+304263.6745667912
+ 10
+392505.0821100966
+ 20
+304245.2800618916
+ 10
+392516.536600816
+ 20
+304223.476687818
+ 10
+392532.3456311117
+ 20
+304195.4570256736
+ 10
+392540.9518884753
+ 20
+304182.5311525449
+ 10
+392557.9429844145
+ 20
+304156.3251518448
+ 10
+392579.5206237913
+ 20
+304120.967798721
+ 10
+392599.6088690428
+ 20
+304088.4080164153
+ 10
+392601.3379730131
+ 20
+304085.0323204399
+ 10
+392601.8469840039
+ 20
+304082.2955600482
+ 10
+392601.1379013917
+ 20
+304078.7624788585
+ 10
+392598.7734340977
+ 20
+304074.3369746984
+ 10
+392594.6093283763
+ 20
+304070.5149626481
+ 10
+392590.7882215497
+ 20
+304069.6045854949
+ 10
+392553.5628239379
+ 20
+304069.6702496265
+ 10
+392543.7940987924
+ 20
+304069.6711716282
+ 10
+392532.722953065
+ 20
+304061.2082007598
+  0
+LWPOLYLINE
+  5
+80
+330
+2
+100
+AcDbEntity
+  8
+_FUN_33kV OPT 2 Overview Route
+  6
+DASHED
+ 48
+1.5
+100
+AcDbPolyline
+ 90
+        3
+ 70
+   128
+ 43
+5.0
+ 10
+392385.8224273558
+ 20
+304532.3531470558
+ 10
+392389.0433273688
+ 20
+304518.571423311
+ 10
+392397.2595002491
+ 20
+304489.4447181022
+  0
+LWPOLYLINE
+  5
+81
+330
+2
+100
+AcDbEntity
+  8
+_FUN_33kV OPT 2 Overview Route
+  6
+DASHED
+ 48
+1.5
+100
+AcDbPolyline
+ 90
+       96
+ 70
+   128
+ 43
+5.0
+ 10
+392026.809225136
+ 20
+306610.3248702952
+ 10
+392027.9696695083
+ 20
+306610.0108245974
+ 10
+392030.4870323768
+ 20
+306607.3585904377
+ 10
+392034.3291449139
+ 20
+306602.390958915
+ 10
+392036.7934469106
+ 20
+306598.0485765419
+ 10
+392038.3833725474
+ 20
+306592.2177495384
+ 10
+392043.1351595037
+ 20
+306556.0132801029
+ 10
+392044.7875978073
+ 20
+306543.430568667
+ 10
+392045.9155722435
+ 20
+306539.6052640573
+ 10
+392047.7898192974
+ 20
+306536.9341281137
+ 10
+392062.2060826664
+ 20
+306519.3082432654
+ 10
+392087.7717230942
+ 20
+306489.224863701
+ 10
+392115.6146955684
+ 20
+306455.6801926903
+ 10
+392118.8477915892
+ 20
+306451.0101651047
+ 10
+392121.305069758
+ 20
+306446.9739550063
+ 10
+392126.4451146932
+ 20
+306434.8007000706
+ 10
+392128.6031250878
+ 20
+306428.1937109006
+ 10
+392135.1967332776
+ 20
+306401.8192781409
+ 10
+392145.5924048045
+ 20
+306354.9777884079
+ 10
+392151.4910179886
+ 20
+306330.2465413164
+ 10
+392154.1884786199
+ 20
+306318.8087054557
+ 10
+392156.4867373192
+ 20
+306306.1687846313
+ 10
+392160.2676019555
+ 20
+306285.3748550087
+ 10
+392163.918838195
+ 20
+306265.6399863931
+ 10
+392175.1781437446
+ 20
+306226.5775466501
+ 10
+392180.6663497789
+ 20
+306209.7762985436
+ 10
+392191.2409946281
+ 20
+306181.9657290355
+ 10
+392197.1255377702
+ 20
+306170.0083931485
+ 10
+392198.0203853375
+ 20
+306167.9851309727
+ 10
+392204.4408494023
+ 20
+306155.8694401308
+ 10
+392212.9832243578
+ 20
+306145.3874072749
+ 10
+392214.2781854032
+ 20
+306134.9931688114
+ 10
+392214.9856138116
+ 20
+306128.0826346536
+ 10
+392216.4807819227
+ 20
+306117.5620341515
+ 10
+392221.4708623338
+ 20
+306094.655618209
+ 10
+392228.6290891854
+ 20
+306065.3600848483
+ 10
+392235.3051178983
+ 20
+306039.7978563784
+ 10
+392239.6277486095
+ 20
+306018.0292485864
+ 10
+392243.0451988771
+ 20
+306000.3197302386
+ 10
+392247.9093870637
+ 20
+305963.2096312834
+ 10
+392253.3058483723
+ 20
+305918.4360228002
+ 10
+392257.9993543408
+ 20
+305857.0755549961
+ 10
+392261.7064202951
+ 20
+305830.6788601571
+ 10
+392273.9568278411
+ 20
+305780.8655865324
+ 10
+392282.8258812051
+ 20
+305746.2028637895
+ 10
+392286.7885865392
+ 20
+305729.8096189093
+ 10
+392290.1297115045
+ 20
+305710.9302501291
+ 10
+392292.4457122126
+ 20
+305691.052922313
+ 10
+392293.1131144231
+ 20
+305673.0038700736
+ 10
+392293.0288050852
+ 20
+305645.7669355061
+ 10
+392291.1698109212
+ 20
+305616.275385581
+ 10
+392284.3802465697
+ 20
+305574.6955719895
+ 10
+392278.7488533781
+ 20
+305544.4817496529
+ 10
+392277.6358923838
+ 20
+305534.8393707727
+ 10
+392276.8814072049
+ 20
+305513.7369467603
+ 10
+392276.041047174
+ 20
+305472.8304324116
+ 10
+392277.1183917669
+ 20
+305451.7055418918
+ 10
+392282.8637510522
+ 20
+305407.6544596217
+ 10
+392286.6781636828
+ 20
+305377.4101826317
+ 10
+392286.7607250584
+ 20
+305371.7650485808
+ 10
+392286.1273148173
+ 20
+305358.9946808151
+ 10
+392284.1791070153
+ 20
+305351.5309034719
+ 10
+392279.0794083077
+ 20
+305338.6934067889
+ 10
+392274.0916012918
+ 20
+305329.7570968482
+ 10
+392270.0359474463
+ 20
+305324.092631337
+ 10
+392264.2470420845
+ 20
+305317.77606469
+ 10
+392258.5141221749
+ 20
+305312.498852537
+ 10
+392249.2507837571
+ 20
+305304.2619251683
+ 10
+392248.5627147922
+ 20
+305296.3334357397
+ 10
+392250.169129926
+ 20
+305293.7680562934
+ 10
+392258.0515695752
+ 20
+305279.8128652927
+ 10
+392264.9348003536
+ 20
+305266.7821445918
+ 10
+392272.2597769626
+ 20
+305251.2978916788
+ 10
+392284.0184140494
+ 20
+305220.7445060264
+ 10
+392290.6565599607
+ 20
+305200.7410119687
+ 10
+392296.5986421626
+ 20
+305179.1677704752
+ 10
+392300.9270931877
+ 20
+305158.9754647887
+ 10
+392304.1541190735
+ 20
+305138.4873689777
+ 10
+392306.887416864
+ 20
+305111.7211115327
+ 10
+392307.8481544746
+ 20
+305098.859399277
+ 10
+392308.9296921706
+ 20
+305069.6202988775
+ 10
+392309.1687763175
+ 20
+305040.9039446339
+ 10
+392309.3700795383
+ 20
+305017.9416751384
+ 10
+392308.5920908517
+ 20
+304993.9663406194
+ 10
+392306.2364498238
+ 20
+304968.2273025716
+ 10
+392303.5524231099
+ 20
+304948.0054235754
+ 10
+392302.525719225
+ 20
+304940.3545052022
+ 10
+392302.2319633306
+ 20
+304931.199113163
+ 10
+392302.9146966918
+ 20
+304920.0494388497
+ 10
+392306.2885418474
+ 20
+304900.2111548144
+ 10
+392320.2630670886
+ 20
+304817.6111898816
+ 10
+392335.9859357821
+ 20
+304734.0407139356
+ 10
+392340.9793684898
+ 20
+304713.4369252478
+ 10
+392359.5792525604
+ 20
+304642.6595669735
+ 10
+392372.8657006168
+ 20
+304587.7929396077
+ 10
+392385.8224273558
+ 20
+304532.3531470558
+  0
+LWPOLYLINE
+  5
+82
+330
+2
+100
+AcDbEntity
+  8
+_FUN_33kV OPT 2 Overview Route
+  6
+DASHED
+ 48
+1.5
+100
+AcDbPolyline
+ 90
+        4
+ 70
+   128
+ 43
+5.0
+ 10
+392003.6156630473
+ 20
+306609.8435593875
+ 10
+392012.8667239884
+ 20
+306610.4787988138
+ 10
+392021.9209850739
+ 20
+306611.6477521136
+ 10
+392026.809225136
+ 20
+306610.3248702952
+  0
+LWPOLYLINE
+  5
+83
+330
+2
+100
+AcDbEntity
+  8
+_FUN_33kV OPT 2 Overview Route
+  6
+DASHED
+ 48
+1.5
+100
+AcDbPolyline
+ 90
+      111
+ 70
+   128
+ 10
+391667.7448756534
+ 20
+308342.5737662282
+ 40
+5.0
+ 41
+5.0
+ 10
+391650.6487655342
+ 20
+308342.0810829395
+ 40
+5.0
+ 41
+5.0
+ 10
+391621.1578150412
+ 20
+308343.1896151117
+ 40
+5.0
+ 41
+5.0
+ 10
+391608.3691627355
+ 20
+308343.3206257342
+ 40
+5.0
+ 41
+5.0
+ 10
+391599.550558385
+ 20
+308342.7815415006
+ 40
+5.0
+ 41
+5.0
+ 10
+391584.1519315062
+ 20
+308340.6340099506
+ 40
+5.0
+ 41
+5.0
+ 10
+391498.5030379158
+ 20
+308326.7825097808
+ 40
+5.0
+ 41
+5.0
+ 10
+391479.3053721152
+ 20
+308324.398775368
+ 40
+5.0
+ 41
+5.0
+ 10
+391440.9482350187
+ 20
+308317.732320956
+ 40
+5.0
+ 41
+5.0
+ 10
+391367.790693397
+ 20
+308305.8345998875
+ 40
+5.0
+ 41
+5.0
+ 10
+391337.4316242356
+ 20
+308300.8276869604
+ 40
+5.0
+ 41
+5.0
+ 10
+391327.9934735206
+ 20
+308299.2399015518
+ 40
+5.0
+ 41
+5.0
+ 10
+391303.4943427643
+ 20
+308296.2666818551
+ 40
+5.0
+ 41
+5.0
+ 10
+391282.2252277313
+ 20
+308293.909008713
+ 40
+5.0
+ 41
+5.0
+ 10
+391279.2219906494
+ 20
+308293.4703726359
+ 40
+5.0
+ 41
+5.0
+ 42
+0.2629664979465345
+ 10
+391273.7785730492
+ 20
+308289.2516514487
+ 40
+5.0
+ 41
+5.0
+ 10
+391268.9684698829
+ 20
+308277.7849126212
+ 40
+5.0
+ 41
+5.0
+ 10
+391266.7119931221
+ 20
+308270.5168412692
+ 40
+5.0
+ 41
+5.0
+ 10
+391263.7684849607
+ 20
+308262.2400954392
+ 40
+5.0
+ 41
+5.0
+ 10
+391259.3425324138
+ 20
+308248.9021569945
+ 40
+5.0
+ 41
+5.0
+ 10
+391243.8658408328
+ 20
+308202.6320480555
+ 40
+5.0
+ 41
+5.0
+ 10
+391231.3391056752
+ 20
+308166.1588647666
+ 40
+5.0
+ 41
+5.0
+ 10
+391223.3885859419
+ 20
+308141.3561891517
+ 40
+5.0
+ 41
+5.0
+ 10
+391219.134927039
+ 20
+308127.152275147
+ 40
+5.0
+ 41
+5.0
+ 10
+391211.761081713
+ 20
+308101.5109489938
+ 40
+5.0
+ 41
+5.0
+ 10
+391201.8730071791
+ 20
+308065.7579164256
+ 40
+5.0
+ 41
+5.0
+ 10
+391197.6190466905
+ 20
+308048.1566410755
+ 40
+5.0
+ 41
+5.0
+ 10
+391192.1502791769
+ 20
+308019.8191431355
+ 40
+5.0
+ 41
+5.0
+ 10
+391187.8821762829
+ 20
+307993.5394263485
+ 40
+5.0
+ 41
+5.0
+ 10
+391184.8142073922
+ 20
+307967.9402135844
+ 40
+5.0
+ 41
+5.0
+ 10
+391184.3633876953
+ 20
+307959.2865886218
+ 40
+5.0
+ 41
+5.0
+ 10
+391183.5703671656
+ 20
+307942.3119567416
+ 40
+5.0
+ 41
+5.0
+ 10
+391182.8790989248
+ 20
+307918.7163476208
+ 40
+5.0
+ 41
+5.0
+ 10
+391183.1335317256
+ 20
+307895.027915697
+ 40
+5.0
+ 41
+5.0
+ 10
+391183.9532208334
+ 20
+307875.3414361216
+ 40
+5.0
+ 41
+5.0
+ 10
+391185.7972580625
+ 20
+307849.3256617254
+ 40
+5.0
+ 41
+5.0
+ 10
+391189.4793858121
+ 20
+307814.9212976509
+ 40
+5.0
+ 41
+5.0
+ 10
+391192.1468307876
+ 20
+307791.6512789208
+ 40
+5.0
+ 41
+5.0
+ 10
+391193.2379555091
+ 20
+307784.087697339
+ 40
+5.0
+ 41
+5.0
+ 10
+391196.2320413262
+ 20
+307763.3329551051
+ 40
+5.0
+ 41
+5.0
+ 10
+391198.1084376348
+ 20
+307750.3259392444
+ 40
+5.0
+ 41
+5.0
+ 10
+391200.1201970462
+ 20
+307736.6857166554
+ 40
+5.0
+ 41
+5.0
+ 42
+0.0234699282613142
+ 10
+391200.3509811727
+ 20
+307735.5071002051
+ 40
+5.0
+ 41
+5.0
+ 10
+391204.0626924603
+ 20
+307720.3590168639
+ 40
+5.0
+ 41
+5.0
+ 10
+391205.9927550246
+ 20
+307716.1582924591
+ 40
+5.0
+ 41
+5.0
+ 10
+391208.8393264187
+ 20
+307713.3176145876
+ 40
+5.0
+ 41
+5.0
+ 10
+391211.7156074349
+ 20
+307711.6110588569
+ 40
+5.0
+ 41
+5.0
+ 10
+391213.4925554511
+ 20
+307710.8584025316
+ 40
+5.0
+ 41
+5.0
+ 10
+391214.855738283
+ 20
+307710.4202168869
+ 40
+5.0
+ 41
+5.0
+ 10
+391223.8331765877
+ 20
+307707.9886511274
+ 40
+5.0
+ 41
+5.0
+ 10
+391229.0080133286
+ 20
+307706.0608662268
+ 40
+5.0
+ 41
+5.0
+ 10
+391231.1444296932
+ 20
+307705.1221378241
+ 40
+5.0
+ 41
+5.0
+ 10
+391238.5142001229
+ 20
+307700.6441802009
+ 40
+5.0
+ 41
+5.0
+ 10
+391255.8664709372
+ 20
+307685.8418013654
+ 40
+5.0
+ 41
+5.0
+ 10
+391260.4887422075
+ 20
+307682.0688493334
+ 40
+5.0
+ 41
+5.0
+ 10
+391269.9441294608
+ 20
+307675.5619161698
+ 40
+5.0
+ 41
+5.0
+ 10
+391298.5066602387
+ 20
+307660.1026594272
+ 40
+5.0
+ 41
+5.0
+ 10
+391315.1856634666
+ 20
+307650.5446916979
+ 40
+5.0
+ 41
+5.0
+ 10
+391339.0436812068
+ 20
+307636.864635567
+ 40
+5.0
+ 41
+5.0
+ 10
+391355.7078761101
+ 20
+307623.920216067
+ 40
+5.0
+ 41
+5.0
+ 10
+391368.2307358588
+ 20
+307615.7434302559
+ 40
+5.0
+ 41
+5.0
+ 10
+391376.4178424202
+ 20
+307609.2067233591
+ 40
+5.0
+ 41
+5.0
+ 10
+391388.5130673375
+ 20
+307596.8003991115
+ 40
+5.0
+ 41
+5.0
+ 10
+391398.4918909319
+ 20
+307585.7755043766
+ 40
+5.0
+ 41
+5.0
+ 10
+391424.3798133568
+ 20
+307552.4781495357
+ 40
+5.0
+ 41
+5.0
+ 10
+391443.8140832639
+ 20
+307526.4983408646
+ 40
+5.0
+ 41
+5.0
+ 10
+391456.3125841358
+ 20
+307510.2454131485
+ 40
+5.0
+ 41
+5.0
+ 10
+391466.4712113676
+ 20
+307494.9641954145
+ 40
+5.0
+ 41
+5.0
+ 10
+391477.2942611767
+ 20
+307477.738587507
+ 40
+5.0
+ 41
+5.0
+ 10
+391484.9127687779
+ 20
+307466.1600934407
+ 40
+5.0
+ 41
+5.0
+ 10
+391505.3577872265
+ 20
+307436.6940359997
+ 40
+5.0
+ 41
+5.0
+ 10
+391546.0576952579
+ 20
+307380.3842351553
+ 40
+5.0
+ 41
+5.0
+ 10
+391565.5840875921
+ 20
+307351.9029441873
+ 40
+5.0
+ 41
+5.0
+ 10
+391606.8172210518
+ 20
+307287.8646700211
+ 40
+5.0
+ 41
+5.0
+ 10
+391653.6964397685
+ 20
+307211.6359989478
+ 40
+5.0
+ 41
+5.0
+ 10
+391696.8397682
+ 20
+307142.296801191
+ 40
+5.0
+ 41
+5.0
+ 10
+391706.3119265463
+ 20
+307126.9370856481
+ 40
+5.0
+ 41
+5.0
+ 10
+391714.3073947129
+ 20
+307114.7267362824
+ 40
+5.0
+ 41
+5.0
+ 10
+391738.0763371491
+ 20
+307087.1722049347
+ 40
+5.0
+ 41
+5.0
+ 10
+391752.7334939857
+ 20
+307071.9499672675
+ 40
+5.0
+ 41
+5.0
+ 10
+391776.7787345626
+ 20
+307049.2019900866
+ 40
+5.0
+ 41
+5.0
+ 10
+391797.6379030326
+ 20
+307029.5341119099
+ 40
+5.0
+ 41
+5.0
+ 10
+391818.9325230054
+ 20
+307010.6346329549
+ 40
+5.0
+ 41
+5.0
+ 10
+391836.8141389162
+ 20
+306994.981349175
+ 40
+5.0
+ 41
+5.0
+ 10
+391874.107654735
+ 20
+306960.6775035883
+ 40
+5.0
+ 41
+5.0
+ 10
+391893.4492331794
+ 20
+306940.3862486701
+ 40
+5.0
+ 41
+5.0
+ 10
+391907.6803581603
+ 20
+306922.4262714295
+ 40
+5.0
+ 41
+5.0
+ 10
+391915.3028631678
+ 20
+306910.5387324306
+ 40
+5.0
+ 41
+5.0
+ 10
+391919.7405963476
+ 20
+306901.4732464059
+ 40
+5.0
+ 41
+5.0
+ 10
+391926.7799623432
+ 20
+306883.8499748985
+ 40
+5.0
+ 41
+5.0
+ 10
+391931.2977387629
+ 20
+306871.3072008913
+ 40
+5.0
+ 41
+5.0
+ 10
+391937.2242014555
+ 20
+306848.6173151538
+ 40
+5.0
+ 41
+5.0
+ 10
+391954.0169553557
+ 20
+306783.5703830079
+ 40
+5.0
+ 41
+5.0
+ 10
+391964.6824891987
+ 20
+306737.2898517372
+ 40
+5.0
+ 41
+5.0
+ 10
+391966.9231494445
+ 20
+306723.9148336542
+ 40
+5.0
+ 41
+5.0
+ 10
+391967.0065896656
+ 20
+306719.5110442053
+ 40
+5.0
+ 41
+5.0
+ 10
+391964.6368967601
+ 20
+306706.4418494119
+ 40
+5.0
+ 41
+5.0
+ 10
+391963.1524301113
+ 20
+306701.026345505
+ 40
+5.0
+ 41
+5.0
+ 10
+391959.3041634085
+ 20
+306690.4176102703
+ 40
+5.0
+ 41
+5.0
+ 10
+391952.1552185925
+ 20
+306670.7097083449
+ 40
+5.0
+ 41
+5.0
+ 10
+391950.9792328714
+ 20
+306667.4678017627
+ 40
+5.0
+ 41
+5.0
+ 10
+391943.516915928
+ 20
+306648.533416238
+ 40
+5.0
+ 41
+5.0
+ 10
+391936.8855412468
+ 20
+306634.8305756451
+ 40
+5.0
+ 41
+5.0
+ 10
+391936.1208033603
+ 20
+306632.872112306
+ 40
+5.0
+ 41
+5.0
+ 10
+391938.3307743574
+ 20
+306626.2106819707
+ 40
+5.0
+ 41
+5.0
+ 10
+391943.8069975088
+ 20
+306621.403310502
+ 40
+5.0
+ 41
+5.0
+ 10
+391952.9670614299
+ 20
+306616.7085169205
+ 40
+5.0
+ 41
+5.0
+ 10
+391965.1783092283
+ 20
+306612.9964598656
+ 40
+5.0
+ 41
+5.0
+ 10
+391972.8384567227
+ 20
+306610.6678768232
+ 40
+5.0
+ 41
+5.0
+ 10
+391988.5008522524
+ 20
+306608.8056758627
+ 40
+5.0
+ 41
+5.0
+ 10
+392003.6156630473
+ 20
+306609.8435593875
+ 40
+0.0
+ 41
+0.0
+  0
+LWPOLYLINE
+  5
+84
+330
+2
+100
+AcDbEntity
+  8
+_FUN_33kV OPT 2 Overview Route
+  6
+DASHED
+ 48
+1.5
+100
+AcDbPolyline
+ 90
+        4
+ 70
+   128
+ 43
+5.0
+ 10
+391684.2364258761
+ 20
+308345.5455292968
+ 10
+391679.9246394678
+ 20
+308344.4114057193
+ 10
+391667.8107025834
+ 20
+308342.5756632579
+ 10
+391667.7448756534
+ 20
+308342.5737662282
+  0
+LWPOLYLINE
+  5
+85
+330
+2
+100
+AcDbEntity
+  8
+_FUN_33kV OPT 2 Overview Route
+  6
+DASHED
+ 48
+1.5
+100
+AcDbPolyline
+ 90
+       47
+ 70
+   128
+ 10
+392408.9179588385
+ 20
+308857.8356848522
+ 40
+5.0
+ 41
+5.0
+ 10
+392399.9705247953
+ 20
+308850.4067054751
+ 40
+5.0
+ 41
+5.0
+ 42
+-0.4091102549311893
+ 10
+392397.456093669
+ 20
+308850.6177324521
+ 40
+5.0
+ 41
+5.0
+ 10
+392393.7784514274
+ 20
+308854.8929827469
+ 40
+5.0
+ 41
+5.0
+ 42
+0.4138603773032635
+ 10
+392389.5504826201
+ 20
+308855.2132510303
+ 40
+5.0
+ 41
+5.0
+ 10
+392364.5068500816
+ 20
+308833.722794221
+ 40
+5.0
+ 41
+5.0
+ 10
+392334.0243899371
+ 20
+308808.1181111613
+ 40
+5.0
+ 41
+5.0
+ 10
+392324.3578387133
+ 20
+308799.9460233904
+ 40
+5.0
+ 41
+5.0
+ 10
+392324.3578387133
+ 20
+308799.9460233904
+ 40
+5.0
+ 41
+5.0
+ 10
+392307.6182921308
+ 20
+308785.9481577303
+ 40
+5.0
+ 41
+5.0
+ 10
+392251.3290822157
+ 20
+308738.7069720136
+ 40
+5.0
+ 41
+5.0
+ 10
+392241.7553876413
+ 20
+308730.4637450454
+ 40
+5.0
+ 41
+5.0
+ 10
+392234.9127862069
+ 20
+308724.4828490133
+ 40
+5.0
+ 41
+5.0
+ 10
+392177.0926768445
+ 20
+308674.3108769569
+ 40
+5.0
+ 41
+5.0
+ 10
+392160.4073978325
+ 20
+308660.0605654077
+ 40
+5.0
+ 41
+5.0
+ 10
+392151.8433215457
+ 20
+308652.271518649
+ 40
+5.0
+ 41
+5.0
+ 10
+392142.5866712466
+ 20
+308643.5128278421
+ 40
+5.0
+ 41
+5.0
+ 10
+392138.6057878217
+ 20
+308639.6429986988
+ 40
+5.0
+ 41
+5.0
+ 10
+392128.6375983881
+ 20
+308629.4170223065
+ 40
+5.0
+ 41
+5.0
+ 10
+392118.2267859308
+ 20
+308618.1950501117
+ 40
+5.0
+ 41
+5.0
+ 10
+392108.0018265723
+ 20
+308607.1521059284
+ 40
+5.0
+ 41
+5.0
+ 10
+392102.9511920067
+ 20
+308601.6974264874
+ 40
+5.0
+ 41
+5.0
+ 10
+392094.3935303455
+ 20
+308592.4199615091
+ 40
+5.0
+ 41
+5.0
+ 10
+392092.2751141404
+ 20
+308590.1478431817
+ 40
+5.0
+ 41
+5.0
+ 10
+392078.5451536362
+ 20
+308575.4217025778
+ 40
+5.0
+ 41
+5.0
+ 10
+392073.3338308526
+ 20
+308569.7989595745
+ 40
+5.0
+ 41
+5.0
+ 10
+392061.1062203434
+ 20
+308560.2918934747
+ 40
+5.0
+ 41
+5.0
+ 10
+392052.0550710314
+ 20
+308553.3248575051
+ 40
+5.0
+ 41
+5.0
+ 10
+392043.0593249643
+ 20
+308546.4004676556
+ 40
+5.0
+ 41
+5.0
+ 10
+392026.1068123274
+ 20
+308535.2627860951
+ 40
+5.0
+ 41
+5.0
+ 10
+392019.6569425227
+ 20
+308530.7711641445
+ 40
+5.0
+ 41
+5.0
+ 10
+392004.6264330058
+ 20
+308520.3143221136
+ 40
+5.0
+ 41
+5.0
+ 10
+391997.3130081553
+ 20
+308514.9650640983
+ 40
+5.0
+ 41
+5.0
+ 10
+391991.6599858289
+ 20
+308510.5409596691
+ 40
+5.0
+ 41
+5.0
+ 10
+391911.6116733196
+ 20
+308465.9043912942
+ 40
+5.0
+ 41
+5.0
+ 10
+391895.283438534
+ 20
+308456.6941055783
+ 40
+5.0
+ 41
+5.0
+ 10
+391864.5049436705
+ 20
+308438.6765709305
+ 40
+5.0
+ 41
+5.0
+ 10
+391834.0677685545
+ 20
+308419.6708463637
+ 40
+5.0
+ 41
+5.0
+ 10
+391827.6986762627
+ 20
+308415.7671768889
+ 40
+5.0
+ 41
+5.0
+ 10
+391796.459340688
+ 20
+308396.2048936502
+ 40
+5.0
+ 41
+5.0
+ 10
+391774.8857896095
+ 20
+308382.5749526822
+ 40
+5.0
+ 41
+5.0
+ 10
+391754.2073142936
+ 20
+308371.2895632042
+ 40
+5.0
+ 41
+5.0
+ 10
+391732.1650003815
+ 20
+308362.7839753763
+ 40
+5.0
+ 41
+5.0
+ 10
+391706.4887023014
+ 20
+308352.7178952932
+ 40
+5.0
+ 41
+5.0
+ 10
+391696.3476871318
+ 20
+308349.0554617262
+ 40
+5.0
+ 41
+5.0
+ 10
+391690.3648889443
+ 20
+308347.1574909762
+ 40
+5.0
+ 41
+5.0
+ 10
+391684.2364258761
+ 20
+308345.5455292968
+ 40
+0.0
+ 41
+0.0
+  0
+ENDSEC
+  0
+SECTION
+  2
+OBJECTS
+  0
+DICTIONARY
+  5
+9
+330
+0
+100
+AcDbDictionary
+281
+     1
+  3
+ACAD_COLOR
+350
+49
+  3
+ACAD_GROUP
+350
+36
+  3
+ACAD_LAYOUT
+350
+16
+  3
+ACAD_MATERIAL
+350
+B
+  3
+ACAD_MLEADERSTYLE
+350
+4C
+  3
+ACAD_MLINESTYLE
+350
+37
+  3
+ACAD_PLOTSETTINGS
+350
+38
+  3
+ACAD_PLOTSTYLENAME
+350
+8
+  3
+ACAD_SCALELIST
+350
+4A
+  3
+ACAD_TABLESTYLE
+350
+4B
+  3
+ACAD_VISUALSTYLE
+350
+30
+  3
+ACDB_RECOMPOSE_DATA
+350
+89
+  3
+ACDBVARIABLEDICTIONARY
+350
+4D
+  0
+DICTIONARY
+  5
+21
+330
+20
+100
+AcDbDictionary
+280
+     1
+281
+     1
+  3
+ACAD_LAYERSTATES
+360
+22
+  0
+DICTIONARY
+  5
+3
+330
+2
+100
+AcDbDictionary
+280
+     1
+281
+     1
+  3
+ACAD_SORTENTS
+360
+86
+  0
+DICTIONARY
+  5
+19
+330
+18
+100
+AcDbDictionary
+280
+     1
+281
+     1
+  3
+ACAD_SORTENTS
+360
+1A
+  0
+DICTIONARY
+  5
+49
+102
+{ACAD_REACTORS
+330
+9
+102
+}
+330
+9
+100
+AcDbDictionary
+281
+     1
+  0
+DICTIONARY
+  5
+36
+102
+{ACAD_REACTORS
+330
+9
+102
+}
+330
+9
+100
+AcDbDictionary
+281
+     1
+  0
+DICTIONARY
+  5
+16
+102
+{ACAD_REACTORS
+330
+9
+102
+}
+330
+9
+100
+AcDbDictionary
+281
+     1
+  3
+Model
+350
+15
+  3
+Sheet (1) Overview
+350
+1D
+  0
+DICTIONARY
+  5
+B
+102
+{ACAD_REACTORS
+330
+9
+102
+}
+330
+9
+100
+AcDbDictionary
+281
+     1
+  3
+ByBlock
+350
+41
+  3
+ByLayer
+350
+39
+  3
+Global
+350
+A
+  0
+DICTIONARY
+  5
+4C
+102
+{ACAD_REACTORS
+330
+9
+102
+}
+330
+9
+100
+AcDbDictionary
+281
+     1
+  0
+DICTIONARY
+  5
+37
+102
+{ACAD_REACTORS
+330
+9
+102
+}
+330
+9
+100
+AcDbDictionary
+281
+     1
+  3
+Standard
+350
+64
+  0
+DICTIONARY
+  5
+38
+102
+{ACAD_REACTORS
+330
+9
+102
+}
+330
+9
+100
+AcDbDictionary
+281
+     1
+  0
+ACDBDICTIONARYWDFLT
+  5
+8
+102
+{ACAD_REACTORS
+330
+9
+102
+}
+330
+9
+100
+AcDbDictionary
+281
+     1
+  3
+Normal
+350
+7
+100
+AcDbDictionaryWithDefault
+340
+7
+  0
+DICTIONARY
+  5
+4A
+102
+{ACAD_REACTORS
+330
+9
+102
+}
+330
+9
+100
+AcDbDictionary
+281
+     1
+  3
+*A1
+350
+68
+  3
+*A2
+350
+69
+  3
+*A3
+350
+6A
+  3
+*A4
+350
+6B
+  3
+*A5
+350
+6C
+  3
+A0
+350
+6D
+  3
+A1
+350
+6E
+  3
+A2
+350
+6F
+  3
+A3
+350
+70
+  3
+A4
+350
+71
+  3
+A5
+350
+72
+  3
+A6
+350
+73
+  3
+A7
+350
+74
+  3
+A8
+350
+75
+  3
+A9
+350
+76
+  3
+B0
+350
+77
+  3
+B1
+350
+78
+  3
+B2
+350
+79
+  3
+B3
+350
+7A
+  3
+B4
+350
+7B
+  3
+B5
+350
+7C
+  3
+B6
+350
+7D
+  0
+DICTIONARY
+  5
+4B
+102
+{ACAD_REACTORS
+330
+9
+102
+}
+330
+9
+100
+AcDbDictionary
+281
+     1
+  3
+Standard
+350
+65
+  0
+DICTIONARY
+  5
+30
+102
+{ACAD_REACTORS
+330
+9
+102
+}
+330
+9
+100
+AcDbDictionary
+281
+     1
+  3
+2dWireframe
+350
+2F
+  3
+Realistic
+350
+66
+  3
+Wireframe
+350
+67
+  0
+XRECORD
+  5
+89
+102
+{ACAD_REACTORS
+330
+9
+102
+}
+330
+9
+100
+AcDbXrecord
+280
+     1
+ 90
+        1
+330
+65
+  0
+DICTIONARY
+  5
+4D
+102
+{ACAD_REACTORS
+330
+9
+102
+}
+330
+9
+100
+AcDbDictionary
+281
+     2
+  3
+#COMPAREDIFFTOTAL
+350
+4E
+  3
+ANNOALLVISIBLE
+350
+4F
+  3
+CANNOSCALE
+350
+50
+  3
+CMLEADERSTYLE
+350
+51
+  3
+CTABLESTYLE
+350
+52
+  3
+CVIEWDETAILSTYLE
+350
+53
+  3
+CVIEWSECTIONSTYLE
+350
+54
+  3
+DGNFRAME
+350
+55
+  3
+DIMADEC
+350
+56
+  3
+HPCOLOR
+350
+57
+  3
+HPLAYER
+350
+58
+  3
+HPTRANSPARENCY
+350
+59
+  3
+LAYEREVAL
+350
+5A
+  3
+LAYERNOTIFY
+350
+5B
+  3
+LIGHTINGUNITS
+350
+5C
+  3
+MLEADERSCALE
+350
+5D
+  3
+MSLTSCALE
+350
+5E
+  3
+PDFFRAME
+350
+5F
+  3
+SOLIDHIST
+350
+60
+  0
+DICTIONARY
+  5
+22
+102
+{ACAD_REACTORS
+330
+21
+102
+}
+330
+21
+100
+AcDbDictionary
+281
+     1
+1001
+AcLayerTools
+1000
+73
+1000
+0
+  0
+SORTENTSTABLE
+  5
+86
+102
+{ACAD_REACTORS
+330
+3
+102
+}
+330
+3
+100
+AcDbSortentsTable
+330
+2
+331
+7E
+  5
+85
+331
+80
+  5
+84
+331
+81
+  5
+83
+331
+83
+  5
+81
+331
+84
+  5
+80
+331
+85
+  5
+7E
+  0
+SORTENTSTABLE
+  5
+1A
+102
+{ACAD_REACTORS
+330
+19
+102
+}
+330
+19
+100
+AcDbSortentsTable
+330
+18
+  0
+LAYOUT
+  5
+15
+102
+{ACAD_REACTORS
+330
+16
+102
+}
+330
+16
+100
+AcDbPlotSettings
+  1
+
+  2
+HP046607 (HP ENVY 6000 series)
+  4
+A4
+  6
+
+ 40
+2.963333368301391
+ 41
+2.952667236328125
+ 42
+2.947662353515625
+ 43
+2.963348388671875
+ 44
+210.0
+ 45
+297.0
+ 46
+0.0
+ 47
+0.0
+ 48
+0.0
+ 49
+0.0
+140
+0.0
+141
+0.0
+142
+1.0
+143
+5.323615968273778
+ 70
+ 11952
+ 72
+     1
+ 73
+     1
+ 74
+     0
+  7
+
+ 75
+     0
+147
+0.1878422496963576
+ 76
+     0
+ 77
+     2
+ 78
+   300
+148
+-391702.3216257624
+149
+-303711.3880606245
+100
+AcDbLayout
+  1
+Model
+ 70
+     1
+ 71
+     0
+ 10
+0.0
+ 20
+0.0
+ 11
+12.0
+ 21
+9.0
+ 12
+0.0
+ 22
+0.0
+ 32
+0.0
+ 14
+0.0
+ 24
+0.0
+ 34
+0.0
+ 15
+0.0
+ 25
+0.0
+ 35
+0.0
+146
+0.0
+ 13
+0.0
+ 23
+0.0
+ 33
+0.0
+ 16
+1.0
+ 26
+0.0
+ 36
+0.0
+ 17
+0.0
+ 27
+1.0
+ 37
+0.0
+ 76
+     0
+330
+2
+331
+2E
+1001
+ACAD_PSEXT
+1000
+HP046607 (HP ENVY 6000 series)
+1000
+HP ENVY 6000 series PCL-3
+1000
+http://192.168.0.24:3911
+1000
+
+1070
+     0
+  0
+LAYOUT
+  5
+1D
+102
+{ACAD_REACTORS
+330
+16
+102
+}
+330
+16
+100
+AcDbPlotSettings
+  1
+
+  2
+DWG To PDF.pc3
+  4
+ISO_full_bleed_A1_(841.00_x_594.00_MM)
+  6
+
+ 40
+0.0
+ 41
+0.0
+ 42
+0.0
+ 43
+0.0
+ 44
+841.0
+ 45
+594.0
+ 46
+21.11611177995349
+ 47
+10.42781068108491
+ 48
+0.0
+ 49
+0.0
+140
+0.0
+141
+0.0
+142
+1.0
+143
+1.0
+ 70
+   740
+ 72
+     1
+ 73
+     0
+ 74
+     1
+  7
+
+ 75
+     0
+147
+1.036952548140611
+ 76
+     0
+ 77
+     2
+ 78
+   300
+148
+-43.98145772650718
+149
+-7.974208000533053
+100
+AcDbLayout
+  1
+Sheet (1) Overview
+ 70
+     0
+ 71
+     1
+ 10
+22.8653459465537
+ 20
+-2.453602680551853
+ 11
+863.8653459465537
+ 21
+591.5463973194481
+ 12
+0.0
+ 22
+0.0
+ 32
+0.0
+ 14
+43.98708179141533
+ 24
+7.991618124212685
+ 34
+0.0
+ 15
+842.7320534931411
+ 25
+581.1074737544653
+ 35
+0.0
+146
+0.0
+ 13
+0.0
+ 23
+0.0
+ 33
+0.0
+ 16
+1.0
+ 26
+0.0
+ 36
+0.0
+ 17
+0.0
+ 27
+1.0
+ 37
+0.0
+ 76
+     0
+330
+18
+1001
+PLOTTRANSPARENCY
+1071
+        1
+1001
+ACAD_PSEXT
+1000
+DWG To PDF.pc3
+1000
+DWG To PDF
+1000
+File
+1000
+
+1070
+     0
+1001
+AcadAnnoAV
+1070
+     1
+  0
+MATERIAL
+  5
+41
+102
+{ACAD_XDICTIONARY
+360
+42
+102
+}
+102
+{ACAD_REACTORS
+330
+B
+102
+}
+330
+B
+100
+AcDbMaterial
+  1
+ByBlock
+ 72
+     0
+ 43
+0.0208333333333333
+ 43
+0.0
+ 43
+0.0
+ 43
+0.0
+ 43
+0.0
+ 43
+0.0208333333333333
+ 43
+0.0
+ 43
+0.0
+ 43
+0.0
+ 43
+0.0
+ 43
+1.0
+ 43
+0.0
+ 43
+0.0
+ 43
+0.0
+ 43
+0.0
+ 43
+1.0
+ 77
+     0
+ 47
+0.0208333333333333
+ 47
+0.0
+ 47
+0.0
+ 47
+0.0
+ 47
+0.0
+ 47
+0.0208333333333333
+ 47
+0.0
+ 47
+0.0
+ 47
+0.0
+ 47
+0.0
+ 47
+1.0
+ 47
+0.0
+ 47
+0.0
+ 47
+0.0
+ 47
+0.0
+ 47
+1.0
+171
+     0
+ 49
+0.0208333333333333
+ 49
+0.0
+ 49
+0.0
+ 49
+0.0
+ 49
+0.0
+ 49
+0.0208333333333333
+ 49
+0.0
+ 49
+0.0
+ 49
+0.0
+ 49
+0.0
+ 49
+1.0
+ 49
+0.0
+ 49
+0.0
+ 49
+0.0
+ 49
+0.0
+ 49
+1.0
+175
+     0
+142
+0.0208333333333333
+142
+0.0
+142
+0.0
+142
+0.0
+142
+0.0
+142
+0.0208333333333333
+142
+0.0
+142
+0.0
+142
+0.0
+142
+0.0
+142
+1.0
+142
+0.0
+142
+0.0
+142
+0.0
+142
+0.0
+142
+1.0
+179
+     0
+144
+0.0208333333333333
+144
+0.0
+144
+0.0
+144
+0.0
+144
+0.0
+144
+0.0208333333333333
+144
+0.0
+144
+0.0
+144
+0.0
+144
+0.0
+144
+1.0
+144
+0.0
+144
+0.0
+144
+0.0
+144
+0.0
+144
+1.0
+147
+0.0208333333333333
+147
+0.0
+147
+0.0
+147
+0.0
+147
+0.0
+147
+0.0208333333333333
+147
+0.0
+147
+0.0
+147
+0.0
+147
+0.0
+147
+1.0
+147
+0.0
+147
+0.0
+147
+0.0
+147
+0.0
+147
+1.0
+  0
+MATERIAL
+  5
+39
+102
+{ACAD_XDICTIONARY
+360
+3A
+102
+}
+102
+{ACAD_REACTORS
+330
+B
+102
+}
+330
+B
+100
+AcDbMaterial
+  1
+ByLayer
+ 72
+     0
+ 43
+0.0208333333333333
+ 43
+0.0
+ 43
+0.0
+ 43
+0.0
+ 43
+0.0
+ 43
+0.0208333333333333
+ 43
+0.0
+ 43
+0.0
+ 43
+0.0
+ 43
+0.0
+ 43
+1.0
+ 43
+0.0
+ 43
+0.0
+ 43
+0.0
+ 43
+0.0
+ 43
+1.0
+ 77
+     0
+ 47
+0.0208333333333333
+ 47
+0.0
+ 47
+0.0
+ 47
+0.0
+ 47
+0.0
+ 47
+0.0208333333333333
+ 47
+0.0
+ 47
+0.0
+ 47
+0.0
+ 47
+0.0
+ 47
+1.0
+ 47
+0.0
+ 47
+0.0
+ 47
+0.0
+ 47
+0.0
+ 47
+1.0
+171
+     0
+ 49
+0.0208333333333333
+ 49
+0.0
+ 49
+0.0
+ 49
+0.0
+ 49
+0.0
+ 49
+0.0208333333333333
+ 49
+0.0
+ 49
+0.0
+ 49
+0.0
+ 49
+0.0
+ 49
+1.0
+ 49
+0.0
+ 49
+0.0
+ 49
+0.0
+ 49
+0.0
+ 49
+1.0
+175
+     0
+142
+0.0208333333333333
+142
+0.0
+142
+0.0
+142
+0.0
+142
+0.0
+142
+0.0208333333333333
+142
+0.0
+142
+0.0
+142
+0.0
+142
+0.0
+142
+1.0
+142
+0.0
+142
+0.0
+142
+0.0
+142
+0.0
+142
+1.0
+179
+     0
+144
+0.0208333333333333
+144
+0.0
+144
+0.0
+144
+0.0
+144
+0.0
+144
+0.0208333333333333
+144
+0.0
+144
+0.0
+144
+0.0
+144
+0.0
+144
+1.0
+144
+0.0
+144
+0.0
+144
+0.0
+144
+0.0
+144
+1.0
+147
+0.0208333333333333
+147
+0.0
+147
+0.0
+147
+0.0
+147
+0.0
+147
+0.0208333333333333
+147
+0.0
+147
+0.0
+147
+0.0
+147
+0.0
+147
+1.0
+147
+0.0
+147
+0.0
+147
+0.0
+147
+0.0
+147
+1.0
+  0
+MATERIAL
+  5
+A
+102
+{ACAD_XDICTIONARY
+360
+C
+102
+}
+102
+{ACAD_REACTORS
+330
+B
+102
+}
+330
+B
+100
+AcDbMaterial
+  1
+Global
+ 72
+     0
+ 43
+0.0208333333333333
+ 43
+0.0
+ 43
+0.0
+ 43
+0.0
+ 43
+0.0
+ 43
+0.0208333333333333
+ 43
+0.0
+ 43
+0.0
+ 43
+0.0
+ 43
+0.0
+ 43
+1.0
+ 43
+0.0
+ 43
+0.0
+ 43
+0.0
+ 43
+0.0
+ 43
+1.0
+ 77
+     0
+ 47
+0.0208333333333333
+ 47
+0.0
+ 47
+0.0
+ 47
+0.0
+ 47
+0.0
+ 47
+0.0208333333333333
+ 47
+0.0
+ 47
+0.0
+ 47
+0.0
+ 47
+0.0
+ 47
+1.0
+ 47
+0.0
+ 47
+0.0
+ 47
+0.0
+ 47
+0.0
+ 47
+1.0
+171
+     0
+ 49
+0.0208333333333333
+ 49
+0.0
+ 49
+0.0
+ 49
+0.0
+ 49
+0.0
+ 49
+0.0208333333333333
+ 49
+0.0
+ 49
+0.0
+ 49
+0.0
+ 49
+0.0
+ 49
+1.0
+ 49
+0.0
+ 49
+0.0
+ 49
+0.0
+ 49
+0.0
+ 49
+1.0
+175
+     0
+142
+0.0208333333333333
+142
+0.0
+142
+0.0
+142
+0.0
+142
+0.0
+142
+0.0208333333333333
+142
+0.0
+142
+0.0
+142
+0.0
+142
+0.0
+142
+1.0
+142
+0.0
+142
+0.0
+142
+0.0
+142
+0.0
+142
+1.0
+179
+     0
+144
+0.0208333333333333
+144
+0.0
+144
+0.0
+144
+0.0
+144
+0.0
+144
+0.0208333333333333
+144
+0.0
+144
+0.0
+144
+0.0
+144
+0.0
+144
+1.0
+144
+0.0
+144
+0.0
+144
+0.0
+144
+0.0
+144
+1.0
+147
+0.0208333333333333
+147
+0.0
+147
+0.0
+147
+0.0
+147
+0.0
+147
+0.0208333333333333
+147
+0.0
+147
+0.0
+147
+0.0
+147
+0.0
+147
+1.0
+147
+0.0
+147
+0.0
+147
+0.0
+147
+0.0
+147
+1.0
+  0
+MLINESTYLE
+  5
+64
+102
+{ACAD_REACTORS
+330
+37
+102
+}
+330
+37
+100
+AcDbMlineStyle
+  2
+STANDARD
+ 70
+     0
+  3
+
+ 62
+   256
+ 51
+90.0
+ 52
+90.0
+ 71
+     2
+ 49
+0.5
+ 62
+   256
+  6
+BYLAYER
+ 49
+-0.5
+ 62
+   256
+  6
+BYLAYER
+  0
+ACDBPLACEHOLDER
+  5
+7
+102
+{ACAD_REACTORS
+330
+8
+102
+}
+330
+8
+  0
+SCALE
+  5
+68
+102
+{ACAD_REACTORS
+330
+4A
+102
+}
+330
+4A
+100
+AcDbScale
+ 70
+     0
+300
+1:10000
+140
+1.0
+141
+10000.0
+290
+     0
+  0
+SCALE
+  5
+69
+102
+{ACAD_REACTORS
+330
+4A
+102
+}
+330
+4A
+100
+AcDbScale
+ 70
+     0
+300
+1:250
+140
+1.0
+141
+250.0
+290
+     0
+  0
+SCALE
+  5
+6A
+102
+{ACAD_REACTORS
+330
+4A
+102
+}
+330
+4A
+100
+AcDbScale
+ 70
+     0
+300
+1:1000
+140
+1.0
+141
+1000.0
+290
+     0
+  0
+SCALE
+  5
+6B
+102
+{ACAD_REACTORS
+330
+4A
+102
+}
+330
+4A
+100
+AcDbScale
+ 70
+     0
+300
+1:5000
+140
+1.0
+141
+5000.0
+290
+     0
+  0
+SCALE
+  5
+6C
+102
+{ACAD_REACTORS
+330
+4A
+102
+}
+330
+4A
+100
+AcDbScale
+ 70
+     0
+300
+1 : 500 m_XREF
+140
+1.0
+141
+0.5
+290
+     0
+  0
+SCALE
+  5
+6D
+102
+{ACAD_REACTORS
+330
+4A
+102
+}
+330
+4A
+100
+AcDbScale
+ 70
+     0
+300
+1:1
+140
+1.0
+141
+1.0
+290
+     1
+  0
+SCALE
+  5
+6E
+102
+{ACAD_REACTORS
+330
+4A
+102
+}
+330
+4A
+100
+AcDbScale
+ 70
+     0
+300
+1:2
+140
+1.0
+141
+2.0
+290
+     0
+  0
+SCALE
+  5
+6F
+102
+{ACAD_REACTORS
+330
+4A
+102
+}
+330
+4A
+100
+AcDbScale
+ 70
+     0
+300
+1:4
+140
+1.0
+141
+4.0
+290
+     0
+  0
+SCALE
+  5
+70
+102
+{ACAD_REACTORS
+330
+4A
+102
+}
+330
+4A
+100
+AcDbScale
+ 70
+     0
+300
+1:5
+140
+1.0
+141
+5.0
+290
+     0
+  0
+SCALE
+  5
+71
+102
+{ACAD_REACTORS
+330
+4A
+102
+}
+330
+4A
+100
+AcDbScale
+ 70
+     0
+300
+1:8
+140
+1.0
+141
+8.0
+290
+     0
+  0
+SCALE
+  5
+72
+102
+{ACAD_REACTORS
+330
+4A
+102
+}
+330
+4A
+100
+AcDbScale
+ 70
+     0
+300
+1:10
+140
+1.0
+141
+10.0
+290
+     0
+  0
+SCALE
+  5
+73
+102
+{ACAD_REACTORS
+330
+4A
+102
+}
+330
+4A
+100
+AcDbScale
+ 70
+     0
+300
+1:16
+140
+1.0
+141
+16.0
+290
+     0
+  0
+SCALE
+  5
+74
+102
+{ACAD_REACTORS
+330
+4A
+102
+}
+330
+4A
+100
+AcDbScale
+ 70
+     0
+300
+1:20
+140
+1.0
+141
+20.0
+290
+     0
+  0
+SCALE
+  5
+75
+102
+{ACAD_REACTORS
+330
+4A
+102
+}
+330
+4A
+100
+AcDbScale
+ 70
+     0
+300
+1:30
+140
+1.0
+141
+30.0
+290
+     0
+  0
+SCALE
+  5
+76
+102
+{ACAD_REACTORS
+330
+4A
+102
+}
+330
+4A
+100
+AcDbScale
+ 70
+     0
+300
+1:40
+140
+1.0
+141
+40.0
+290
+     0
+  0
+SCALE
+  5
+77
+102
+{ACAD_REACTORS
+330
+4A
+102
+}
+330
+4A
+100
+AcDbScale
+ 70
+     0
+300
+1:50
+140
+1.0
+141
+50.0
+290
+     0
+  0
+SCALE
+  5
+78
+102
+{ACAD_REACTORS
+330
+4A
+102
+}
+330
+4A
+100
+AcDbScale
+ 70
+     0
+300
+1:100
+140
+1.0
+141
+100.0
+290
+     0
+  0
+SCALE
+  5
+79
+102
+{ACAD_REACTORS
+330
+4A
+102
+}
+330
+4A
+100
+AcDbScale
+ 70
+     0
+300
+2:1
+140
+2.0
+141
+1.0
+290
+     0
+  0
+SCALE
+  5
+7A
+102
+{ACAD_REACTORS
+330
+4A
+102
+}
+330
+4A
+100
+AcDbScale
+ 70
+     0
+300
+4:1
+140
+4.0
+141
+1.0
+290
+     0
+  0
+SCALE
+  5
+7B
+102
+{ACAD_REACTORS
+330
+4A
+102
+}
+330
+4A
+100
+AcDbScale
+ 70
+     0
+300
+8:1
+140
+8.0
+141
+1.0
+290
+     0
+  0
+SCALE
+  5
+7C
+102
+{ACAD_REACTORS
+330
+4A
+102
+}
+330
+4A
+100
+AcDbScale
+ 70
+     0
+300
+10:1
+140
+10.0
+141
+1.0
+290
+     0
+  0
+SCALE
+  5
+7D
+102
+{ACAD_REACTORS
+330
+4A
+102
+}
+330
+4A
+100
+AcDbScale
+ 70
+     0
+300
+100:1
+140
+100.0
+141
+1.0
+290
+     0
+  0
+TABLESTYLE
+  5
+65
+102
+{ACAD_XDICTIONARY
+360
+87
+102
+}
+102
+{ACAD_REACTORS
+330
+4B
+102
+}
+330
+4B
+100
+AcDbTableStyle
+280
+     0
+  3
+Standard
+ 70
+     0
+ 71
+     0
+ 40
+1.5
+ 41
+1.5
+280
+     0
+281
+     0
+  7
+Standard
+140
+4.5
+170
+     2
+ 62
+     0
+ 63
+     7
+283
+     0
+ 90
+      512
+ 91
+        0
+  1
+
+274
+    -2
+284
+     1
+ 64
+     0
+275
+    -2
+285
+     1
+ 65
+     0
+276
+    -2
+286
+     1
+ 66
+     0
+277
+    -2
+287
+     1
+ 67
+     0
+278
+    -2
+288
+     1
+ 68
+     0
+279
+    -2
+289
+     1
+ 69
+     0
+  7
+Standard
+140
+6.0
+170
+     5
+ 62
+     0
+ 63
+     7
+283
+     0
+ 90
+      512
+ 91
+        0
+  1
+
+274
+    -2
+284
+     1
+ 64
+     0
+275
+    -2
+285
+     1
+ 65
+     0
+276
+    -2
+286
+     1
+ 66
+     0
+277
+    -2
+287
+     1
+ 67
+     0
+278
+    -2
+288
+     1
+ 68
+     0
+279
+    -2
+289
+     1
+ 69
+     0
+  7
+Standard
+140
+4.5
+170
+     5
+ 62
+     0
+ 63
+     7
+283
+     0
+ 90
+      512
+ 91
+        0
+  1
+
+274
+    -2
+284
+     1
+ 64
+     0
+275
+    -2
+285
+     1
+ 65
+     0
+276
+    -2
+286
+     1
+ 66
+     0
+277
+    -2
+287
+     1
+ 67
+     0
+278
+    -2
+288
+     1
+ 68
+     0
+279
+    -2
+289
+     1
+ 69
+     0
+  0
+VISUALSTYLE
+  5
+2F
+102
+{ACAD_REACTORS
+330
+30
+102
+}
+330
+30
+100
+AcDbVisualStyle
+  2
+2dWireframe
+ 70
+     4
+177
+     3
+291
+     0
+ 70
+    58
+ 90
+        0
+176
+     1
+ 90
+        2
+176
+     1
+ 90
+        0
+176
+     1
+ 90
+        0
+176
+     1
+ 40
+0.6
+176
+     1
+ 40
+30.0
+176
+     1
+ 62
+     7
+420
+ 16777215
+176
+     1
+ 90
+        1
+176
+     1
+ 90
+        4
+176
+     1
+ 62
+     7
+176
+     1
+ 62
+   257
+176
+     1
+ 90
+        1
+176
+     1
+ 90
+        1
+176
+     1
+ 40
+1.0
+176
+     1
+ 90
+        0
+176
+     1
+ 62
+   257
+176
+     1
+ 40
+1.0
+176
+     1
+ 90
+        1
+176
+     1
+ 90
+        6
+176
+     1
+ 90
+        2
+176
+     1
+ 62
+     7
+176
+     1
+ 90
+        5
+176
+     1
+ 90
+        0
+176
+     1
+ 90
+        0
+176
+     1
+290
+     0
+176
+     1
+ 90
+        1
+176
+     1
+ 40
+0.0
+176
+     1
+ 90
+        0
+176
+     1
+290
+     1
+176
+     1
+290
+     1
+176
+     1
+290
+     0
+176
+     1
+290
+     0
+176
+     1
+290
+     0
+176
+     1
+290
+     0
+176
+     1
+290
+     0
+176
+     1
+290
+     0
+176
+     1
+290
+     0
+176
+     1
+ 90
+       50
+176
+     1
+ 40
+0.0
+176
+     1
+ 40
+1.0
+176
+     1
+ 90
+        0
+176
+     1
+ 62
+    18
+420
+        0
+176
+     1
+ 90
+       50
+176
+     1
+ 90
+        3
+176
+     1
+ 62
+     5
+420
+      255
+176
+     1
+290
+     0
+176
+     1
+ 90
+       50
+176
+     1
+ 90
+       50
+176
+     1
+ 90
+       50
+176
+     1
+290
+     0
+176
+     1
+ 90
+       50
+176
+     1
+ 62
+   256
+176
+     0
+ 40
+1.0
+176
+     0
+ 90
+        2
+176
+     1
+  1
+strokes_ogs.tif
+176
+     1
+290
+     0
+176
+     1
+ 40
+1.0
+176
+     1
+ 40
+1.0
+176
+     1
+  0
+VISUALSTYLE
+  5
+66
+102
+{ACAD_REACTORS
+330
+30
+102
+}
+330
+30
+100
+AcDbVisualStyle
+  2
+Realistic
+ 70
+     8
+177
+     3
+291
+     0
+ 70
+    58
+ 90
+        2
+176
+     1
+ 90
+        3
+176
+     1
+ 90
+        0
+176
+     1
+ 90
+        2
+176
+     1
+ 40
+0.6
+176
+     1
+ 40
+30.0
+176
+     1
+ 62
+     7
+420
+ 16777215
+176
+     1
+ 90
+        0
+176
+     1
+ 90
+        0
+176
+     1
+ 62
+     7
+176
+     1
+ 62
+   257
+176
+     1
+ 90
+        1
+176
+     1
+ 90
+        1
+176
+     1
+ 40
+1.0
+176
+     1
+ 90
+        8
+176
+     1
+ 62
+   257
+176
+     1
+ 40
+1.0
+176
+     1
+ 90
+        1
+176
+     1
+ 90
+        6
+176
+     1
+ 90
+        2
+176
+     1
+ 62
+     7
+176
+     1
+ 90
+        3
+176
+     1
+ 90
+        0
+176
+     1
+ 90
+        0
+176
+     1
+290
+     0
+176
+     1
+ 90
+       13
+176
+     1
+ 40
+0.0
+176
+     1
+ 90
+        0
+176
+     1
+290
+     0
+176
+     1
+290
+     1
+176
+     1
+290
+     1
+176
+     1
+290
+     0
+176
+     1
+290
+     0
+176
+     1
+290
+     0
+176
+     1
+290
+     0
+176
+     1
+290
+     0
+176
+     1
+290
+     0
+176
+     1
+ 90
+       50
+176
+     1
+ 40
+0.0
+176
+     1
+ 40
+1.0
+176
+     1
+ 90
+        0
+176
+     1
+ 62
+    18
+420
+        0
+176
+     1
+ 90
+       50
+176
+     1
+ 90
+        3
+176
+     1
+ 62
+     5
+420
+      255
+176
+     1
+290
+     0
+176
+     1
+ 90
+       50
+176
+     1
+ 90
+       50
+176
+     1
+ 90
+       50
+176
+     1
+290
+     0
+176
+     1
+ 90
+       50
+176
+     1
+ 62
+   256
+176
+     0
+ 40
+1.0
+176
+     0
+ 90
+        2
+176
+     1
+  1
+strokes_ogs.tif
+176
+     1
+290
+     0
+176
+     1
+ 40
+1.0
+176
+     1
+ 40
+1.0
+176
+     1
+  0
+VISUALSTYLE
+  5
+67
+102
+{ACAD_REACTORS
+330
+30
+102
+}
+330
+30
+100
+AcDbVisualStyle
+  2
+Wireframe
+ 70
+     5
+177
+     3
+291
+     0
+ 70
+    58
+ 90
+        0
+176
+     1
+ 90
+        2
+176
+     1
+ 90
+        0
+176
+     1
+ 90
+        0
+176
+     1
+ 40
+0.6
+176
+     1
+ 40
+30.0
+176
+     1
+ 62
+     7
+420
+ 16777215
+176
+     1
+ 90
+        1
+176
+     1
+ 90
+        4
+176
+     1
+ 62
+     7
+176
+     1
+ 62
+   257
+176
+     1
+ 90
+        1
+176
+     1
+ 90
+        1
+176
+     1
+ 40
+1.0
+176
+     1
+ 90
+        0
+176
+     1
+ 62
+   257
+176
+     1
+ 40
+1.0
+176
+     1
+ 90
+        1
+176
+     1
+ 90
+        6
+176
+     1
+ 90
+        2
+176
+     1
+ 62
+     7
+176
+     1
+ 90
+        3
+176
+     1
+ 90
+        0
+176
+     1
+ 90
+        0
+176
+     1
+290
+     0
+176
+     1
+ 90
+        1
+176
+     1
+ 40
+0.0
+176
+     1
+ 90
+        0
+176
+     1
+290
+     0
+176
+     1
+290
+     1
+176
+     1
+290
+     1
+176
+     1
+290
+     0
+176
+     1
+290
+     0
+176
+     1
+290
+     0
+176
+     1
+290
+     0
+176
+     1
+290
+     0
+176
+     1
+290
+     0
+176
+     1
+ 90
+       50
+176
+     1
+ 40
+0.0
+176
+     1
+ 40
+1.0
+176
+     1
+ 90
+        0
+176
+     1
+ 62
+    18
+420
+        0
+176
+     1
+ 90
+       50
+176
+     1
+ 90
+        3
+176
+     1
+ 62
+     5
+420
+      255
+176
+     1
+290
+     0
+176
+     1
+ 90
+       50
+176
+     1
+ 90
+       50
+176
+     1
+ 90
+       50
+176
+     1
+290
+     0
+176
+     1
+ 90
+       50
+176
+     1
+ 62
+   256
+176
+     0
+ 40
+1.0
+176
+     0
+ 90
+        2
+176
+     1
+  1
+strokes_ogs.tif
+176
+     1
+290
+     0
+176
+     1
+ 40
+1.0
+176
+     1
+ 40
+1.0
+176
+     1
+  0
+DICTIONARYVAR
+  5
+4E
+102
+{ACAD_REACTORS
+330
+4D
+102
+}
+330
+4D
+100
+DictionaryVariables
+280
+     0
+  1
+1
+  0
+DICTIONARYVAR
+  5
+4F
+102
+{ACAD_REACTORS
+330
+4D
+102
+}
+330
+4D
+100
+DictionaryVariables
+280
+     0
+  1
+1
+  0
+DICTIONARYVAR
+  5
+50
+102
+{ACAD_REACTORS
+330
+4D
+102
+}
+330
+4D
+100
+DictionaryVariables
+280
+     0
+  1
+1:1
+  0
+DICTIONARYVAR
+  5
+51
+102
+{ACAD_REACTORS
+330
+4D
+102
+}
+330
+4D
+100
+DictionaryVariables
+280
+     0
+  1
+STANDARD
+  0
+DICTIONARYVAR
+  5
+52
+102
+{ACAD_REACTORS
+330
+4D
+102
+}
+330
+4D
+100
+DictionaryVariables
+280
+     0
+  1
+STANDARD
+  0
+DICTIONARYVAR
+  5
+53
+102
+{ACAD_REACTORS
+330
+4D
+102
+}
+330
+4D
+100
+DictionaryVariables
+280
+     0
+  1
+
+  0
+DICTIONARYVAR
+  5
+54
+102
+{ACAD_REACTORS
+330
+4D
+102
+}
+330
+4D
+100
+DictionaryVariables
+280
+     0
+  1
+
+  0
+DICTIONARYVAR
+  5
+55
+102
+{ACAD_REACTORS
+330
+4D
+102
+}
+330
+4D
+100
+DictionaryVariables
+280
+     0
+  1
+0
+  0
+DICTIONARYVAR
+  5
+56
+102
+{ACAD_REACTORS
+330
+4D
+102
+}
+330
+4D
+100
+DictionaryVariables
+280
+     0
+  1
+0
+  0
+DICTIONARYVAR
+  5
+57
+102
+{ACAD_REACTORS
+330
+4D
+102
+}
+330
+4D
+100
+DictionaryVariables
+280
+     0
+  1
+8
+  0
+DICTIONARYVAR
+  5
+58
+102
+{ACAD_REACTORS
+330
+4D
+102
+}
+330
+4D
+100
+DictionaryVariables
+280
+     0
+  1
+Z0107d_Gen_Dimensions
+  0
+DICTIONARYVAR
+  5
+59
+102
+{ACAD_REACTORS
+330
+4D
+102
+}
+330
+4D
+100
+DictionaryVariables
+280
+     0
+  1
+ByLayer
+  0
+DICTIONARYVAR
+  5
+5A
+102
+{ACAD_REACTORS
+330
+4D
+102
+}
+330
+4D
+100
+DictionaryVariables
+280
+     0
+  1
+0
+  0
+DICTIONARYVAR
+  5
+5B
+102
+{ACAD_REACTORS
+330
+4D
+102
+}
+330
+4D
+100
+DictionaryVariables
+280
+     0
+  1
+0
+  0
+DICTIONARYVAR
+  5
+5C
+102
+{ACAD_REACTORS
+330
+4D
+102
+}
+330
+4D
+100
+DictionaryVariables
+280
+     0
+  1
+2
+  0
+DICTIONARYVAR
+  5
+5D
+102
+{ACAD_REACTORS
+330
+4D
+102
+}
+330
+4D
+100
+DictionaryVariables
+280
+     0
+  1
+1.000000
+  0
+DICTIONARYVAR
+  5
+5E
+102
+{ACAD_REACTORS
+330
+4D
+102
+}
+330
+4D
+100
+DictionaryVariables
+280
+     0
+  1
+1
+  0
+DICTIONARYVAR
+  5
+5F
+102
+{ACAD_REACTORS
+330
+4D
+102
+}
+330
+4D
+100
+DictionaryVariables
+280
+     0
+  1
+1
+  0
+DICTIONARYVAR
+  5
+60
+102
+{ACAD_REACTORS
+330
+4D
+102
+}
+330
+4D
+100
+DictionaryVariables
+280
+     0
+  1
+1
+  0
+DICTIONARY
+  5
+42
+330
+41
+100
+AcDbDictionary
+280
+     1
+281
+     1
+  3
+BUMPTILE
+360
+43
+  3
+DIFFUSETILE
+360
+44
+  3
+OPACITYTILE
+360
+45
+  3
+REFLECTIONTILE
+360
+46
+  3
+REFRACTIONTILE
+360
+47
+  3
+SPECULARTILE
+360
+48
+  0
+DICTIONARY
+  5
+3A
+330
+39
+100
+AcDbDictionary
+280
+     1
+281
+     1
+  3
+BUMPTILE
+360
+3B
+  3
+DIFFUSETILE
+360
+3C
+  3
+OPACITYTILE
+360
+3D
+  3
+REFLECTIONTILE
+360
+3E
+  3
+REFRACTIONTILE
+360
+3F
+  3
+SPECULARTILE
+360
+40
+  0
+DICTIONARY
+  5
+C
+330
+A
+100
+AcDbDictionary
+280
+     1
+281
+     1
+  3
+BUMPTILE
+360
+D
+  3
+DIFFUSETILE
+360
+E
+  3
+OPACITYTILE
+360
+F
+  3
+REFLECTIONTILE
+360
+10
+  3
+REFRACTIONTILE
+360
+11
+  3
+SPECULARTILE
+360
+12
+  0
+DICTIONARY
+  5
+87
+330
+65
+100
+AcDbDictionary
+280
+     1
+281
+     1
+  3
+ACAD_ROUNDTRIP_2008_TABLESTYLE_CELLSTYLEMAP
+360
+88
+  0
+XRECORD
+  5
+43
+102
+{ACAD_REACTORS
+330
+42
+102
+}
+330
+42
+100
+AcDbXrecord
+280
+     1
+270
+     1
+271
+     1
+  0
+XRECORD
+  5
+44
+102
+{ACAD_REACTORS
+330
+42
+102
+}
+330
+42
+100
+AcDbXrecord
+280
+     1
+270
+     1
+271
+     1
+  0
+XRECORD
+  5
+45
+102
+{ACAD_REACTORS
+330
+42
+102
+}
+330
+42
+100
+AcDbXrecord
+280
+     1
+270
+     1
+271
+     1
+  0
+XRECORD
+  5
+46
+102
+{ACAD_REACTORS
+330
+42
+102
+}
+330
+42
+100
+AcDbXrecord
+280
+     1
+270
+     1
+271
+     1
+  0
+XRECORD
+  5
+47
+102
+{ACAD_REACTORS
+330
+42
+102
+}
+330
+42
+100
+AcDbXrecord
+280
+     1
+270
+     1
+271
+     1
+  0
+XRECORD
+  5
+48
+102
+{ACAD_REACTORS
+330
+42
+102
+}
+330
+42
+100
+AcDbXrecord
+280
+     1
+270
+     1
+271
+     1
+  0
+XRECORD
+  5
+3B
+102
+{ACAD_REACTORS
+330
+3A
+102
+}
+330
+3A
+100
+AcDbXrecord
+280
+     1
+270
+     1
+271
+     1
+  0
+XRECORD
+  5
+3C
+102
+{ACAD_REACTORS
+330
+3A
+102
+}
+330
+3A
+100
+AcDbXrecord
+280
+     1
+270
+     1
+271
+     1
+  0
+XRECORD
+  5
+3D
+102
+{ACAD_REACTORS
+330
+3A
+102
+}
+330
+3A
+100
+AcDbXrecord
+280
+     1
+270
+     1
+271
+     1
+  0
+XRECORD
+  5
+3E
+102
+{ACAD_REACTORS
+330
+3A
+102
+}
+330
+3A
+100
+AcDbXrecord
+280
+     1
+270
+     1
+271
+     1
+  0
+XRECORD
+  5
+3F
+102
+{ACAD_REACTORS
+330
+3A
+102
+}
+330
+3A
+100
+AcDbXrecord
+280
+     1
+270
+     1
+271
+     1
+  0
+XRECORD
+  5
+40
+102
+{ACAD_REACTORS
+330
+3A
+102
+}
+330
+3A
+100
+AcDbXrecord
+280
+     1
+270
+     1
+271
+     1
+  0
+XRECORD
+  5
+D
+102
+{ACAD_REACTORS
+330
+C
+102
+}
+330
+C
+100
+AcDbXrecord
+280
+     1
+270
+     1
+271
+     1
+  0
+XRECORD
+  5
+E
+102
+{ACAD_REACTORS
+330
+C
+102
+}
+330
+C
+100
+AcDbXrecord
+280
+     1
+270
+     1
+271
+     1
+  0
+XRECORD
+  5
+F
+102
+{ACAD_REACTORS
+330
+C
+102
+}
+330
+C
+100
+AcDbXrecord
+280
+     1
+270
+     1
+271
+     1
+  0
+XRECORD
+  5
+10
+102
+{ACAD_REACTORS
+330
+C
+102
+}
+330
+C
+100
+AcDbXrecord
+280
+     1
+270
+     1
+271
+     1
+  0
+XRECORD
+  5
+11
+102
+{ACAD_REACTORS
+330
+C
+102
+}
+330
+C
+100
+AcDbXrecord
+280
+     1
+270
+     1
+271
+     1
+  0
+XRECORD
+  5
+12
+102
+{ACAD_REACTORS
+330
+C
+102
+}
+330
+C
+100
+AcDbXrecord
+280
+     1
+270
+     1
+271
+     1
+  0
+CELLSTYLEMAP
+  5
+88
+102
+{ACAD_REACTORS
+330
+87
+102
+}
+330
+87
+100
+AcDbCellStyleMap
+ 90
+        3
+300
+CELLSTYLE
+  1
+TABLEFORMAT_BEGIN
+ 90
+        5
+170
+     1
+ 91
+        0
+ 92
+    32768
+ 62
+   257
+ 93
+        1
+300
+CONTENTFORMAT
+  1
+CONTENTFORMAT_BEGIN
+ 90
+        0
+ 91
+        0
+ 92
+      512
+ 93
+        0
+300
+
+ 40
+0.0
+140
+1.0
+ 94
+        5
+ 62
+     0
+340
+25
+144
+6.0
+309
+CONTENTFORMAT_END
+171
+     1
+301
+MARGIN
+  1
+CELLMARGIN_BEGIN
+ 40
+1.5
+ 40
+1.5
+ 40
+1.5
+ 40
+1.5
+ 40
+4.5
+ 40
+4.5
+309
+CELLMARGIN_END
+ 94
+        6
+ 95
+        1
+302
+GRIDFORMAT
+  1
+GRIDFORMAT_BEGIN
+ 90
+        0
+ 91
+        1
+ 62
+     0
+ 92
+       -2
+340
+0
+ 93
+        0
+ 40
+1.125
+309
+GRIDFORMAT_END
+ 95
+        2
+302
+GRIDFORMAT
+  1
+GRIDFORMAT_BEGIN
+ 90
+        0
+ 91
+        1
+ 62
+     0
+ 92
+       -2
+340
+0
+ 93
+        0
+ 40
+1.125
+309
+GRIDFORMAT_END
+ 95
+        4
+302
+GRIDFORMAT
+  1
+GRIDFORMAT_BEGIN
+ 90
+        0
+ 91
+        1
+ 62
+     0
+ 92
+       -2
+340
+0
+ 93
+        0
+ 40
+1.125
+309
+GRIDFORMAT_END
+ 95
+        8
+302
+GRIDFORMAT
+  1
+GRIDFORMAT_BEGIN
+ 90
+        0
+ 91
+        1
+ 62
+     0
+ 92
+       -2
+340
+0
+ 93
+        0
+ 40
+1.125
+309
+GRIDFORMAT_END
+ 95
+       16
+302
+GRIDFORMAT
+  1
+GRIDFORMAT_BEGIN
+ 90
+        0
+ 91
+        1
+ 62
+     0
+ 92
+       -2
+340
+0
+ 93
+        0
+ 40
+1.125
+309
+GRIDFORMAT_END
+ 95
+       32
+302
+GRIDFORMAT
+  1
+GRIDFORMAT_BEGIN
+ 90
+        0
+ 91
+        1
+ 62
+     0
+ 92
+       -2
+340
+0
+ 93
+        0
+ 40
+1.125
+309
+GRIDFORMAT_END
+309
+TABLEFORMAT_END
+  1
+CELLSTYLE_BEGIN
+ 90
+        1
+ 91
+        1
+300
+_TITLE
+309
+CELLSTYLE_END
+300
+CELLSTYLE
+  1
+TABLEFORMAT_BEGIN
+ 90
+        5
+170
+     1
+ 91
+        0
+ 92
+        0
+ 62
+   257
+ 93
+        1
+300
+CONTENTFORMAT
+  1
+CONTENTFORMAT_BEGIN
+ 90
+        0
+ 91
+        0
+ 92
+      512
+ 93
+        0
+300
+
+ 40
+0.0
+140
+1.0
+ 94
+        5
+ 62
+     0
+340
+25
+144
+4.5
+309
+CONTENTFORMAT_END
+171
+     1
+301
+MARGIN
+  1
+CELLMARGIN_BEGIN
+ 40
+1.5
+ 40
+1.5
+ 40
+1.5
+ 40
+1.5
+ 40
+4.5
+ 40
+4.5
+309
+CELLMARGIN_END
+ 94
+        6
+ 95
+        1
+302
+GRIDFORMAT
+  1
+GRIDFORMAT_BEGIN
+ 90
+        0
+ 91
+        1
+ 62
+     0
+ 92
+       -2
+340
+0
+ 93
+        0
+ 40
+1.125
+309
+GRIDFORMAT_END
+ 95
+        2
+302
+GRIDFORMAT
+  1
+GRIDFORMAT_BEGIN
+ 90
+        0
+ 91
+        1
+ 62
+     0
+ 92
+       -2
+340
+0
+ 93
+        0
+ 40
+1.125
+309
+GRIDFORMAT_END
+ 95
+        4
+302
+GRIDFORMAT
+  1
+GRIDFORMAT_BEGIN
+ 90
+        0
+ 91
+        1
+ 62
+     0
+ 92
+       -2
+340
+0
+ 93
+        0
+ 40
+1.125
+309
+GRIDFORMAT_END
+ 95
+        8
+302
+GRIDFORMAT
+  1
+GRIDFORMAT_BEGIN
+ 90
+        0
+ 91
+        1
+ 62
+     0
+ 92
+       -2
+340
+0
+ 93
+        0
+ 40
+1.125
+309
+GRIDFORMAT_END
+ 95
+       16
+302
+GRIDFORMAT
+  1
+GRIDFORMAT_BEGIN
+ 90
+        0
+ 91
+        1
+ 62
+     0
+ 92
+       -2
+340
+0
+ 93
+        0
+ 40
+1.125
+309
+GRIDFORMAT_END
+ 95
+       32
+302
+GRIDFORMAT
+  1
+GRIDFORMAT_BEGIN
+ 90
+        0
+ 91
+        1
+ 62
+     0
+ 92
+       -2
+340
+0
+ 93
+        0
+ 40
+1.125
+309
+GRIDFORMAT_END
+309
+TABLEFORMAT_END
+  1
+CELLSTYLE_BEGIN
+ 90
+        2
+ 91
+        1
+300
+_HEADER
+309
+CELLSTYLE_END
+300
+CELLSTYLE
+  1
+TABLEFORMAT_BEGIN
+ 90
+        5
+170
+     1
+ 91
+        0
+ 92
+        0
+ 62
+   257
+ 93
+        1
+300
+CONTENTFORMAT
+  1
+CONTENTFORMAT_BEGIN
+ 90
+        0
+ 91
+        0
+ 92
+      512
+ 93
+        0
+300
+
+ 40
+0.0
+140
+1.0
+ 94
+        2
+ 62
+     0
+340
+25
+144
+4.5
+309
+CONTENTFORMAT_END
+171
+     1
+301
+MARGIN
+  1
+CELLMARGIN_BEGIN
+ 40
+1.5
+ 40
+1.5
+ 40
+1.5
+ 40
+1.5
+ 40
+4.5
+ 40
+4.5
+309
+CELLMARGIN_END
+ 94
+        6
+ 95
+        1
+302
+GRIDFORMAT
+  1
+GRIDFORMAT_BEGIN
+ 90
+        0
+ 91
+        1
+ 62
+     0
+ 92
+       -2
+340
+0
+ 93
+        0
+ 40
+1.125
+309
+GRIDFORMAT_END
+ 95
+        2
+302
+GRIDFORMAT
+  1
+GRIDFORMAT_BEGIN
+ 90
+        0
+ 91
+        1
+ 62
+     0
+ 92
+       -2
+340
+0
+ 93
+        0
+ 40
+1.125
+309
+GRIDFORMAT_END
+ 95
+        4
+302
+GRIDFORMAT
+  1
+GRIDFORMAT_BEGIN
+ 90
+        0
+ 91
+        1
+ 62
+     0
+ 92
+       -2
+340
+0
+ 93
+        0
+ 40
+1.125
+309
+GRIDFORMAT_END
+ 95
+        8
+302
+GRIDFORMAT
+  1
+GRIDFORMAT_BEGIN
+ 90
+        0
+ 91
+        1
+ 62
+     0
+ 92
+       -2
+340
+0
+ 93
+        0
+ 40
+1.125
+309
+GRIDFORMAT_END
+ 95
+       16
+302
+GRIDFORMAT
+  1
+GRIDFORMAT_BEGIN
+ 90
+        0
+ 91
+        1
+ 62
+     0
+ 92
+       -2
+340
+0
+ 93
+        0
+ 40
+1.125
+309
+GRIDFORMAT_END
+ 95
+       32
+302
+GRIDFORMAT
+  1
+GRIDFORMAT_BEGIN
+ 90
+        0
+ 91
+        1
+ 62
+     0
+ 92
+       -2
+340
+0
+ 93
+        0
+ 40
+1.125
+309
+GRIDFORMAT_END
+309
+TABLEFORMAT_END
+  1
+CELLSTYLE_BEGIN
+ 90
+        3
+ 91
+        2
+300
+_DATA
+309
+CELLSTYLE_END
+  0
+ENDSEC
+  0
+SECTION
+  2
+ACDSDATA
+ 70
+     2
+ 71
+     8
+  0
+ACDSSCHEMA
+ 90
+        0
+  1
+AcDb_Thumbnail_Schema
+  2
+AcDbDs::ID
+280
+    10
+ 91
+        8
+  2
+Thumbnail_Data
+280
+    15
+ 91
+        0
+101
+ACDSRECORD
+ 95
+        0
+ 90
+        1
+  2
+AcDbDs::TreatedAsObjectData
+280
+     1
+291
+     1
+101
+ACDSRECORD
+ 95
+        0
+ 90
+        2
+  2
+AcDbDs::Legacy
+280
+     1
+291
+     1
+101
+ACDSRECORD
+  1
+AcDbDs::ID
+ 90
+        3
+  2
+AcDs:Indexable
+280
+     1
+291
+     1
+101
+ACDSRECORD
+  1
+AcDbDs::ID
+ 90
+        4
+  2
+AcDbDs::HandleAttribute
+280
+     7
+282
+     1
+  0
+ACDSSCHEMA
+ 90
+        1
+  1
+AcDbDs::TreatedAsObjectDataSchema
+  2
+AcDbDs::TreatedAsObjectData
+280
+     1
+ 91
+        0
+  0
+ACDSSCHEMA
+ 90
+        2
+  1
+AcDbDs::LegacySchema
+  2
+AcDbDs::Legacy
+280
+     1
+ 91
+        0
+  0
+ACDSSCHEMA
+ 90
+        3
+  1
+AcDbDs::IndexedPropertySchema
+  2
+AcDs:Indexable
+280
+     1
+ 91
+        0
+  0
+ACDSSCHEMA
+ 90
+        4
+  1
+AcDbDs::HandleAttributeSchema
+  2
+AcDbDs::HandleAttribute
+280
+     7
+ 91
+        1
+284
+     1
+  0
+ACDSRECORD
+ 90
+        0
+  2
+AcDbDs::ID
+280
+    10
+320
+15
+  2
+Thumbnail_Data
+280
+    15
+ 94
+     6930
+310
+89504E470D0A1A0A0000000D4948445200000100000000A50803000000840AD3BD00000300504C5445212830FFFFFF2128300000000000000000000000000000000000000000000000000000330000660000990000CC0000FF0033000033330033660033990033CC0033FF0066000066330066660066990066CC0066FF0099
+310
+000099330099660099990099CC0099FF00CC0000CC3300CC6600CC9900CCCC00CCFF00FF0000FF3300FF6600FF9900FFCC00FFFF3300003300333300663300993300CC3300FF3333003333333333663333993333CC3333FF3366003366333366663366993366CC3366FF3399003399333399663399993399CC3399FF33CC00
+310
+33CC3333CC6633CC9933CCCC33CCFF33FF0033FF3333FF6633FF9933FFCC33FFFF6600006600336600666600996600CC6600FF6633006633336633666633996633CC6633FF6666006666336666666666996666CC6666FF6699006699336699666699996699CC6699FF66CC0066CC3366CC6666CC9966CCCC66CCFF66FF0066
+310
+FF3366FF6666FF9966FFCC66FFFF9900009900339900669900999900CC9900FF9933009933339933669933999933CC9933FF9966009966339966669966999966CC9966FF9999009999339999669999999999CC9999FF99CC0099CC3399CC6699CC9999CCCC99CCFF99FF0099FF3399FF6699FF9999FFCC99FFFFCC0000CC00
+310
+33CC0066CC0099CC00CCCC00FFCC3300CC3333CC3366CC3399CC33CCCC33FFCC6600CC6633CC6666CC6699CC66CCCC66FFCC9900CC9933CC9966CC9999CC99CCCC99FFCCCC00CCCC33CCCC66CCCC99CCCCCCCCCCFFCCFF00CCFF33CCFF66CCFF99CCFFCCCCFFFFFF0000FF0033FF0066FF0099FF00CCFF00FFFF3300FF3333
+310
+FF3366FF3399FF33CCFF33FFFF6600FF6633FF6666FF6699FF66CCFF66FFFF9900FF9933FF9966FF9999FF99CCFF99FFFFCC00FFCC33FFCC66FFCC99FFCCCCFFCCFFFFFF00FFFF33FFFF66FFFF99FFFFCCFFFFFF0000000D0D0D1A1A1A2828283535354343435050505D5D5D6B6B6B787878868686939393A1A1A1AEAEAEBB
+310
+BBBBC9C9C9D6D6D6E4E4E4F1F1F1FFFFFF0000000000000000000000000000000000000000000000000000000000002E4550F1000000FA4944415478DAEDDBC10D83000CC5D02CF2F75FB31746E080EAE70D629C802AF5EE0B6C97263EBFC76F7EF39B3F3BFE8CAF7E8FBF387B74FCAD3BFB337E7BEB2F4E5DC02600026C80
+310
+000820800002082080001F42C95F0334701430C00003BE0724C080259000039640020C5802094840030C30C00003DE050410E008484001028816E04F6322B0050C5802091060070820C011908004244000018E0001768000020820C06B40020410400001DE020410408023488015100001564002041040000104104000013E
+310
+0509B0030410E008488000021C0102EC80042420010910C0802B400003AEC03F15E04D0000000000000000000000008097F9016419187918D88AE10000000049454E44AE4260829EFE5DF541A700467E2E90AB7FF7A47F320002B73FA9FE638C1660A65F817813005BFFA6DAC0E4000462FFFD1FC4F400046EFF7738401170
+310
+ECBF51CA670FC0B53FB17E0E000237C9ACF4EFC4F6EF0CA0E056A030F563E9E77A239BE00A5BB73FA69FAB6E92A3C9B8FDB9659BF4B85246ED0F954163F0364CE5277E8DF0F1F4B7BA4518CACCA95FF5C1FBEABD837E5AA3541C57C9D709E4CA4F3B5F93D4D62394977E2111FD05E50DEEEA983E15D2F54B49677FB831908A
+310
+A6AE4343BE14E5F27DAE28CB55CF6F4899E997E7485CBAF9F91C005645A4F5E58EFBCC4FF4EF2D7CD799907F10F73AD1057B0074549A96AB3BFD42E9FFAE1391EF1C41BD81FF4F0A1CF0F09068D9FF5EB13FFD8889F5B33F02A0D851B67E6DC53EF74362DF47760160A05ADA6155820DC03965967E5200E97D526684ED04B8
+310
+97E9EF7E1104240012F6055913A14AD000882345620600C8942AAB237F0E3200887C0020A2006CA99222A8E6C00400799F7A003CA934B6117002D0EDCE83753288B53952000C6EAED9AB0073C6AD6C01E620C4F07B416E1640EB55F506E00EC0E342BD0760C3FDD00062ADC66E82BEE13E3CF8320150DA6A3DBB80610408CD
+310
+C60F0020DF48916DF0BAFACDAF001200FD06067C0EF81A2168000200CF0F46E141081CC5F10AF0026030001601F8BFF5E3D79C02000413A1E5006C27402A80DF2F5C46C0B2120894432A00E6910EC085F042000604ECD1D8EC00B02D724C00105C23446EE4BD1B80EF32FA7E14F40607B84600B753CC0F20A52D8E0A20E74A
+310
+086B8BE22D00AEE2E7FF7F22880000FA37F34B122300083DEC2F04309A0300DDD45F02C07BB1838F817302702060A5710E4001FDD6477FDF563A3F24BB44450000000049454E44AE426082081CE160B321A21B116E462497C8F393693FFDCD4A0F02305CB25798BB30B5771F087A84E9FB7488641100D84D01F407405417A6
+310
+5C6A43089FC1B107048F006EA04093088204C08782EA530D035AB7AFD9F93BB4FA5F4981562FA0D4244B77A61B545A64AAADBA56DA17FA94603890099F7793EC4560470840580C20E29BF49901586B684CE96F7A437FF51B9AA4E5D786412E0020F7E9C59C0069BFBDFC3201804D0B71ADED095AA71043BF7F7490DD08A4E6
+310
+10C837AEE53F2C08B658867732761CE1AD3281A40CFAA092A2731A1413E7B585C91C026C59AE5FEEC0366DFB85D7151F4229EEDE0F2FDB943821D40AC41700CED96A719CEBCE5788C6BF60F945A1FB8AA02CCB2FADAF2681943A813540D8D53E7BFC73074F4D856B1574D680329A74571E6617DDF42329CA91954B592C35F1
+310
+E6AF5EB998E51721A217DABDB3B5B51062DFC3058053E5659EB912D0F907F2B4418B289D415E71386870AF59F1AECF3743600C8C0E2AAA272DE552BAA965FAA112A94483270D405C0CB9A189D0435F06A0143D12F6863C219B0AA1F882330066E80E6BBDC003808A21AB4E4D7676216D86088FFFC02EA92EC54A1650C38232
+310
+F6E21188D2563FF0D300AC1746AA2C937D1468BD5F8082A07863B6169DE9912AD9CDB68F761F2C2AD3E149EE252E7E5132B4E8B979C74D8DBC1D4100F38C71CB429557A4579595782DF12FF10C8198264110C2EEDAEBA30134A417AFFBDA2E4C958C261C3E8A01FE02EA3408D7912B06806E2C14EA4FBA8500ED502A9C55DC
+310
+567A9F283993DC09AFD6D82C95AE8800088644D6892839DB161FA7438083D6B73F500513BC0684B52E948C73A14913E3E7BB71C9073D6A64A8B964134E5CE701B0559F29BBD47CE4E5085993887679055E8A30633403A62F05003D4486DB3301BE38B23D536CD78052EE4BA0576A86A88325F4CCA27652F94D42D5FD04801A
+310
+C31A06A86A18BC9546ACD77A9001C46EB76B107ACC4D7580D9CF63512B8D95F1D6E1A66EF8C79510F4FFF2DC86C61310BE66A701E07733285304E4A52509F67898DA48E76C3A7728AB2C23A0DD33D43A2B4BCDED9A709F876F2B9B4803857B01E662A52B763506607DF1C7FA45D7CCBA14262F4D9477DD6028EF9FE462D5A0
+310
+9BDE3CD9A5BA790A541D6457E187D15331AC52707C26FCC97368BCCFEBF02C9FE399CE46B875D61F8214DB470E25D787A82139D31AF4B2A2DAA1BCBD18721900E286C5D40C09C45CF5C82395A26115CAC2172324BD08CC19B3AB4E2E06405525B9E54BDA262B29446CB12B0C00358C7658E8C388425D5C19B163AADEEFE686
+310
+D2F648D217564C09A9A7CD02F50119B2B9634AEC8E427D731D24BACDF2060008871476FA95069996BD6E9B83F7555ABBBA44BFEC32C42EFA101556C3F2919052F5084A85CB02E7FB11B1BB0ABDA4EEDE2371DDEDF36BB32FCB00A5EAC865AE6BC804824B4EF6B2D7CC4A2F5EFF8D1D20CA7368AAE37F0100ABE5A49B8316E9
+310
+28ADE01702C0069BCA57450CE5F8E7037E0200ADF5537D22F8A64F2BB81154D70BDAD6ED2E02BCEB4354A05A40B2F5ED40EEBB01B09B0F8447633785C00500A494A6BF1B0FC80FB503A9ED95A4F2FB8DBFFA36A5507D0BF49664B987FE6FCB02A22680C19C557E6F0638DE4907B6D0471CFF0198B9F493E59F7CD600000000
+310
+49454E44AE426082D0473951FD57516604B113962CB22360005481F73AE0B85F504D86BE63053E2CE90033A0C45EDB4DE5F339063CC6CEBA3E92867E58FC186018E70AFC93FCD59E8149E177A1DF240E1838C91FC551B0A28815F08B19F79B7400C0F4BDC21F8FDC8C41F049C1B1E6401EFA4096D72CF89513D8FA59886A05
+310
+EC0563F403EAFF5B0E30C5A05433F94909DC62B591F5AC011F09705A16BF2BB2D6BEE0483D44183B5FE6F4EBC50BF90C03BC4DC69D6B5DA048D8704000C39305A8BAA8DFB0DA5C7C1C30F7D74F0CF9AC02DFEAC0041E344B03FF8DFBEBE56FC5E695054CFC0ADA0C99C27F1E88172BC899A02A3E826A007FDDA2D5BE5A7F50
+310
+5E04E6D3CB1E3264900BDDB64114FA75960BFA483ECC6A3F5E2F1F45A80A84B49DE927C9EE91F2AC0218611F54F5053A00E4DBDEBF9605210FBECE3A019E61C21D0A5EB4042A0308D317EB2FE9B75181239AE926E6E85F7656919FA8FF2AC11203857C4D06D544252C1D5A4403AE0B99F3C1FA87D9E083C185D83E21F03FAF
+310
+FD2D7C5854809DBFF874DE4CF4A3C2BCAF3980895B1CFF69F79095F3AC8602C71135A09A8212DA21D97680CEF43B4B45E4A2F9EB82ADCA018C13FBE012FEB0726562056BC63F4DF44427F61C0D08E6A11A0D774F384C91835766BDB836527320AFCB46B5B7D9531FBA4D87675A9059AAE2810BFA7FA3884DB07C4D6910E6E2
+310
+0F3B85981DF85406000D13570D1544E64EE58FAA010B2DA81D563589A6212D74ABF68CF02014BEEB7C7018E93FE6F0BF0AE1DEE6909EC51AC9B7BB1297E203CD815609139CCE25E54040B9E6780A9D98866280D4C5AA50F8760CEC8336B93B30A9863ED66BFA7F7BC62CD65A2F6C905942AEC01F2A30A4FC98E8677D811826
+310
+8AC580A44EC90F3AD10DCA06900B63D18437A5CF248136CFF41ABD25157830903818F90EA48B5EF17946FF173786738DC0FF9697F020C39F244F1421AC327B86786357F608EC24792EB1D39D9C39C8416DB3E26E2BD28003ABD2E896655CBDB73BAA43953E0CE70B3C9C7B18A77DD951ED33C1FF72D8973D485C2F4F59AC5F
+310
+D87FBF32FD8B5DD685C25A32683A6CD37A215EBD803E80676B270DA004900F79FA406BFAC2EB900A312450DBC237973263E26A3CA49B6FC8FC7331F98779ED93D4955820E4BF165D33F999FED7F1E2171FD4ED454EE39328C2585E100F4239F43AE4ED8B16CFE594B86CF13DC46779C467B5556D2B0FCC2792AFC7BE38FA39
+310
+D35F15BADF94197BC7D4B0E0FC0BE9E5ED2B9BFF6F7F78153F6D2DA20996CFE517D77FE137F06E4EFD69171D22DAE91CE2C917AD2810A0E41B9012707A6EBCFEE6725D139BA54831FA47E88A5F39FD953E30462C8641355F7A4FA57F86022B2F5EE9A6E77329D0E3157DD2C9831C66F1C9BAA69598019B0B410330B8D273D3
+310
+2998EC62505B727D59C96799A35E6FCA167FE1160386B35E7C32FF69F14F67827347940BAB4E8875210D7D586915E463FC8A6F69638D3BB9851615F7AA97A0A1E582124594200196C54D62ADC4651B6F49E0E38A5944AF08B5A495C23565AAB75775F1192CA0880A2FE80FDA0FA8F301F3527A7D60BA204F228AF369D5FD0B
+310
+EBF2163F9C56C8B850AE5FDA7207265F16718A99E034F4120FCC8C51FE88AF6126AD4EB9F4A451B29BF5E563DBF7ACF61967C39F96FD0903BEB56C1F7F2386A7B4BA6D943C6F8AF7B33CD7655AFB7461F097F53428D8FFBF19901777F20277D34E22FE55C59F7ED453E6C143082DF915FD26B4A6D12EC57074329D5892ECD4
+310
+1E7B6D31D6BDE18F1900130818CD7A97EBF6823EEE9CFCD7F4C73BE0B4DADF2E65D280CC1BD5796342A674116B332DCA7402752621A43B0BF0E9186AFE04B795CDB211AADF9DD3FF28142C9D0FA9F1AB2F7E34E4CBFF4B37BCDC1600755EB0C37C5558AEB2574A74C1852B0541996D766502353F78524AC59AF3879B068926
+310
+F951F9EBAC9F49F1C336ACB771D32AC9A1F0428E5BE54948BC41FD869E2267F16E5B249A7F34FD6ADCDCCED2FFCC046EA7FB442EF423FF1DFDE56648F9828AE0AD4B6FB5322821B5C0307ED31682B07CBB11A5B2C86D99A9E519327460631099B1F1B8314FDA8ED3A4CF5527BD74E427FA5543CAB4F8F257CD13130732EDBC
+310
+CB56722D6B6C0CBA56AC7C02D66A939E51BF308663746AFD0FF1188A095C0F8265F8F75CFCBCAC7D32D1AB1408ED1C935AF31C7C6A6D3432076BD548C0D87ECACA55FB0D113FB67F1F7F322AC3B92638E2401AFAF13ACB69423F4A859C93FB8538106C4D8DABE0C89D347EF0C1858A844A9943868C9A486CB997E59E398699
+310
+57E5904D275C7981BAF34B837F9CD37F89346144F82D0B9295A806D84A1722A22670A8C0118B6B4D7E34BD8513F8E8F3BE4B2AC29FDCF22577BEF5F28F4D229C28481E26A9560AE5E1DF2C05E1D2BABCD7DBC5D7F46EF05CFB4E23FF8CFE23F20BFD3A581E345A943C8347CC991DE50A695F77D1C227C41325B1146A5DEE0C
+310
+60C8D2003EB90E953DAAD86DF81E9F1B0C1C6780C8A53F8D4EAEE06FBE70DEB9720605AB1651E1279221B9FD1C0FB9014F46D637DEB2F274102D5F5915DD870BB346C96A0480EFF9601DBB3677A1FECDFCB26E59A5A4E94903FC8F3120DE00EB1B1A70D51C228D3F166BF7D7C5BF5556123B26A21DA86E73EDAE610620FE54
+310
+3A7CFCA1098C6ABF69D6C7B4F175348FC2946128FE8DB8468013E9F89719F03D0CB8B8DB56D022D2B9F8D3D08FCD5DF2EA51CA960D69898A12B7FBE35ACF8D355C17A21E39ADE46AF8A6FBCAE6C6A0B9F23E2D0DAE98B6D303C13D48873B1EC4FB3D5A98F6BDBEDBB1D87C9BBA531C59F4C248B37F1AD5AA3A3ECD7878BF63
+310
+6D3527DB9CC6055C794BF940D4BE1C4E55273A61F3552418508AAE360C6A7FBF32F96DC034ABAD544D59CC73D0311AC2E866ACAADA4837FB2D6FA733D2C1D82314EAE1C106D8CBB535373448DC1B4C9C0CD5FD4ED15DD53E31CC6ED0D085937553411AD402637A0D30E7F14CD3EE6F46BAE23F6CED405835E4D9EC0B174365
+310
+9339CF58C35F57FB74E16139ADE2B7DC37C640EC790F500FF19BA693A1D93718EEAEA4B87D761BA59BFB07C49FD5595F2BD4D9DF59FE1300E95AC89B317BA659834665803993193B0F1E2FC40028B73B79F205A8271F9AD39857EE7B14F86F477EDBDAFF87F7564AAFEC05A22D742A62927FA8E1AED580624FD2B9BD45470C
+310
+652EC964B247E9EB19B8C1AAF625235FAE2F7E34E67FD74C78D55D1467FF0508C3CE9C7A8AEEA849B129D605B86F94BCB899443F7F5E467EB875A12FFE54E23F61DD03EABB36433399061C3EBC6B0D6C7F65CE54D5F88092FC8F8A5F09FE3098C7772F9DF10626F7463BCFCEBDED5E82ED661AEDCDDCD9F3ACA75546BEAFFA
+310
+5E15FEC2B3D9EB53DE640DE815E3C38ED56D3E907B7127C1FE060AD1FDDB8587FE2E1A5FF00355BBEA3580C1EDC2011EDDFBE564029FDF45E98C01A5F6C3EEBF8E7E46C96FB8ADA33EEBB86867E3D753426F27B19C18F911F79BC7FF014D61FC161AC10E160000000049454E44AE42608218349BCD2C1022433D3CE4A53FE1
+310
+D2B9A4103F02A5D14F3022B7BDFD3CA5438A3ECDE446209243A4AC03588516C83E030419715315B2DB756075DB66DF600C6E330118D6D59E2561BB8877C2CDA32247D4651CCC6B65162B4A75E798CBA175AFB1218A33A5749E6EE04095273EDF8E4BD27A692DDEB75CA7E90DA6455B9E521FCADFD1AA933224AEB94DF572AC
+310
+3AF6FB3AAC751DD27D9606734FC4900E5FC2AF6D49D2B32C82D0DD98E2DB4AA064581B8AEA57B9DC5D77E565F6F5983F0807C8BD6F71095152C502FAD7DAA0344A67659F882553471D25336853B538A4EB80CFFC94CC7D27A9CE72267182245FDE2943E558307C8DA73C39DAB9644BC2BEB47ED30C6E1D1B3103323CE600E4
+310
+C0504F15036C2AC6C862D10E4329C7C0F3C80F8CB287841C821DA1F343945939CA43F5F63071808440481788E26607A254ED4EA07CC093610F8EEAA6DD68DD8BE3B2BED1F8E91C149078E8F9FEF67EB208F4D48FC7C3D3A095DE4BB58B181012009341AC43A11DB37E974AD01B6E16DD96B5B02A0BAE2A92962BD031A2441D
+310
+206FD71B716EC5B056871924B82F3A1804E0B808A54A4F183D0375D1BB06BD0102EC4CB269D9493D51A2BF1D296699B8ACA07BBF8C85258FCEF5FF45D805461478B463879C612C6E5C741D3A5FC027B4040BA22A3E0E8C61BD7D5B18DAFE032915EF025A71D3955EC01516BF8616F1ADB3436B3E7D772AAE9AA2C52EB26158
+310
+D158C960BD0C603487DD1468577BEA52F9972D413614507780569D82846FAE6B04BDCD33B59AA31340FC1DBBB356136FB10633E095A63334AAF66D79276B46319AEDA54C2EC8664F898EA15D5F8C76706E7C78F091912BC56A82C10152100C5C3E9A06016A2422CC447E35A3D0C665D9C240BEFA09264850E7B9876F88987B
+310
+B2006FD336A201059505B275C8F3A68667DF52BE7587712DB9140EE85F06280835404E6949ACA3ACC9863BAB3696B22ABB3ECAECAE7860705CDAC603AADA968B89D077F301E96CDFF498EFB7D1F972FAA340226D8A7BA619E8FDB36717817ABF345897D22C0790DD036463207287BB19E849F7D914095200382936AD80CF63
+310
+9A1E0EC27E6C1C3530A62D42A6C8649B00FD5FE66FF612F3A8F5A2A6DA870920DDB52403276A8ED0EC8FC51D31F0EA1E3E4DF0D5F9BE844E5E5205596C7D1E7BD019A63BD2DE90D3F65AEC21E4E7AF471AF94702CFEE36B7DB53E82B56C0B1FD478AFB089977F93450E8A68FCD0C8E24A9DD9E81E72DF6F6A5C2A8A19BB5ED
+310
+9FCBA7D944C8B7AFAE03E26AB96BB0FB8457A68AB3D2FE0830D17686DCE0B1A9855A02B7D6757725FBC30A84AA2AE0C070D7442402EF4C00A8777518B07300701440015211D09E47DDCA8C717E1A1768ECDEB30D89251B65EB088B9DA2028A87F225D0511346210AB0DF684B111B2C2131EBC7802A01F660050A0E0EA8A3F1
+310
+477B20BBACF7B6B1E1E314B78394A834D965204015532AEBF63F70CD83AB9E1738DC95A4A8DF32D3D0A07B3F2D15220CAC8AF105962D99AC16944927AE9F2654644B615E9248AB9D0AD5351195914CB6852EC5EFB12758C8EB8001E23B756B4F87F68D2C92DDEB7456973766C8D7AF8F8FA62BCA910B352B00352C10710AAC
+310
+E535438F5C9B40338CA0106A6A9CA2A3689190145BEB6648B23920F8ACB6C6705D3D4C71F37F09058E5D875C9DFDD2AE7FD44520A53743EAE00A55E415AF764ADF01F5CADE7391B41DB5E25EAE5DCDA843E58024FEF0EF4E806A7786A5E903D77CB73BBDF233F35D719303856532D4DE809FD469304A10A688F95D034D18AC
+310
+22FA8D3341B774B35B6CA28B57131166023A17CDDCCE9DA45C905D9D81B597EC36E1B80ACF0B44FD3D8D4D1FA8BB0A21C777AAB48BEB1F388C827A302AB1840E34CCFD61636BACCD71A53AF6024D633B60712AD364936805AC49EDCE40D214E19B18059B20014E2583D62A64486BB1481A5845FCDF0BB24F113201FE41C71F
+310
+F36ADF8CCFEE843FF2FF1F7919BFC66BD61BFAEBFF7199F77FEC734804FA9577FBF4F636DEC77BFDE97F61E0E68E9B0F6E90FF0329864341FDCBF7120000000049454E44AE426082
+  0
+ACDSRECORD
+ 90
+        0
+  2
+AcDbDs::ID
+280
+    10
+320
+1D
+  2
+Thumbnail_Data
+280
+    15
+ 94
+    11861
+310
+89504E470D0A1A0A0000000D4948445200000100000000B5080300000087DCD12600000300504C5445FFFFFFFFFFFFFFFFFF0000000000000000000000000000000000000000000000000000330000660000990000CC0000FF0033000033330033660033990033CC0033FF0066000066330066660066990066CC0066FF0099
+310
+000099330099660099990099CC0099FF00CC0000CC3300CC6600CC9900CCCC00CCFF00FF0000FF3300FF6600FF9900FFCC00FFFF3300003300333300663300993300CC3300FF3333003333333333663333993333CC3333FF3366003366333366663366993366CC3366FF3399003399333399663399993399CC3399FF33CC00
+310
+33CC3333CC6633CC9933CCCC33CCFF33FF0033FF3333FF6633FF9933FFCC33FFFF6600006600336600666600996600CC6600FF6633006633336633666633996633CC6633FF6666006666336666666666996666CC6666FF6699006699336699666699996699CC6699FF66CC0066CC3366CC6666CC9966CCCC66CCFF66FF0066
+310
+FF3366FF6666FF9966FFCC66FFFF9900009900339900669900999900CC9900FF9933009933339933669933999933CC9933FF9966009966339966669966999966CC9966FF9999009999339999669999999999CC9999FF99CC0099CC3399CC6699CC9999CCCC99CCFF99FF0099FF3399FF6699FF9999FFCC99FFFFCC0000CC00
+310
+33CC0066CC0099CC00CCCC00FFCC3300CC3333CC3366CC3399CC33CCCC33FFCC6600CC6633CC6666CC6699CC66CCCC66FFCC9900CC9933CC9966CC9999CC99CCCC99FFCCCC00CCCC33CCCC66CCCC99CCCCCCCCCCFFCCFF00CCFF33CCFF66CCFF99CCFFCCCCFFFFFF0000FF0033FF0066FF0099FF00CCFF00FFFF3300FF3333
+310
+FF3366FF3399FF33CCFF33FFFF6600FF6633FF6666FF6699FF66CCFF66FFFF9900FF9933FF9966FF9999FF99CCFF99FFFFCC00FFCC33FFCC66FFCC99FFCCCCFFCCFFFFFF00FFFF33FFFF66FFFF99FFFFCCFFFFFF0000000D0D0D1A1A1A2828283535354343435050505D5D5D6B6B6B787878868686939393A1A1A1AEAEAEBB
+310
+BBBBC9C9C9D6D6D6E4E4E4F1F1F1FFFFFF000000000000000000000000000000000000000000000000000000000000AD4AB4E4000006904944415478DAED9D49969C300C4075119FCBC7EB9BB0A96BB0F232E955BFE77D0AE3419EA84AE2412EA1D7AFD34D92027D346300BE990B7C7FFF622C060030961B8007A058093F00
+310
+9B95940006F0B7D6A3C9DAF5A9CBA95059AD8F07F0B60F7C1A00E574315F41D554F38F0740D8025E44E5FFB6FDCC028ABB9B09407BB15B846805C0B1B400EAC0E7027047A1ADFAFBEFF61640D90562004288DFE77137F109453F0DE2DDC8A7FEFEC461F5350F004EFF3C62F10020A51032ECBB09006295E075FCD99DFE3900
+310
+F53100D29487F7E3F587665980AE05140058FF670B00E9FFC9006ADB04D69F2180487D1E0064D8B627EAF700A0AE01A8E1002484889FE9DF1E80F9C43A80CA4CB02300291D01518F0B6D01FCC350B42F00F9B4FC43BACE03A88DC4EC675AD58509FD0FF5C8A5F94C10D40B0B1907C029EEE4D1F86CD7005CD9D558007BBC6D
+310
+14003A1600730008EC771301885900F6209046BFA1000078BBC03400D749B03B80B78A909E00DE9D4B7503E09AFEE3DF5919A13A1D0B4000FC9C6F2880C93180108082F30D06D0ABE5A16F0192008062001E04E0E880395B809901100190EC7A9405480A166097469D7F308C01B0A1EDDB842C20A701505B5A78FEF8051403
+310
+01200283016CB0FD3C2502706C180D40F0060053FA2107007200A36300A87019C85F2BE60620AC0319D5149C41504D0570212C0024A6104F0619023808C8C100B6330F900120F105E2A100945B8537134044601C0015EE90307200D8E600C035E12800CF2890BBC0360B00089800E06901AE0954FEA6995900C46800E06380
+310
+D9361B4020300EC09906DD5291D305E60180C100EC098F5D404D0B82809B825103911FEC02260D6E83E6014500301CC04609C0C0BE3803A0260228F743AE31EE0C40B9B81FD2C0E84A30B185330CE836B705BC0270D60169253817C06E960C0D0200E750ECC77E7703B1A90092CE78280033129C0F205E27DF19C029C6F19F
+310
+DF465E1DBE6E8B8603384B202A0024EA0A860088D7CF4F0770AC1A9613004CBF75365880F4AB474701882A92E92E807CA02380C98BA4DEED0BBB0178F7606E009300EC535C801300EE2EF0AAEB9E07E031622C40D402AA8301E00100AC05782FF04DF10D8027808E5DF112007A76C5F401489C0B190238AF94F71B0B5007E0
+310
+6EA5167C2D40C63EC03406700610B7447C0108E600E006B03307B00BA6007A0F056803A88D059800C85BC20E97CAD701B07307007D860237801BC02A0024BEAD902180E342B9646E0182790C90DC01C00DE0067003B801B004D07522B00080923CF80080E85153BAF9ED13AB01683E11B801AC05A07D1EB801AC0340464F5A
+310
+6A0740BD4B683280E33D331D4622641EAEFEDA02D040A4AD055C1B01190B381EAB603F06D701C7E2C9F3C5345AE7EFA9890F22F91BF39B52891764CA110A82FEF80300A35306A08840D700BC888A8400EC81807D17CDA9920380ADA204A0B425B3FFFAEFF3010413000F000A004ACA5601AC1304B10F1CEF620CA7FABF00AC
+310
+1304CD9A611D00686FEA7500212084D88082C4B1FA7C8542A872991C0A312D0E023A555BA358B93A802CD4E541309C7C6C27C86A2C806BFF27F0DA5DBBBB5DA054570290A641E408454759C502F0DDF4A11F2EA4F5A40AC0269159802F2816E8056A00CA3140A37249270E1FC7455B51D14F83C805A234909DCDE4C49701E0
+310
+C8E800BCD72E4F070008C0590AEA4AEA2B26FE384B38282F47CC845CC03C7A399CB9D4A3F1997F0100258557374F530A82A6218E0140094092FED220B82E80638580943AEA877512EA4B750094EB000F00AE1F694C038039DC5DC8278033F8A9ACF3BBAE04932CE0FF9B2ABCC73702A00801082FA241E7A518F37421E7C5D9
+310
+61A59118F45C28A6AC36BA20E4D2608FFB07DD29D6B583A69406FD9AF9A600E01A00A534D86389C00D6009001D5FC5B6048070107BF335028B0138F2801F89B104B0770350A903A8013057477AB800E9911806D0BA14509567D99205805609B40440BB1B8C9FAFD7F60983EB0190A2B105A84AB14168249600687A1FF512ED
+310
+70FAD871D11C40B1F00432ED70AAAB68EB029700A8B9C06901A24B1A5CA30E78EAAFECB304DA59C09551D0B300D5360B2C170415340770116EC804C18EF380E4B35222345CE0E145851F1F5D82A02219049B4FC2220BA805054216D04DFF520C8817C84C8D0199CBF70140370B542FD4B67501BAEB0407BC6987762518BF7E
+310
+14A00F80179415A518D0CB052E76432B0B7400B04629DC11007E91429C70ECE64FB7805A6FA56856823D2D2037FDB8F6C0003E506A00D417130035F93A2401C04B0A167003B801B0941BC001E01763310078CB1FD8830113EC52EA230000000049454E44AE426082437385BB63FE2201822665D218E23729073929A77E40FF
+310
+36665EE482C2C29E446061F7EAFD5A0E2DBDBFA74280B5FC473EC62A013DF4A93FE73ABD039DB1E912D37DF6EDF22C3CF4000710618700DFD2005A3C9CF796B5074DCFB2DD028AD922DEC8DB82C250C26B9FCA2F268026DE33A59D9152C02188DA17CBD9C1E7905B55201F13D1ED0E394B84A6D66D4B7B7D9D009CEC04ABD6
+310
+070A44F6C49900123800A5056226C6011F850B00CD5BF179C8CB07D28F852CFE75A3AC57F2ECF9216FDFF021810B2526BD2A16403481497F9E3E7FB861AA9039E0ADBDDC41FB9D1040555E93AB43F582E5806F68CF26495E15261DBEF7A9D82D2200F083732AABC42EAF92770068F94508986CCA016CE2B5CFBE14E67243CD
+310
+61D0403F9E7F5C7C28BFFC0322E0D43D71471173831CB227E863360AACA8A277D47EFE955EDBF6BABCB61751E715F301A0AE92144D72EECF986C7FC65C68827C28908CBFB1F2F9515EE5039E2F00DBE78EC094005E03FA2305F290202F9A26EECC9F1EA211174F1CF061690255000A88B7D51D9B47E39C8A86F9EDE95B91C6
+310
+B58A00B364F9FDF9F27C4141BA3CFB6DFBAC2A3E258044DFA6B671E4B37A1F401CE09A0EACBA98149CF8D51973BE9A13A1AC07858AF8FCC6DBE65C3F8095F220458514DD989B75E42341CBD2E7604C765133E95E0E707C63D5EF711342C416F4ECEDD4250BC68E10B940A8BD1D13A0E6F948F2C926684DD7F505E7EA57859C
+310
+DD907237F281EA526C7E3122F2667A57608FE84E1DC0952C74CD5AF5D9E58904C811ED8D393D57E6381D84E4D8C4A5EA08201C807E6D8089A1EDEA81C307D68CA3E3E8ABFE7C0E5D453A940F491D0126C7FE911F80262C1EB23CF61EABD2DA8DABE225A5852A1F9F53346A5CCC39D207A0B6977B7653093346EFA07ED4EF87
+310
+AC912BB34BA511314380871C2194C7D85BE32EADDD9873374920724C3DB9B764E089004FC4015578375111E3F376F17777EEEE50737243ADF8E0AB60EED412602EFA1F11205062C57265348C6FCE81C261491E4900446180546830EFFF048B31291B97CB7B53DEC329F47942EEB1135A12E9D0142E1FB251942D4CE9313FC0
+310
+736ED0823E2C53C61AFB552B809A37FB6ADCA94A09F8FCEE698156371838A07BEC11176179ED50741B1494CD8CA0705C8F4A70B48B1F7A82ACA5E3A132088635251A6C6A0F6A1E4038C01307E4C51CA312C04D6460F82B7466EF90959EF9C25A354BEFBF3A0E106814FFF1B915E02725273F0EC9D96BD2AA8CC9092AF73311
+310
+1853C32250BE780AB03CB5F773BDCF3B377364D5DCDBEF8521E56ADCA5A902AD958C8E00E6E07F7E8D00CDA481714FB4784FB56892BFBD997089EE820630B09593C03CDFE29FEA2D6EEAF21D0F31F706778447D45FD0216B8E2C20897224C0CFEDE760FB5CAA7FFF50048A6313DA2D804525F4FEC8CE75147C871F6EB79841
+310
+72E4FDB2BC55C3B951FEACD7018DEBDC0C8B92075249F1319F52415362E5C37EBA9F18A57604C06F7CCC017CB3350357B313F2B90A1E638004B45269B6CAD989CDC7DCCAD2A2A1AD7E7548A4840EF957BD8460D17739F711819BD4246C4AEC9F13C0E27C827586CC47D1F5D3959E7CEF63F4EE2EB62C89AF5348D4105E59A0
+310
+25D6067B0B88F26454D049B056F3A34A80F2CC23013ED701AD326A6FA961030894E3314EDD3B236D2AF4480049D8F98D5040943BAEA5E2CDB911753A89B98DA610CE8B460CA75A50A895EE2480F1773031AFB9219FA3B87A0036EDEFF75177991BDA5498F08BB765B1A5D25D936F14EEC334F21CB029356E765328E5502862
+310
+2BB0DD4300CFFFB35F27F68D113D361D2B2EE36E13F4FD59C48F22D17D1BD5FCE072188D0EE639A3F1465DA71F017AB8EE9D0440EB27F96AAC47496D6240EB55FD0D6177A67CD97340F5DA81B12ECC02F21CB0B93C14942606CD4437A6FAE0CC2D18002B586FF0110E30860C242B336A9A8ACE803DE7A174D4F25392E22D16
+310
+89BF5528F054439AAD3E4C3C0402CDFAA84B688F965CF1093AB989A214654507FCFC8704E80A3D1EF2B9ADC59AE76EB1538321AAA532ADFB2E6FEEA995EE8E7986EE6B3700AB6CC610DCC171B66993A2BA82EB09C0DE0F49DF2704E86D0AD623DDB9B751CC202157CA610F758448AE02884F2247B720050465B08D21E02CFD
+310
+3642A52D68EF83548A739603B6D6215109F0F32B7E40E5A6B3EC28BA6E7BF59463072C41A065AA66507F7259AA0C6C9D18CFCC19983CA8D3D4B1B19DEE100609AA4D6251264009812622F0F3D35840AF13C0E793DCB00443890900B1653922E14D356E035F058B4191ACA4A7A76F4D8336928CC6E544E7229CD8A6541B010A
+310
+076810B8D5A699532B0030605E034CD8AC32E83E205632F75A50247905E6C6D4DCAB161A6FA3221FD0316C22C6D857BE84633628BF272A4EE581035CD501F47C9F12E0D77B4A7D1DDEE7798584DFB29B385CE58250CD08FB17B7DE1BBE525B98B74ECA89D13453104C65646E1F51CB8D55CBF2EC20AD160A956502B01954A8
+310
+088BC039018C30AB110AA3A1B6D9BBBD59B32465D59524A0DC495A3D23FCAC66297AB0E6C654A381572F8673097CE9603B64CCF10B802F1F45886E5E5D250A87F5C07B11D83E5282DA1ED425068EB2AFCCBB377C04E7C049FF51DB1110B6316676859B1AA88866BD69CC22836F41A071818FD6F1BCAF883416DD01A9E79610
+310
+B122B02107FCDCDC57AD8074AB1DD356AE72407B5FCA0C7A58A9D9244701DD931F908D10486A88CE3170DD541CAE48F82451F76148944C28202CD38C4F40CA33EAA412E0E73F22C0C12A39084390D79DC63E64E30806BEB24D60921465B855B19AC605BEB99CF934C6EFFFB142986D30CEFA5B3EFA4880EDEB1C70C8D6F7D0
+310
+3DD741655B775C56986284359B72A19F874335309632C2981ACD27C6D7C67E098C428A3E9B9EB64A80ADEAFD6A063ECC071C512161A805D837ECF6CDC5F0AD8C8FA4B0398AFA8054DF438C4F1D32796FE5C221963804B8537FC11928571E2212BC652100FB01A327F81907CC92958A67398840678BA8E58CA5210A0650D468
+310
+230052201A020CE578375465A739F0681BE56AF7A825991581F292DF6B42EC6B3AE0D0B678888DF691562B756FB02454447F8DE8370EE991074091406423201EB9FCFC6FAE3F7AD7E189B504332500A504DD1744A0E3C4E0CE52D4CD11D2DBE0D8281A581DE296546E36F956090A403D8C4D6362E8157E18EAC27D35A866D6
+310
+E32167CA3F3C54867ECAEF9BFB4A5DE0EC3066B140EF1AD07913F82DC76648BCDE5ABDFE42D5925C3367D48B92523EE3FB8979762A2900F9E0A8E70301C405DABE561A1BA274EF461FB0768FBB5E6CB1A12771F3A989D93D541DC0DFE05EA9D06A254E7F107AF4FDDC0C76BDE55CB8703D967B8213B4F8F94FEA0207188069
+310
+9919AA57FB7048842C584507DA7A95B31C40147813169062118364E20197EEFAB104C3611F5015EC8F276A983812A0EB9CFDCC1334B19A9F34C5B8CE116AE9032E14613410B33EB7F40BE4CA01D93DB13164023853769AC2256640ADEE9EA2F19E8B72492700090B12F8D40A741C30D109220243AB0C75AE508B770583620B
+310
+66361A5FCA0E8B949AB7D1D19CFC3185AA8DA63A32BA11754EBA1F26E76667CD60A7993ADA0FCE0B48B538F1040E2CE6C4EC7D966A59C53CE605274884A617DCE4B3DDA9477C2C0458A4E6ED3DDD0D93EB3FD5C9D48B7CE2A21FFC80CC6D6D1810AD6210CB4F24F1858C92CDAC045CDE4ECA3BF9942C13B070E41A8E46851E
+310
+EEC509F6020D8C37CA1E4ED01863D71869B3956BA73C8525760D4E5D6660E102F47656E23A01691D8649D4BE9ED6D200FE7626029F13C0C4B7A0D34F7CCE93585875803583B93EF60AD2E5C8E871C548D50758DED813DAA6B2EE3E00EBBA01B885BF52D7DDE76F777380B15DA94DF3F0B338357719A18A280369072373485D
+310
+88A8157B0E40C6E22602631A5D3E578633EE8B9D02ECA67D14213870C0D70890EC69C4EAFB1F208D94842B1CB2BB991288E29D783486F87F520E5000F58C3787C4C72708086969AD39D9B5F321EED60129CF67FBA8B56DE52CE6F57DB8AF1A90506E1CB42D66BD7E9010A1AC40DAE0C4019F15CE94D60964D60630A6DAF8A9
+310
+7712004E71377DE153DB5CF679FA80BCBFC871118D3DE9A6AABC96D3C61C2A2C2D284E5BFE4419CE5222850D57BE93AA709DB4DC3FA0034E710747E462EE758035D2E40C1601E0511CDE5EE9556BB0CB5209E0B67CEEF50DCDF936164006A024E08A13887C02CD437D83193CC8221CFDD0DD9D811AB4875712E5F64DAF9B24
+310
+AF6169A892ED733F08AE8018995AFD907C88C81A0F3F02FE2CC8F713E03C08CDC7AF0E7E408D5185082B91007C4F001422EC22CD4BFDF6361E371C6F03721D1F6042361E7993211AFEBB5B04DC47BA77F2AD7D508106C9A13023BCE564EB6B2C02D8470BD51D7479EB3F610840B20D76FA48A876CDF738EA474560D081F93C
+310
+2D7ECC543619016E3C88A9CB2562D3987412537AB06248BBCF845933BD9441A36B8D9D513CEE28DDA712593E180B7CA47F470E388DD4EAE9403F4686BAE69002D44F137B11B0C9159ED0D3A562C545CD435B25A878E88F7E432C3045308F7FD9B33BB1DBB6E318AEDE66725E49D53C5188B0A86DD96605C8164DF41C90DD30
+310
+E38A8CCE0A2D87058F10C072FDD09F36D2609F42965DECC17C0D6A447F3001043653CBD9C3255A3DEAD03B916CFBBCF48F1103A81A8414DCF75B81632DD299DAE0D161E8326560338AAF5B3BD16511C4D3D10C1EEA03FAC775AC56E1AF35D6E12F1EBE41099EDBC24EDBED537771ECF6C9D7140D0AFA7533E33196962EFCD8
+310
+065B09E0A119D45229933A1C37E3379CF1775A810316A53DE04407B80978D8273048AFD74DFF35910C182BF011FF55F2A79A0B6E18760ADD30230F94BC806FF4030E8119507B4C1EFC80A9CFDC3A19B3803AF0465F6B6F56B9E165B1E501EBF79D6409EBB820864CB5E2AC4395E95383C87C8B2BDCD5C655A3F90A1AD8C77F
+310
+140A856EFA9BC3BC608B5D5F5B973E75D5D1296EE63027C84BF35F82694F995425724388DCC701C7AB8EA864809620D9A730A770EB8135856B9D6932E7AE8139889E31E129CE31E4B61E7A70123357C8B535E331333801E75A0A40B6F800A7ADC49C09CE8A2D6B578A29DBC18BA76981ED00CE9FE8009841153421696172DF
+310
+6505EA1051774C48EF795A4EE5E63D43455FFB8AB0F1A1B878BFD816D24055D359EBEA9094592741161DE0E6094A478DFCAD3AFC000146CF96C182130D7D9C2B3C54B06AF785697788BD29B004C83C7594D38A934111162D7F743EC0F4F93C1C0B748DBC904FEA16FB240C88C75AA634A11904226B42689E00A6F615411CFB
+310
+D8D6723F8F37773326CD3AC6C07DA71F3047F44EEA022D5BE62698325602D18435E40D25F5861DE735376D498A158A0179181F31701A63CD82347D6BB7677ED80FC8B94F559FF845BB1B9B7B3B3841EE462D673BABEE55A6CCE5274550631B45D4E84E07045591E7CF1846BDF168962014A0A19A3A91E85B38601607F51A62
+310
+CF79E0801ED657BFE0CA0D170C9C12C0F158D5F824CF0F5B75EA564DC5EB2C629B1454742DCD22A0313441E652B6373D5A1BCC1FA5A8BBF2B83BD6ED07E3945507D8F92CA203B8502E12407D24B1024E07B66F0C501D494FCDEA8166D971BFB3CE3FFDE658600AE06AD5610B6A87387A2F3E5034506BF89A1591A1618505AA
+310
+6DD85A71054CD223CE470D048223D4D93BA850AE49CB250F70C0117E70DAAAADBDC3E6F6D2D0F922E221D143A8A0C05705D03A748691EB7526B260CE211E86E7E41130D24811647A9562F31EE68068CF194EEB54E40A079B173C4C5F14D0C23557903780EA007E12824A20BC5061743249DF6A9E98877902AD479731ED3441
+310
+8B048753EE0F3A42B9CB47009C152DF719A471508C2C191EAA33153149FCDADCDEA58264B6DA6FD7CFF2CD6607C9144688A090DC8DA27B3023D457324C02AE0DD0A73B9C94C6B0710112F4FD2E45343CBA93321BA830180E5493235D04E3CF8E105511721EE7B92AF6C24D476961186C06D73E5C17C87D47AC9F00147848D0
+310
+3EDE0C65E712A483DAF2A9BFAA4C94A3B418E8E4EA8D2D25E4E34447370CB1EFEBF2354151E5F05BEB02638B52EEF1018794CD2C5A4F383D30047EB422AAA404B9AB86744094AC489BD030EB8DD4E6E9AE0AC9E4B5757D782C2B3C69D219B2957569CA3E98FE78DA69095E0D0001A7DE5FB7D7B3C9A227AD988E0BAE185275
+310
+4B2DB0FADC4DBE254CCF374483C692C11970791F3AF8A09B10D25DE7EA9DED179E270568E8405FFFED2068DCD45CA78EB1FF98099256F92EC2375586CECAB556FAF661C5121CF93FD75A45D7F584F728CEDED286ADED1BC495C36638647E62363348990F10A7B052CE358AFD938E09F73D22301D716473BFBB1B51620E4EF4
+310
+05658683BDE4A63A20C7D63D10C597E1250A8320D20A24811E082A68E5BD3C752D1677DF84FC704AEC9817EBC059127AECBDB5EFFC42A0556234ECCDE320CD0B42586DE6B0E2246CFFC8AA7ACE8F35C1A8B32BB8DA98F99DE5CFA201578688F07E34B361E2BB94607B48E8472CEF93E6920AF84F7F5E6EC5FA5FFE4CCF909E
+310
+2FD7F2FC295C8ADB4AF1ABBFE1BCBD1BFA01664CAECEA1D6115EADAACAF8430E12A2C011992209A28610C587080FA5C5A7D3133B49ECDB08F7636EF6D8D54F031443B842E847E3AAC25BC4FB756C086B5AA7E1D31809CC95D255C36A86A46248E8AA8EAC13BDBFD10AD47D133235D91DBAC68676BE83FCF38035F03EB759D1
+310
+FAB05818589E58B7D38871491BB4AC5FACA9684D39E7DA1E47BB5AEADA352C47041A5548F303B607A2C1DECFEEF1189DD3B34F5296ED0A21D71D70042CEC180A7B8AD1057C5A102A10B326C50E98747EDCD5FEC6A5400A9AE3B54A89E44550C472BE77B8FA04EC609D1B1131970F1C60B3F934D08CBB3F744F4556B5E9449D
+310
+95376C3C0A95DA67381A2AD100743EBF868222EEDC8B16DB1CE708C9B7D53E417732061DE9FA2DB541A8781F477AFD88111A74A06C695271880239A61D716016D96D329E6E31D89F4D6015BD6BBF4A27C6CAFF532F0683150DFAC634DB175ED8B6410AB6BB6A83E2DC04EA00606E0E43BF40BF76A157872A02329888A37588
+310
+B5202C4AF0AD01EDB73A1046FCEFC8A57F6E09E69D2420C3EEF0FD573FEDA19828C1ED1F5B01E304A588103DFC15A0E3CEDD19FF609E3856A3E6728A7D86556B43B26C4B39A09FAF4CC8BF957720F2C167C604728BF2354E9F9F566E7E1352B4827F65CB5597FFDEFB114393127F6AE92401CCD6B7EA2AA9B7A5550EB73EEE
+310
+659BC0FEFF2A4B00E9D1B9358D2E398EFD9616C5FB94A03FCE2AB3D5F8ECED74CFC4D3E41A4AA3CE5AEB34A852455B89926259B412E89696E1DB0C1A50E08274FE6BF384B81F8B71D8298D59C2561CFD4C0B4E09F0E7E5122EDDB2BC6E622FC80236AC71225C5EE6080DA622BB633693B4B4EF8BBE1B81BD1C454312D7C70D
+310
+742869D0CA90B87CABC7C934897460224C3032C2BB97413EBCDAB56B9CBCD3114277F5E5E6A7EB73706CBBA0B47157424C7BEE76DF4EC032D6511A324B67AB4686898A1204A635815FB5359DE85F887245E8B03A490662F6505A1C97DA5E9E7D0ADDF1075A9F7C0B018C66D80D783FC3A483B5B30FC3DA8AEDBC71C27563E4
+310
+0BF7E3FCC20832A165A5D648F602608E26CD3A32E25CFC3F3483CC08C9DB6A5400330DBCCE10318AC2E73E66348924373660CA28197AC7DB02A125049C19A2A2637C935F41D7A13AC90A103570A9839B621ABE2318CAE1727BB9D5A7F11D4EA273840C4EDE41BF61D8CA441A721C42001C2BB2DB358B760F71969087BB52A3
+310
+2C9A94E5D8B987A1F71CB03D1E0E53C181F4818C687163BE741F9C9E61474AB7B858374FF61C20AEE09100822520ECBDECC35E65875D5D34631CE10307DC6706AD4321C35C00F501ADC808C3104C1DA131EC636B1BB5EB14017DA6143BBDBA49E26F316E974E586A1BEA5C6D49565DCBFCEF382F324135563FE08ED1DA2E1F
+310
+B70817F57779A169477234B1DEDDEE0EE32FFA32710775E6E475ABF9296254D68EB6F1EBD98DF0FFDCAF5A7174F2FE9AA693056ACEF5DB8092B99000933B6296EAE427CC0AC3590EB5EEDFACB3A02145676B698ACA5BF253B6E3D7B31B92CB793E543279DF3BA1D256A2B3C43EE6FF2FA3C599F6E09F2FD5E818985C3CED2F
+310
+A973BDA2F4B4951303DDA74611A27CDCD3B244DDBD6A50E3D371A93648F3EF294937564BB66A59F54E02D49DBED92CDD0DBAD6B1D040F618551D00E7BD15758B4CAE4BB3AF1851E178A56BD2D08FED20AFE233FEB1195B316D1CF621955B2972999A5B1265A097A90B7CA4FECE3820F25E1B29EF7536AEFCFF8C1B5C4CD758
+310
+3EED32D4DC416855AD98A2E6FE7821AB46CACB44079CCC092079F497E7CBA5082592E0920254496B55F4ED234FE8B3B4B899CBE6B219F0A671FDB3BF89ECEDE7FD5558A10BED74644BA805376BE44308813A68E68838CF76CF834F3FCAC3975F7FA697E78474E0F8459AF6E5D4C26329314667ADDD1DF4C0491F88F087DEE1
+310
+DE89004951A92DE0FA60F891E4822D1C5CEAB2D96D3650546E2361A6FD3FF8F8E50C9EAF986009FE72456A90A96E0B6273D62121FBE4F5A5293235B809B95FBA258AB8B8489790F6702E03540F35C3810A135CAFE5162F3F9EF3304E00165000D97658F42D71D8ED253DBFA45B617A4405E13227D402E95A5CB574A924A831
+310
+A89EF07EB47FFBC7BBC7735B267044C15A12E0E4E5FD76A1720FD464A1CD8D961BF4A672CFB79C9F2F2F3AF0ACBE7541854E59FDDA4F24FB0A68244A094F2FB84B90BCB195BF5B2E77BDF252AB809E4A79D57D8B061FF04F0980D98A2B8F4E60EE0D6DA1C108CAA04952014ABCF072F9CF8F1F1775FC02A1F8D2CBAF3F2E7F
+310
+FCBA785E1E4E8BF0CA77D3058FF112AE1E4B434AA985DA7EB1496E933954E5C88BC929977E2EA4B9C9B06F464E44D9DA76F5B51A882D0A45127E3CB3ED30E5F17FCC01C0A3A0AA3B1F266DBCEA0F6A4EB01887CB8F42FFE71716473C8CCB35FD5128F057F913CFFD72BD5CAFE5894251DE2F177AFB8FCBF6ACDB0683D07937
+310
+0000080A49444154DA0A02EC2528EF40AFE34F64785EF5E0B451236A3B01AEB3E3143AFB1B7817F8C9029A75F712C0C93AD8060D68470F16AAE16BD798E3512B8192C72124244439385FC8F072B9E01F17FA929E3D21818A2ABB94F75CCED433A1FFFCD00F8BA2CF51D04AFB8CC8AB8A2617523E3FD0B2B5FC100758244A6E
+310
+61B9496BD0AC7D16923A50B14E10A96AEB06E5042FEFFEEAAF54AE22A5556EBC3044F161689B3866EF35AEEB3102ED32D0B54EC32A782A2822C4BB1EBD340964DE5E067800F8C5FD044849CA17A61F2B5AD8384A057261CD07F4CEBF895F4AB46A0BE2403B37DB37081F2F13868A21AC9D239B998E675A30C19B3E0A3CFF58
+310
+7BD8742E09ABA0622DDA10957BAD40ADD50C651A99F7AF7E72DF3314B97BB35A82E24DD6DD75EC5DFBF7B6A40068E0AC4ECC5EDE0C01DA1EF6DCB2CACC0D51A28A44355BE7DA7697509795E2C2C14A80333FE033A0A43378FD43034F2D7BD90912DCBE1B4553A31394EAA047900519F0EE75594FCC66B8181607FAAC982153
+310
+CBB0356F38850E95CF246E7B9AFDE561B4F8A11DCC8E3DAF2BC36DC7089DFF2A983F19C029FB1978B1B2535FB0EDD9DD5A0D7DE922E2FE83A5344F5A902D40CA75EB246D1CC4FA5DC8A15528B7E9B2BDAF0C521A1A5542F5C9ECEE69676B83BA737CC561195CD823F0D24A02898C1965F2030D408F2E82A20E5A17B18E97EB
+310
+462B0D6394352B44C0D061986A6616A848DBBA5BF63408F8042D3ECD341E6090BB099EC00ECF426BF53F6417B99AB7724E4F166DEAF05BA81C808BC975C8E436B45E35CD872630AF1EDBC3ED5C613B8F5D3052EE4E021C135BE180D6CDC7ACF08AD362E26A0D07777ED586399EB91FD5CBD25930AD0CF2F4B42C8308B8A316
+310
+8AB5CE9C2555E8EBD442D5815E264A6EEE84045F9C26A7D3504C8683CA56F13853D453F54E002CBE7324655BCF1A05D482115CD4A6380766B9D953D42AF1306938F78BD632CF2562A60B41294CCF1F1A573C8610990E46A12CBCBA0436219245FBADB475BAF57A301D8B47C413E7A36E62285EBC4E99B3E1A796C9DD863BDA
+310
+AE573876E57BC689645A4DC4970363B581CBD7351CDEB6E93CC94F678ACE71B13034441B1D00698D49DB227D36BB51B9A084D21FD98D4319C0E16A545A651DD0386E5924591C2D5C7EC8331642275F91B1D06C016506BD269926C5E1AF88C02CF958115870ECEAE694189D3F7B660DC52B89AF4038969AAFA2016B6C0F9014
+310
+5BD48585D8432B6BE93641FC466A3EE8116B3C31F5BD4EEA0DC36A3A510AC17DCB1499B6F811BD790FDDAA252B023A4F3D433219244546436D8289DCDC28B04E5CCECCCB0856DADCAE53E837DDA301754F851D6F877E700550501786969C24051B4EEA02E3DEDDF38E116B8469AC3410020FEDD9B0ED7367DCCA2A8A2DA6BA
+310
+95D9319A28B46D7CA40464D8A2A29EB7A8631769472993718BB94101F5824E1AE2A2C0AD3A53ED3BCCBA8C29BCBB343649F305AE4CF97E8439264549F9E1114699EA65D359100EB829C18C537368D1021BC37D64EC36E380A477ACB93703D620C73E359FFB856CC27ADB71CBEA3F58BADAED4174521764F45FCCD1D4A37736
+310
+6A50677CC5B6EBC705B0EB11A3AE3ED0DE50385DD05E41621D5AAACE0E26685807A41C366295837213D777D4895F992A5BD373813BB3007ADEDBC90550E31B6BF77F541968B13279CADC3540C0A7CC0B29680E39104A9A810FF5FD43680DED8674C7B5992D193FC7076CF7E10483F4250A07F44B67DD2EB3F2FAEE36948448
+310
+05F52600142AF1F6852C4F8D8D1E5ACFD81409A84817DF75C119D5228043D09EE21C399BDAADED0EEE4C077E2116984CF74DC134FE761C902299F76A87514DEAAA0D7E96D0D09E2B473112D1A929E09E590E1F6B83BDC6915D486ACA0BBE365480DD8AD722E4890E180A435F9824E5AA61810EFA62CC2002955633CC12C4E0
+310
+AF35B38879AA2CEB47251658871420B9C44233684F192478AE5EA0D7D54D0213489425F579ECAD780027387A3AC1D5D48C1BC373E100DA29B1D2E9045B5680C0E0207A92401D1E351A1C71619B4CD9E05A00F5977077896FD0BA26029EB73BD39B936CBDF7A3FF7A2758DA763D197336D9F9573980E68622096C37B399C88E
+310
+782BAC692807A0E19BAEA095F59620E320A8291E72C50DB6481C6B17E898488BA07A9F6E5CB979D754D971E7990BB283D4D90527AD7778A5B57A1A09D38C8FC81E8B292850BFC44A109F441A605C3FDA1289AA041D158202CF05F1EA5C46466B794D35D5DCA1EF0637E8B6B98F272B9F5A01EDD093E8F66624E050B1160E10
+310
+679FB35FEA16E7B69B94661D00C742C74DC4B12E2C8CA2051957CAA213EAF9E6DA87CD98357502B14C2099829644FE68AAF8C756C035F3E303ED9CF4D629D12E577585336F14D134A753ABA0F3A5D90078C916786A718C3AFE41149F82C1D9D5AA9537843F045A7B1B7BFC789D6C24FBB6627B741921010FE403CC2A0D6EBE
+310
+009E4D80C858725FA1E5ACDD6E1B4C6BBBC8DAAC5C4AEFE99AE0FD9D006270959A030E0306993A2DF0775A51567CEABAAA14B8DFEEE6C14E92CDF1EA854FB88829AE89AEA8055E8F9CCD2E0D63016D4CF4D91C21A73540B23A89F710CAD1527B566CABB73905CC07115968CBB9329E95A69D1626206570D5EF649D019C650F
+310
+45645074F503782A08CF08F14DA032FCF1EB8F5F129424DA6696BA7C7D108C4F3BE0330FF0F358205BD3DF3925825F8EB063762625F57B385F931512945B80C00E5F6AABC822707F17A792D127A64D75754F86A641597D183FFF97BF786FEB25B99FEB1D74D95ADBA6D233BE1EFE9400FF0F5FA704F8EF6F4280B3D77FF135
+310
+10E0F77A4D38E05F02FC4B80DFF2F52F019000FFFB1BBF8800BFF9EBFF00FAE11195723CE1B50000000049454E44AE426082454E44AE4260824260829B6E3D01FE5EB70907FC8700FF21C0DFF3F61F02B87FFDCD6F7F7B02FC1F11D5598E67ED19340000000049454E44AE426082F55868C0BF05F06F01FC3D1FFF1680FBD7
+310
+DFFCF1B717C0FF00D3B5F19A1BDBB0840000000049454E44AE42608200F2F8E685F7AF01705802E03B7AE8A8F61480EFEA5962C0BF00F81700DFE5F32F000080FFFA9E1F04E03B7FFE3F4A4C6E44A221F68E0000000049454E44AE42608218F60B00FC992EDAAB3D01E0CF752D30E05F00FC0B803FE5F52F001080FFFE135F
+310
+04C09FFCFA5F19E8CEE1D9C107FA0000000049454E44AE426082860000000049454E44AE426082341746B07878C211F85D0062843FB7BC31123AA5DDC41902499E0AD6FCB8FC2EC52CBB9346F76B49D3844B4BAD403FD73E0FC0CBEB026ECC8A1709DA532C0C3EF5B718EEED3F371906F3EF8345ED25CD17254D20304F95A4
+310
+75DB15CBE8CED82738BE8171BE6C5ACB685BD766115B705EDC1A03726F669EE57CCA422CBDEF3C470C2B0C3867B3B45B48765AA7E040200FDA1C24399A59E43FB7294B1FA3582A8831D792BA7ACBDBAF663FE67C274622CAD90CFFB803940D4A6F22CCEDD198D75BCBECFF9E79CBB2FC2E9F11916A2158D30099CCAF378DAE
+310
+02F0277A9E96F96744A0F8333D7F4409FE19D79FB58C4EA2F1E767C0C35341C0733AE0CF05404C7F3F91107EF86B88C093003CFCF70A007FA5E7BFE99901F0D77A5618F06F00FE0DC05FF2F9370004C0FFFC851F06E02FFEFC3F10A2544B20F607C90000000049454E44AE426082FEFDDA0E73E60FE63CB128E6133C724D5A
+310
+D955187381331C98581876528D641A78EFF29C2D2BD1C46A7D760DC4AC9E90B38C159D2892FBC627B35CDC7F357B9B739D188918839B73CF580BC8F66BE795BBE51DA18BCAC2538FF9EDB2E98C08573C0DC053D9E06F01E09FE9F17B0028FE991EBFC709FE73029062C1523E5D14FDE702E06B0CF04F6402C5537DC27F7A00
+310
+FE6305803FD3E33FF89103F0E77AAC68C0BF00F85302F0277FFCE901F8FFB67F138710EEC8B20000000049454E44AE426082
+  0
+ENDSEC
+  0
+EOF

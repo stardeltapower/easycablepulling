@@ -113,40 +113,40 @@ class RouteOptimizer:
         friction_override: Optional[float] = None,
     ) -> OptimizationResult:
         """Optimize a route for the specified pulling direction.
-        
+
         Args:
             route: Route to optimize
             direction: Pulling direction (forward or reverse)
             friction_override: Optional friction coefficient override
-            
+
         Returns:
             Optimization result with split sections
         """
         # Get all primitives in order
         all_primitives = self._extract_primitives(route, direction)
-        
-        # Calculate tensions and pressures for all primitives
+
+        # Calculate tensions and pressures for all primitives (for reference)
         primitive_results = self._calculate_primitive_results(
             all_primitives, friction_override
         )
-        
-        # Find optimal split points
+
+        # Find optimal split points based on cumulative tensions
         split_points = self._find_optimal_splits(primitive_results)
-        
-        # Create optimized sections
-        optimized_sections = self._create_optimized_sections(
-            primitive_results, split_points
+
+        # Create optimized sections with recalculated tensions for each section
+        optimized_sections = self._create_optimized_sections_with_recalc(
+            all_primitives, split_points, friction_override
         )
-        
+
         # Balance section lengths if possible
         optimized_sections = self._balance_sections(optimized_sections, primitive_results)
-        
+
         # Calculate summary statistics
         max_tension = max(s.max_tension for s in optimized_sections)
         max_sidewall = max(s.max_sidewall_pressure for s in optimized_sections)
         max_tension_util = max(s.tension_utilization for s in optimized_sections)
         max_sidewall_util = max(s.sidewall_utilization for s in optimized_sections)
-        
+
         return OptimizationResult(
             direction=direction,
             original_sections=len(route.sections),
@@ -232,8 +232,7 @@ class RouteOptimizer:
                     tension_in=current_tension,
                     cable_spec=self.cable_spec,
                     duct_spec=self.duct_spec,
-                    bend_angle_rad=math.radians(primitive.angle_deg),
-                    bend_radius=primitive.radius_m,
+                    bend_angle=primitive.angle_deg,
                     lubricated=(friction < 0.4),
                 )
                 
@@ -272,91 +271,220 @@ class RouteOptimizer:
         self, primitive_results: List[PrimitiveResult]
     ) -> List[int]:
         """Find optimal split points to keep within limits.
-        
+
+        Uses a greedy algorithm that:
+        1. Extends each section as far as possible while within limits
+        2. When limits are consistently exceeded, compresses those sections to avoid tiny splits
+        3. Recalculates tensions from 0 for each new section
+
         Args:
-            primitive_results: List of primitive results
-            
+            primitive_results: List of primitive results from cumulative calculation
+
         Returns:
             List of indices where sections should be split
         """
+        if not primitive_results:
+            return [0, 0]
+
         split_points = [0]  # Always start at beginning
-        last_split = 0
+        section_start_idx = 0
         section_start_pos = 0.0
-        
-        for i, result in enumerate(primitive_results):
-            section_length = result.position - section_start_pos
-            
-            # Check if we need to split
-            need_split = False
-            
-            # Split if exceeding limits
-            if not result.passes_limits:
-                need_split = True
-                
-            # Split if section too long
-            if section_length > self.max_section_length:
-                need_split = True
-                
-            # Split if next primitive would exceed limits
-            if i < len(primitive_results) - 1:
-                next_result = primitive_results[i + 1]
-                if not next_result.passes_limits:
-                    # Split before the problematic primitive
-                    need_split = True
-            
-            if need_split and i > last_split:
-                split_points.append(i)
-                last_split = i
-                section_start_pos = result.position
-                
-        # Add end point
-        split_points.append(len(primitive_results))
-        
+
+        while section_start_idx < len(primitive_results):
+            # Find the furthest primitive we can include while ALL limits are within tolerance
+            last_good_idx = section_start_idx - 1
+            limit_first_exceeded_at = None
+
+            for i in range(section_start_idx, len(primitive_results)):
+                result = primitive_results[i]
+                section_length = result.position - section_start_pos
+
+                # Check if limits are satisfied
+                tension_ok = result.tension_out <= self.tension_limit
+                sidewall_ok = result.sidewall_pressure <= self.sidewall_limit
+                length_ok = section_length <= self.max_section_length
+
+                if tension_ok and sidewall_ok and length_ok:
+                    last_good_idx = i
+                elif limit_first_exceeded_at is None:
+                    # Mark where limits first fail
+                    limit_first_exceeded_at = i
+                    break
+
+            # Decide where to split
+            if last_good_idx >= section_start_idx:
+                # We have some good primitives - split after the last good one
+                final_idx = last_good_idx
+                split_points.append(final_idx + 1)
+                section_start_pos = primitive_results[final_idx].position
+                section_start_idx = final_idx + 1
+            else:
+                # Even first primitive fails limits
+                # This means we're in a region where tension is too high
+                # Compress all remaining failed primitives into one section to avoid tiny splits
+
+                # Find how far we can extend before hitting hard limit (1.5x the safety target)
+                hard_limit_idx = section_start_idx - 1
+                hard_tension_limit = self.tension_limit * 1.5  # Hard stop at 1.5x safety target
+                hard_sidewall_limit = self.sidewall_limit * 1.5
+
+                for i in range(section_start_idx, len(primitive_results)):
+                    result = primitive_results[i]
+
+                    # Hard stop if way over limits
+                    if (result.tension_out > hard_tension_limit or
+                        result.sidewall_pressure > hard_sidewall_limit):
+                        break
+                    hard_limit_idx = i
+
+                if hard_limit_idx >= section_start_idx:
+                    # Extend to hard limit
+                    section_start_idx = hard_limit_idx + 1
+                    section_start_pos = primitive_results[hard_limit_idx].position
+                    split_points.append(section_start_idx)
+                else:
+                    # Even hard limits exceeded immediately - include just one primitive
+                    section_start_idx = section_start_idx + 1
+                    section_start_pos = primitive_results[section_start_idx - 1].position
+                    split_points.append(section_start_idx)
+
+                if section_start_idx >= len(primitive_results):
+                    break
+
+        # Add end point if not already there
+        if split_points[-1] != len(primitive_results):
+            split_points.append(len(primitive_results))
+
+        # Remove duplicates and sort
+        split_points = sorted(set(split_points))
+
         return split_points
     
+    def _create_optimized_sections_with_recalc(
+        self,
+        all_primitives: List[object],
+        split_points: List[int],
+        friction_override: Optional[float] = None,
+    ) -> List[OptimizedSection]:
+        """Create optimized sections with recalculated tensions for each section.
+
+        This recalculates tensions for each section starting from zero, ensuring
+        that each section has independent tension analysis.
+
+        Args:
+            all_primitives: List of all primitives
+            split_points: Indices where to split
+            friction_override: Optional friction coefficient
+
+        Returns:
+            List of optimized sections
+        """
+        sections = []
+        section_count = 0
+
+        for i in range(len(split_points) - 1):
+            start_idx = split_points[i]
+            end_idx = split_points[i + 1]
+
+            # Get primitives for this section
+            section_primitives = all_primitives[start_idx:end_idx]
+
+            if not section_primitives:
+                continue
+
+            # Recalculate tensions for this section starting from 0
+            section_results = self._calculate_primitive_results(
+                section_primitives, friction_override
+            )
+
+            if not section_results:
+                continue
+
+            # Calculate section properties
+            start_pos = section_results[0].position if start_idx > 0 else 0.0
+            end_pos = section_results[-1].position
+            length = end_pos - start_pos
+
+            # Skip zero-length sections (pure bends with no straight sections)
+            # These don't represent actual pulling sections
+            if length < 0.1:  # Tolerance for floating point
+                continue
+
+            # Find maximum values
+            max_tension = max(p.tension_out for p in section_results)
+            max_sidewall = max(p.sidewall_pressure for p in section_results)
+
+            # Calculate utilization
+            tension_util = max_tension / self.cable_spec.max_tension
+            sidewall_util = max_sidewall / self.cable_spec.max_sidewall_pressure
+
+            # Check pass/fail
+            passes_tension = max_tension <= self.tension_limit
+            passes_sidewall = max_sidewall <= self.sidewall_limit
+
+            section_count += 1
+            sections.append(
+                OptimizedSection(
+                    section_id=f"OPT_{section_count:02d}",
+                    start_position=start_pos,
+                    end_position=end_pos,
+                    length=length,
+                    primitives=section_results,
+                    max_tension=max_tension,
+                    max_sidewall_pressure=max_sidewall,
+                    tension_utilization=tension_util,
+                    sidewall_utilization=sidewall_util,
+                    passes_tension=passes_tension,
+                    passes_sidewall=passes_sidewall,
+                    overall_pass=(passes_tension and passes_sidewall),
+                )
+            )
+
+        return sections
+
     def _create_optimized_sections(
         self,
         primitive_results: List[PrimitiveResult],
         split_points: List[int],
     ) -> List[OptimizedSection]:
         """Create optimized sections from split points.
-        
+
         Args:
             primitive_results: List of all primitive results
             split_points: Indices where to split
-            
+
         Returns:
             List of optimized sections
         """
         sections = []
-        
+
         for i in range(len(split_points) - 1):
             start_idx = split_points[i]
             end_idx = split_points[i + 1]
-            
+
             # Get primitives for this section
             section_primitives = primitive_results[start_idx:end_idx]
-            
+
             if not section_primitives:
                 continue
-                
+
             # Calculate section properties
             start_pos = section_primitives[0].position if start_idx > 0 else 0.0
             end_pos = section_primitives[-1].position
             length = end_pos - start_pos
-            
+
             # Find maximum values
             max_tension = max(p.tension_out for p in section_primitives)
             max_sidewall = max(p.sidewall_pressure for p in section_primitives)
-            
+
             # Calculate utilization
             tension_util = max_tension / self.cable_spec.max_tension
             sidewall_util = max_sidewall / self.cable_spec.max_sidewall_pressure
-            
+
             # Check pass/fail
             passes_tension = max_tension <= self.tension_limit
             passes_sidewall = max_sidewall <= self.sidewall_limit
-            
+
             sections.append(
                 OptimizedSection(
                     section_id=f"OPT_{i+1:02d}",
@@ -373,7 +501,7 @@ class RouteOptimizer:
                     overall_pass=(passes_tension and passes_sidewall),
                 )
             )
-            
+
         return sections
     
     def _balance_sections(

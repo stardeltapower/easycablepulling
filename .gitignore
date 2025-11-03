@@ -171,7 +171,6 @@ Thumbs.db
 ehthumbs.db
 
 # Project specific
-*.dxf
 *.dwg
 output/
 temp/

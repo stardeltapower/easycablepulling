@@ -65,6 +65,20 @@ DUCT_SPECIFICATIONS: Dict[str, DuctSpecification] = {
         max_section_length_m=1000.0,
         max_lateral_deviation_m=1.0,
     ),
+    "225mm": DuctSpecification(
+        name="225mm",
+        outer_diameter_mm=225,
+        straight_length_m=6.0,
+        min_cut_length_m=0.5,
+        bends=[
+            BendSpecification.from_radius_angle(3.9, 11.25),
+            BendSpecification.from_radius_angle(3.9, 22.5),
+            BendSpecification.from_radius_angle(5.2, 11.25),  # Larger radius option
+            BendSpecification.from_radius_angle(5.2, 22.5),  # Larger radius option
+        ],
+        max_section_length_m=1000.0,
+        max_lateral_deviation_m=1.0,
+    ),
     # Additional duct sizes can be added here
     # "110mm": DuctSpecification(...),
     # "160mm": DuctSpecification(...),

@@ -5,6 +5,7 @@ from typing import Optional
 
 import click
 
+from .calculations import CalculationConfig, CalculationStandard
 from .config import DEFAULT_INPUT_DXF
 from .core.models import CableArrangement, CableSpec, DuctSpec
 from .core.pipeline import AnalysisReporter, CablePullingPipeline
@@ -53,6 +54,24 @@ def main() -> None:
 )
 @click.option("--lubricated", is_flag=True, help="Use lubricated friction values")
 @click.option(
+    "--standard",
+    type=click.Choice(["cigre", "aeic", "polywater"]),
+    default="cigre",
+    help="Calculation standard (cigre=conservative, aeic=with triangular reductions)",
+)
+@click.option(
+    "--splitting-method",
+    type=click.Choice(["simple", "optimizer"]),
+    default="simple",
+    help="Splitting method (simple=length-based, optimizer=tension/pressure-based)",
+)
+@click.option(
+    "--target-utilization",
+    type=float,
+    default=0.8,
+    help="Target utilization for optimizer (0.8 = 80%% = 20%% safety margin)",
+)
+@click.option(
     "--max-length", type=float, default=500.0, help="Maximum cable length for splitting"
 )
 @click.option(
@@ -78,6 +97,9 @@ def analyze(
     duct_diameter: float,
     duct_type: str,
     lubricated: bool,
+    standard: str,
+    splitting_method: str,
+    target_utilization: float,
     max_length: float,
     safety_factor: float,
     output: Optional[str],
@@ -86,11 +108,20 @@ def analyze(
 ) -> None:
     """Analyze cable pulling route from DXF file."""
     try:
+        # Create calculation configuration
+        calc_standard = CalculationStandard(standard)
+        calc_config = CalculationConfig(standard=calc_standard)
+
         if verbose:
             click.echo(f"Analyzing route from: {dxf_file}")
             click.echo(f"Cable: {cable_diameter}mm {arrangement} ({num_cables} cables)")
             click.echo(f"Duct: {duct_diameter}mm {duct_type}")
             click.echo(f"Lubricated: {lubricated}")
+            click.echo(f"Standard: {standard.upper()}")
+            click.echo(calc_config.description())
+            click.echo(f"Splitting method: {splitting_method}")
+            if splitting_method == "optimizer":
+                click.echo(f"Target utilization: {target_utilization:.0%}")
             click.echo(f"Max length: {max_length}m")
             click.echo(f"Safety factor: {safety_factor}")
             click.echo("")

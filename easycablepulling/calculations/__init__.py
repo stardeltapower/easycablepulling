@@ -1,5 +1,18 @@
 """Cable pulling calculations for tension and sidewall pressure."""
 
+from .config import (
+    CalculationConfig,
+    CalculationStandard,
+    aeic_standard,
+    cigre_conservative,
+    midlands_config,
+)
+from .weight_correction import (
+    calculate_weight_correction_factor,
+    calculate_weight_correction_factor_cigre,
+    check_jam_ratio,
+    get_weight_correction_factor,
+)
 from .advanced import (
     analyze_route_with_varying_conditions,
     analyze_section_with_environment,
@@ -31,6 +44,17 @@ from .tension import (
 )
 
 __all__ = [
+    # Configuration
+    "CalculationConfig",
+    "CalculationStandard",
+    "cigre_conservative",
+    "aeic_standard",
+    "midlands_config",
+    # Weight correction
+    "calculate_weight_correction_factor",
+    "calculate_weight_correction_factor_cigre",
+    "get_weight_correction_factor",
+    "check_jam_ratio",
     # Tension calculations
     "TensionResult",
     "SectionTensionAnalysis",

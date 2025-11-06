@@ -211,12 +211,24 @@ class ProfessionalMatplotlibPlotter:
             if section.primitives and show_fitted_geometry:
                 self._plot_fitted_geometry(ax, section, i, color, unit_scale, labels)
 
-            # Collect joint points
-            if i == 0:  # First section
-                joint_points.append((x_coords[0], y_coords[0]))
-                joint_labels.append(labels[label_start_index])
-            joint_points.append((x_coords[-1], y_coords[-1]))
-            joint_labels.append(labels[label_start_index + i + 1])
+            # Collect joint points using explicit coordinates
+            if i == 0:  # First section start point
+                if section.start_coordinate:
+                    start_pt = (
+                        section.start_coordinate[0] * unit_scale,
+                        section.start_coordinate[1] * unit_scale,
+                    )
+                    joint_points.append(start_pt)
+                    joint_labels.append(labels[label_start_index])
+
+            # All sections contribute their end point
+            if section.end_coordinate:
+                end_pt = (
+                    section.end_coordinate[0] * unit_scale,
+                    section.end_coordinate[1] * unit_scale,
+                )
+                joint_points.append(end_pt)
+                joint_labels.append(labels[label_start_index + i + 1])
 
         # Add professional joint markers
         if joint_points:
@@ -303,11 +315,203 @@ class ProfessionalMatplotlibPlotter:
             family="DejaVu Sans",
         )
 
-        # Auto-scale with professional margins
-        ax.autoscale()
-        ax.margins(0.05)
+        # Calculate tight axis limits from actual geometry
+        if all_points:
+            x_vals = [p[0] for p in all_points]
+            y_vals = [p[1] for p in all_points]
+
+            x_min, x_max = min(x_vals), max(x_vals)
+            y_min, y_max = min(y_vals), max(y_vals)
+
+            # Add 5% padding on each side
+            x_padding = (x_max - x_min) * 0.05 if x_max > x_min else 10
+            y_padding = (y_max - y_min) * 0.05 if y_max > y_min else 10
+
+            ax.set_xlim(x_min - x_padding, x_max + x_padding)
+            ax.set_ylim(y_min - y_padding, y_max + y_padding)
+        else:
+            # Fallback to autoscale if no points
+            ax.autoscale()
+            ax.margins(0.05)
 
         # Remove excessive whitespace
+        plt.tight_layout()
+
+        return fig, ax
+
+    def plot_individual_section(
+        self,
+        section: Section,
+        section_index: int,
+        title: Optional[str] = None,
+        units: str = "m",
+        show_fitted_geometry: bool = True,
+    ) -> Tuple[Figure, Axes]:
+        """Create professional visualization for an individual section.
+
+        Args:
+            section: Section object to plot
+            section_index: Index of section in route (0-based) for labeling
+            title: Optional plot title
+            units: Display units ('m' or 'mm')
+            show_fitted_geometry: Whether to show fitted straights/bends overlay
+
+        Returns:
+            Figure and axes objects
+        """
+        # Determine orientation based on section bounds
+        if section.original_polyline:
+            x_coords_raw = [p[0] for p in section.original_polyline]
+            y_coords_raw = [p[1] for p in section.original_polyline]
+            x_range = max(x_coords_raw) - min(x_coords_raw)
+            y_range = max(y_coords_raw) - min(y_coords_raw)
+
+            # A4 dimensions
+            if x_range > y_range:
+                fig_width = 11.69  # Landscape
+                fig_height = 8.27
+            else:
+                fig_width = 8.27  # Portrait
+                fig_height = 11.69
+        else:
+            fig_width = 11.69
+            fig_height = 8.27
+
+        fig, ax = self.create_figure(width=fig_width, height=fig_height)
+
+        # Default title
+        if title is None:
+            title = f"Section Analysis: {section.id}"
+
+        # Unit conversion
+        unit_scale = 1000 if units == "mm" else 1
+        unit_label = f"Coordinate ({units})"
+
+        # Calculate labels for this section
+        start_label = chr(ord("A") + section_index)
+        end_label = chr(ord("A") + section_index + 1)
+
+        # Convert coordinates
+        x_coords = [p[0] * unit_scale for p in section.original_polyline]
+        y_coords = [p[1] * unit_scale for p in section.original_polyline]
+
+        # Plot section route
+        ax.plot(
+            x_coords,
+            y_coords,
+            color="black",
+            linewidth=2.0,
+            linestyle="-",
+            alpha=0.8,
+            label="Route",
+            solid_capstyle="round",
+            solid_joinstyle="round",
+            zorder=3,
+        )
+
+        # Plot fitted geometry overlay if available
+        if section.primitives and show_fitted_geometry:
+            color = self.colors["primary"]
+            labels = list(string.ascii_uppercase)
+            self._plot_fitted_geometry(ax, section, section_index, color, unit_scale, labels)
+
+        # Add junction point labels using explicit coordinates
+        marker_size = 200
+
+        # Start point label
+        if section.start_coordinate:
+            start_pt = (
+                section.start_coordinate[0] * unit_scale,
+                section.start_coordinate[1] * unit_scale,
+            )
+            ax.scatter(
+                start_pt[0],
+                start_pt[1],
+                s=marker_size,
+                c="white",
+                edgecolors="#2f2f2f",
+                linewidth=2.5,
+                zorder=10,
+                alpha=1.0,
+            )
+            ax.annotate(
+                start_label,
+                start_pt,
+                ha="center",
+                va="center",
+                fontsize=12,
+                fontweight="bold",
+                color="#2f2f2f",
+                zorder=11,
+            )
+
+        # End point label
+        if section.end_coordinate:
+            end_pt = (
+                section.end_coordinate[0] * unit_scale,
+                section.end_coordinate[1] * unit_scale,
+            )
+            ax.scatter(
+                end_pt[0],
+                end_pt[1],
+                s=marker_size,
+                c="white",
+                edgecolors="#2f2f2f",
+                linewidth=2.5,
+                zorder=10,
+                alpha=1.0,
+            )
+            ax.annotate(
+                end_label,
+                end_pt,
+                ha="center",
+                va="center",
+                fontsize=12,
+                fontweight="bold",
+                color="#2f2f2f",
+                zorder=11,
+            )
+
+        # Professional title and labels
+        ax.set_title(title, fontsize=16, fontweight="bold", color="#1a1a1a", pad=20)
+        ax.set_xlabel(f"X {unit_label}", **self.fonts["label"])
+        ax.set_ylabel(f"Y {unit_label}", **self.fonts["label"])
+
+        # Add section statistics box
+        stats_text = (
+            f"Section: {section.id}\n"
+            f"Length: {section.original_length:.1f}m\n"
+            f"From: {start_label} to {end_label}"
+        )
+
+        props = dict(
+            boxstyle="round,pad=0.8",
+            facecolor="#f8f9fa",
+            edgecolor="#2f2f2f",
+            alpha=0.95,
+        )
+        ax.text(
+            0.02,
+            0.98,
+            stats_text,
+            transform=ax.transAxes,
+            fontsize=10,
+            verticalalignment="top",
+            bbox=props,
+            family="DejaVu Sans",
+        )
+
+        # Calculate tight axis limits from actual geometry
+        x_min, x_max = min(x_coords), max(x_coords)
+        y_min, y_max = min(y_coords), max(y_coords)
+
+        # Add 5% padding
+        x_padding = (x_max - x_min) * 0.05 if x_max > x_min else 10
+        y_padding = (y_max - y_min) * 0.05 if y_max > y_min else 10
+
+        ax.set_xlim(x_min - x_padding, x_max + x_padding)
+        ax.set_ylim(y_min - y_padding, y_max + y_padding)
+
         plt.tight_layout()
 
         return fig, ax

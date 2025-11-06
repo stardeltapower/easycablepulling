@@ -33,23 +33,29 @@ def calculate_straight_tension(
     length: float,
     lubricated: bool = False,
     slope_angle: float = 0.0,
+    config=None,
+    friction_override: float = None,
 ) -> float:
-    """Calculate tension at end of straight section.
+    """Calculate tension at end of straight section using AEIC formula.
 
-    Uses the formula: T_out = T_in + W * f * L
+    Formula: T_out = T_in + (μ × w_c × L)
+
     where:
     - T_in: Input tension (N)
-    - W: Cable weight per unit length including slope correction (N/m)
-    - f: Friction coefficient
+    - μ: Friction coefficient (includes trefoil adjustment if applicable)
+    - w_c: Effective weight per meter = (weight_per_cable × num_cables × WCF) in N/m
     - L: Length of straight section (m)
+    - WCF: Weight correction factor = sqrt(1 + (d/D)²) for AEIC trefoil
 
     Args:
         tension_in: Input tension in Newtons
         cable_spec: Cable specifications
         duct_spec: Duct specifications
         length: Length of straight section in meters
-        lubricated: Whether duct is lubricated
+        lubricated: Whether duct is lubricated (only used if friction_override not provided)
         slope_angle: Slope angle in degrees (positive = uphill)
+        config: CalculationConfig for weight correction (optional)
+        friction_override: Explicit friction coefficient to use (bypasses get_friction)
 
     Returns:
         Output tension in Newtons
@@ -59,26 +65,36 @@ def calculate_straight_tension(
     if length < 0:
         raise ValueError("Length cannot be negative")
 
-    # Get friction coefficient for cable arrangement
-    friction = duct_spec.get_friction(cable_spec.arrangement, lubricated)
-
-    # Calculate weight per meter with slope correction
-    # Positive slope_angle means uphill pulling (adds to tension)
-    slope_factor = math.sin(math.radians(slope_angle))
-    weight_per_meter = cable_spec.total_weight_per_meter * 9.81  # Convert kg/m to N/m
-    effective_weight = weight_per_meter * (friction + slope_factor)
-
-    # Apply exponential formula for straight section drag
-    # T_out = T_in * exp(f * W * L / T_avg) where T_avg approximates average tension
-    if tension_in > 0:
-        # Use exponential formula for realistic cable drag
-        drag_coefficient = (
-            friction * effective_weight / (tension_in + effective_weight * length / 2)
-        )
-        tension_out = tension_in * math.exp(drag_coefficient * length)
+    # Get friction coefficient
+    if friction_override is not None:
+        # Use explicit friction value (already includes trefoil adjustment if applicable)
+        friction = friction_override
     else:
-        # Fallback to linear for very low tensions
-        tension_out = tension_in + effective_weight * length
+        # Get friction from duct spec (will apply trefoil multiplier)
+        friction = duct_spec.get_friction(cable_spec.arrangement, lubricated)
+
+    # Calculate base weight: total cable weight in N/m
+    # For trefoil: weight_per_cable × 3 cables × 9.81 m/s²
+    weight_per_meter = cable_spec.total_weight_per_meter * 9.81  # Convert kg/m to N/m
+
+    # Apply weight correction factor if config provided
+    # WCF accounts for additional normal force from cable geometry
+    if config and config.apply_weight_correction:
+        from .weight_correction import get_weight_correction_factor
+        use_cigre_formula = (
+            config.standard.value == "cigre" if hasattr(config.standard, 'value')
+            else config.standard == "cigre"
+        )
+        wc = get_weight_correction_factor(cable_spec, duct_spec, use_cigre_formula)
+        weight_per_meter *= wc
+        # After WCF: weight_per_meter becomes w_c (effective weight)
+
+    # Apply slope correction to friction only
+    slope_factor = math.sin(math.radians(slope_angle))
+    effective_friction = friction + slope_factor
+
+    # AEIC Formula: T_out = T_in + (μ × w_c × L)
+    tension_out = tension_in + (effective_friction * weight_per_meter * length)
 
     return max(0.0, tension_out)  # Tension cannot be negative
 
@@ -89,21 +105,25 @@ def calculate_bend_tension(
     duct_spec: DuctSpec,
     bend_angle: float,
     lubricated: bool = False,
+    friction_override: float = None,
 ) -> float:
     """Calculate tension at end of bend using capstan equation.
 
-    Uses the formula: T_out = T_in * e^(f * θ)
+    Formula: T_out = T_in × e^(μ × α)
+
     where:
     - T_in: Input tension (N)
-    - f: Friction coefficient
-    - θ: Bend angle in radians (always positive)
+    - μ: Friction coefficient (includes trefoil adjustment if applicable)
+    - α: Bend angle in radians (always positive)
+    - e: Euler's number ≈ 2.71828
 
     Args:
         tension_in: Input tension in Newtons
         cable_spec: Cable specifications
         duct_spec: Duct specifications
         bend_angle: Bend angle in degrees (sign doesn't matter for tension)
-        lubricated: Whether duct is lubricated
+        lubricated: Whether duct is lubricated (only used if friction_override not provided)
+        friction_override: Explicit friction coefficient to use (bypasses get_friction)
 
     Returns:
         Output tension in Newtons
@@ -111,13 +131,18 @@ def calculate_bend_tension(
     if tension_in < 0:
         raise ValueError("Input tension cannot be negative")
 
-    # Get friction coefficient for cable arrangement
-    friction = duct_spec.get_friction(cable_spec.arrangement, lubricated)
+    # Get friction coefficient
+    if friction_override is not None:
+        # Use explicit friction value (already includes trefoil adjustment if applicable)
+        friction = friction_override
+    else:
+        # Get friction from duct spec (will apply trefoil multiplier)
+        friction = duct_spec.get_friction(cable_spec.arrangement, lubricated)
 
     # Convert angle to radians and take absolute value
     angle_rad = math.radians(abs(bend_angle))
 
-    # Apply capstan equation
+    # Capstan Equation: T_out = T_in × e^(μ × α)
     tension_out = tension_in * math.exp(friction * angle_rad)
 
     return tension_out
@@ -130,6 +155,7 @@ def calculate_section_tensions(
     initial_tension: float = 0.0,
     lubricated: bool = False,
     reverse: bool = False,
+    config=None,
 ) -> List[TensionResult]:
     """Calculate tensions throughout a section.
 
@@ -140,6 +166,7 @@ def calculate_section_tensions(
         initial_tension: Starting tension in Newtons
         lubricated: Whether duct is lubricated
         reverse: If True, calculate pulling from end to start
+        config: CalculationConfig for weight correction (optional)
 
     Returns:
         List of tension results at each primitive
@@ -162,6 +189,7 @@ def calculate_section_tensions(
                 duct_spec,
                 primitive.length(),
                 lubricated,
+                config=config,
             )
             primitive_type = "straight"
 
@@ -205,6 +233,7 @@ def analyze_section_tension(
     duct_spec: DuctSpec,
     lubricated: bool = False,
     initial_tension_n: float = 0.0,
+    config=None,
 ) -> SectionTensionAnalysis:
     """Perform complete tension analysis for a section.
 
@@ -216,21 +245,22 @@ def analyze_section_tension(
         cable_spec: Cable specifications
         duct_spec: Duct specifications
         lubricated: Whether duct is lubricated
+        config: CalculationConfig for weight correction (optional)
 
     Returns:
         Complete tension analysis results
     """
     # Calculate forward tensions (pulling from start to end)
-    # Use reasonable initial tension for forward pulling
-    forward_initial = max(100.0, initial_tension_n)
+    # Use the specified initial tension (0 for optimizer, may be higher for continuous pulls)
+    forward_initial = initial_tension_n
     forward_tensions = calculate_section_tensions(
-        section, cable_spec, duct_spec, forward_initial, lubricated, False
+        section, cable_spec, duct_spec, forward_initial, lubricated, False, config=config
     )
 
     # Calculate backward tensions (pulling from end to start)
-    # Use the same initial tension and methodology as forward, just reversed
+    # Use the same initial tension
     backward_tensions = calculate_section_tensions(
-        section, cable_spec, duct_spec, forward_initial, lubricated, True
+        section, cable_spec, duct_spec, forward_initial, lubricated, True, config=config
     )
 
     # Find maximum tension and its location
@@ -305,6 +335,16 @@ def find_optimal_pull_direction(
 class TensionCalculator:
     """Simplified tension calculator for pipeline interface."""
 
+    def __init__(self, config=None):
+        """Initialize tension calculator with configuration.
+
+        Args:
+            config: CalculationConfig instance (optional, defaults to CIGRE)
+        """
+        from .config import CalculationConfig
+
+        self.config = config if config is not None else CalculationConfig()
+
     def calculate_forward_tension(
         self,
         section: Section,
@@ -313,7 +353,9 @@ class TensionCalculator:
         lubricated: bool = False,
     ) -> float:
         """Calculate forward pulling tension for a section."""
-        analysis = analyze_section_tension(section, cable_spec, duct_spec, lubricated)
+        analysis = analyze_section_tension(
+            section, cable_spec, duct_spec, lubricated, config=self.config
+        )
         return (
             max(result.tension for result in analysis.forward_tensions)
             if analysis.forward_tensions
@@ -328,7 +370,9 @@ class TensionCalculator:
         lubricated: bool = False,
     ) -> float:
         """Calculate reverse pulling tension for a section."""
-        analysis = analyze_section_tension(section, cable_spec, duct_spec, lubricated)
+        analysis = analyze_section_tension(
+            section, cable_spec, duct_spec, lubricated, config=self.config
+        )
         return (
             max(result.tension for result in analysis.backward_tensions)
             if analysis.backward_tensions

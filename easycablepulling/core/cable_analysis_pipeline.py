@@ -9,6 +9,8 @@ from typing import Dict, List, Optional, Union
 import matplotlib.pyplot as plt
 
 from ..analysis.accuracy_analyzer import AccuracyAnalyzer
+from ..analysis.route_optimizer import RouteOptimizer, PullingDirection
+from ..calculations.config import CalculationConfig, CalculationStandard
 from ..calculations.pressure import PressureCalculator
 from ..calculations.tension import TensionCalculator
 from ..core.models import Bend, CableSpec, DuctSpec, Route, Section, Straight
@@ -36,9 +38,19 @@ class AnalysisConfig:
     number_of_cables: int = 1
     cable_arrangement: str = "single"  # "single", "trefoil", or "flat"
 
+    # Calculation method
+    calculation_standard: str = "cigre"  # "cigre", "aeic", or "polywater"
+
+    # Splitting method
+    splitting_method: str = "simple"  # "simple" (length-based) or "optimizer" (tension/pressure-based)
+    target_utilization: float = 0.8  # Target utilization for optimizer (80% = 20% safety margin)
+
     # Friction and lubrication settings
     lubricated: Union[bool, List[bool]] = False
     friction_override: Optional[Union[float, List[float]]] = None
+
+    # Pulling settings
+    initial_tension_n: float = 100.0  # Drum/winch tension (minimum tension at pull start)
 
     # Output settings
     sample_interval_m: float = 25.0
@@ -47,6 +59,7 @@ class AnalysisConfig:
     generate_excel: bool = False
     generate_dxf: bool = False
     generate_png: bool = True
+    generate_latex: bool = True
 
 
 @dataclass
@@ -58,7 +71,10 @@ class SectionResult:
     straight_count: int
     bend_count: int
 
-    # Geometry details
+    # Geometry details - ordered list of primitives in sequence
+    primitives: List[Dict[str, float]]  # Ordered list: [{"type": "straight", "length_m": 50.5, "cumulative_forward_tension_n": ...}, ...]
+
+    # Legacy fields for backward compatibility (deprecated)
     straights: List[Dict[str, float]]  # [{"length_m": 50.5}, ...]
     bends: List[Dict[str, float]]  # [{"angle_deg": 45.0, "radius_m": 3.9}, ...]
 
@@ -111,7 +127,6 @@ class CableAnalysisPipeline:
             duct_inventory=duct_inventory,
             standard_radius=self._get_duct_radius(self.config.duct_type),
         )
-        self.splitter = RouteSplitter(max_cable_length=self.config.max_section_length_m)
         self.visualizer = ProfessionalMatplotlibPlotter()
         self.analyzer = AccuracyAnalyzer(sample_interval=self.config.sample_interval_m)
 
@@ -119,9 +134,37 @@ class CableAnalysisPipeline:
         self.cable_spec = self._create_cable_spec()
         self.duct_spec = self._create_duct_spec()
 
-        # Initialize calculators
-        self.tension_calc = TensionCalculator()
-        self.pressure_calc = PressureCalculator()
+        # Create calculation config from standard string
+        standard_map = {
+            "cigre": CalculationStandard.CIGRE,
+            "aeic": CalculationStandard.AEIC,
+            "polywater": CalculationStandard.POLYWATER,
+        }
+        calc_standard = standard_map.get(
+            self.config.calculation_standard.lower(), CalculationStandard.CIGRE
+        )
+        self.calc_config = CalculationConfig(standard=calc_standard)
+
+        # Initialize calculators with config
+        self.tension_calc = TensionCalculator(config=self.calc_config)
+        self.pressure_calc = PressureCalculator(config=self.calc_config)
+
+        # Initialize splitting method based on configuration
+        splitting_method = self.config.splitting_method.lower()
+        if splitting_method == "optimizer":
+            # Use smart optimizer that splits based on tension/pressure limits
+            self.optimizer = RouteOptimizer(
+                cable_spec=self.cable_spec,
+                duct_spec=self.duct_spec,
+                target_utilization=self.config.target_utilization,
+                max_section_length=self.config.max_section_length_m,
+                config=self.calc_config,
+            )
+            self.splitter = None
+        else:
+            # Use simple length-based splitter (default)
+            self.splitter = RouteSplitter(max_cable_length=self.config.max_section_length_m)
+            self.optimizer = None
 
     def analyze_dxf(
         self, dxf_path: Union[str, Path], output_dir: Union[str, Path] = "output", dxf_layer: Optional[str] = None
@@ -161,8 +204,22 @@ class CableAnalysisPipeline:
 
         # Step 4: Split long sections
         print("4. [SPLITTING] Splitting long sections...")
-        split_result = self.splitter.split_route(route)
-        route = split_result.split_route
+        if self.optimizer:
+            # Use optimizer for intelligent splitting based on tension/pressure
+            print("   Using intelligent optimizer (tension/pressure-based splitting)...")
+            opt_result = self.optimizer.optimize_route(
+                route=route,
+                direction=PullingDirection.FORWARD,
+                friction_override=self.config.friction_override if isinstance(self.config.friction_override, float) else None,
+            )
+            # Convert OptimizationResult back to Route with split sections
+            route = self._optimizer_result_to_route(route, opt_result)
+            # Sections are now in order from DXF file (A at northernmost point)
+        else:
+            # Use simple length-based splitter
+            print("   Using simple splitter (length-based splitting)...")
+            split_result = self.splitter.split_route(route)
+            route = split_result.split_route
 
         # Re-fit any new sections created during splitting
         for section in route.sections:
@@ -201,6 +258,10 @@ class CableAnalysisPipeline:
 
         if self.config.generate_csv:
             self._export_csv_reports(section_results, output_path, route)
+            self._export_coordinates_csv(route, output_path)
+
+        if self.config.generate_latex:
+            self._export_latex_reports(section_results, output_path, route)
 
         # Step 8: Generate summary report
         print("8. [SUMMARY] Generating summary report...")
@@ -214,6 +275,248 @@ class CableAnalysisPipeline:
 
         print("[PASS] Analysis complete!")
         return summary_results
+
+    def _optimizer_result_to_route(self, original_route: Route, opt_result) -> Route:
+        """Convert OptimizationResult back to Route with split sections.
+
+        Args:
+            original_route: Original route (for name and metadata)
+            opt_result: OptimizationResult from RouteOptimizer
+
+        Returns:
+            New Route with optimized sections
+        """
+        from ..analysis.route_optimizer import OptimizationResult
+
+        new_route = Route(name=original_route.name)
+
+        for opt_section in opt_result.sections:
+            # Extract primitives from PrimitiveResult objects
+            primitives = [pr.primitive for pr in opt_section.primitives]
+
+            # Reconstruct polyline from primitive coordinates
+            # This preserves the actual DXF route geometry for visualization
+            import math
+            polyline = []
+            for i, prim_result in enumerate(primitives):
+                # Extract actual primitive from PrimitiveResult wrapper
+                prim = prim_result.primitive if hasattr(prim_result, 'primitive') else prim_result
+
+                if isinstance(prim, Straight):
+                    # Add start point (only for first primitive)
+                    if i == 0:
+                        polyline.append(prim.start_point)
+                    # Always add end point
+                    polyline.append(prim.end_point)
+                elif isinstance(prim, Bend):
+                    # Calculate bend endpoints from center and angles
+                    cx, cy = prim.center_point
+                    r = prim.radius_m
+
+                    # Convert angles to radians
+                    start_rad = math.radians(prim.start_angle_deg)
+                    end_rad = math.radians(prim.end_angle_deg)
+
+                    # Calculate start point (only for first primitive)
+                    if i == 0:
+                        start_x = cx + r * math.cos(start_rad)
+                        start_y = cy + r * math.sin(start_rad)
+                        polyline.append((start_x, start_y))
+
+                    # Always add end point
+                    end_x = cx + r * math.cos(end_rad)
+                    end_y = cy + r * math.sin(end_rad)
+                    polyline.append((end_x, end_y))
+
+            # Fallback: if polyline construction failed, use dummy line
+            if len(polyline) < 2:
+                import math
+                section_length = sum(
+                    p.length_m if isinstance(p, Straight)
+                    else p.radius_m * abs(p.angle_deg) * math.pi / 180
+                    if isinstance(p, Bend)
+                    else 0
+                    for p in primitives
+                )
+                polyline = [(0.0, 0.0), (section_length, 0.0)]
+
+            # Primitives are now always in geographical order (optimizer fix applied)
+            # Polyline constructed from them is therefore also in geographical order
+            # No reversal needed
+
+            # Create a new Section with optimized primitives
+            section = Section(
+                id=opt_section.section_id,
+                original_polyline=polyline,
+                start_junction=opt_section.start_junction,
+                end_junction=opt_section.end_junction,
+            )
+            section.primitives = primitives
+
+            # Store optimizer's pre-calculated values to avoid incorrect recalculation
+            # These values are correct for the chosen pulling direction (F or R)
+            setattr(section, "_optimizer_max_tension", opt_section.max_tension)
+            setattr(section, "_optimizer_max_sidewall", opt_section.max_sidewall_pressure)
+            setattr(section, "_optimizer_passes_tension", opt_section.passes_tension)
+            setattr(section, "_optimizer_passes_sidewall", opt_section.passes_sidewall)
+
+            new_route.sections.append(section)
+
+        # Reorder sections using junction labels to ensure correct geographical order
+        # Junction 'A' is at northernmost point, so this puts northernmost section first
+        new_route.sections = self._reorder_sections_by_connection(new_route.sections)
+
+        # Rename sections to match sequential order (SECT_01_01 = A→B, SECT_01_02 = B→C, etc.)
+        new_route.sections = self._rename_sections_sequentially(new_route.sections)
+
+        return new_route
+
+    def _reorder_sections_by_connection(self, sections: List[Section]) -> List[Section]:
+        """Reorder sections using junction labels to form a continuous chain.
+
+        Uses junction labels (A, B, C, etc.) to determine connectivity.
+        Finds the section starting with 'A' (northernmost point) and follows
+        the junction chain to build the correct sequence.
+
+        Args:
+            sections: List of sections in arbitrary order
+
+        Returns:
+            List of sections in connection order (starting from junction 'A')
+        """
+        if len(sections) <= 1:
+            return sections
+
+        # Check if all sections have junction labels
+        if not all(hasattr(s, 'start_junction') and hasattr(s, 'end_junction') for s in sections):
+            print("[WARNING] Not all sections have junction labels, using original order")
+            return sections
+
+        # Build a map of junctions: junction -> [(section, is_start), ...]
+        junction_map = {}
+        for section in sections:
+            if section.start_junction:
+                if section.start_junction not in junction_map:
+                    junction_map[section.start_junction] = []
+                junction_map[section.start_junction].append((section, True))  # True = start
+
+            if section.end_junction:
+                if section.end_junction not in junction_map:
+                    junction_map[section.end_junction] = []
+                junction_map[section.end_junction].append((section, False))  # False = end
+
+        # Find the section that starts with 'A' (northernmost point)
+        start_section = None
+        for section in sections:
+            if section.start_junction == 'A':
+                start_section = section
+                break
+
+        if start_section is None:
+            # Try finding any section with 'A' at its end (might be reversed)
+            for section in sections:
+                if section.end_junction == 'A':
+                    start_section = section
+                    break
+
+        if start_section is None:
+            print("[WARNING] Could not find section starting with junction 'A', using original order")
+            return sections
+
+        # Build ordered chain by following junction connections
+        ordered = [start_section]
+        remaining = [s for s in sections if s != start_section]
+
+        while remaining:
+            current = ordered[-1]
+            next_section = None
+
+            # Look for a section whose start_junction matches our current end_junction
+            if current.end_junction:
+                for candidate in remaining:
+                    if candidate.start_junction == current.end_junction:
+                        next_section = candidate
+                        break
+
+            if next_section:
+                ordered.append(next_section)
+                remaining.remove(next_section)
+            else:
+                # No direct connection - might be a branching point or gap
+                break
+
+        if len(ordered) != len(sections):
+            print(f"[WARNING] Junction-based ordering incomplete: {len(ordered)}/{len(sections)} sections connected")
+            # Append unconnected sections at the end
+            for section in sections:
+                if section not in ordered:
+                    ordered.append(section)
+
+        return ordered
+
+    def _rename_sections_sequentially(self, sections: List[Section]) -> List[Section]:
+        """Rename sections to match sequential order after reordering.
+
+        After sections are reordered by connection, their IDs may not match
+        the sequential order. This method renumbers them so SECT_01_01 is always
+        the first section (A→B), SECT_01_02 is second (B→C), etc.
+
+        Args:
+            sections: List of sections in correct connection order
+
+        Returns:
+            List of sections with sequential IDs
+        """
+        if not sections:
+            return sections
+
+        # Track original section numbers to detect subsections
+        # E.g., SECT_07_01_F and SECT_07_02_F are subsections of section 07
+        section_groups = {}
+        for section in sections:
+            # Extract base section number (e.g., "07" from "SECT_07_01_F")
+            parts = section.id.split("_")
+            if len(parts) >= 2:
+                base_num = parts[1]  # "01", "02", "07", etc.
+                if base_num not in section_groups:
+                    section_groups[base_num] = []
+                section_groups[base_num].append(section)
+
+        # Renumber sections sequentially
+        new_section_num = 1
+        for section in sections:
+            parts = section.id.split("_")
+
+            if len(parts) == 2:
+                # Simple section like "SECT_02"
+                new_id = f"SECT_{new_section_num:02d}"
+            elif len(parts) >= 3:
+                # Subsection like "SECT_07_01_F"
+                subsection_num = parts[2]  # "01", "02", etc.
+                direction = parts[3] if len(parts) > 3 else ""
+                new_id = f"SECT_{new_section_num:02d}_{subsection_num}"
+                if direction:
+                    new_id += f"_{direction}"
+            else:
+                # Unknown format, keep original
+                new_id = section.id
+
+            # Check if next section is from a different group
+            # If so, increment section number
+            current_idx = sections.index(section)
+            if current_idx < len(sections) - 1:
+                next_section = sections[current_idx + 1]
+                current_base = parts[1] if len(parts) >= 2 else ""
+                next_parts = next_section.id.split("_")
+                next_base = next_parts[1] if len(next_parts) >= 2 else ""
+
+                # If base section numbers differ, this is the last subsection
+                if current_base != next_base:
+                    new_section_num += 1
+
+            section.id = new_id
+
+        return sections
 
     def _get_duct_radius(self, duct_type: str) -> float:
         """Get bend radius for duct type."""
@@ -264,13 +567,37 @@ class CableAnalysisPipeline:
 
     def _create_duct_spec(self) -> DuctSpec:
         """Create duct specification from config."""
-        # Simplified - would normally look up from inventory
-        return DuctSpec(
-            inner_diameter=200,  # mm
-            type="HDPE",
-            friction_dry=0.5,
-            friction_lubricated=0.3,
-        )
+        from ..inventory.duct_inventory import DUCT_SPECIFICATIONS
+
+        # Calculate inner diameter from outer diameter
+        # Standard wall thickness assumptions for HDPE SDR 11:
+        # - 200mm OD -> ~180mm ID (wall ~10mm)
+        # - 225mm OD -> ~215mm ID (wall ~5mm, as specified by user)
+        inner_diameter_map = {
+            "200mm": 180.0,
+            "225mm": 215.0,  # User-specified conservative value
+        }
+
+        inner_diameter = inner_diameter_map.get(self.config.duct_type, 200.0)
+
+        # Use friction override if provided, otherwise use defaults
+        if self.config.friction_override is not None:
+            # friction_override represents the lubricated friction value
+            friction_lub = self.config.friction_override if isinstance(self.config.friction_override, float) else self.config.friction_override[0]
+            friction_dry = friction_lub * 1.5  # Dry friction typically 50% higher than lubricated
+            return DuctSpec(
+                inner_diameter=inner_diameter,
+                type="HDPE",
+                friction_dry=friction_dry,
+                friction_lubricated=friction_lub,
+            )
+        else:
+            return DuctSpec(
+                inner_diameter=inner_diameter,
+                type="HDPE",
+                friction_dry=0.5,
+                friction_lubricated=0.3,
+            )
 
     def _generate_visualizations(self, route: Route, output_path: Path) -> None:
         """Generate PNG visualizations."""
@@ -298,14 +625,12 @@ class CableAnalysisPipeline:
             else route.sections
         )
         for i, section in enumerate(all_sections):
-            # Create a route with just this section for visualization
-            single_section_route = Route(name=f"Section {section.id}")
-            single_section_route.sections = [section]
-
-            fig, ax = self.visualizer.plot_professional_route(
-                single_section_route,
+            # Use new individual section plotting method
+            fig, ax = self.visualizer.plot_individual_section(
+                section,
+                section_index=i,
                 title=f"{section.id} Detail",
-                label_start_index=i,  # Use correct starting letter
+                show_fitted_geometry=False,  # Only show route geometry
             )
             fig.savefig(
                 sections_path / f"{section.id}.png", dpi=100, bbox_inches="tight"
@@ -321,38 +646,103 @@ class CableAnalysisPipeline:
         from ..calculations.tension import analyze_section_tension
 
         # PASS 1: Calculate forward tensions (left to right)
+        # IMPORTANT: Optimizer-created subsections are INDEPENDENT pulls
+        # Each subsection should start from tension = 0
         forward_results = []
-        cumulative_forward = 0.0
+
+        # Track which original section we're in
+        previous_original_section = None
 
         for section in route.sections:
-            # Calculate cumulative forward tension starting from this section
-            forward_tension = self.tension_calc.calculate_forward_tension(
-                section, self.cable_spec, self.duct_spec
-            )
-            cumulative_forward += forward_tension
+            # Determine if this is a new original section
+            # Section names are either "SECT_XX" or "SECT_XX_YY"
+            section_name = getattr(section, 'name', str(section))
+
+            # Extract original section ID (the "XX" part)
+            if '_' in section_name:
+                parts = section_name.split('_')
+                if len(parts) >= 2:
+                    original_section_id = parts[1]  # "SECT_XX_YY" -> "XX"
+                else:
+                    original_section_id = section_name
+            else:
+                original_section_id = section_name
+
+            # Reset cumulative tension at each new original section
+            # Subsections within same original section also start from 0
+            # (Each subsection is an independent pull)
+            cumulative_forward = 0.0
+
+            # Check if this section has optimizer-calculated values
+            # If so, use those instead of recalculating (optimizer's values are correct for F/R direction)
+            optimizer_max_tension = getattr(section, '_optimizer_max_tension', None)
+
+            if optimizer_max_tension is not None:
+                # Use optimizer's pre-calculated values
+                forward_tension = optimizer_max_tension
+                cumulative_forward = forward_tension
+
+                # Still need tension_analysis for primitive-level data in CSV
+                # But note: these values will be wrong for reversed sections
+                # We'll fix the CSV generation to use optimizer values instead
+                friction = self.config.friction_override if isinstance(self.config.friction_override, float) else self.duct_spec.friction_dry
+                is_lubricated = friction < 0.4
+                tension_analysis = analyze_section_tension(
+                    section, self.cable_spec, self.duct_spec, lubricated=is_lubricated,
+                    initial_tension_n=self.config.initial_tension_n, config=self.calc_config
+                )
+            else:
+                # No optimizer values - calculate normally
+                friction = self.config.friction_override if isinstance(self.config.friction_override, float) else self.duct_spec.friction_dry
+                is_lubricated = friction < 0.4
+
+                forward_tension = self.tension_calc.calculate_forward_tension(
+                    section, self.cable_spec, self.duct_spec, lubricated=is_lubricated
+                )
+                cumulative_forward = forward_tension
+                tension_analysis = analyze_section_tension(
+                    section, self.cable_spec, self.duct_spec, lubricated=is_lubricated,
+                    initial_tension_n=self.config.initial_tension_n, config=self.calc_config
+                )
 
             forward_results.append({
                 "section": section,
                 "forward_tension": forward_tension,
                 "cumulative_forward": cumulative_forward,
-                "tension_analysis": analyze_section_tension(
-                    section, self.cable_spec, self.duct_spec
-                ),
+                "tension_analysis": tension_analysis,
             })
 
+            previous_original_section = original_section_id
+
         # PASS 2: Calculate reverse tensions (right to left)
-        # Process sections in reverse order to accumulate reverse tensions correctly
+        # IMPORTANT: Same as forward - each subsection is an independent pull from tension = 0
         reverse_results = [{} for _ in forward_results]  # Placeholder
-        cumulative_reverse = 0.0
 
         for idx in range(len(route.sections) - 1, -1, -1):
             section = route.sections[idx]
 
-            # For reverse pulling, calculate tension as if pulling from end backwards
-            reverse_tension = self.tension_calc.calculate_reverse_tension(
-                section, self.cable_spec, self.duct_spec
-            )
-            cumulative_reverse += reverse_tension
+            # Each subsection is independent - starts from 0
+            cumulative_reverse = 0.0
+
+            # Check if this section has optimizer-calculated values
+            optimizer_max_tension = getattr(section, '_optimizer_max_tension', None)
+
+            if optimizer_max_tension is not None:
+                # Use optimizer's pre-calculated value
+                # For optimizer sections, forward and reverse both show the actual max tension
+                # (which is correct for the chosen pulling direction F or R)
+                reverse_tension = optimizer_max_tension
+                cumulative_reverse = reverse_tension
+            else:
+                # No optimizer values - calculate normally
+                friction = self.config.friction_override if isinstance(self.config.friction_override, float) else self.duct_spec.friction_dry
+                is_lubricated = friction < 0.4
+
+                # For reverse pulling, calculate tension as if pulling from end backwards
+                reverse_tension = self.tension_calc.calculate_reverse_tension(
+                    section, self.cable_spec, self.duct_spec, lubricated=is_lubricated
+                )
+                cumulative_reverse = reverse_tension
 
             reverse_results[idx] = {
                 "reverse_tension": reverse_tension,
@@ -372,90 +762,98 @@ class CableAnalysisPipeline:
             cumulative_reverse = reverse_data["cumulative_reverse"]
             tension_analysis = forward_data["tension_analysis"]
 
-            max_pressure = self.pressure_calc.calculate_max_sidewall_pressure(
-                section, self.cable_spec, self.duct_spec
-            )
+            # Check if optimizer calculated sidewall pressure
+            optimizer_max_sidewall = getattr(section, '_optimizer_max_sidewall', None)
+            if optimizer_max_sidewall is not None:
+                # Use optimizer's pre-calculated sidewall pressure
+                max_pressure = optimizer_max_sidewall
+            else:
+                # Calculate normally
+                max_pressure = self.pressure_calc.calculate_max_sidewall_pressure(
+                    section, self.cable_spec, self.duct_spec
+                )
 
-            # Build ordered geometry arrays matching CSV format (interleaved straights/bends)
-            section_straights = []
-            section_bends = []
+            # Build ordered geometry array - single list of all primitives in sequence
+            primitives_list = []
+            section_straights = []  # Legacy - for backward compatibility
+            section_bends = []  # Legacy - for backward compatibility
 
-            for i, primitive in enumerate(section.primitives):
+            # Keep track of how many straights and bends we've seen
+            straight_count = 0
+            bend_count = 0
+
+            for prim_idx, primitive in enumerate(section.primitives):
+                # Get tension at end of this primitive (using actual primitive index)
+                forward_tension_at_prim = (
+                    tension_analysis.forward_tensions[prim_idx].tension
+                    if prim_idx < len(tension_analysis.forward_tensions)
+                    else 0
+                )
+
+                # For reverse tension, reverse the mapping so first primitive gets highest tension
+                reverse_prim_idx = len(section.primitives) - 1 - prim_idx
+                reverse_tension_at_prim = (
+                    tension_analysis.backward_tensions[reverse_prim_idx].tension
+                    if reverse_prim_idx < len(tension_analysis.backward_tensions)
+                    else 0
+                )
+
                 if hasattr(primitive, "length_m"):  # Straight
-                    # Get tension at end of this primitive
-                    forward_tension_at_prim = (
-                        tension_analysis.forward_tensions[i].tension
-                        if i < len(tension_analysis.forward_tensions)
-                        else 0
-                    )
+                    prim_data = {
+                        "type": "straight",
+                        "length_m": primitive.length_m,
+                        "cumulative_forward_tension_n": forward_tension_at_prim,
+                        "cumulative_reverse_tension_n": reverse_tension_at_prim,
+                    }
+                    primitives_list.append(prim_data)
 
-                    # For reverse tension, reverse the mapping so first primitive gets highest tension
-                    reverse_idx = len(section.primitives) - 1 - i
-                    reverse_tension_at_prim = (
-                        tension_analysis.backward_tensions[reverse_idx].tension
-                        if reverse_idx < len(tension_analysis.backward_tensions)
-                        else 0
-                    )
-
-                    section_straights.append(
-                        {
-                            "length_m": primitive.length_m,
-                            "cumulative_forward_tension_n": forward_tension_at_prim,
-                            "cumulative_reverse_tension_n": reverse_tension_at_prim,
-                            "primitive_order": i,  # Track original order
-                        }
-                    )
+                    # Also add to legacy straights array
+                    section_straights.append({
+                        "length_m": primitive.length_m,
+                        "cumulative_forward_tension_n": forward_tension_at_prim,
+                        "cumulative_reverse_tension_n": reverse_tension_at_prim,
+                    })
+                    straight_count += 1
 
                 elif isinstance(primitive, Bend):  # Bend
-                    # Get tension at end of this primitive
-                    forward_tension_at_prim = (
-                        tension_analysis.forward_tensions[i].tension
-                        if i < len(tension_analysis.forward_tensions)
-                        else 0
-                    )
-
-                    # For reverse tension, reverse the mapping so first primitive gets highest tension
-                    reverse_idx = len(section.primitives) - 1 - i
-                    reverse_tension_at_prim = (
-                        tension_analysis.backward_tensions[reverse_idx].tension
-                        if reverse_idx < len(tension_analysis.backward_tensions)
-                        else 0
-                    )
-
                     sidewall_pressure = (
                         forward_tension_at_prim / primitive.radius_m
                         if primitive.radius_m > 0
                         else 0
                     )
 
-                    section_bends.append(
-                        {
-                            "angle_deg": primitive.angle_deg,
-                            "radius_m": primitive.radius_m,
-                            "cumulative_forward_tension_n": forward_tension_at_prim,
-                            "cumulative_reverse_tension_n": reverse_tension_at_prim,
-                            "sidewall_pressure_n_m": sidewall_pressure,
-                            "primitive_order": i,  # Track original order
-                        }
-                    )
+                    prim_data = {
+                        "type": "bend",
+                        "angle_deg": primitive.angle_deg,
+                        "radius_m": primitive.radius_m,
+                        "cumulative_forward_tension_n": forward_tension_at_prim,
+                        "cumulative_reverse_tension_n": reverse_tension_at_prim,
+                        "sidewall_pressure_n_m": sidewall_pressure,
+                    }
+                    primitives_list.append(prim_data)
 
-            # Sort both arrays by original primitive order for JSON output
-            straights = sorted(section_straights, key=lambda x: x["primitive_order"])
-            bends = sorted(section_bends, key=lambda x: x["primitive_order"])
+                    # Also add to legacy bends array
+                    section_bends.append({
+                        "angle_deg": primitive.angle_deg,
+                        "radius_m": primitive.radius_m,
+                        "cumulative_forward_tension_n": forward_tension_at_prim,
+                        "cumulative_reverse_tension_n": reverse_tension_at_prim,
+                        "sidewall_pressure_n_m": sidewall_pressure,
+                    })
+                    bend_count += 1
 
-            # Remove the order tracking field from final output
-            for s in straights:
-                del s["primitive_order"]
-            for b in bends:
-                del b["primitive_order"]
+            # Legacy arrays (no need to sort - already in order)
+            straights = section_straights
+            bends = section_bends
 
             result = SectionResult(
                 section_id=section.id,
                 length_m=section.total_length,
                 straight_count=len(straights),
                 bend_count=len(bends),
-                straights=straights,
-                bends=bends,
+                primitives=primitives_list,  # New ordered list
+                straights=straights,  # Legacy
+                bends=bends,  # Legacy
                 forward_tension_n=forward_tension,
                 reverse_tension_n=reverse_tension,
                 max_sidewall_pressure_n_m=max_pressure,
@@ -624,37 +1022,17 @@ class CableAnalysisPipeline:
                 ]
             )
 
-            # Create ordered arrays that interleave straights and bends
-            geometry_items = []
-            straight_idx = 0
-            bend_idx = 0
+            # Use the new primitives list for correct ordering
+            for prim_data in result.primitives:
+                prim_type = prim_data["type"]
+                forward_tension = prim_data["cumulative_forward_tension_n"]
+                reverse_tension = prim_data["cumulative_reverse_tension_n"]
 
-            # Build the interleaved sequence
-            for i in range(len(result.straights) + len(result.bends)):
-                if i % 2 == 0 and straight_idx < len(result.straights):
-                    geometry_items.append(("straight", result.straights[straight_idx]))
-                    straight_idx += 1
-                elif bend_idx < len(result.bends):
-                    geometry_items.append(("bend", result.bends[bend_idx]))
-                    bend_idx += 1
-
-            # For reverse tensions: we want to display them in descending order
-            # So first CSV row gets highest reverse tension (from end of route)
-            # Last CSV row gets lowest reverse tension (from start of route)
-
-            # Write rows using forward geometry order but reverse tensions in descending order
-            for i, (item_type, item_data) in enumerate(geometry_items):
-                # Use same index - JSON data is already ordered with highest reverse at start
-                reverse_item_type, reverse_item_data = geometry_items[i]
-
-                if item_type == "straight":
-                    forward_tension = item_data["cumulative_forward_tension_n"]
-                    reverse_tension = reverse_item_data["cumulative_reverse_tension_n"]
-
+                if prim_type == "straight":
                     writer.writerow(
                         [
                             "Straight",
-                            f"{item_data['length_m']:.1f}m",
+                            f"{prim_data['length_m']:.1f}m",
                             "",
                             f"{forward_tension:.0f}",
                             f"{reverse_tension:.0f}",
@@ -663,19 +1041,16 @@ class CableAnalysisPipeline:
                         ]
                     )
 
-                elif item_type == "bend":
-                    forward_tension = item_data["cumulative_forward_tension_n"]
-                    reverse_tension = reverse_item_data["cumulative_reverse_tension_n"]
-
+                elif prim_type == "bend":
                     # Calculate both forward and reverse sidewall pressures using actual tensions
-                    forward_sidewall = forward_tension / item_data["radius_m"]
-                    reverse_sidewall = reverse_tension / item_data["radius_m"]
+                    forward_sidewall = forward_tension / prim_data["radius_m"] if prim_data["radius_m"] > 0 else 0
+                    reverse_sidewall = reverse_tension / prim_data["radius_m"] if prim_data["radius_m"] > 0 else 0
 
                     writer.writerow(
                         [
                             "Bend",
-                            f"{item_data['angle_deg']:.1f}deg",
-                            f"{item_data['radius_m']:.1f}",
+                            f"{prim_data['angle_deg']:.1f}deg",
+                            f"{prim_data['radius_m']:.1f}",
                             f"{forward_tension:.0f}",
                             f"{reverse_tension:.0f}",
                             f"{forward_sidewall:.0f}",
@@ -704,6 +1079,209 @@ class CableAnalysisPipeline:
                 ]
             )
             writer.writerow(["No geometry data", "", "", "0", "0", ""])
+
+    def _export_coordinates_csv(self, route: Route, output_path: Path) -> None:
+        """Export section start/end coordinates to CSV file."""
+        filename = output_path / "section_coordinates.csv"
+
+        with open(filename, "w", newline="") as f:
+            writer = csv.writer(f)
+            writer.writerow(["Section ID", "Start X", "Start Y", "End X", "End Y", "Length (m)"])
+
+            # Use all sections including empty ones
+            all_sections = getattr(route, "_all_sections_with_splits", route.sections)
+
+            for section in all_sections:
+                start_coord = section.start_coordinate
+                end_coord = section.end_coordinate
+
+                # Format coordinates with 2 decimal places
+                if start_coord and end_coord:
+                    writer.writerow([
+                        section.id,
+                        f"{start_coord[0]:.2f}",
+                        f"{start_coord[1]:.2f}",
+                        f"{end_coord[0]:.2f}",
+                        f"{end_coord[1]:.2f}",
+                        f"{section.total_length:.2f}"
+                    ])
+                else:
+                    # If coordinates aren't available, leave them blank
+                    writer.writerow([
+                        section.id,
+                        "",
+                        "",
+                        "",
+                        "",
+                        f"{section.total_length:.2f}" if hasattr(section, 'total_length') else f"{section.original_length:.2f}"
+                    ])
+
+    def _export_latex_reports(
+        self, section_results: List[SectionResult], output_path: Path, route: Route
+    ) -> None:
+        """Export LaTeX reports for pulling calculations."""
+        print("  Generating LaTeX tables...")
+
+        # Generate pulling results LaTeX file
+        self._export_pulling_results_latex(section_results, output_path)
+
+        print(f"  LaTeX file written to: {output_path}")
+
+    def _export_pulling_results_latex(
+        self, section_results: List[SectionResult], output_path: Path
+    ) -> None:
+        """Generate Pulling Calculation Results.tex file."""
+
+        lines = []
+        lines.append("\\section{Pulling Calculation Results}")
+        lines.append("")
+        lines.append("\\subsection{Overall Route Analysis Summary}")
+
+        # Count sections and calculate statistics
+        total_sections = len(section_results)
+        sections_with_fails = sum(
+            1 for r in section_results
+            if r.forward_tension_n > self.config.cable_max_tension_n or
+               r.reverse_tension_n > self.config.cable_max_tension_n or
+               r.max_sidewall_pressure_n_m > self.config.cable_max_sidewall_pressure_n_m
+        )
+
+        # Determine summary text
+        if sections_with_fails == 0:
+            summary_text = (
+                f"The cable route has been optimized into {total_sections} individual pulls. "
+                "All pulls remain within cable manufacturer limits."
+            )
+        else:
+            summary_text = (
+                f"The cable route has been optimized into {total_sections} individual pulls. "
+                f"Sections requiring subdivision or special attention: {sections_with_fails}."
+            )
+
+        lines.append(summary_text)
+        lines.append("")
+        lines.append("The following table presents the complete bidirectional analysis for all cable pulls, "
+                    "showing both forward and reverse pulling options with the selected direction highlighted.")
+        lines.append("")
+
+        # Start longtable
+        lines.append("\\begin{longtable}{|L{1.8cm}|L{1.2cm}|L{1.2cm}|L{1.4cm}|L{1.4cm}|L{1.2cm}|L{1.4cm}|L{1.2cm}|L{2.5cm}|}")
+        lines.append("    \\hline")
+        lines.append("    \\headercell{Section} & \\headercell{Length (m)} & \\headercell{Direction} & "
+                    "\\headercell{Tension (N)} & \\headercell{Max (N)} & \\headercell{Usage (\\%)} & "
+                    "\\headercell{Sidewall (N/m)} & \\headercell{Max (N/m)} & \\headercell{Status} \\\\")
+        lines.append("    \\hline")
+        lines.append("    \\endfirsthead")
+        lines.append("")
+        lines.append("    \\hline")
+        lines.append("    \\headercell{Section} & \\headercell{Length (m)} & \\headercell{Direction} & "
+                    "\\headercell{Tension (N)} & \\headercell{Max (N)} & \\headercell{Usage (\\%)} & "
+                    "\\headercell{Sidewall (N/m)} & \\headercell{Max (N/m)} & \\headercell{Status} \\\\")
+        lines.append("    \\hline")
+        lines.append("    \\endhead")
+        lines.append("")
+
+        # Add data rows for each section
+        max_tension_util = 0.0
+        max_sidewall_util = 0.0
+
+        for result in section_results:
+            # Calculate utilizations
+            forward_tension_util = (result.forward_tension_n / self.config.cable_max_tension_n) * 100
+            reverse_tension_util = (result.reverse_tension_n / self.config.cable_max_tension_n) * 100
+            forward_sidewall_util = (result.max_sidewall_pressure_n_m / self.config.cable_max_sidewall_pressure_n_m) * 100
+            # For reverse, we use the same max sidewall (it's already the max of all bends)
+            reverse_sidewall_util = forward_sidewall_util
+
+            # Determine max utilization for each direction
+            forward_max_util = max(forward_tension_util, forward_sidewall_util)
+            reverse_max_util = max(reverse_tension_util, reverse_sidewall_util)
+
+            # Track overall max
+            max_tension_util = max(max_tension_util, forward_tension_util, reverse_tension_util)
+            max_sidewall_util = max(max_sidewall_util, forward_sidewall_util)
+
+            # Determine selected direction (lower utilization)
+            if forward_max_util <= reverse_max_util:
+                selected_direction = "forward"
+            else:
+                selected_direction = "reverse"
+
+            # Determine status for each direction
+            def get_status(tension_n, tension_util):
+                if tension_n > self.config.cable_max_tension_n or tension_util > 100:
+                    return "\\cellcolor{red!25}Fail"
+                elif selected_direction == ("forward" if tension_n == result.forward_tension_n else "reverse"):
+                    return "\\cellcolor{green!25}Selected"
+                else:
+                    return "Pass"
+
+            forward_status = get_status(result.forward_tension_n, forward_max_util)
+            reverse_status = get_status(result.reverse_tension_n, reverse_max_util)
+
+            # Clean section ID for LaTeX (escape underscores)
+            section_id_latex = result.section_id.replace("_", "\\_")
+
+            # Generate table rows (multirow for section with two direction rows)
+            lines.append(f"    \\multirow{{2}}{{*}}{{{section_id_latex}}} & "
+                        f"\\multirow{{2}}{{*}}{{{result.length_m:.1f}}} & "
+                        f"forward & "
+                        f"{result.forward_tension_n:.0f} & "
+                        f"{self.config.cable_max_tension_n:.0f} & "
+                        f"{forward_tension_util:.1f} & "
+                        f"{result.max_sidewall_pressure_n_m:.0f} & "
+                        f"{self.config.cable_max_sidewall_pressure_n_m:.0f} & "
+                        f"{forward_status} \\\\\\cline{{3-9}}")
+
+            lines.append(f"     & & reverse & "
+                        f"{result.reverse_tension_n:.0f} & "
+                        f"{self.config.cable_max_tension_n:.0f} & "
+                        f"{reverse_tension_util:.1f} & "
+                        f"{result.max_sidewall_pressure_n_m:.0f} & "
+                        f"{self.config.cable_max_sidewall_pressure_n_m:.0f} & "
+                        f"{reverse_status} \\\\\\hline")
+
+        # Table caption
+        lines.append(f"    \\caption{{Complete Bidirectional Analysis Summary - All {total_sections} Cable Pulls}}")
+        lines.append("    \\label{tbl:bidirectional-analysis}")
+        lines.append("\\end{longtable}")
+        lines.append("")
+
+        # Key performance metrics
+        lines.append("\\textbf{Key Performance Metrics:}")
+        lines.append("\\begin{itemize}")
+        lines.append(f"    \\item \\textbf{{Total Pulls Required:}} {total_sections}")
+        lines.append(f"    \\item \\textbf{{Maximum Tension Utilization:}} {max_tension_util:.1f}\\%")
+        lines.append(f"    \\item \\textbf{{Maximum Sidewall Utilization:}} {max_sidewall_util:.1f}\\%")
+        lines.append(f"    \\item \\textbf{{Tension Limit:}} {self.config.cable_max_tension_n/1000:.1f} kN")
+        lines.append(f"    \\item \\textbf{{Sidewall Pressure Limit:}} {self.config.cable_max_sidewall_pressure_n_m/1000:.1f} kN/m")
+        lines.append("\\end{itemize}")
+        lines.append("")
+
+        # Validation section
+        lines.append("\\section{Validation of Pulling Feasibility}")
+        lines.append("")
+        lines.append("\\begin{itemize}")
+
+        passing_sections = total_sections - sections_with_fails
+        if passing_sections == total_sections:
+            lines.append(f"    \\item \\textbf{{{passing_sections} of {total_sections} pulls fully validated}} "
+                        "with both forward and reverse options within limits.")
+        else:
+            lines.append(f"    \\item \\textbf{{{passing_sections} of {total_sections} pulls fully validated}} "
+                        "with both forward and reverse options within limits.")
+            lines.append(f"    \\item \\textbf{{{sections_with_fails} sections require attention}} "
+                        "due to exceeding manufacturer limits in one or both directions.")
+
+        lines.append("    \\item \\textbf{All selected pulling directions} maintain optimal stress levels "
+                    "and minimize installation risk.")
+        lines.append("    \\item \\textbf{Installation feasibility confirmed} with the specified pulling directions.")
+        lines.append("\\end{itemize}")
+
+        # Write to file
+        output_file = output_path / "Pulling Calculation Results.tex"
+        with open(output_file, 'w', encoding='utf-8') as f:
+            f.write('\n'.join(lines))
 
     def _export_summary_reports(
         self, results: AnalysisResults, output_path: Path

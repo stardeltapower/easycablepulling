@@ -142,16 +142,116 @@ class DXFReader:
         if not polylines:
             raise ValueError("No polylines found in DXF file")
 
-        route = Route(name=route_name)
+        # Find the absolute northernmost point across ALL sections
+        northernmost_y = max(pt[1] for _, points in polylines for pt in points)
+        northernmost_section_idx = None
+        northernmost_at_start = False
 
-        # Create sections from polylines
-        for i, (layer, points) in enumerate(polylines):
+        for idx, (layer, points) in enumerate(polylines):
+            # Check if first point is northernmost
+            if abs(points[0][1] - northernmost_y) < 0.01:
+                northernmost_section_idx = idx
+                northernmost_at_start = True
+                break
+            # Check if last point is northernmost
+            if abs(points[-1][1] - northernmost_y) < 0.01:
+                northernmost_section_idx = idx
+                northernmost_at_start = False
+                break
+
+        if northernmost_section_idx is None:
+            northernmost_section_idx = 0
+            northernmost_at_start = True
+
+        logger.info(f"Northernmost section: {northernmost_section_idx} (DXF index), "
+                   f"northernmost point at {'START' if northernmost_at_start else 'END'}")
+
+        # Build connectivity chain by following coordinate connections
+        # Start from northernmost section and follow connections
+        reordered_polylines = []
+        used_indices = set()
+
+        # Add first section (with northernmost point)
+        current_idx = northernmost_section_idx
+        current_layer, current_points = polylines[current_idx]
+        reordered_polylines.append((current_layer, current_points))
+        used_indices.add(current_idx)
+
+        # Get the endpoint we should connect FROM (opposite end from northernmost point)
+        if northernmost_at_start:
+            # Northernmost is at start, so we connect from the END
+            current_endpoint = current_points[-1]
+        else:
+            # Northernmost is at end, so we connect from the START
+            current_endpoint = current_points[0]
+
+        # Follow the chain by finding sections that connect
+        while len(used_indices) < len(polylines):
+            next_idx = None
+            next_reversed = False
+
+            # Find a section that connects to current_endpoint
+            for idx, (layer, points) in enumerate(polylines):
+                if idx in used_indices:
+                    continue
+
+                # Check if this section's START connects to our current endpoint
+                dx = abs(points[0][0] - current_endpoint[0])
+                dy = abs(points[0][1] - current_endpoint[1])
+                if dx < 0.01 and dy < 0.01:
+                    next_idx = idx
+                    next_reversed = False
+                    current_endpoint = points[-1]  # Next connection from END
+                    break
+
+                # Check if this section's END connects to our current endpoint
+                dx = abs(points[-1][0] - current_endpoint[0])
+                dy = abs(points[-1][1] - current_endpoint[1])
+                if dx < 0.01 and dy < 0.01:
+                    next_idx = idx
+                    next_reversed = True
+                    current_endpoint = points[0]  # Next connection from START
+                    break
+
+            if next_idx is None:
+                # No connection found - append remaining sections
+                logger.warning(f"Connection break after {len(used_indices)} sections")
+                for idx, (layer, points) in enumerate(polylines):
+                    if idx not in used_indices:
+                        reordered_polylines.append((layer, points))
+                        used_indices.add(idx)
+                break
+
+            # Add the connected section
+            layer, points = polylines[next_idx]
+            # If reversed, flip the points
+            if next_reversed:
+                points = points[::-1]
+            reordered_polylines.append((layer, points))
+            used_indices.add(next_idx)
+
+        # Create Route and sections with proper junction labels
+        route = Route(name=route_name)
+        current_junction = ord('A')
+
+        for i, (layer, points) in enumerate(reordered_polylines):
             section_id = f"{section_prefix}_{i+1:02d}"
 
-            section = Section(id=section_id, original_polyline=points)
+            # Assign junctions: A→B, B→C, C→D, etc.
+            start_junc = chr(current_junction)
+            end_junc = chr(current_junction + 1)
+
+            section = Section(
+                id=section_id,
+                original_polyline=points,
+                start_junction=start_junc,
+                end_junction=end_junc
+            )
+
+            current_junction += 1
 
             route.add_section(section)
-            logger.info(f"Created section {section_id} with {len(points)} points")
+            logger.info(f"Created section {section_id} ({start_junc}→{end_junc}) with {len(points)} points")
 
         # Add metadata
         route.metadata.update(

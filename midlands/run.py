@@ -1,315 +1,153 @@
 #!/usr/bin/env python3
 """
-Cable pulling analysis for Midlands project.
+Midlands Cable Pulling Analysis
 
-Analyzes a trefoil formation of 3 × 60mm cables through 200mm duct.
-The library now handles bundle calculations internally based on arrangement.
+Analyzes the Midlands DXF route with optimized splitting using:
+- AEIC calculation standard
+- Bidirectional equal splitting strategy
+- 3 cables in trefoil arrangement
+- Generates comprehensive reports and visualizations
 """
 
+import sys
 from pathlib import Path
-from easycablepulling import analyze_cable_route, AnalysisConfig
 
-# Project specifications
-PROJECT_NAME = "Midlands Cable Installation"
-DXF_FILE = "midlands/midlands.dxf"
-OUTPUT_DIR = "midlands/analysis_output"
+# Add parent directory to path
+sys.path.insert(0, str(Path(__file__).parent.parent))
 
-# Cable specifications (per individual cable)
-CABLE_DIAMETER_MM = 69.0           # Individual cable diameter
-CABLE_WEIGHT_KG_KM = 4930          # Weight per cable in kg/km
-CABLE_WEIGHT_KG_M = CABLE_WEIGHT_KG_KM / 1000  # 4.93 kg/m per cable
-
-# Cable arrangement
-CABLE_ARRANGEMENT = "trefoil"      # 3 cables in triangular formation
-NUMBER_OF_CABLES = 3                # Automatically set for trefoil
-
-# Installation limits
-MAX_PULL_TENSION_N = 27000         # 27 kN maximum pulling force
-MAX_SIDEWALL_PRESSURE_N_M = 7000   # Typical for MV cables
-MIN_BEND_RADIUS_MM = 15 * CABLE_DIAMETER_MM  # 15 × D = 900mm
-
-# Duct specifications
-DUCT_TYPE = "225mm"
-FRICTION_COEFFICIENT = 0.3         # Typical for cable in HDPE duct
+from easycablepulling.core.cable_analysis_pipeline import CableAnalysisPipeline, AnalysisConfig
 
 def main():
-    """Run cable pulling analysis with trefoil configuration."""
-    
-    print("=" * 70)
-    print(f"{PROJECT_NAME}")
-    print("=" * 70)
-    
+    """Run Midlands cable analysis with optimized splitting."""
+
+    print("=" * 80)
+    print("MIDLANDS CABLE PULLING ANALYSIS")
+    print("=" * 80)
+
+    # Configuration
+    config = AnalysisConfig(
+        # Duct
+        duct_type="225mm",  # 215mm inner diameter
+
+        # Cable specifications (per individual cable)
+        cable_diameter_mm=69.0,
+        cable_weight_kg_m=4.93,
+        cable_max_tension_n=27000.0,        # 27 kN limit
+        cable_max_sidewall_pressure_n_m=7000.0,  # 7 kN/m limit
+        cable_min_bend_radius_mm=980.0,
+        number_of_cables=3,
+        cable_arrangement="trefoil",
+
+        # Calculation standard
+        calculation_standard="aeic",
+
+        # Optimization
+        splitting_method="optimizer",      # Intelligent tension/pressure-based splitting
+        target_utilization=0.95,           # Split at 95% utilization
+        max_section_length_m=490.0,        # 490m max length (500m drums with overlap)
+
+        # Friction (trefoil-adjusted: 0.3 base × 1.3 multiplier)
+        friction_override=0.39,
+
+        # Output generation
+        generate_json=True,
+        generate_csv=True,
+        generate_png=True,  # Generate route and section visualizations
+    )
+
     # Display configuration
-    print("\n[CONFIG] CABLE CONFIGURATION (Individual Cable)")
-    print("-" * 40)
-    print(f"Cable diameter:   {CABLE_DIAMETER_MM:.0f}mm")
-    print(f"Cable weight:     {CABLE_WEIGHT_KG_M:.2f} kg/m ({CABLE_WEIGHT_KG_KM:.0f} kg/km)")
-    print(f"Arrangement:      {CABLE_ARRANGEMENT.capitalize()} ({NUMBER_OF_CABLES} cables)")
-    
-    # Calculate and display bundle properties (for reference)
-    bundle_diameter = 2.154 * CABLE_DIAMETER_MM if CABLE_ARRANGEMENT == "trefoil" else CABLE_DIAMETER_MM
-    total_weight = CABLE_WEIGHT_KG_M * NUMBER_OF_CABLES
-    
-    print("\n[CONFIG] CALCULATED BUNDLE PROPERTIES")
-    print("-" * 40)
-    print(f"Bundle diameter:  {bundle_diameter:.1f}mm (2.154 × {CABLE_DIAMETER_MM:.0f}mm)")
-    print(f"Total weight:     {total_weight:.2f} kg/m ({NUMBER_OF_CABLES} × {CABLE_WEIGHT_KG_M:.2f} kg/m)")
-    print(f"Note: These are calculated internally by the library")
-    
-    print("\n[CONFIG] DUCT SPECIFICATIONS")
-    print("-" * 40)
-    print(f"Duct type:        {DUCT_TYPE}")
-    print(f"Inner diameter:   225mm")
-    print(f"Radial clearance: {(225 - bundle_diameter)/2:.1f}mm")
-    print(f"Friction coeff:   {FRICTION_COEFFICIENT}")
-    
-    print("\n[CONFIG] PULLING LIMITS")
-    print("-" * 40)
-    print(f"Max tension:      {MAX_PULL_TENSION_N/1000:.1f} kN")
-    print(f"Max sidewall:     {MAX_SIDEWALL_PRESSURE_N_M:.0f} N/m")
-    print(f"Min bend radius:  {MIN_BEND_RADIUS_MM:.0f}mm")
-    print(f"Max section:      500m (sections split if longer)")
-    
-    print("\n[PROCESSING] Running analysis...")
-    print("-" * 40)
-    
+    print("\nConfiguration:")
+    print(f"  Standard: {config.calculation_standard.upper()}")
+    print(f"  Cable: {config.cable_diameter_mm}mm, {config.cable_weight_kg_m} kg/m")
+    print(f"  Cables: {config.number_of_cables} in {config.cable_arrangement}")
+    print(f"  Duct: {config.duct_type} (215mm inner diameter)")
+    print(f"  Friction: {config.friction_override}")
+    print(f"  Limits: {config.cable_max_tension_n/1000:.0f} kN tension, "
+          f"{config.cable_max_sidewall_pressure_n_m/1000:.0f} kN/m sidewall")
+    print(f"  Optimization: {config.splitting_method} with {config.target_utilization*100:.0f}% target")
+
+    # File paths
+    dxf_path = Path(__file__).parent / "midlands.dxf"
+    output_dir = Path(__file__).parent / "analysis_output"
+
+    if not dxf_path.exists():
+        print(f"\n[ERROR] DXF file not found: {dxf_path}")
+        sys.exit(1)
+
+    print(f"\nInput: {dxf_path.name}")
+    print(f"Output: {output_dir}")
+
+    # Run analysis
+    print("\n" + "=" * 80)
+    print("RUNNING ANALYSIS")
+    print("=" * 80)
+
+    pipeline = CableAnalysisPipeline(config)
+
     try:
-        # Run analysis with individual cable parameters
-        # The library will calculate bundle properties based on arrangement
-        results = analyze_cable_route(
-            dxf_path=DXF_FILE,
-            output_dir=OUTPUT_DIR,
-            dxf_layer="_FUN_33kV OPT 2 Overview Route",  # Use the cable route layer
-            # Individual cable parameters
-            cable_diameter_mm=CABLE_DIAMETER_MM,  # Individual cable diameter
-            cable_weight_kg_m=CABLE_WEIGHT_KG_M,  # Weight per individual cable
-            cable_arrangement=CABLE_ARRANGEMENT,   # Trefoil arrangement
-            number_of_cables=NUMBER_OF_CABLES,     # Will be set to 3 for trefoil
-            # Limits and specifications
-            cable_max_tension_n=MAX_PULL_TENSION_N,
-            cable_max_sidewall_pressure_n_m=MAX_SIDEWALL_PRESSURE_N_M,
-            cable_min_bend_radius_mm=MIN_BEND_RADIUS_MM,
-            # Duct and friction
-            duct_type=DUCT_TYPE,
-            friction_override=FRICTION_COEFFICIENT,
-            # Output options
-            generate_json=True,
-            generate_csv=True,
-            generate_png=True,
-            generate_dxf=False,
-            sample_interval_m=25.0,
-            max_section_length_m=500.0  # Split into 500m sections
+        results = pipeline.analyze_dxf(
+            dxf_path=dxf_path,
+            output_dir=output_dir,
         )
-        
-        print("[PASS] Analysis complete!")
-        
-        # Display results
-        print("\n📊 ANALYSIS RESULTS")
-        print("=" * 70)
-        
-        print("\n🛤️ Route Summary:")
-        print(f"  Route name:       {results.route_name}")
-        print(f"  Total length:     {results.total_length_m:.1f}m")
-        print(f"  Sections:         {results.section_count}")
-        print(f"  Total straights:  {results.total_straights}")
-        print(f"  Total bends:      {results.total_bends}")
-        
-        print("\n💪 Pulling Forces:")
-        print(f"  Forward tension:  {results.final_forward_tension_n:.0f}N ({results.final_forward_tension_n/1000:.2f} kN)")
-        print(f"  Reverse tension:  {results.final_reverse_tension_n:.0f}N ({results.final_reverse_tension_n/1000:.2f} kN)")
-        print(f"  Max sidewall:     {results.max_sidewall_pressure_n_m:.0f} N/m")
-        
-        print("\n📐 Fitting Accuracy:")
-        print(f"  Excellent (<5cm): {results.excellent_accuracy_percent:.1f}%")
-        print(f"  Median deviation: {results.median_deviation_cm:.1f}cm")
-        print(f"  Max deviation:    {results.max_deviation_cm:.1f}cm")
-        
-        # Safety checks
-        print("\n[WARN]  SAFETY CHECKS")
-        print("=" * 70)
-        
-        # Tension check
-        forward_ratio = (results.final_forward_tension_n / MAX_PULL_TENSION_N) * 100
-        reverse_ratio = (results.final_reverse_tension_n / MAX_PULL_TENSION_N) * 100
-        
-        print(f"\nTension Utilization:")
-        print(f"  Forward: {forward_ratio:.1f}% of limit")
-        print(f"  Reverse: {reverse_ratio:.1f}% of limit")
-        
-        if results.final_forward_tension_n <= MAX_PULL_TENSION_N:
-            print(f"  [PASS] Forward tension OK ({results.final_forward_tension_n/1000:.2f} < {MAX_PULL_TENSION_N/1000:.1f} kN)")
+
+        # Display results summary
+        print("\n" + "=" * 80)
+        print("ANALYSIS RESULTS")
+        print("=" * 80)
+
+        print(f"\nRoute: {results.route_name}")
+        print(f"Total length: {results.total_length_m:.1f} m")
+        print(f"Optimized sections: {results.section_count}")
+
+        print(f"\nGeometry:")
+        print(f"  Total straights: {results.total_straights}")
+        print(f"  Total bends: {results.total_bends}")
+
+        print(f"\nFinal Forces:")
+        print(f"  Final forward tension: {results.final_forward_tension_n/1000:.2f} kN")
+        print(f"  Final reverse tension: {results.final_reverse_tension_n/1000:.2f} kN")
+        print(f"  Max sidewall pressure: {results.max_sidewall_pressure_n_m/1000:.2f} kN/m")
+
+        # Check if all sections pass
+        all_pass = all(
+            section.forward_tension_n <= config.cable_max_tension_n and
+            section.max_sidewall_pressure_n_m <= config.cable_max_sidewall_pressure_n_m
+            for section in results.sections
+        )
+
+        status = "PASS" if all_pass else "FAIL"
+        print(f"\nStatus: {status}")
+        if all_pass:
+            print("  All sections pass tension and sidewall limits!")
         else:
-            print(f"  [FAIL] FORWARD TENSION EXCEEDS LIMIT ({results.final_forward_tension_n/1000:.2f} > {MAX_PULL_TENSION_N/1000:.1f} kN)")
-            
-        if results.final_reverse_tension_n <= MAX_PULL_TENSION_N:
-            print(f"  [PASS] Reverse tension OK ({results.final_reverse_tension_n/1000:.2f} < {MAX_PULL_TENSION_N/1000:.1f} kN)")
-        else:
-            print(f"  [FAIL] REVERSE TENSION EXCEEDS LIMIT ({results.final_reverse_tension_n/1000:.2f} > {MAX_PULL_TENSION_N/1000:.1f} kN)")
-        
-        # Sidewall pressure check
-        pressure_ratio = (results.max_sidewall_pressure_n_m / MAX_SIDEWALL_PRESSURE_N_M) * 100
-        print(f"\nSidewall Pressure:")
-        print(f"  Utilization: {pressure_ratio:.1f}% of limit")
-        
-        if results.max_sidewall_pressure_n_m <= MAX_SIDEWALL_PRESSURE_N_M:
-            print(f"  [PASS] Sidewall pressure OK ({results.max_sidewall_pressure_n_m:.0f} < {MAX_SIDEWALL_PRESSURE_N_M:.0f} N/m)")
-        else:
-            print(f"  [FAIL] SIDEWALL PRESSURE EXCEEDS LIMIT ({results.max_sidewall_pressure_n_m:.0f} > {MAX_SIDEWALL_PRESSURE_N_M:.0f} N/m)")
-        
-        # Overall assessment
-        print("\n[CONFIG] OVERALL ASSESSMENT:")
-        if (results.final_forward_tension_n <= MAX_PULL_TENSION_N and 
-            results.final_reverse_tension_n <= MAX_PULL_TENSION_N and
-            results.max_sidewall_pressure_n_m <= MAX_SIDEWALL_PRESSURE_N_M):
-            print("  [PASS] Installation is FEASIBLE within all limits")
-        else:
-            print("  [FAIL] Installation EXCEEDS LIMITS - review pulling strategy")
-            
-        # Detailed section analysis table with directional sidewall pressures
-        print("\n📊 SECTION-BY-SECTION DIRECTIONAL ANALYSIS")
-        print("=" * 140)
-        
-        # Header row 1
-        print(f"{'Section':<10} {'Length':<8} "
-              f"{'──── FORWARD PULLING ────':<40} "
-              f"{'──── REVERSE PULLING ────':<40} "
-              f"{'Overall':<10}")
-        
-        # Header row 2
-        print(f"{'ID':<10} {'(m)':<8} "
-              f"{'Tension':<12} {'SW Press':<12} {'Status':<16} "
-              f"{'Tension':<12} {'SW Press':<12} {'Status':<16} "
-              f"{'Status':<10}")
-        
-        # Header row 3 (units)
-        print(f"{'':<10} {'':<8} "
-              f"{'(kN)':<12} {'(N/m)':<12} {'':<16} "
-              f"{'(kN)':<12} {'(N/m)':<12} {'':<16} "
-              f"{'':<10}")
-        
-        print("-" * 140)
-        
-        critical_sections = []
-        warning_sections = []
-        
-        for i, section in enumerate(results.sections):
-            # Note: The library currently only provides max_sidewall_pressure_n_m
-            # which doesn't distinguish between directions. We'll note this limitation.
-            # In a proper implementation, we'd need separate forward/reverse sidewall values
-            
-            # Forward direction analysis
-            forward_tension = section.forward_tension_n
-            forward_tension_ratio = forward_tension / MAX_PULL_TENSION_N
-            # Using cumulative tensions to estimate sidewall pressures
-            # This is approximate - proper calculation would need bend-by-bend analysis
-            forward_sidewall = section.max_sidewall_pressure_n_m  # Approximate
-            forward_sidewall_ratio = forward_sidewall / MAX_SIDEWALL_PRESSURE_N_M
-            
-            # Forward status
-            if forward_tension_ratio > 1.0 or forward_sidewall_ratio > 1.0:
-                forward_status = "[FAIL] FAIL"
-            elif forward_tension_ratio > 0.8 or forward_sidewall_ratio > 0.8:
-                forward_status = "[WARN]  WARN"
-            else:
-                forward_status = "[PASS] PASS"
-            
-            # Reverse direction analysis
-            reverse_tension = section.reverse_tension_n
-            reverse_tension_ratio = reverse_tension / MAX_PULL_TENSION_N
-            # For reverse, sidewall pressure would be different due to different tension
-            # Using ratio of tensions to approximate
-            reverse_sidewall = section.max_sidewall_pressure_n_m  # Approximate
-            reverse_sidewall_ratio = reverse_sidewall / MAX_SIDEWALL_PRESSURE_N_M
-            
-            # Reverse status
-            if reverse_tension_ratio > 1.0 or reverse_sidewall_ratio > 1.0:
-                reverse_status = "[FAIL] FAIL"
-            elif reverse_tension_ratio > 0.8 or reverse_sidewall_ratio > 0.8:
-                reverse_status = "[WARN]  WARN"
-            else:
-                reverse_status = "[PASS] PASS"
-            
-            # Overall status (best of both directions)
-            if "[PASS]" in forward_status or "[PASS]" in reverse_status:
-                overall_status = "[PASS] PASS"
-            elif "[WARN]" in forward_status or "[WARN]" in reverse_status:
-                overall_status = "[WARN]  WARN"
-                warning_sections.append(section)
-            else:
-                overall_status = "[FAIL] FAIL"
-                critical_sections.append(section)
-            
-            # Print row
-            print(f"{section.section_id:<10} {section.length_m:<8.1f} "
-                  f"{forward_tension/1000:<12.2f} {forward_sidewall:<12.0f} {forward_status:<16} "
-                  f"{reverse_tension/1000:<12.2f} {reverse_sidewall:<12.0f} {reverse_status:<16} "
-                  f"{overall_status:<10}")
-        
-        print("-" * 140)
-        
-        # Add note about sidewall pressure approximation
-        print("\nNote: Sidewall pressures shown are approximations. For accurate directional sidewall")
-        print("      pressures, use run_optimized.py which calculates bend-by-bend pressures.")
-        
-        # Summary statistics
-        total_length = sum(s.length_m for s in results.sections)
-        avg_length = total_length / len(results.sections) if results.sections else 0
-        max_length = max((s.length_m for s in results.sections), default=0)
-        min_length = min((s.length_m for s in results.sections), default=0)
-        
-        print(f"\n📈 Section Statistics:")
-        print(f"  Total sections: {len(results.sections)}")
-        print(f"  Total length:   {total_length:.1f}m")
-        print(f"  Average length: {avg_length:.1f}m")
-        print(f"  Longest:        {max_length:.1f}m")
-        print(f"  Shortest:       {min_length:.1f}m")
-        
-        print(f"\n🔍 Status Summary:")
-        print(f"  [PASS] Passing sections:  {len(results.sections) - len(critical_sections) - len(warning_sections)}")
-        print(f"  [WARN]  Warning sections:  {len(warning_sections)} (80-100% of limits)")
-        print(f"  [FAIL] Failed sections:   {len(critical_sections)} (>100% of limits)")
-        
-        if critical_sections:
-            print(f"\n[FAIL] Critical Sections (exceeding limits):")
-            for section in critical_sections:
-                print(f"    {section.section_id}: {section.length_m:.1f}m - "
-                      f"F={section.forward_tension_n/1000:.1f}kN "
-                      f"({section.forward_tension_n/MAX_PULL_TENSION_N*100:.0f}%), "
-                      f"R={section.reverse_tension_n/1000:.1f}kN "
-                      f"({section.reverse_tension_n/MAX_PULL_TENSION_N*100:.0f}%)")
-        
-        if warning_sections:
-            print(f"\n[WARN]  Warning Sections (80-100% of limits):")
-            for section in warning_sections:
-                print(f"    {section.section_id}: {section.length_m:.1f}m - "
-                      f"F={section.forward_tension_n/1000:.1f}kN "
-                      f"({section.forward_tension_n/MAX_PULL_TENSION_N*100:.0f}%), "
-                      f"R={section.reverse_tension_n/1000:.1f}kN "
-                      f"({section.reverse_tension_n/MAX_PULL_TENSION_N*100:.0f}%)")
-        
-        print("\n📁 Output Files:")
-        print(f"  Results saved to: {Path(OUTPUT_DIR).absolute()}")
-        print(f"  - Visualizations: {OUTPUT_DIR}/visualizations/")
-        print(f"  - JSON data:      {OUTPUT_DIR}/json/")
-        print(f"  - CSV data:       {OUTPUT_DIR}/csv/")
-        
-        print("\n" + "=" * 70)
-        print("Analysis complete! Check output directory for detailed results.")
-        print("=" * 70)
-        
-        return results
-        
-    except FileNotFoundError:
-        print(f"[FAIL] ERROR: DXF file not found: {DXF_FILE}")
-        print("   Please ensure the DXF file exists in the specified location.")
-        return None
-        
+            failing = [
+                s.section_id for s in results.sections
+                if s.forward_tension_n > config.cable_max_tension_n or
+                   s.max_sidewall_pressure_n_m > config.cable_max_sidewall_pressure_n_m
+            ]
+            print(f"  {len(failing)} sections exceed limits: {', '.join(failing[:5])}")
+
+        print("\n" + "=" * 80)
+        print("OUTPUT FILES")
+        print("=" * 80)
+        print(f"\nResults saved to: {output_dir}")
+        print(f"  - CSV reports: {output_dir}/csv/")
+        print(f"  - JSON data: {output_dir}/json/")
+        print(f"  - Visualizations: {output_dir}/visualizations/")
+        print(f"  - Summary: {output_dir}/analysis_summary.json")
+
+        print("\n" + "=" * 80)
+        print("SUCCESS!")
+        print("=" * 80)
+
+        return 0
+
     except Exception as e:
-        print(f"[FAIL] ERROR: Analysis failed - {e}")
+        print(f"\n[ERROR] Analysis failed: {e}")
         import traceback
         traceback.print_exc()
-        return None
+        return 1
 
 
 if __name__ == "__main__":
-    results = main()
+    sys.exit(main())

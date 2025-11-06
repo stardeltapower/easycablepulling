@@ -1,9 +1,11 @@
 """Sidewall pressure calculations and limit checking."""
 
-from typing import List, NamedTuple, Tuple
+from typing import List, NamedTuple, Optional, Tuple
 
-from ..core.models import Bend, CableSpec, DuctSpec, Section, Straight
+from ..core.models import Bend, CableArrangement, CableSpec, DuctSpec, Section, Straight
+from .config import CalculationConfig, CalculationStandard
 from .tension import TensionResult
+from .weight_correction import get_weight_correction_factor
 
 
 class PressureResult(NamedTuple):
@@ -34,6 +36,14 @@ class LimitCheckResult(NamedTuple):
 class PressureCalculator:
     """Simplified pressure calculator for pipeline interface."""
 
+    def __init__(self, config: Optional[CalculationConfig] = None):
+        """Initialize pressure calculator with configuration.
+
+        Args:
+            config: Calculation configuration (defaults to CIGRE if None)
+        """
+        self.config = config if config is not None else CalculationConfig()
+
     def calculate_max_sidewall_pressure(
         self,
         section: Section,
@@ -56,7 +66,11 @@ class PressureCalculator:
                 primitive = section.primitives[i]
                 if isinstance(primitive, Bend):
                     pressure = calculate_sidewall_pressure(
-                        result.tension, primitive.radius_m
+                        result.tension,
+                        primitive.radius_m,
+                        cable_spec,
+                        duct_spec,
+                        self.config,
                     )
                     max_pressure = max(max_pressure, pressure)
 
@@ -66,41 +80,84 @@ class PressureCalculator:
                 primitive = section.primitives[i]
                 if isinstance(primitive, Bend):
                     pressure = calculate_sidewall_pressure(
-                        result.tension, primitive.radius_m
+                        result.tension,
+                        primitive.radius_m,
+                        cable_spec,
+                        duct_spec,
+                        self.config,
                     )
                     max_pressure = max(max_pressure, pressure)
 
         return max_pressure
 
 
-def calculate_sidewall_pressure(tension: float, bend_radius: float) -> float:
-    """Calculate sidewall pressure in a bend.
+def calculate_sidewall_pressure(
+    tension: float,
+    bend_radius: float,
+    cable_spec: Optional[CableSpec] = None,
+    duct_spec: Optional[DuctSpec] = None,
+    config: Optional[CalculationConfig] = None,
+) -> float:
+    """Calculate sidewall pressure in a bend with configurable method.
 
-    Uses the formula: P = T / r
-    where:
-    - P: Sidewall pressure (N/m)
-    - T: Cable tension (N)
-    - r: Bend radius (m)
+    Supports multiple calculation standards:
+    - CIGRE TB-889: P = T / r (conservative, no reduction)
+    - AEIC CG5-2015: P = (c × T) / (2 × r) for triangular config
+    - Polywater: Same as AEIC
 
     Args:
         tension: Cable tension in Newtons
         bend_radius: Bend radius in meters
+        cable_spec: Cable specifications (optional, for WCF and arrangement)
+        duct_spec: Duct specifications (optional, for WCF calculation)
+        config: Calculation configuration (optional, defaults to CIGRE)
 
     Returns:
         Sidewall pressure in N/m
+
+    Raises:
+        ValueError: If tension is negative or radius is non-positive
     """
     if tension < 0:
         raise ValueError("Tension cannot be negative")
     if bend_radius <= 0:
         raise ValueError("Bend radius must be positive")
 
-    return tension / bend_radius
+    # Default to CIGRE if no config provided
+    if config is None:
+        config = CalculationConfig(standard=CalculationStandard.CIGRE)
+
+    # Calculate weight correction factor if specs are provided
+    if config.apply_weight_correction and cable_spec and duct_spec:
+        use_cigre_formula = config.standard == CalculationStandard.CIGRE
+        wc = get_weight_correction_factor(cable_spec, duct_spec, use_cigre_formula)
+    else:
+        wc = 1.0
+
+    # Calculate pressure based on configuration
+    if (
+        config.apply_sidewall_reduction
+        and cable_spec
+        and cable_spec.arrangement == CableArrangement.TREFOIL
+    ):
+        # AEIC/Polywater formula for triangular configuration
+        # P = (c × T) / (2 × r)
+        pressure = (wc * tension) / (2 * bend_radius)
+    else:
+        # CIGRE formula (or fallback for other arrangements)
+        # P = (c × T) / r
+        pressure = (wc * tension) / bend_radius
+
+    # Apply safety factor
+    return pressure * config.pressure_safety_factor
 
 
 def analyze_section_pressures(
     section: Section,
     tension_results: List[TensionResult],
     cable_spec: CableSpec,
+    duct_spec: Optional[DuctSpec] = None,
+    config: Optional[CalculationConfig] = None,
 ) -> List[PressureResult]:
     """Calculate sidewall pressures for all bends in a section.
 
@@ -108,10 +165,15 @@ def analyze_section_pressures(
         section: Section being analyzed
         tension_results: Tension results from tension analysis
         cable_spec: Cable specifications for pressure limits
+        duct_spec: Duct specifications (optional, for WCF)
+        config: Calculation configuration (optional, defaults to CIGRE)
 
     Returns:
         List of pressure results for each primitive
     """
+    if config is None:
+        config = CalculationConfig()
+
     pressure_results = []
 
     for tension_result in tension_results:
@@ -120,7 +182,11 @@ def analyze_section_pressures(
         if isinstance(primitive, Bend):
             # Calculate sidewall pressure for bend
             pressure = calculate_sidewall_pressure(
-                tension_result.tension, primitive.radius_m
+                tension_result.tension,
+                primitive.radius_m,
+                cable_spec,
+                duct_spec,
+                config,
             )
 
             # Check if pressure exceeds limits

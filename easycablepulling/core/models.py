@@ -27,13 +27,18 @@ class CableSpec:
     """Cable specification for pulling calculations."""
 
     diameter: float  # Outside diameter in mm
-    weight_per_meter: float  # Weight in kg/m
+    weight_per_meter: float  # Weight in kg/m per cable
     max_tension: float  # Maximum allowable pulling tension in N
     max_sidewall_pressure: float  # Maximum sidewall pressure in N/m
     min_bend_radius: float  # Minimum bend radius in mm
     pulling_method: PullingMethod = PullingMethod.EYE
     arrangement: CableArrangement = CableArrangement.SINGLE
     number_of_cables: int = 1
+
+    # New fields for advanced calculations
+    is_bound: bool = False  # Whether cables are physically lashed/triplexed together
+    conductor_area_mm2: float = 0.0  # Conductor cross-sectional area in mm²
+    conductor_material: Literal["copper", "aluminum"] = "copper"
 
     def __post_init__(self) -> None:
         """Validate cable specifications."""
@@ -49,6 +54,8 @@ class CableSpec:
             raise ValueError("Minimum bend radius must be positive")
         if self.number_of_cables < 1:
             raise ValueError("Number of cables must be at least 1")
+        if self.conductor_area_mm2 < 0:
+            raise ValueError("Conductor area cannot be negative")
 
         # Validate arrangement vs number of cables
         if self.arrangement == CableArrangement.SINGLE and self.number_of_cables != 1:
@@ -57,6 +64,10 @@ class CableSpec:
             raise ValueError("Trefoil arrangement requires exactly 3 cables")
         if self.arrangement == CableArrangement.FLAT and self.number_of_cables < 2:
             raise ValueError("Flat arrangement requires at least 2 cables")
+
+        # Validate binding state
+        if self.is_bound and self.number_of_cables == 1:
+            raise ValueError("Single cable cannot be marked as bound")
 
     @property
     def bundle_diameter(self) -> float:
@@ -72,8 +83,52 @@ class CableSpec:
 
     @property
     def total_weight_per_meter(self) -> float:
-        """Calculate total weight per meter for all cables."""
+        """Calculate total weight per meter for all cables.
+
+        Note: This is simple multiplication. For proper tension calculations,
+        use weight correction factors via CalculationConfig.
+        """
         return self.weight_per_meter * self.number_of_cables
+
+    def calculate_theoretical_max_tension(self) -> float:
+        """Calculate theoretical maximum tension based on conductor properties.
+
+        Uses industry-standard stress limits:
+        - Copper: 50 N/mm² (single), 50 N/mm² (3-core bound/unbound)
+        - Aluminum: 30 N/mm² (all configurations)
+
+        For multiple cables:
+        - Bound (lashed/triplex): 3× multiplier (all cables share load)
+        - Unbound triangular: 2× multiplier (bottom 2 cables take load)
+
+        Returns:
+            Maximum allowable tension in Newtons
+        """
+        if self.conductor_area_mm2 <= 0:
+            # No conductor area specified, return configured max tension
+            return self.max_tension
+
+        # Material stress limits (N/mm²)
+        if self.conductor_material == "copper":
+            stress_limit = 50.0  # Conservative for 3-core
+        else:  # aluminum
+            stress_limit = 30.0
+
+        # Base tension for single conductor
+        base_tension = stress_limit * self.conductor_area_mm2
+
+        # Apply multiplier for multiple cables
+        if self.number_of_cables == 1:
+            return base_tension
+        elif self.number_of_cables >= 3:
+            if self.is_bound:
+                # Bound cables: all share load equally
+                return 3.0 * base_tension
+            else:
+                # Unbound cables: bottom 2 cables take load
+                return 2.0 * base_tension
+        else:  # 2 cables
+            return 2.0 * base_tension  # Both cables share
 
 
 @dataclass
@@ -331,12 +386,28 @@ class Section:
     original_polyline: List[Tuple[float, float]]  # Original (x, y) points
     primitives: List[Primitive] = field(default_factory=list)
 
+    # Explicit start/end coordinates for label placement
+    # These should match first and last points of original_polyline
+    start_coordinate: Optional[Tuple[float, float]] = None
+    end_coordinate: Optional[Tuple[float, float]] = None
+
+    # Junction labels for connectivity tracking (A, B, C, D, etc.)
+    # These preserve connectivity through splitting and enable proper reordering
+    start_junction: Optional[str] = None
+    end_junction: Optional[str] = None
+
     def __post_init__(self) -> None:
         """Validate section."""
         if not self.id:
             raise ValueError("Section must have an ID")
         if len(self.original_polyline) < 2:
             raise ValueError("Section must have at least 2 points")
+
+        # Auto-set start/end coordinates from polyline if not provided
+        if self.start_coordinate is None:
+            self.start_coordinate = self.original_polyline[0]
+        if self.end_coordinate is None:
+            self.end_coordinate = self.original_polyline[-1]
 
     @property
     def total_length(self) -> float:

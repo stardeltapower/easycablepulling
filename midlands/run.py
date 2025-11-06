@@ -44,7 +44,7 @@ def main():
         # Optimization
         splitting_method="optimizer",      # Intelligent tension/pressure-based splitting
         target_utilization=0.95,           # Split at 95% utilization
-        max_section_length_m=490.0,        # 490m max length (500m drums with overlap)
+        max_section_length_m=990.0,        # 990m max length (1000m drums with overlap)
 
         # Friction (trefoil-adjusted: 0.3 base × 1.3 multiplier)
         friction_override=0.39,

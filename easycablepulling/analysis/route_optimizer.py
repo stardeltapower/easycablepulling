@@ -52,6 +52,12 @@ class OptimizedSection:
     max_tension: float  # Maximum tension in section (N)
     max_sidewall_pressure: float  # Maximum sidewall pressure (N/m)
 
+    # Direction-specific values (for displaying both options in reports)
+    forward_tension: float  # Forward pulling tension (N)
+    reverse_tension: float  # Reverse pulling tension (N)
+    forward_sidewall: float  # Forward pulling max sidewall pressure (N/m)
+    reverse_sidewall: float  # Reverse pulling max sidewall pressure (N/m)
+
     # Utilization ratios (0-1)
     tension_utilization: float
     sidewall_utilization: float
@@ -449,33 +455,42 @@ class RouteOptimizer:
         optimal_subsections = []
 
         for i, (forward_sec, reverse_sec, fwd_passes, rev_passes) in enumerate(subsection_options):
+            # Store both forward and reverse values for comparison
+            # (even though we'll choose the optimal direction)
+            fwd_tension = forward_sec.max_tension if forward_sec else 0
+            rev_tension = reverse_sec.max_tension if reverse_sec else 0
+            fwd_sidewall = forward_sec.max_sidewall_pressure if forward_sec else 0
+            rev_sidewall = reverse_sec.max_sidewall_pressure if reverse_sec else 0
+
             if fwd_passes and rev_passes:
                 # Both pass - choose one with lower peak tension
                 if forward_sec.max_tension <= reverse_sec.max_tension:
                     chosen = forward_sec
-                    direction = "F"
                 else:
                     # Use reverse section's calculations but forward section's primitives
                     # This keeps primitives in geographical order
                     chosen = reverse_sec
                     chosen.primitives = forward_sec.primitives  # Use geographical order!
-                    direction = "R"
             elif fwd_passes:
                 chosen = forward_sec
-                direction = "F"
             else:
                 # Use reverse section's calculations but forward section's primitives
                 # This keeps primitives in geographical order
                 chosen = reverse_sec
                 chosen.primitives = forward_sec.primitives  # Use geographical order!
-                direction = "R"
 
-            # Update section ID to reflect direction and subsection number
+            # Store both forward and reverse values for reporting
+            chosen.forward_tension = fwd_tension
+            chosen.reverse_tension = rev_tension
+            chosen.forward_sidewall = fwd_sidewall
+            chosen.reverse_sidewall = rev_sidewall
+
+            # Update section ID and subsection number (no direction suffix)
             if num_subsections > 1:
-                chosen.section_id = f"SECT_{original_section_id}_{i+1:02d}_{direction}"
+                chosen.section_id = f"SECT_{original_section_id}_{i+1:02d}"
                 chosen.subsection_number = i + 1
             else:
-                chosen.section_id = f"SECT_{original_section_id}_{direction}"
+                chosen.section_id = f"SECT_{original_section_id}"
                 chosen.subsection_number = 0
 
             optimal_subsections.append(chosen)
@@ -485,12 +500,11 @@ class RouteOptimizer:
 
         # Renumber subsections in order
         for i, subsection in enumerate(optimal_subsections):
-            direction = subsection.section_id.split('_')[-1]  # F or R
             if num_subsections > 1:
-                subsection.section_id = f"SECT_{original_section_id}_{i+1:02d}_{direction}"
+                subsection.section_id = f"SECT_{original_section_id}_{i+1:02d}"
                 subsection.subsection_number = i + 1
             else:
-                subsection.section_id = f"SECT_{original_section_id}_{direction}"
+                subsection.section_id = f"SECT_{original_section_id}"
                 subsection.subsection_number = 0
 
         return optimal_subsections
@@ -607,9 +621,11 @@ class RouteOptimizer:
             section_primitives, friction_override
         )
 
-        # Create subsections
+        # Create subsections - test both forward and reverse directions for each
         subsections = []
-        for i in range(len(split_points) - 1):
+        total_subsections = len(split_points) - 1
+
+        for i in range(total_subsections):
             start_idx = split_points[i]
             end_idx = split_points[i + 1]
 
@@ -617,16 +633,64 @@ class RouteOptimizer:
             if not subsection_primitives:
                 continue
 
-            subsection = self._create_section_from_primitives(
+            # Test forward direction
+            forward_results = self._create_section_from_primitives(
                 section_primitives=subsection_primitives,
                 original_section_id=original_section_id,
                 subsection_number=i + 1,
                 friction_override=friction_override,
                 original_section=original_section,
-                total_subsections=len(split_points) - 1,
+                total_subsections=total_subsections,
             )
+            forward_section = forward_results[0] if forward_results else None
 
-            subsections.extend(subsection)
+            # Test reverse direction (reverse the primitives)
+            reverse_results = self._create_section_from_primitives(
+                section_primitives=subsection_primitives[::-1],
+                original_section_id=original_section_id,
+                subsection_number=i + 1,
+                friction_override=friction_override,
+                original_section=original_section,
+                total_subsections=total_subsections,
+            )
+            reverse_section = reverse_results[0] if reverse_results else None
+
+            # Check which directions pass
+            forward_passes = forward_section and forward_section.passes_tension and forward_section.passes_sidewall
+            reverse_passes = reverse_section and reverse_section.passes_tension and reverse_section.passes_sidewall
+
+            # Store both forward and reverse values for comparison
+            fwd_tension = forward_section.max_tension if forward_section else 0
+            rev_tension = reverse_section.max_tension if reverse_section else 0
+            fwd_sidewall = forward_section.max_sidewall_pressure if forward_section else 0
+            rev_sidewall = reverse_section.max_sidewall_pressure if reverse_section else 0
+
+            # Choose the better direction
+            if forward_passes and reverse_passes:
+                # Both pass - choose one with lower peak tension
+                if forward_section.max_tension <= reverse_section.max_tension:
+                    chosen = forward_section
+                else:
+                    # Use reverse section's calculations but forward section's primitives
+                    chosen = reverse_section
+                    chosen.primitives = forward_section.primitives  # Use geographical order!
+            elif forward_passes:
+                chosen = forward_section
+            elif reverse_passes:
+                # Use reverse section's calculations but forward section's primitives
+                chosen = reverse_section
+                chosen.primitives = forward_section.primitives  # Use geographical order!
+            else:
+                # Neither passes - use forward section
+                chosen = forward_section
+
+            # Store both forward and reverse values for reporting
+            chosen.forward_tension = fwd_tension
+            chosen.reverse_tension = rev_tension
+            chosen.forward_sidewall = fwd_sidewall
+            chosen.reverse_sidewall = rev_sidewall
+
+            subsections.append(chosen)
 
         # Update IDs
         if len(subsections) == 1:
@@ -822,23 +886,23 @@ class RouteOptimizer:
                 start_junction = original_section.start_junction
                 end_junction = original_section.end_junction
             else:
-                # Split into multiple subsections
-                # Create intermediate junctions: A→B becomes A→B1, B1→B2, B2→B
+                # Split into multiple subsections - only use real junctions at section boundaries
+                # Subsections in the middle don't get junction labels (will show coordinates only)
                 orig_start = original_section.start_junction
                 orig_end = original_section.end_junction
 
                 if subsection_number == 1:
-                    # First subsection: starts at original start
+                    # First subsection: starts at original start junction
                     start_junction = orig_start
-                    end_junction = f"{orig_end}{subsection_number}"
+                    end_junction = None  # No junction label for split point
                 elif subsection_number == total_subsections:
-                    # Last subsection: ends at original end
-                    start_junction = f"{orig_end}{subsection_number - 1}"
+                    # Last subsection: ends at original end junction
+                    start_junction = None  # No junction label for split point
                     end_junction = orig_end
                 else:
-                    # Middle subsection
-                    start_junction = f"{orig_end}{subsection_number - 1}"
-                    end_junction = f"{orig_end}{subsection_number}"
+                    # Middle subsection: no junction labels
+                    start_junction = None
+                    end_junction = None
 
         return [OptimizedSection(
             section_id=section_id,
@@ -850,6 +914,11 @@ class RouteOptimizer:
             primitives=results,
             max_tension=max_tension,
             max_sidewall_pressure=max_sidewall,
+            # Initially set to same values - will be updated when comparing forward/reverse
+            forward_tension=max_tension,
+            reverse_tension=max_tension,
+            forward_sidewall=max_sidewall,
+            reverse_sidewall=max_sidewall,
             tension_utilization=tension_util,
             sidewall_utilization=sidewall_util,
             passes_tension=passes_tension,

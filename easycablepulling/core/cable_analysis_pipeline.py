@@ -81,7 +81,9 @@ class SectionResult:
     # Pulling calculations
     forward_tension_n: float
     reverse_tension_n: float
-    max_sidewall_pressure_n_m: float
+    max_sidewall_pressure_n_m: float  # Legacy field - max of forward/reverse
+    forward_sidewall_pressure_n_m: float  # Forward pulling max sidewall
+    reverse_sidewall_pressure_n_m: float  # Reverse pulling max sidewall
 
     # Cumulative values
     cumulative_forward_n: float
@@ -357,6 +359,10 @@ class CableAnalysisPipeline:
             # These values are correct for the chosen pulling direction (F or R)
             setattr(section, "_optimizer_max_tension", opt_section.max_tension)
             setattr(section, "_optimizer_max_sidewall", opt_section.max_sidewall_pressure)
+            setattr(section, "_optimizer_forward_tension", opt_section.forward_tension)
+            setattr(section, "_optimizer_reverse_tension", opt_section.reverse_tension)
+            setattr(section, "_optimizer_forward_sidewall", opt_section.forward_sidewall)
+            setattr(section, "_optimizer_reverse_sidewall", opt_section.reverse_sidewall)
             setattr(section, "_optimizer_passes_tension", opt_section.passes_tension)
             setattr(section, "_optimizer_passes_sidewall", opt_section.passes_sidewall)
 
@@ -471,10 +477,10 @@ class CableAnalysisPipeline:
             return sections
 
         # Track original section numbers to detect subsections
-        # E.g., SECT_07_01_F and SECT_07_02_F are subsections of section 07
+        # E.g., SECT_07_01 and SECT_07_02 are subsections of section 07
         section_groups = {}
         for section in sections:
-            # Extract base section number (e.g., "07" from "SECT_07_01_F")
+            # Extract base section number (e.g., "07" from "SECT_07_01")
             parts = section.id.split("_")
             if len(parts) >= 2:
                 base_num = parts[1]  # "01", "02", "07", etc.
@@ -491,12 +497,9 @@ class CableAnalysisPipeline:
                 # Simple section like "SECT_02"
                 new_id = f"SECT_{new_section_num:02d}"
             elif len(parts) >= 3:
-                # Subsection like "SECT_07_01_F"
+                # Subsection like "SECT_07_01"
                 subsection_num = parts[2]  # "01", "02", etc.
-                direction = parts[3] if len(parts) > 3 else ""
                 new_id = f"SECT_{new_section_num:02d}_{subsection_num}"
-                if direction:
-                    new_id += f"_{direction}"
             else:
                 # Unknown format, keep original
                 new_id = section.id
@@ -675,11 +678,11 @@ class CableAnalysisPipeline:
 
             # Check if this section has optimizer-calculated values
             # If so, use those instead of recalculating (optimizer's values are correct for F/R direction)
-            optimizer_max_tension = getattr(section, '_optimizer_max_tension', None)
+            optimizer_forward_tension = getattr(section, '_optimizer_forward_tension', None)
 
-            if optimizer_max_tension is not None:
-                # Use optimizer's pre-calculated values
-                forward_tension = optimizer_max_tension
+            if optimizer_forward_tension is not None:
+                # Use optimizer's pre-calculated forward tension value
+                forward_tension = optimizer_forward_tension
                 cumulative_forward = forward_tension
 
                 # Still need tension_analysis for primitive-level data in CSV
@@ -725,13 +728,11 @@ class CableAnalysisPipeline:
             cumulative_reverse = 0.0
 
             # Check if this section has optimizer-calculated values
-            optimizer_max_tension = getattr(section, '_optimizer_max_tension', None)
+            optimizer_reverse_tension = getattr(section, '_optimizer_reverse_tension', None)
 
-            if optimizer_max_tension is not None:
-                # Use optimizer's pre-calculated value
-                # For optimizer sections, forward and reverse both show the actual max tension
-                # (which is correct for the chosen pulling direction F or R)
-                reverse_tension = optimizer_max_tension
+            if optimizer_reverse_tension is not None:
+                # Use optimizer's pre-calculated reverse tension value
+                reverse_tension = optimizer_reverse_tension
                 cumulative_reverse = reverse_tension
             else:
                 # No optimizer values - calculate normally
@@ -762,16 +763,23 @@ class CableAnalysisPipeline:
             cumulative_reverse = reverse_data["cumulative_reverse"]
             tension_analysis = forward_data["tension_analysis"]
 
-            # Check if optimizer calculated sidewall pressure
-            optimizer_max_sidewall = getattr(section, '_optimizer_max_sidewall', None)
-            if optimizer_max_sidewall is not None:
-                # Use optimizer's pre-calculated sidewall pressure
-                max_pressure = optimizer_max_sidewall
+            # Check if optimizer calculated sidewall pressures
+            optimizer_forward_sidewall = getattr(section, '_optimizer_forward_sidewall', None)
+            optimizer_reverse_sidewall = getattr(section, '_optimizer_reverse_sidewall', None)
+
+            if optimizer_forward_sidewall is not None and optimizer_reverse_sidewall is not None:
+                # Use optimizer's pre-calculated sidewall pressures
+                forward_sidewall = optimizer_forward_sidewall
+                reverse_sidewall = optimizer_reverse_sidewall
+                max_pressure = max(forward_sidewall, reverse_sidewall)
             else:
-                # Calculate normally
+                # Calculate normally - sidewall pressure is geometry-dependent, not direction-dependent
+                # (The max sidewall pressure at bends should be the same for forward and reverse)
                 max_pressure = self.pressure_calc.calculate_max_sidewall_pressure(
                     section, self.cable_spec, self.duct_spec
                 )
+                forward_sidewall = max_pressure
+                reverse_sidewall = max_pressure
 
             # Build ordered geometry array - single list of all primitives in sequence
             primitives_list = []
@@ -857,6 +865,8 @@ class CableAnalysisPipeline:
                 forward_tension_n=forward_tension,
                 reverse_tension_n=reverse_tension,
                 max_sidewall_pressure_n_m=max_pressure,
+                forward_sidewall_pressure_n_m=forward_sidewall,
+                reverse_sidewall_pressure_n_m=reverse_sidewall,
                 cumulative_forward_n=cumulative_forward,
                 cumulative_reverse_n=cumulative_reverse,
             )
@@ -1123,163 +1133,179 @@ class CableAnalysisPipeline:
         print("  Generating LaTeX tables...")
 
         # Generate pulling results LaTeX file
-        self._export_pulling_results_latex(section_results, output_path)
+        self._export_pulling_results_latex(section_results, output_path, route)
 
         print(f"  LaTeX file written to: {output_path}")
 
     def _export_pulling_results_latex(
-        self, section_results: List[SectionResult], output_path: Path
+        self, section_results: List[SectionResult], output_path: Path, route: Route
     ) -> None:
-        """Generate Pulling Calculation Results.tex file."""
+        """Generate pulling_calculation_results.tex file with section-by-section analysis.
 
+        Args:
+            section_results: List of section results with pulling calculations
+            output_path: Directory path for output files
+            route: Route object containing sections with coordinate data
+        """
         lines = []
         lines.append("\\section{Pulling Calculation Results}")
         lines.append("")
-        lines.append("\\subsection{Overall Route Analysis Summary}")
-
-        # Count sections and calculate statistics
-        total_sections = len(section_results)
-        sections_with_fails = sum(
-            1 for r in section_results
-            if r.forward_tension_n > self.config.cable_max_tension_n or
-               r.reverse_tension_n > self.config.cable_max_tension_n or
-               r.max_sidewall_pressure_n_m > self.config.cable_max_sidewall_pressure_n_m
-        )
-
-        # Determine summary text
-        if sections_with_fails == 0:
-            summary_text = (
-                f"The cable route has been optimized into {total_sections} individual pulls. "
-                "All pulls remain within cable manufacturer limits."
-            )
-        else:
-            summary_text = (
-                f"The cable route has been optimized into {total_sections} individual pulls. "
-                f"Sections requiring subdivision or special attention: {sections_with_fails}."
-            )
-
-        lines.append(summary_text)
+        lines.append("\\subsection{Section-by-Section Analysis}")
         lines.append("")
-        lines.append("The following table presents the complete bidirectional analysis for all cable pulls, "
-                    "showing both forward and reverse pulling options with the selected direction highlighted.")
+        lines.append("The following table presents detailed pulling analysis for each cable section, ")
+        lines.append("showing starting coordinates, tension and sidewall pressure analysis for both ")
+        lines.append("pulling directions, with the optimal direction highlighted.")
         lines.append("")
 
-        # Start longtable
-        lines.append("\\begin{longtable}{|L{1.8cm}|L{1.2cm}|L{1.2cm}|L{1.4cm}|L{1.4cm}|L{1.2cm}|L{1.4cm}|L{1.2cm}|L{2.5cm}|}")
-        lines.append("    \\hline")
-        lines.append("    \\headercell{Section} & \\headercell{Length (m)} & \\headercell{Direction} & "
-                    "\\headercell{Tension (N)} & \\headercell{Max (N)} & \\headercell{Usage (\\%)} & "
-                    "\\headercell{Sidewall (N/m)} & \\headercell{Max (N/m)} & \\headercell{Status} \\\\")
-        lines.append("    \\hline")
-        lines.append("    \\endfirsthead")
-        lines.append("")
-        lines.append("    \\hline")
-        lines.append("    \\headercell{Section} & \\headercell{Length (m)} & \\headercell{Direction} & "
-                    "\\headercell{Tension (N)} & \\headercell{Max (N)} & \\headercell{Usage (\\%)} & "
-                    "\\headercell{Sidewall (N/m)} & \\headercell{Max (N/m)} & \\headercell{Status} \\\\")
-        lines.append("    \\hline")
-        lines.append("    \\endhead")
-        lines.append("")
+        # Create a mapping from section_id to section object for coordinate lookup
+        section_map = {s.id: s for s in route.sections}
 
-        # Add data rows for each section
-        max_tension_util = 0.0
-        max_sidewall_util = 0.0
+        # Start longtable with 8 columns (no float, can span pages)
+        lines.append("\\begin{longtable}{|l|l|l|l|l|l|l|l|}")
+        lines.append("\\caption{Detailed Section-by-Section Pulling Analysis} \\\\")
+        lines.append("\\tablelineeight")
+        lines.append("\\headercell{Section} & \\headercell{Length} & \\headercell{Dir} & "
+                    "\\headercell{Tension} & \\headercell{Utilisation (\\%)} & \\headercell{Sidewall} & "
+                    "\\headercell{Utilisation (\\%)} & \\headercell{Status} \\\\")
+        lines.append("\\tablelineeight")
+        lines.append("\\endfirsthead")
+        lines.append("\\multicolumn{8}{c}{\\tablename\\ \\thetable\\ -- continued from previous page} \\\\")
+        lines.append("\\tablelineeight")
+        lines.append("\\headercell{Section} & \\headercell{Length} & \\headercell{Dir} & "
+                    "\\headercell{Tension} & \\headercell{Utilisation (\\%)} & \\headercell{Sidewall} & "
+                    "\\headercell{Utilisation (\\%)} & \\headercell{Status} \\\\")
+        lines.append("\\tablelineeight")
+        lines.append("\\endhead")
+        lines.append("\\tablelineeight \\multicolumn{8}{r}{Continued on next page} \\\\")
+        lines.append("\\endfoot")
+        lines.append("\\tablelineeight")
+        lines.append("\\endlastfoot")
 
+        # Iterate through section results
+        point_number = 0  # Start at 0 so A=0, B=1, etc.
         for result in section_results:
+            # Get section object for coordinates
+            section = section_map.get(result.section_id)
+
+            # Convert point number to letter (A, B, C, ...)
+            point_letter = chr(ord('A') + point_number)
+
+            # Add starting point coordinate row (merged across all columns)
+            if section and section.start_coordinate:
+                x, y = section.start_coordinate
+                # Use 3 decimal places for coordinate precision (mm if in meters)
+                coord_text = f"Point {point_letter}: X {x:.3f}, Y {y:.3f}"
+            else:
+                coord_text = f"Point {point_letter} (coordinates unavailable)"
+
+            lines.append(f"\\multicolumn{{8}}{{|c|}}{{{coord_text}}} \\\\")
+            lines.append("\\tablelineeight")
+            point_number += 1
+
             # Calculate utilizations
             forward_tension_util = (result.forward_tension_n / self.config.cable_max_tension_n) * 100
             reverse_tension_util = (result.reverse_tension_n / self.config.cable_max_tension_n) * 100
-            forward_sidewall_util = (result.max_sidewall_pressure_n_m / self.config.cable_max_sidewall_pressure_n_m) * 100
-            # For reverse, we use the same max sidewall (it's already the max of all bends)
-            reverse_sidewall_util = forward_sidewall_util
+            forward_sidewall_util = (result.forward_sidewall_pressure_n_m / self.config.cable_max_sidewall_pressure_n_m) * 100
+            reverse_sidewall_util = (result.reverse_sidewall_pressure_n_m / self.config.cable_max_sidewall_pressure_n_m) * 100
 
-            # Determine max utilization for each direction
-            forward_max_util = max(forward_tension_util, forward_sidewall_util)
-            reverse_max_util = max(reverse_tension_util, reverse_sidewall_util)
+            # Determine pass/fail for each direction
+            forward_passes = forward_tension_util <= 100 and forward_sidewall_util <= 100
+            reverse_passes = reverse_tension_util <= 100 and reverse_sidewall_util <= 100
 
-            # Track overall max
-            max_tension_util = max(max_tension_util, forward_tension_util, reverse_tension_util)
-            max_sidewall_util = max(max_sidewall_util, forward_sidewall_util)
-
-            # Determine selected direction (lower utilization)
-            if forward_max_util <= reverse_max_util:
-                selected_direction = "forward"
+            # Determine best direction (lowest tension utilization among passing directions)
+            if forward_passes and reverse_passes:
+                # Both pass - best is the one with lower tension utilization
+                best_direction = "forward" if forward_tension_util <= reverse_tension_util else "reverse"
+            elif forward_passes:
+                # Only forward passes
+                best_direction = "forward"
+            elif reverse_passes:
+                # Only reverse passes
+                best_direction = "reverse"
             else:
-                selected_direction = "reverse"
+                # Neither passes - no best direction
+                best_direction = None
 
             # Determine status for each direction
-            def get_status(tension_n, tension_util):
-                if tension_n > self.config.cable_max_tension_n or tension_util > 100:
+            def get_status(passes, is_best):
+                if not passes:
                     return "\\cellcolor{red!25}Fail"
-                elif selected_direction == ("forward" if tension_n == result.forward_tension_n else "reverse"):
-                    return "\\cellcolor{green!25}Selected"
+                elif is_best:
+                    return "\\cellcolor{green!25}Best"
                 else:
                     return "Pass"
 
-            forward_status = get_status(result.forward_tension_n, forward_max_util)
-            reverse_status = get_status(result.reverse_tension_n, reverse_max_util)
+            forward_status = get_status(forward_passes, best_direction == "forward")
+            reverse_status = get_status(reverse_passes, best_direction == "reverse")
 
             # Clean section ID for LaTeX (escape underscores)
             section_id_latex = result.section_id.replace("_", "\\_")
 
-            # Generate table rows (multirow for section with two direction rows)
-            lines.append(f"    \\multirow{{2}}{{*}}{{{section_id_latex}}} & "
+            # Generate table rows (multirow for section and length, two direction rows)
+            lines.append(f"\\multirow{{2}}{{*}}{{{section_id_latex}}} & "
                         f"\\multirow{{2}}{{*}}{{{result.length_m:.1f}}} & "
                         f"forward & "
                         f"{result.forward_tension_n:.0f} & "
-                        f"{self.config.cable_max_tension_n:.0f} & "
-                        f"{forward_tension_util:.1f} & "
-                        f"{result.max_sidewall_pressure_n_m:.0f} & "
-                        f"{self.config.cable_max_sidewall_pressure_n_m:.0f} & "
-                        f"{forward_status} \\\\\\cline{{3-9}}")
+                        f"{forward_tension_util:.1f} \\% & "
+                        f"{result.forward_sidewall_pressure_n_m:.0f} & "
+                        f"{forward_sidewall_util:.1f} \\% & "
+                        f"{forward_status} \\\\\\cline{{3-8}}")
 
-            lines.append(f"     & & reverse & "
+            lines.append(f" & & reverse & "
                         f"{result.reverse_tension_n:.0f} & "
-                        f"{self.config.cable_max_tension_n:.0f} & "
-                        f"{reverse_tension_util:.1f} & "
-                        f"{result.max_sidewall_pressure_n_m:.0f} & "
-                        f"{self.config.cable_max_sidewall_pressure_n_m:.0f} & "
-                        f"{reverse_status} \\\\\\hline")
+                        f"{reverse_tension_util:.1f} \\% & "
+                        f"{result.reverse_sidewall_pressure_n_m:.0f} & "
+                        f"{reverse_sidewall_util:.1f} \\% & "
+                        f"{reverse_status} \\\\")
+            lines.append("\\tablelineeight")
 
-        # Table caption
-        lines.append(f"    \\caption{{Complete Bidirectional Analysis Summary - All {total_sections} Cable Pulls}}")
-        lines.append("    \\label{tbl:bidirectional-analysis}")
+        # Add final endpoint coordinate row
+        if section_results:
+            last_section = section_map.get(section_results[-1].section_id)
+            # point_number is now one more than the last section start, so it's the endpoint
+            endpoint_letter = chr(ord('A') + point_number)
+            if last_section and last_section.end_coordinate:
+                x, y = last_section.end_coordinate
+                coord_text = f"Point {endpoint_letter}: X {x:.3f}, Y {y:.3f}"
+            else:
+                coord_text = f"Point {endpoint_letter} (coordinates unavailable)"
+
+            lines.append(f"\\multicolumn{{8}}{{|c|}}{{{coord_text}}} \\\\")
+            lines.append("\\tablelineeight")
+
         lines.append("\\end{longtable}")
         lines.append("")
 
-        # Key performance metrics
-        lines.append("\\textbf{Key Performance Metrics:}")
-        lines.append("\\begin{itemize}")
-        lines.append(f"    \\item \\textbf{{Total Pulls Required:}} {total_sections}")
-        lines.append(f"    \\item \\textbf{{Maximum Tension Utilization:}} {max_tension_util:.1f}\\%")
-        lines.append(f"    \\item \\textbf{{Maximum Sidewall Utilization:}} {max_sidewall_util:.1f}\\%")
-        lines.append(f"    \\item \\textbf{{Tension Limit:}} {self.config.cable_max_tension_n/1000:.1f} kN")
-        lines.append(f"    \\item \\textbf{{Sidewall Pressure Limit:}} {self.config.cable_max_sidewall_pressure_n_m/1000:.1f} kN/m")
-        lines.append("\\end{itemize}")
-        lines.append("")
+        # Add summary statistics
+        total_sections = len(section_results)
+        sections_with_fails = sum(
+            1 for r in section_results
+            if (r.forward_tension_n / self.config.cable_max_tension_n * 100 > 100 or
+                r.max_sidewall_pressure_n_m / self.config.cable_max_sidewall_pressure_n_m * 100 > 100) and
+               (r.reverse_tension_n / self.config.cable_max_tension_n * 100 > 100 or
+                r.max_sidewall_pressure_n_m / self.config.cable_max_sidewall_pressure_n_m * 100 > 100)
+        )
 
-        # Validation section
-        lines.append("\\section{Validation of Pulling Feasibility}")
+        lines.append("\\subsection{Summary}")
         lines.append("")
-        lines.append("\\begin{itemize}")
-
-        passing_sections = total_sections - sections_with_fails
-        if passing_sections == total_sections:
-            lines.append(f"    \\item \\textbf{{{passing_sections} of {total_sections} pulls fully validated}} "
-                        "with both forward and reverse options within limits.")
+        if sections_with_fails == 0:
+            lines.append(f"All {total_sections} cable sections have at least one viable pulling direction ")
+            lines.append("within manufacturer limits. The recommended pulling direction for each section ")
+            lines.append("is highlighted as 'Best' in the table above.")
         else:
-            lines.append(f"    \\item \\textbf{{{passing_sections} of {total_sections} pulls fully validated}} "
-                        "with both forward and reverse options within limits.")
-            lines.append(f"    \\item \\textbf{{{sections_with_fails} sections require attention}} "
-                        "due to exceeding manufacturer limits in one or both directions.")
+            lines.append(f"Out of {total_sections} cable sections, {sections_with_fails} section(s) exceed ")
+            lines.append("manufacturer limits in both pulling directions and require attention.")
+        lines.append("")
 
-        lines.append("    \\item \\textbf{All selected pulling directions} maintain optimal stress levels "
-                    "and minimize installation risk.")
-        lines.append("    \\item \\textbf{Installation feasibility confirmed} with the specified pulling directions.")
+        # Key limits
+        lines.append("\\textbf{Cable Limits:}")
+        lines.append("\\begin{itemize}")
+        lines.append(f"    \\item Maximum Pulling Tension: {self.config.cable_max_tension_n:.0f} N ({self.config.cable_max_tension_n/1000:.1f} kN)")
+        lines.append(f"    \\item Maximum Sidewall Pressure: {self.config.cable_max_sidewall_pressure_n_m:.0f} N/m ({self.config.cable_max_sidewall_pressure_n_m/1000:.1f} kN/m)")
         lines.append("\\end{itemize}")
 
         # Write to file
-        output_file = output_path / "Pulling Calculation Results.tex"
+        output_file = output_path / "pulling_calculation_results.tex"
         with open(output_file, 'w', encoding='utf-8') as f:
             f.write('\n'.join(lines))
 

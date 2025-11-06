@@ -176,3 +176,23 @@ output/
 temp/
 cache/
 .claude/
+
+# Analysis outputs
+**/analysis_output/
+**/debug_output/
+
+# Excel files
+*.xlsx
+
+# LaTeX outputs
+*.tex
+
+# PDF files
+*.pdf
+
+# Backup files
+*_backup.py
+*_v2.py
+
+# Temporary/error files
+nul
